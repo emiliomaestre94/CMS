@@ -1,0 +1,70 @@
+<!-- TABLA USUARIOS TOTALES -->
+<div class="row" >
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header" >
+      Usuarios de Zara
+      </div>
+      <h1 *ngIf="!usuarios"> CARGANDO USUARIOS... </h1>
+      <div  *ngIf="!usuarios" class="loader"></div>
+      <div *ngIf="usuarios" class="card-block">
+
+      <div id="buscador" class="form-group row">
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                </span>
+                <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
+
+            </div>
+        </div>
+        <table class="table table-hover table-outline mb-0 hidden-sm-down">
+            <thead class="thead-default">
+                <tr>
+                    <th class="text-center"><i class="icon-people"></i>
+                    </th>
+                    <th>Usuarios</th>
+                    <th class="text-center">Municipio</th>
+                    <th>Teléfono</th>
+                    <th class="text-center">Código Postal</th>
+                    <th>Correo electrónico</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+
+                <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios">
+                    <td class="text-center">
+                        <div class="avatar">
+                            <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
+                            <span *ngIf="usuarios.Eliminado==0" class="avatar-status badge-success"></span>
+                            <span *ngIf="usuarios.Eliminado==1" class="avatar-status badge-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div>{{usuarios.Nombre}}</div>
+                        <div class="small text-muted">
+                            Registro: {{usuarios.Fecha}} 
+                        </div>
+                    </td>
+                    <td class="text-center">
+                       <strong>{{usuarios.Municipio}}</strong>
+                    </td>
+                    <td>
+                       <strong>{{usuarios.Telefono}}</strong>
+                    </td>
+                    <td class="text-center">
+                         <strong>{{usuarios.CP}}</strong>
+                    </td>
+                    <td>
+                        <strong>{{usuarios.Email}}</strong>
+                    </td>
+                </tr>
+        
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
