@@ -12,9 +12,3 @@ npm-debug.log
 Dockerfile
 docker-compose.yml
 
-# Carpeta resultante tras build
-dist
-
-# Docs
-*.doc
-*.docx
