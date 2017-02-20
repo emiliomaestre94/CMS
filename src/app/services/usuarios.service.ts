@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Headers,Response, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable'; //esta en el directorio node modules
@@ -21,7 +22,7 @@ export class UsuariosService {
     comprobacion(){
         console.log("DEBERIA IR");
     }
-    private usersUrl= 'https://appayservidor.herokuapp.com/usuarios';
+    private usersUrl= environment.dominio + '/usuarios';
      getUsers(): Observable<Usuario[]>{
         return this.authHttp.get(this.usersUrl)
         .map(this.extractData);

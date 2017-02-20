@@ -15,7 +15,7 @@ export const routes: Routes = [
     path: '',
     component: FullLayoutComponent,
     data: {
-      title: 'Home'
+      title: 'Home' 
     },
     children: [
       {
@@ -25,7 +25,7 @@ export const routes: Routes = [
       {
         path: 'components',
         loadChildren: './components/components.module#ComponentsModule'
-      },
+      }, 
       {
         path: 'icons',
         loadChildren: './icons/icons.module#IconsModule'

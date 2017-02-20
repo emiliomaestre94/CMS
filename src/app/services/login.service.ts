@@ -1,5 +1,5 @@
+import { environment } from './../../environments/environment';
 import { Usuario } from './usuarios.service';
-
 import { Injectable } from '@angular/core';
 import { Headers,Response, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable'; //esta en el directorio node modules
@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import 'rxjs/Rx'; //para el map, catch, thow...etc
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
- 
 @Injectable()
 
 export class LoginService {
@@ -28,7 +27,7 @@ export class LoginService {
         console.log(user.name);
         console.log(user.password);
         console.log(hola);
-        return this.http.post('https://appayservidor.herokuapp.com/loginjwt', 
+        return this.http.post(environment.dominio + '/loginjwt', 
             JSON.stringify({username:user.name,password:user.password}), options)
             .map( response => { 
 
@@ -46,7 +45,7 @@ export class LoginService {
         headers.append('X-Requested-With', 'XMLHttpRequest');
         let options = new RequestOptions({ headers: headers, withCredentials: true });
 
-        return this.authHttp.post('https://appayservidor.herokuapp.com/loginjwt/info', "", options)
+        return this.authHttp.post(environment.dominio +'/loginjwt/info', "", options)
             .map( response => { 
                var respJson = response.json(); 
                return respJson;

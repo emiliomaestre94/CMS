@@ -3,7 +3,7 @@ import { UsuariosService } from './services/usuarios.service';
 import { FormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy,PathLocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
@@ -65,9 +65,13 @@ LoginService,
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
       deps: [Http, RequestOptions]
-    }
+    },
+    {
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  },
 
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent]
 })
 export class AppModule { }
