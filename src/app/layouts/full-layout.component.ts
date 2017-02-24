@@ -39,3 +39,4 @@ export class FullLayoutComponent implements OnInit {
       );
   }
 }
+ 

@@ -1,6 +1,6 @@
 import { LoginService } from './services/login.service';
 import { UsuariosService } from './services/usuarios.service';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy,PathLocationStrategy } from '@angular/common';
