@@ -1,8 +1,45 @@
-// Here you can add other styles
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.input-group{
+ margin-bottom: 20px;
+}
+
+#pagination {
+    float: right;
+ /*   margin-right: 10px;
+    margin-top: 10px;*/
+}
+
+p {
+    font-size: 25px;
+    position: absolute;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: 29px;
+    color: #124570;
+}
+
+.card-header {
+    background-color: #b7d9f3;
+}
+
+.btn-secondary { 
+    border-color: transparent;
+}
 
 ////////////////////////////FACTURA///////////////////////
-/*
 .container-fluid {
     background-color: #b7d9f3;
 }
@@ -59,5 +96,5 @@ th.precio {
     padding: 15px;
     border-bottom: 1px solid #cfd8dc;
 }
-*/
+
 /////////////////////////////////////////////////////////////////////

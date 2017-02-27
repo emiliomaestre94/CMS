@@ -1,0 +1,597 @@
+<!-- TABLA USUARIOS TOTALES -->
+<div class="row" >
+    <div class="col-md-12">
+        <div class="card">
+
+            <div class="card-header" ><p>Facturas Usuarios</p>
+                <ul class="pagination" id="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
+            <!--
+            <h1 *ngIf="!usuarios"> CARGANDO USUARIOS... </h1>
+            <div  *ngIf="!usuarios" class="loader"></div>
+            -->
+
+    <!--<div *ngIf="usuarios" class="card-block">-->
+
+            <div id="buscador" class="form-group row">
+                <div class="col-md-12">
+
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                        </span>
+                        <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="NºFact/Fecha/Hora/Total/Usuario" [(ngModel)]="buscadorUsuarios">
+                    </div>
+       <!-- </div> -->
+
+
+
+                    <table class="table table-hover table-outline mb-0 hidden-sm-down">
+                        <thead class="thead-default">
+                            <tr>
+                                <!--<th class="text-center"><i class="icon-people"></i></th>-->
+                                <th class="text-center"><input type="checkbox" name="" value=""></th>
+                                <th class="text-center">Nº Fact</th>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Hora</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center">Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios">-->
+                                <!--
+                                <td class="text-center">
+                                    <div class="avatar">
+                                        <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
+                                        <span *ngIf="usuarios.Eliminado==0" class="avatar-status badge-success"></span>
+                                        <span *ngIf="usuarios.Eliminado==1" class="avatar-status badge-danger"></span>
+                                    </div>
+                                </td>
+                            
+                                <td>
+                                    <div>{{usuarios.Nombre}}</div>
+                                    <div class="small text-muted">
+                                        Registro: {{usuarios.Fecha}} 
+                                    </div>
+                                </td>
+
+                                <td class="text-center">
+                                <strong>{{usuarios.Municipio}}</strong>
+                                </td>
+
+                                <td>
+                                <strong>{{usuarios.Telefono}}</strong>
+                                </td>
+
+                                <td class="text-center">
+                                    <strong>{{usuarios.CP}}</strong>
+                                </td>
+
+                                <td>
+                                    <strong>{{usuarios.Email}}</strong>
+                                </td>
+                        </tr> -->
+                            <tr class="" data-toggle="modal" (click)="facturaModal.show()">
+                                <td class="text-center">
+                                    <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                    <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+            <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+
+            <ul class="pagination" id="pagination" >
+                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+    </div>
+</div>
+
+
+<!--DETALLE FACTURA-->
+
+<div bsModal #facturaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header-factura" id="factura">
+                <h4 class="modal-title">Factura</h4>
+                <button type="button" class="close" (click)="facturaModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="datosTienda">
+                        <p><span>Tienda de Ropa</span> - CIF: 21212121F</p>
+                        <p><strong>Num:</strong> F1231</p>
+                        <p>C/: Reyes Catolicos Nº25</p>
+                        <p>Alicante - 03005</p>
+                        <p><em>21/02/2017 · 14:55</em></p>
+                        <p>Tlf: 965 48 48 48</p>  
+                </div>
+                <div class="datosCliente">
+                        <p><span>Jose Fco Moreno Fernández</span></p>
+                        <p>DNI: 48362351K</p>
+                        <p>C/: Princesa Mercedez Nº12 4C</p>
+                        <p>Alicante - 03006</p>
+                        <p><span>josefcomoreno85@gmail.com</span></p>  
+                </div>
+   
+                <div class="tablaFactura">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="descripcion" style="text-align: center">Descripcion</th>
+                                    <th class="cantidad" style="text-align: center">Cantidad</th>
+                                    <th class="precio" style="text-align: center">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Coca Cola Zero</td>
+                                    <td style="text-align: center">1</td>
+                                    <td style="text-align: center">0,49€</td>
+                                </tr>
+                                <tr>
+                                    <td>Barra de Pan</td>
+                                    <td style="text-align: center">2</td>
+                                    <td style="text-align: center">0,90€</td>
+                                </tr>
+                                <tr>
+                                    <td>Caja de Galletas Tostarica</td>
+                                    <td style="text-align: center">10</td>
+                                    <td style="text-align: center">3,85€</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Chocolate Milka con Caramelo</td>
+                                    <td style="text-align: center">10</td>
+                                    <td style="text-align: center">23,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Caramelos Explosivos</td>
+                                    <td style="text-align: center">5</td>
+                                    <td style="text-align: center">53,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Langostinos del Mar Muerto</td>
+                                    <td style="text-align: center">1</td>
+                                    <td style="text-align: center">23,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Fanta Limón</td>
+                                    <td style="text-align: center">25</td>
+                                    <td style="text-align: center">0,44€</td>
+                                </tr>
+                                <tr>
+                                    <td>Cerceza Guinnes</td>
+                                    <td style="text-align: center">50</td>
+                                    <td style="text-align: center">2,5€</td>
+                                </tr>
+                                <tr>
+                                    <td>Chocolate Milka con Caramelo</td>
+                                    <td style="text-align: center">10</td>
+                                    <td style="text-align: center">23,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Caramelos Explosivos</td>
+                                    <td style="text-align: center">5</td>
+                                    <td style="text-align: center">53,34€</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+
+                <div class="importe">
+                    <div>
+                        <p>Precion sin IVA: <strong>45,01</strong> </p>
+                        <p class="total">Total: <strong>50,50€</strong> <span class="iva">(Incl IVA 8%)</span></p>
+                     </div>
+                </div>
+
+        </div>
+
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-secondary" (click)="facturaModal.hide()">Cerrar</button>-->
+                <button type="button" class="btn btn-danger">Descargar Pdf <i class="fa fa-file-pdf-o"></i></button>
+            </div>
+
+        </div>
+    </div>
+</div>
