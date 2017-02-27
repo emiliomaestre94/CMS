@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+import { ResetPasswordComponent } from './pages/reset-password.component';
+import { LoginComponent } from './pages/login.component';
+import { AuthGuard } from './authentication/auth.guard';
+import { NgModule,ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Layouts
@@ -10,6 +13,7 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
+   // canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -20,7 +24,8 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
+        canActivate: [AuthGuard]
       },
       {
         path: 'components',
@@ -56,7 +61,21 @@ export const routes: Routes = [
         loadChildren: './pages/pages.module#PagesModule',
       }
     ]
-  }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+      data: {
+      title: 'Login Page'
+    }
+  },
+  {
+    path: 'resetpassword',
+    component: ResetPasswordComponent,
+      data: {
+      title: 'Reset Password'
+    }
+  },
 ];
 
 @NgModule({

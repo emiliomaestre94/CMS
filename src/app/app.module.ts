@@ -1,4 +1,7 @@
-import { LoginService } from './services/login.service';
+import { ResetPasswordComponent } from './pages/reset-password.component';
+import { LoginComponent } from './pages/login.component';
+import { AuthGuard } from './authentication/auth.guard';
+import { AuthService } from './services/auth.service';
 import { UsuariosService } from './services/usuarios.service';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -42,13 +45,15 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     FormsModule,
     AppRoutingModule,
     DropdownModule.forRoot(),
-    TabsModule.forRoot(),
+    TabsModule.forRoot(), 
     ChartsModule
   ],
   declarations: [
     AppComponent,
     FullLayoutComponent,
     SimpleLayoutComponent,
+    ResetPasswordComponent,
+    LoginComponent,
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
@@ -60,7 +65,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   },
   //UsuariosService
 */     
-LoginService,
+
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
@@ -70,7 +75,8 @@ LoginService,
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-
+  AuthService,
+  AuthGuard
   ],
   bootstrap: [ AppComponent]
 })

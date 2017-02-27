@@ -1,4 +1,3 @@
-import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {JwtHelper} from 'angular2-jwt';
@@ -8,8 +7,8 @@ import {JwtHelper} from 'angular2-jwt';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private loginService:LoginService) { }
-
+  constructor() { }
+/*
   //COSAS LOGIN 
   user = { name: "emiliomaestre@gmail.com", password: "fordmondeo1"};
   alertMessage = '';
@@ -33,7 +32,7 @@ export class DashboardComponent implements OnInit {
           }
       );
   }
-
+*/
   //FIN COSAS LOGIN  
 
   public brandPrimary:string =  '#20a8d8';

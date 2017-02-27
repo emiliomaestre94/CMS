@@ -1,7 +1,8 @@
-import { LoginService } from './../services/login.service';
+import { AuthService } from './../services/auth.service';
+//import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+@Component({ 
   selector: 'app-dashboard',
   templateUrl: './full-layout.component.html'
 })
@@ -11,7 +12,7 @@ export class FullLayoutComponent implements OnInit {
   public foto: string;
   public nombre: string;
 
-  constructor(private loginService:LoginService) { }
+  constructor(private authService:AuthService) { }
 
   public disabled:boolean = false;
   public status:{isopen:boolean} = {isopen: false};
@@ -27,7 +28,7 @@ export class FullLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.loginService.getToken().subscribe(
+      this.authService.getToken().subscribe(
           usuario =>{
           console.log(usuario);
           this.foto=usuario.data.Foto;
@@ -38,5 +39,10 @@ export class FullLayoutComponent implements OnInit {
           }
       );
   }
+
+  logout(){
+    this.authService.logout();
+  }
+
 }
  
