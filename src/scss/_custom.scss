@@ -1,63 +1,18 @@
 // Here you can add other styles
 
 
-////////////////////////////FACTURA///////////////////////
-/*
+
 .container-fluid {
     background-color: #b7d9f3;
 }
-
 ol.breadcrumb {
     margin-bottom: 0px;
 }
-
-.datosTienda {
-    font-size: 14px;
-    text-align: left;
-    width: 45%;
-    float: left;
-    line-height: 5px;
-    padding-bottom: 10px;
-    p span{
-            font-weight: bold;
-
-        }
+.card-header p {
+    font-size: 25px;
+    position: absolute;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: 29px;
+    color: #124570;
 }
-.datosCliente {
-    font-size: 14px;
-    text-align: right;
-    width: 45%;
-    float: right;
-    line-height: 5px;
-    padding-bottom: 10px;
-            p span{
-            font-weight: bold;
-
-        }
-}
-
-th.cantidad {
-    width: 95px;
-}
-
-th.precio {
-    width: 95px;
-}
-
-.modal-header-factura {
-    color: #fff;
-    background-color: #20a8d8;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding: 15px;
-    border-bottom: 1px solid #cfd8dc;
-}
-*/
-/////////////////////////////////////////////////////////////////////

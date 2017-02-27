@@ -22,7 +22,7 @@
     margin-top: 10px;*/
 }
 
-p {
+.card-header p {
     font-size: 25px;
     position: absolute;
     font-weight: 600;
@@ -40,14 +40,6 @@ p {
 }
 
 ////////////////////////////FACTURA///////////////////////
-.container-fluid {
-    background-color: #b7d9f3;
-}
-
-ol.breadcrumb {
-    margin-bottom: 0px;
-}
-
 .datosTienda {
     font-size: 14px;
     text-align: left;
@@ -57,7 +49,6 @@ ol.breadcrumb {
     padding-bottom: 10px;
     p span{
             font-weight: bold;
-
         }
 }
 .datosCliente {
@@ -95,6 +86,25 @@ th.precio {
     justify-content: space-between;
     padding: 15px;
     border-bottom: 1px solid #cfd8dc;
+}
+
+.importe {
+    width: 50%;
+    float: right;
+    text-align: right;
+    line-height: 10px;
+}
+
+.total {
+    font-size: 25px;
+     color: #124570;
+     font-weight: bold;
+}
+.base {
+    font-size: 16px;
+}
+.impuestos {
+    text-align:left;
 }
 
 /////////////////////////////////////////////////////////////////////

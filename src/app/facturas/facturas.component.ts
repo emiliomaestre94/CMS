@@ -15,8 +15,9 @@ export class FacturasComponent implements OnInit {
   facturas: Factura[];
   buscadorFacturas: string="";
   constructor(public facturasService: FacturasService) { }
-/*
+
   ngOnInit() {
+    /*
     console.log("Entra en el ngOnInit");
     
     this.facturasService.getUsers().subscribe(
@@ -24,8 +25,9 @@ export class FacturasComponent implements OnInit {
         this.facturas=facts;
       }
     );
+    */
   }
-*/
+
   @ViewChild('childModal') public childModal:ModalDirective;
 
   public showChildModal():void {
@@ -35,10 +37,5 @@ export class FacturasComponent implements OnInit {
   public hideChildModal():void {
     this.childModal.hide();
   }
-
-
-
-
-
 
 }
