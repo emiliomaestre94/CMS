@@ -1,8 +1,8 @@
-
-import { FacturasService } from './services/facturas.service';
-
 import { LoginService } from './services/login.service';
 import { UsuariosService } from './services/usuarios.service';
+import { FacturasService } from './services/facturas.service';
+import { ProductosService } from './services/productos.service';
+
 
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';

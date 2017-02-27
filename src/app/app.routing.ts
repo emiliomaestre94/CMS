@@ -46,6 +46,10 @@ export const routes: Routes = [
         path: 'facturas',
         loadChildren: './facturas/facturas.module#FacturasModule'
       },
+      {
+        path: 'productos',
+        loadChildren: './productos/productos.module#ProductosModule'
+      },
     ]
   },
   {
