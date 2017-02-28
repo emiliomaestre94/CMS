@@ -1,3 +1,4 @@
+import { EditPasswordComponent } from './pages/edit-password.component';
 import { ResetPasswordComponent } from './pages/reset-password.component';
 import { LoginComponent } from './pages/login.component';
 import { AuthGuard } from './authentication/auth.guard';
@@ -74,6 +75,13 @@ export const routes: Routes = [
     component: ResetPasswordComponent,
       data: {
       title: 'Reset Password'
+    }
+  },
+    {
+    path: 'editpassword',
+    component: EditPasswordComponent,
+      data: {
+      title: 'Edit Password'
     }
   },
 ];

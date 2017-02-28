@@ -16,6 +16,8 @@ export class AuthService{
 
     constructor(private http: Http, private router: Router, public authHttp:AuthHttp) {}
     
+    mensajeEditPassword:boolean;
+
     getToken(){     
         let headers = new Headers({ 'content-type': 'application/json' });
         headers.append('X-Requested-With', 'XMLHttpRequest');
@@ -31,18 +33,27 @@ export class AuthService{
     login(user){   
         let headers = new Headers({ 'content-type': 'application/json' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
-
+        console.log(user.username);
+        console.log(user.password);
         return this.http.post(environment.dominio + '/loginjwt', 
             JSON.stringify({username:user.username, password:user.password}), options)
-            .map( response => { 
-                var respJson = response.json(); 
-                if (response.status==200){ //si la cabecera es 200, es decir, ha creado el token correctamente
-                    console.log("Ha creado el token correctamente");
-                    localStorage.setItem("id_token",response.json());
+            .delay(environment.timeout)
+            .map((res: Response) => {
+                if (res.status === 200) {
+                    localStorage.setItem("id_token",res.json());
+                    return [{ status: res.status}]
                 }
-                return respJson;
+                console.log(res);
+            }).catch((error: any) => {
+                console.log(error);
+                if(error.status===401){
+                     return  [{ status: error.status, json: "Usuario o contraseña incorrectos" }]
+                }
+                //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+                return Observable.throw(new Error(error.status));
             });
     }
+
 
     logout(){
        localStorage.removeItem("id_token");
@@ -52,25 +63,6 @@ export class AuthService{
     resetpassword(email){
         let headers = new Headers({ 'content-type': 'application/json' });
         let options = new RequestOptions({ headers: headers, withCredentials: true });
-/*
-        return this.http.post(environment.dominio + '/resetpassword', 
-            JSON.stringify({email:email}), options)
-            .map( response => { 
-                 var respJson = response.json(); 
-                 
-                if (response.status==204){
-                    console.log("El usuario no existe");
-                    respJson="El usuario no existe";
-                }
-                else if(response.status==200){
-                    respJson="El usuario no existe";
-                }
-                 
-                
-                      //  if(response.status==204){respJson.status==204}        
-                return respJson;
-            });
-       */
         return this.http.post(environment.dominio + '/resetpassword', 
             JSON.stringify({email:email}), options)
             .delay(environment.timeout) //en modo dev establecemos un tiempo de 2 segundos (simulamos tiempo de espera)
@@ -84,6 +76,32 @@ export class AuthService{
             }).catch((error: any) => {
                 console.log(error);
                 //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+                return Observable.throw(new Error(error.status));
+            });
+    }
+
+    tokenUrl(token){
+        localStorage.setItem("id_token",token);
+    }
+
+    cambiarpassword(password,token){
+        let headers = new Headers({ 'content-type': 'application/json' });
+        let options = new RequestOptions({ headers: headers, withCredentials: true });
+        console.log(password);
+        return this.authHttp.put(environment.dominio + '/resetpassword', 
+            JSON.stringify({contra:password,token:token}), options)
+            .delay(environment.timeout) //en modo dev establecemos un tiempo de 2 segundos (simulamos tiempo de espera)
+            .map((res: Response) => {
+                console.log(res);
+                if (res.status === 200) {
+                    console.log(res.status);
+                    return [{ status: res.status}]
+                }
+            }).catch((error: any) => {
+                console.log(error);
+                if(error.status==401){
+                    return  [{ status: error.status, json: "Usuario no encontrado en la base de datos" }]
+                }
                 return Observable.throw(new Error(error.status));
             });
     }
