@@ -2,6 +2,7 @@ import { ProductosService } from './../services/productos.service';
 import { BuscadorProductosPipe } from './buscadorproductos.pipe';
 import { ProductosComponent } from './productos.component';
 import { ProductosRoutingModule } from './productos-routing.module';
+
 //// Modal Component
 import { ModalModule } from 'ng2-bootstrap/modal';
 ////////////////////
