@@ -1,7 +1,7 @@
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-
+import { environment } from './../../environments/environment';
 
 @Component({
   templateUrl: 'login.component.html'
@@ -44,14 +44,15 @@ export class LoginComponent implements OnInit {
         }
         else{
             if(res.status==401){
-                this.alertenvio=res.json;
-                this.accesocorrecto=false;
-                console.log(this.alertenvio);
-                 this.enviando=false;   
+                 setTimeout(() => {
+                    this.alertenvio=res.json;
+                    this.accesocorrecto=false;
+                    console.log(this.alertenvio);
+                    this.enviando=false;   
+                }, environment.timeout);
             }
         }        
-            //this.accesocorrecto=true;
-           
+            //this.accesocorrecto=true;        
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);

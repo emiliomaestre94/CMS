@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
   dominio: 'http://localhost:5000',
-  timeout: 2000
+  timeout: 1000
 };
  

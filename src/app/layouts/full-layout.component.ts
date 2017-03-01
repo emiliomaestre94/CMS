@@ -11,7 +11,7 @@ export class FullLayoutComponent implements OnInit {
   //datos del admin
   public foto: string;
   public nombre: string;
-
+  //cerrandosesion: boolean=false;
   constructor(private authService:AuthService) { }
 
   public disabled:boolean = false;
@@ -42,7 +42,14 @@ export class FullLayoutComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+    /*
+    console.log("Cerrando sesión");
+    this.cerrandosesion=true;
+    setTimeout(() => {
+         this.authService.logout();
+         this.cerrandosesion=false;
+    }, 3000);
+    */
   }
-
 }
  

@@ -47,7 +47,7 @@ export class AuthService{
             }).catch((error: any) => {
                 console.log(error);
                 if(error.status===401){
-                     return  [{ status: error.status, json: "Usuario o contraseña incorrectos" }]
+                     return  [{ status: error.status, json: "Usuario o contraseña incorrectos"}]
                 }
                 //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
                 return Observable.throw(new Error(error.status));
