@@ -1,3 +1,4 @@
+
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -20,6 +21,7 @@
     float: right;
     padding-top: 10px;
 }
+
 .card-header p {
     font-size: 25px;
     position: absolute;
@@ -33,6 +35,7 @@
     background-color: #b7d9f3;
 }
 
+
 .btn-secondary { 
     border-color: transparent;
 }
@@ -45,6 +48,7 @@
 
 .modal-lg {
     max-width: 1400px;
+    width: 85%;
 }
 
 .imagenProducto {
