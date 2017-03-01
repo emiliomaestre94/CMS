@@ -4,6 +4,10 @@ import { LoginComponent } from './pages/login.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { AuthService } from './services/auth.service';
 import { UsuariosService } from './services/usuarios.service';
+import { FacturasService } from './services/facturas.service';
+import { ProductosService } from './services/productos.service';
+
+
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +22,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
+
 
 // Routing Module
 import { AppRoutingModule } from './app.routing';

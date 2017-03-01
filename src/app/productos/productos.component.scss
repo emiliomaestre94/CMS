@@ -1,0 +1,80 @@
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.input-group{
+ margin-bottom: 20px;
+}
+
+#pagination {
+    float: right;
+    padding-top: 10px;
+}
+.card-header p {
+    font-size: 25px;
+    position: absolute;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: 29px;
+    color: #124570;
+}
+
+.card-header {
+    background-color: #b7d9f3;
+}
+
+.btn-secondary { 
+    border-color: transparent;
+}
+
+.card {
+    margin-bottom: 0.5rem;
+}
+
+////////////////////////////FACTURA///////////////////////
+
+.modal-lg {
+    max-width: 1400px;
+}
+
+.imagenProducto {
+
+    width: 50%;
+    height: 45%;
+    float: left;
+
+}
+.datosProducto {
+    width: 45%;
+    float: left;
+}
+
+.modal-header-producto {
+    color: #fff;
+    background-color: #20a8d8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #cfd8dc;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////

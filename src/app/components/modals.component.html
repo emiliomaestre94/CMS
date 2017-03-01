@@ -2,9 +2,8 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Bootstrap Modals
-                </div>
+                <div class="card-header"><i class="fa fa-align-justify"></i> Bootstrap Modals</div>
+                
                 <div class="card-block">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-secondary" data-toggle="modal" (click)="myModal.show()">
@@ -32,7 +31,34 @@
                     <button type="button" class="btn btn-info" data-toggle="modal" (click)="infoModal.show()">
                         Info modal
                     </button>
+
+
+                            <tr class="" data-toggle="modal" (click)="facturaModal.show()">
+                                <td class="text-center">
+                                    <input type="checkbox" name="" value="">
+                                </td>
+                                <td class="text-center">
+                                    <strong>N05</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17-01-2017</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>17:00</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>200€</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                            </tr>
+
+
+
+
                 </div>
+                
             </div>
         </div>
         <!--/.col-->
@@ -226,3 +252,119 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+
+
+<!--DETALLE FACTURA-->
+
+<div bsModal #facturaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header-factura" id="factura">
+                <h4 class="modal-title">Factura</h4>
+                <button type="button" class="close" (click)="facturaModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="datosTienda">
+                        <p><span>Tienda de Ropa</span> - CIF: 21212121F</p>
+                        <p><strong>Num:</strong> F1231</p>
+                        <p>C/: Reyes Catolicos Nº25</p>
+                        <p>Alicante - 03005</p>
+                        <p><em>21/02/2017 · 14:55</em></p>
+                        <p>Tlf: 965 48 48 48</p>  
+                </div>
+                <div class="datosCliente">
+                        <p><span>Jose Fco Moreno Fernández</span></p>
+                        <p>DNI: 48362351K</p>
+                        <p>C/: Princesa Mercedez Nº12 4C</p>
+                        <p>Alicante - 03006</p>
+                        <p><span>josefcomoreno85@gmail.com</span></p>  
+                </div>
+   
+                <div class="tablaFactura">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="descripcion" style="text-align: center">Descripcion</th>
+                                    <th class="cantidad" style="text-align: center">Cantidad</th>
+                                    <th class="precio" style="text-align: center">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Coca Cola Zero</td>
+                                    <td style="text-align: center">1</td>
+                                    <td style="text-align: center">0,49€</td>
+                                </tr>
+                                <tr>
+                                    <td>Barra de Pan</td>
+                                    <td style="text-align: center">2</td>
+                                    <td style="text-align: center">0,90€</td>
+                                </tr>
+                                <tr>
+                                    <td>Caja de Galletas Tostarica</td>
+                                    <td style="text-align: center">10</td>
+                                    <td style="text-align: center">3,85€</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Chocolate Milka con Caramelo</td>
+                                    <td style="text-align: center">10</td>
+                                    <td style="text-align: center">23,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Caramelos Explosivos</td>
+                                    <td style="text-align: center">5</td>
+                                    <td style="text-align: center">53,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Langostinos del Mar Muerto</td>
+                                    <td style="text-align: center">1</td>
+                                    <td style="text-align: center">23,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Fanta Limón</td>
+                                    <td style="text-align: center">25</td>
+                                    <td style="text-align: center">0,44€</td>
+                                </tr>
+                                <tr>
+                                    <td>Cerceza Guinnes</td>
+                                    <td style="text-align: center">50</td>
+                                    <td style="text-align: center">2,5€</td>
+                                </tr>
+                                <tr>
+                                    <td>Chocolate Milka con Caramelo</td>
+                                    <td style="text-align: center">10</td>
+                                    <td style="text-align: center">23,34€</td>
+                                </tr>
+                                <tr>
+                                    <td>Caramelos Explosivos</td>
+                                    <td style="text-align: center">5</td>
+                                    <td style="text-align: center">53,34€</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+
+                <div class="importe">
+                    <div>
+                        <p>Precion sin IVA: <strong>45,01</strong> </p>
+                        <p class="total">Total: <strong>50,50€</strong> <span class="iva">(Incl IVA 8%)</span></p>
+                     </div>
+                </div>
+
+        </div>
+
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-secondary" (click)="facturaModal.hide()">Cerrar</button>-->
+                <button type="button" class="btn btn-danger">Descargar Pdf <i class="fa fa-file-pdf-o"></i></button>
+            </div>
+
+        </div>
+    </div>
+</div>
