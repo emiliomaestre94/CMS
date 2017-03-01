@@ -1,54 +1,55 @@
 <!-- TABLA PRODUCTOS TOTALES -->
-<div class="row "  >
+<div class="row" >
     <div class="col-md-12">
         <div class="card">
-
             <div class="card-header" ><p>Productos Tienda</p>
-                <ul class="pagination" id="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
+                    <ul class="pagination" id="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
             </div>
+
             <!--
             <h1 *ngIf="!usuarios"> CARGANDO USUARIOS... </h1>
             <div  *ngIf="!usuarios" class="loader"></div>
+            <div *ngIf="usuarios" class="card-block">
             -->
+            <div class="card-block">
 
-    <!--<div *ngIf="usuarios" class="card-block">-->
-
-            <div id="buscador" class="form-group row">
-                <div class="col-md-12">
-
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                        </span>
-                        <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorProductos">
+                <div id="buscador" class="form-group row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                            </span>
+                            <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorProductos">
+                        </div>
                     </div>
-       <!-- </div> -->
 
 
                     <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
-                                <th class="text-center"><i class="fa fa-toggle-off"></i> Activado</th>
+                                <th class="text-center" style="width: 114px;"><i class="fa fa-toggle-off"></i> Activado</th>
                                 <th class="text-center"><i class="fa fa-picture-o"></i> Imagen</th>
-                                <th class="text-center"><i class="fa fa-barcode"></i> Código</th>
-                                <th class="text-center">Nombre</th>
+                                <th class="text-center" style="width: 134px;"><i class="fa fa-barcode"></i> Código</th>
+                                <th class="text-center" style="width: 25%;"> Nombre</th>
                                 <th class="text-center"><i class="fa fa-money"></i> Precio</th>
-                                <th class="oferta" style = "text-align: center">% Oferta</th>
-                                <th class="finicio" style = "text-align: center"><i class="fa fa-calendar-minus-o fa-lg mt-2"></i> F. Inicio</th>
-                                <th class="ffinal" style = "text-align: center"><i class="fa fa-calendar-plus-o fa-lg mt-2"></i> F. Final</th>
+                                <th class="oferta" style = "text-align: center; width: 134px;"><i class="fa fa-percent"></i> Oferta</th>
+                                <th class="finicio" style = "text-align: center; width: 144px;"><i class="fa fa-calendar-minus-o"></i> F. Inicio</th>
+                                <th class="ffinal" style = "text-align: center; width: 144px;"><i class="fa fa-calendar-plus-o"></i> F. Final</th>
+                                <th class="oferta" style = "text-align: center; width: 60px;"><i class="fa fa-sort-amount-asc"></i> Orden</th>
                                 <th class="text-center"></th>
                             </tr>
                         </thead>
+                        
                         <tbody>
-                    <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios">-->
-                                <!--
+                        <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios">-->
+                        <!--
                                 <td class="text-center">
                                     <div class="avatar">
                                         <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
@@ -56,11 +57,11 @@
                                         <span *ngIf="usuarios.Eliminado==1" class="avatar-status badge-danger"></span>
                                     </div>
                                 </td>
-                            
+                                
                                 <td>
                                     <div>{{usuarios.Nombre}}</div>
                                     <div class="small text-muted">
-                                        Registro: {{usuarios.Fecha}} 
+                                            Registro: {{usuarios.Fecha}} 
                                     </div>
                                 </td>
 
@@ -82,18 +83,18 @@
                         </tr> -->
                             <tr class="" >
                                 <td class="text-center">
-                                <label class="switch switch-text switch-primary">
-                                    <input type="checkbox" class="switch-input" checked>
-                                    <span class="switch-label" data-on="On" data-off="Off"></span>
-                                    <span class="switch-handle"></span>
-                                </label>
-                                </td>  
-                               <td class="text-center">
+                                    <label class="switch switch-text switch-primary">
+                                        <input type="checkbox" class="switch-input" checked>
+                                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                    </td>  
+                                <td class="text-center">
                                     <div class="avatar">
                                     </div>
-                              </td>     
+                                </td>     
                                 <td class="text-center">
-                                    <strong>27001</strong>
+                                        <strong>27001</strong>
                                 </td>
                                 <td class="text-center">
                                     <strong>Coca Cola Zero </strong>
@@ -108,10 +109,19 @@
                                     <input type="text" class="form-control" style="text-align: center" placeholder="dd/mm/aaaa"><!--<i class="fa fa-calendar fa-lg mt-2"></i>-->
                                 </td>
                                 <td class="text-center">
-                                  <input type="text" class="form-control" style="text-align: center" placeholder="dd/mm/aaaa"><!--<i class="fa fa-calendar fa-lg mt-2"></i>-->
+                                    <input type="text" class="form-control" style="text-align: center" placeholder="dd/mm/aaaa"><!--<i class="fa fa-calendar fa-lg mt-2"></i>-->
                                 </td>
                                 <td class="text-center">
-                                  <button class="btn btn-primary" type="button" data-toggle="modal" (click)="productoModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                    <select class="form-control" id="orden">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="productoModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
                             </tr>
 
@@ -121,16 +131,15 @@
             </div>
         </div>
 
-            <button class="btn btn-primary" type="button"><i class="fa fa-refresh"></i> Actualizar lista Productos</button>
-
-            <ul class="pagination" id="pagination" >
-                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
+        <button class="btn btn-primary" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>
+        <ul class="pagination" id="pagination" >
+            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
     </div>
 </div>
 
