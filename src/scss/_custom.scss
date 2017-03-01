@@ -1,7 +1,5 @@
 // Here you can add other styles
 
-
-
 .container-fluid {
     background-color: #b7d9f3;
 }
@@ -17,3 +15,13 @@ ol.breadcrumb {
     color: #124570;
     background-color: #b7d9f3;
 }
+
+button { cursor: pointer; cursor: hand; }
+
+#ultimonav{
+    position: absolute;
+    bottom: 0px;
+    background-color: #1e272b;
+    width: 100%;
+}
+

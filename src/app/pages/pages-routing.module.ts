@@ -28,13 +28,6 @@ const routes: Routes = [
         }
       },
       {
-        path: 'login',
-        component: LoginComponent,
-        data: {
-          title: 'Login Page'
-        }
-      },
-      {
         path: 'register',
         component: RegisterComponent,
         data: {
