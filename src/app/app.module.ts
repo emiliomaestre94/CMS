@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { UsuariosService } from './services/usuarios.service';
 import { FacturasService } from './services/facturas.service';
 import { ProductosService } from './services/productos.service';
+import { OfertasService } from './services/ofertas.service';
 
 
 import { FormsModule } from '@angular/forms';

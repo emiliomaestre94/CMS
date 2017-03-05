@@ -88,7 +88,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Escritorio <span class="badge badge-info">Nuevo</span></a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="fa fa-bar-chart"></i> Home</a>
                 </li>
 
                 <!--CAMBIADO-->
@@ -106,17 +106,16 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/usuarios']"><i class="icon-present"></i> Ofertas</a>
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/ofertas']"><i class="icon-present"></i> Ofertas</a>
                 </li>
 
                 <li id="ultimonav" class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/usuarios']"><i class="fa fa-lock"></i> Cerrar sesión</a>
+                    <a class="nav-link" (click)="logout();"><i class="fa fa-lock"></i> Cerrar sesión</a>
                 </li>
 
-<!--
 
 
-                
+<!--  
                 <li class="nav-item nav-dropdown" routerLinkActive="open">
                     <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> Componentes</a>
                     <ul class="nav-dropdown-items">
@@ -166,9 +165,6 @@
                 <li class="divider"></li>
                 
                 
-
-
-
 
                 <li class="nav-title">
                     Extras
