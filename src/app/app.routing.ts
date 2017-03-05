@@ -56,6 +56,10 @@ export const routes: Routes = [
         path: 'productos',
         loadChildren: './productos/productos.module#ProductosModule'
       },
+      {
+        path: 'ofertas',
+        loadChildren: './ofertas/ofertas.module#OfertasModule'
+      },
     ]
   },
   {

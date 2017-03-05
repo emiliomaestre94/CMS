@@ -1,4 +1,3 @@
-
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
@@ -17,11 +16,6 @@
  margin-bottom: 20px;
 }
 
-#pagination {
-    float: right;
-    padding-top: 20px;
-}
-
 .card-header p {
     font-size: 25px;
     position: absolute;
@@ -30,29 +24,99 @@
     text-align: 29px;
     color: #124570;
 }
-
 .card-header {
     background-color: #b7d9f3;
 }
+#pagination {
+    float: right;
+    padding-top: 20px;
+}
 
+
+#anyadir {
+    float: left;
+    margin-top: 35px;
+}
 
 ////////////////////////////FACTURA///////////////////////
 
 .modal-lg {
-    max-width: 1400px;
-    width: 85%;
+    max-width: 1200px;
+    width: 65%;
 }
 
-.imagenProducto {
-    width: 50%;
-    height: 45%;
+.filtrosOferta {
+    width: 30%;
+    height: 30%;
     float: left;
 
 }
-.datosProducto {
-    width: 45%;
+.resultadoUsuarios {
+    width: 65%;
+    height: 80%;
+    float: right;
+    padding-right: 5px;
+    padding-top: 10px;
+}
+
+p.bClientes {
+    font-size: 20px;
+    color: #124570;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #b7d9f3;
+}
+
+
+#tableClientes1 {
+ overflow: auto;
+}
+
+
+.ofertaProductos {
+    margin-top: 30px;
+    width: 100%;
     float: left;
 }
+
+#tablaProductos1 {
+    height: 100%;
+    overflow: auto;
+}
+
+
+.cajaArriba {
+    border-left: solid;
+    border-top: solid;
+    border-bottom: solid;
+    height: 345px;
+    border-right: solid;
+    color: #cfd8dc;
+    border-width: thin;
+}
+
+
+
+.ofertaProductos{
+    border-left: solid;
+    border-top: solid;
+    border-bottom: solid;
+    height: 325px;
+    border-right: solid;
+    color: #cfd8dc;
+    border-width: thin;
+}
+td.text-center {
+    color:black;
+} 
+
+
+
+form.ng-untouched.ng-pristine.ng-valid {
+    padding: 10px;
+}
+
 
 .modal-header-producto {
     color: #fff;

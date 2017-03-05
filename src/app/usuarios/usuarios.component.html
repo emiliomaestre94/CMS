@@ -30,12 +30,13 @@
                     <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
-                                <th class="text-center"><i class="icon-people"></i></th>
+                                <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
                                 <th>Cliente</th>
-                                <th class="text-center">Municipio</th>
-                                <th><i class="fa fa-phone"></i> Teléfono</th>
-                                <th class="text-center">Código Postal</th>
+                                <th class="text-center" style="width: 250px;">Municipio</th>
+                                <th><i class="fa fa-phone" style="width: 150px;"></i> Teléfono</th>
+                                <th class="text-center" style="width: 125px;">Código Postal</th>
                                 <th>Correo electrónico</th>
+                                <th class="text-center" style="width: 100px;"></th>
                             </tr>
                         </thead>
 
@@ -66,6 +67,9 @@
                                 <td>
                                     <strong>{{usuarios.Email}}</strong>
                                 </td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="perfilClienteModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -82,5 +86,33 @@
             <li class="page-item"><a class="page-link" href="#">4</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
+    </div>
+</div>
+
+<!---MODAL PERFIL CLIENTE-->
+<div bsModal #perfilClienteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header-producto" id="producto">
+                <h4 class="modal-title">Perfil Cliente</h4>
+                <button type="button" class="close" (click)="perfilClienteModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+
+
+
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+            </div>
+        </div>
     </div>
 </div>

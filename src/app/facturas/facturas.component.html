@@ -37,12 +37,13 @@
                         <thead class="thead-default">
                             <tr>
                                 <!--<th class="text-center"><i class="icon-people"></i></th>-->
-                                <th class="text-center"><input type="checkbox" name="" value=""></th>
-                                <th class="text-center">Nº Fact</th>
-                                <th class="text-center">Fecha</th>
-                                <th class="text-center">Hora</th>
-                                <th class="text-center">Total</th>
-                                <th class="text-center">Usuario</th>
+                                <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
+                                <th class="text-center" style="width: 200px;">Nº Fact</th>
+                                <th class="text-center" style="width: 115px;"><i class="fa fa-calendar"></i> Fecha</th>
+                                <th class="text-center" style="width: 80px;"><i class="fa fa-clock-o"></i> Hora</th>
+                                <th class="text-center"><i class="fa fa-eur"></i> Total</th>
+                                <th class="text-center" style="width: 400px;">Usuario</th>
+                                <th class="text-center" style="width: 100px;"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,7 +80,7 @@
                                     <strong>{{usuarios.Email}}</strong>
                                 </td>
                         </tr> -->
-                            <tr class="" data-toggle="modal" (click)="facturaModal.show()">
+                            <tr>
                                 <td class="text-center">
                                     <input type="checkbox" name="" value="">
                                 </td>
@@ -97,6 +98,9 @@
                                 </td>
                                 <td class="text-center">
                                     <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
                             </tr>
 
@@ -118,6 +122,9 @@
                                 </td>
                                 <td class="text-center">
                                     <strong>josefcomoreno85@gmail.com</strong>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
                             </tr>
                             <tr>
