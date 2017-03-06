@@ -1,3 +1,4 @@
+
 import { EditPasswordComponent } from './pages/edit-password.component';
 import { ResetPasswordComponent } from './pages/reset-password.component';
 import { LoginComponent } from './pages/login.component';
@@ -59,6 +60,10 @@ export const routes: Routes = [
       {
         path: 'ofertas',
         loadChildren: './ofertas/ofertas.module#OfertasModule'
+      },
+            {
+        path: 'perfiladmin',
+        loadChildren: './perfiladmin/perfiladmin.module#PerfiladminModule'
       },
     ]
   },

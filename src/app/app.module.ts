@@ -1,3 +1,4 @@
+
 import { EditPasswordComponent } from './pages/edit-password.component';
 import { ResetPasswordComponent } from './pages/reset-password.component';
 import { LoginComponent } from './pages/login.component';
@@ -7,7 +8,7 @@ import { UsuariosService } from './services/usuarios.service';
 import { FacturasService } from './services/facturas.service';
 import { ProductosService } from './services/productos.service';
 import { OfertasService } from './services/ofertas.service';
-
+import { PerfiladminService } from './services/perfiladmin.service';
 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
