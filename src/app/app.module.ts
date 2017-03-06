@@ -10,6 +10,7 @@ import { OfertasService } from './services/ofertas.service';
 
 
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { LocationStrategy, HashLocationStrategy,PathLocationStrategy } from '@angular/common';
@@ -18,6 +19,8 @@ import { AppComponent } from './app.component';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
 import { TabsModule } from 'ng2-bootstrap/tabs';
 import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
+
+import { DatePickerModule } from 'ng2-datepicker';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
@@ -48,12 +51,13 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 @NgModule({
   imports: [
     BrowserModule,
+    CommonModule,
     HttpModule,
     FormsModule,
     AppRoutingModule,
     DropdownModule.forRoot(),
     TabsModule.forRoot(), 
-    ChartsModule
+    ChartsModule,
   ],
   declarations: [
     AppComponent,

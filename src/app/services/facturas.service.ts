@@ -8,7 +8,8 @@ import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class Factura{
     //Constructor(id: number, name: string){ }
-    Constructor(Nombre: string, Municipio: string, Telefono: string, Precio: string,CP:string, Email:string,Fecha:string){ }
+    //Constructor(Nombre: string, Municipio: string, Telefono: string, Precio: string,CP:string, Email:string,Fecha:string){ }
+    Constructor(){}
 }
  
 @Injectable()
@@ -22,7 +23,14 @@ export class FacturasService {
     comprobacion(){
         console.log("DEBERIA IR");
     }
-    
+/*
+    getFacturasPaginada(paginacion): Observable<Factura[]>{
+          return this.authHttp.get(this.usersUrl),
+          .delay(environment.timeout)
+          
+        .map(this.extractData);
+    }
+    */
     private usersUrl= environment.dominio + '/usuarios';
      getUsers(): Observable<Factura[]>{
         return this.authHttp.get(this.usersUrl)

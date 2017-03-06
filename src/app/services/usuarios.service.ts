@@ -9,7 +9,7 @@ import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 export class Usuario{
     //Constructor(id: number, name: string){ }
     Constructor(Nombre: string, Municipio: string, Telefono: string, Precio: string,CP:string, Email:string,Fecha:string){ }
-}
+} 
  
 @Injectable()
 

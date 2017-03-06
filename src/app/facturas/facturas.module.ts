@@ -15,7 +15,8 @@ import { CommonModule } from '@angular/common'; //esto es para que funcione el n
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { provideAuth } from 'angular2-jwt';
-
+//import { PaginationModule } from 'ng2-bootstrap/pagination';
+import { PaginationModule } from 'ng2-bootstrap';
 
 BuscadorFacturasPipe
 @NgModule({
@@ -25,8 +26,8 @@ BuscadorFacturasPipe
       FormsModule,
       ChartsModule,
       DropdownModule,
-      ModalModule.forRoot()
-      
+      ModalModule.forRoot(),
+      PaginationModule.forRoot()
     ],
     declarations: [ 
       FacturasComponent,
