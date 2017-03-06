@@ -1,0 +1,65 @@
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.input-group{
+ margin-bottom: 20px;
+}
+
+.card-header p {
+    font-size: 25px;
+    position: absolute;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: 29px;
+    color: #124570;
+}
+.card-header {
+    background-color: #b7d9f3;
+}
+
+#izquierda{
+    width: 45%; 
+    float: left;
+}
+
+#derecha{
+    width: 40%;
+    float: right;
+    margin-left: 55%;
+    margin-top: -380px;
+
+}
+.sexo {
+    border-bottom: 1px solid #cfd8dc;
+    border-top: 1px solid #cfd8dc;
+    border-right: 1px solid #cfd8dc;
+}
+label.radio-inline {
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 106px;
+}
+label#hombre {
+    padding-left: 70px;
+}
+
+
+input[type="file"] {
+    opacity: 0;
+    width: 350px;
+    height: 350px;
+}
+
+.imagenPerfil {
+    border: 2px solid;
+    border-style: dashed;
+}

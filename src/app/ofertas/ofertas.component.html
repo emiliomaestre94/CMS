@@ -113,8 +113,8 @@
             <div class="modal-body">
                 <!--Zona de Arriba-->
                 <div class="card">
-                    <div class="card-block">
                     <p class="bClientes">Buscar Clientes</p>
+                    <div class="card-block" id="card-block-modal">
                     <div class="filtrosOferta">
                         <div class="buscadorClientes">     
                             <form action="" method="post">
@@ -134,9 +134,21 @@
                                             <option value="2">19</option>
                                             <option value="3">20</option>
                                         </select>
-                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><strong>Sexo</strong></span>
+                                        <select class="form-control" id="sexo" name="sexo" type="number" size="1">
+                                            <option value="0">Selecione un sexo</option>
+                                            <option value="1">Hombre</option>
+                                            <option value="2">Mujer</option>
+                                        </select>
+                                         <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>          
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><strong>CP</strong></span>
@@ -202,9 +214,8 @@
 
             <!--Zona de Abajo-->
             <div class="card">
-                <div class="card-block">
                 <p class="bClientes">Buscar Producto</p>
-                <div class="card-block">  
+                <div class="card-block" id="card-block-modal">
                     <div id="buscador" class="form-group row">
                         <div class="col-md-12">
                             <div class="input-group">
@@ -257,7 +268,6 @@
                             </table>
                         </div>
                     </div>
-                </div>
             </div>
 
         </div> <!--Fin modal-body-->

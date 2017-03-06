@@ -85,16 +85,23 @@ p.bClientes {
     overflow: auto;
 }
 
+#card-block-modal {
+    padding-top: 0;
+}
+
+label.radio-inline {
+    padding-top: 5px;
+    padding-left: 21px;
+    padding-right: 7px;
+}
+
 td.text-center {
     color:black;
 } 
 
-
-
 form.ng-untouched.ng-pristine.ng-valid {
     padding: 10px;
 }
-
 
 .modal-header-producto {
     color: #fff;
