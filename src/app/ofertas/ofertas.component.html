@@ -70,7 +70,7 @@
                                     <p class="form-control-static"><strong>17/03/2017</strong></p>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="clientesOfertadosModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="clientesOfertadosModal.show()"><i class="fa fa-info-circle"></i> Ver</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -111,7 +111,9 @@
             </div>
 
             <div class="modal-body">
-                <div class="cajaArriba">
+                <!--Zona de Arriba-->
+                <div class="card">
+                    <div class="card-block">
                     <p class="bClientes">Buscar Clientes</p>
                     <div class="filtrosOferta">
                         <div class="buscadorClientes">     
@@ -195,9 +197,12 @@
                               -->
                           </table>
                       </div>
-               </div>
+                    </div>
+                </div>
 
-            <div class="ofertaProductos">
+            <!--Zona de Abajo-->
+            <div class="card">
+                <div class="card-block">
                 <p class="bClientes">Buscar Producto</p>
                 <div class="card-block">  
                     <div id="buscador" class="form-group row">
@@ -255,9 +260,11 @@
                 </div>
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Añadir</button>
-            </div>
+        </div> <!--Fin modal-body-->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Añadir</button>
+        </div>
 
         </div>
     </div>
@@ -277,12 +284,54 @@
             </div>
 
             <div class="modal-body">
+                <div class="card">
+                 <div class="card-block">
+                        <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaClientes1">
+                              <thead class="thead-default">
+                                  <tr>
+                                      <th class="text-center" style="width: 110px;"><input type="checkbox" name="" value=""></th>
+                                      <th class="text-center"><i class="icon-people"></i></th>
+                                      <th>Cliente</th>
+                                      <th class="text-center" style="width: 80px;">CP</th>
+                                      <th class="text-center" style="width: 340px;">Correo electrónico</th>
+                                  </tr>
+                              </thead>
+                              <!--
+                              <tbody>
+                                
+                                  <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios">
+                                      <td class="text-center">
+                                          <input type="checkbox" name="" value="">
+                                      </td>
 
 
 
-
-
-
+                                      <td class="text-center">
+                                          <div class="avatar">
+                                              <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
+                                              <span *ngIf="usuarios.Eliminado==0" class="avatar-status badge-success"></span>
+                                              <span *ngIf="usuarios.Eliminado==1" class="avatar-status badge-danger"></span>
+                                          </div>
+                                      </td>
+                                      <td>
+                                          <div>{{usuarios.Nombre}}</div>
+                                          <div class="small text-muted">
+                                              Registro: {{usuarios.Fecha}} 
+                                          </div>
+                                      </td>
+                                      <td class="text-center">
+                                          <strong>{{usuarios.CP}}</strong>
+                                      </td>
+                                      <td>
+                                          <strong>{{usuarios.Email}}</strong>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                              -->
+                        </table>
+                    </div>
+                </div>
+                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
             </div>
 
             <div class="modal-footer">
