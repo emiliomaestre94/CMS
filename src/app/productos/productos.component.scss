@@ -26,19 +26,28 @@
 ////////////////////////////FACTURA///////////////////////
 
 .modal-lg {
-    max-width: 1400px;
-    width: 85%;
+    max-width: 1200px;
+    width: 70%;
 }
 
 .imagenProducto {
-    width: 50%;
+    width: 40%;
     height: 45%;
     float: left;
+    padding: 20px 20px 20px 20px;
 
 }
+.imagenPerfil {
+    border: 1px solid red;
+    border-radius: 100px;
+    width: 400px;
+    height: 400px;
+}
+
 .datosProducto {
-    width: 45%;
-    float: left;
+    width: 55%;
+    float: right;
+    padding: 20px 20px 20px 0px;
 }
 
 .modal-header-producto {

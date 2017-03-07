@@ -13,11 +13,6 @@
                     </ul>
             </div>
 
-            <!--
-            <h1 *ngIf="!usuarios"> CARGANDO USUARIOS... </h1>
-            <div  *ngIf="!usuarios" class="loader"></div>
-            <div *ngIf="usuarios" class="card-block">
-            -->
             <div class="card-block">
 
                 <div id="buscador" class="form-group row">
@@ -33,53 +28,20 @@
                     <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
-                                <th class="text-center" style="width: 114px;"> Activado</th>
-                                <th class="text-center">Imagen</th>
-                                <th class="text-center" style="width: 110px;"> Código</th>
-                                <th class="text-center" style="width: 20%;"> Nombre</th>
-                                <th class="text-center"> Precio</th>
-                                <th class="oferta" style = "text-align: center; width: 134px;"> Oferta</th>
-                                <th class="finicio" style = "text-align: center; width: 144px;">F. Inicio</th>
-                                <th class="ffinal" style = "text-align: center; width: 144px;">F. Final</th>
-                                <th class="oferta" style = "text-align: center; width: 110px;">Orden</th>
-                                <th class="text-center"></th>
+                                <th class="text-center" style="width: 114px;">Activado</th>
+                                <th class="text-center" style="width:130px;">Imagen</th>
+                                <th class="text-center" style="width: 110px;">Código</th>
+                                <th class="text-center" style="width: 20%;">Nombre</th>
+                                <th class="text-center">Precio</th>
+                                <th class="oferta" style = "text-align: center; width: 80px;">Oferta</th>
+                                <th class="finicio" style = "text-align: center; width: 170px;">F. Inicio</th>
+                                <th class="ffinal" style = "text-align: center; width: 170px;">F. Final</th>
+                                <th class="oferta" style = "text-align: center; width: 70px;">Orden</th>
+                                <th class="text-center" style="width: 100px;"></th>
                             </tr>
                         </thead>
                         
                         <tbody>
-                        <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios">-->
-                        <!--
-                                <td class="text-center">
-                                    <div class="avatar">
-                                        <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
-                                        <span *ngIf="usuarios.Eliminado==0" class="avatar-status badge-success"></span>
-                                        <span *ngIf="usuarios.Eliminado==1" class="avatar-status badge-danger"></span>
-                                    </div>
-                                </td>
-                                
-                                <td>
-                                    <div>{{usuarios.Nombre}}</div>
-                                    <div class="small text-muted">
-                                            Registro: {{usuarios.Fecha}} 
-                                    </div>
-                                </td>
-
-                                <td class="text-center">
-                                <strong>{{usuarios.Municipio}}</strong>
-                                </td>
-
-                                <td>
-                                <strong>{{usuarios.Telefono}}</strong>
-                                </td>
-
-                                <td class="text-center">
-                                    <strong>{{usuarios.CP}}</strong>
-                                </td>
-
-                                <td>
-                                    <strong>{{usuarios.Email}}</strong>
-                                </td>
-                        </tr> -->
                             <tr class="" >
                                 <td class="text-center">
                                     <label class="switch switch-text switch-primary">
@@ -99,19 +61,20 @@
                                     <strong>Coca Cola Zero </strong>
                                 </td>
                                 <td class="text-center">
-                                    <strong>0,39€</strong>
+                                    <strong>0,39 </strong><i class="fa fa-eur"></i>
                                 </td>
                                 <td class="text-center">
-                                    <input type="text" class="form-control" style = "text-align: center" placeholder="% Descuento">
+                                    <input type="text" class="form-control" style = "text-align: center" placeholder="%">
                                 </td>
                                 <td class="text-center">
                                     <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
                                 </td>
                                 <td class="text-center">
-                                                <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                                    <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
                                 </td>
                                 <td class="text-center">
                                     <select class="form-control" id="orden">
+                                        <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -137,7 +100,7 @@
                                     </div>
                                 </td>     
                                 <td class="text-center">
-                                        27001
+                                        <strong>27001</strong>
                                 </td>
                                 <td class="text-center">
                                     <strong>Coca Cola Zero </strong>
@@ -146,7 +109,7 @@
                                     <strong>0,39€</strong>
                                 </td>
                                 <td class="text-center">
-                                    <input type="number" class="form-control" style = "text-align: center" placeholder="%">
+                                    <input type="text" class="form-control" style = "text-align: center" placeholder="%">
                                 </td>
                                 <td class="text-center">
                                     <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
@@ -156,6 +119,7 @@
                                 </td>
                                 <td class="text-center">
                                     <select class="form-control" id="orden">
+                                        <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -189,7 +153,7 @@
                                     <strong>0,39€</strong>
                                 </td>
                                 <td class="text-center">
-                                    <input type="text" class="form-control" style = "text-align: center" placeholder="% Descuento">
+                                    <input type="text" class="form-control" style = "text-align: center" placeholder="%">
                                 </td>
                                 <td class="text-center">
                                     <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
@@ -199,6 +163,7 @@
                                 </td>
                                 <td class="text-center">
                                     <select class="form-control" id="orden">
+                                        <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -232,7 +197,7 @@
                                     <strong>0,39€</strong>
                                 </td>
                                 <td class="text-center">
-                                    <input type="text" class="form-control" style = "text-align: center" placeholder="% Descuento">
+                                    <input type="text" class="form-control" style = "text-align: center" placeholder="%">
                                 </td>
                                 <td class="text-center">
                                     <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
@@ -242,6 +207,7 @@
                                 </td>
                                 <td class="text-center">
                                     <select class="form-control" id="orden">
+                                        <option>0</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -288,10 +254,11 @@
 
             <div class="modal-body">
                 <div class="imagenProducto">
-                Aqui pondria la imagen ||||------------------------------------------------------------------||||
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="file-input">Seleccionar Imagen</label>
                             <div class="col-md-9">
+                                <div class="imagenPerfil">
+                                    <img class="imgPerfil"/>
+                                </div>
                                 <input type="file" id="file-input" name="file-input">
                             </div>
                         </div>
@@ -299,61 +266,38 @@
   
     
                 <div class="datosProducto">
-                    <!--
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label">Cod Producto</label>
-                            <div class="col-md-9">
-                                <p class="form-control-static">27001</p>
-                            </div>
-                        </div>
-                         <div class="form-group row">
-                                <label class="col-md-3 form-control-label">Nombre Producto</label>
-                            <div class="col-md-9">
-                                <p class="form-control-static">Coca Cola Zero</p>
-                            </div>
-                        </div>
                         <div class="form-group row">
-                                <label class="col-md-3 form-control-label">Precio Producto</label>
-                            <div class="col-md-9">
-                                <p class="form-control-static">0,39€</p>
-                            </div>
-                        </div>
-                        -->
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="disabled-input">Cod Producto</label>
+                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Cod Producto</strong></label>
                             <div class="col-md-9">
                                 <input type="text" id="disabled-input" name="disabled-input" class="form-control" placeholder="27001" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="disabled-input">Nombre Producto</label>
+                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Nombre Producto</strong></label>
                             <div class="col-md-9">
                                 <input type="text" id="disabled-input" name="disabled-input" class="form-control" placeholder="Coca Cola Zero" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="disabled-input">Precio Producto</label>
+                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Precio Producto</strong></label>
                             <div class="col-md-9">
                                 <input type="text" id="disabled-input" name="disabled-input" class="form-control" placeholder="0,39€" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="textarea-input">Descripción</label>
+                            <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción</strong></label>
                             <div class="col-md-9">
                                 <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="Descripción..."></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Url Video</label>
+                            <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
                             <div class="col-md-9">
                                 <input type="text" id="text-input" name="text-input" class="form-control" placeholder="https://youtu.be/iOYacSXpKrk">
                                 <span class="help-block">Ponga una url como en el ejemplo</span>
                             </div>
                         </div>
-
                 </div>
-
-
 
             </div>
 
