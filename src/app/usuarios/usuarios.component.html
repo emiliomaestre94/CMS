@@ -32,10 +32,10 @@
                             <tr>
                                 <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
                                 <th style="width: 300px;">Cliente</th>
-                                <th class="text-center" style="width: 250px;">Municipio</th>
-                                <th style="width: 150px;"><i class="fa fa-phone"></i> Teléfono</th>
-                                <th class="text-center" style="width: 125px;">Código Postal</th>
                                 <th>Correo electrónico</th>
+                                <th class="text-center" style="width: 125px;">CP</th>
+                                <th class="text-center" style="width: 250px;">Municipio</th>
+                                <th style="width: 150px;">Teléfono</th>
                                 <th class="text-center" style="width: 100px;"></th>
                             </tr>
                         </thead>
@@ -55,17 +55,17 @@
                                         Registro: {{usuarios.Fecha}} 
                                     </div>
                                 </td>
+                                <td>
+                                    <strong>{{usuarios.Email}}</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>{{usuarios.CP}}</strong>
+                                </td>
                                 <td class="text-center">
                                     <strong>{{usuarios.Municipio}}</strong>
                                 </td>
                                 <td>
                                     <strong>{{usuarios.Telefono}}</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>{{usuarios.CP}}</strong>
-                                </td>
-                                <td>
-                                    <strong>{{usuarios.Email}}</strong>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="perfilClienteModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
@@ -101,13 +101,54 @@
                 </button>
             </div>
 
-            <div class="modal-body">
+                <div class="modal-body">
 
+                    <div class="imagenUsuario">
+                        <div class="imagenPerfil">
+                            <img class="imgPerfil"/>
+                        </div>
+                    </div>
+  
+    
+                    <div class="datosUsuario">
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label"><strong>Nombre: </strong></label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">Username</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label"><strong>Sexo: </strong></label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">Username</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label"><strong>Email: </strong></label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">Username</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label"><strong>Telefono: </strong></label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">Username</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label"><strong>Municipio: </strong></label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">Username</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label"><strong>CP: </strong></label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">Username</p>
+                            </div>
+                        </div>
 
-
-
-
-
+                </div>
             </div>
 
             <div class="modal-footer">

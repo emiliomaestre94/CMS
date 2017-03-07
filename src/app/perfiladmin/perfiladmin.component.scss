@@ -27,17 +27,20 @@
 }
 
 #izquierda{
-    width: 45%; 
+    width: 500px; 
     float: left;
+    height: 500px;
+    margin-left: 90px;
 }
 
 #derecha{
-    width: 40%;
+    width: 600px;
+    height: 500px;
     float: right;
-    margin-left: 55%;
-    margin-top: -380px;
-
+    margin-left: 45%;
+    margin-top: -495px;
 }
+
 .sexo {
     border-bottom: 1px solid #cfd8dc;
     border-top: 1px solid #cfd8dc;
@@ -62,4 +65,13 @@ input[type="file"] {
 .imagenPerfil {
     border: 2px solid;
     border-style: dashed;
+    height: 400px;
+    width: 400px;
+    margin-left: 30px;
+}
+
+
+img.imgPerfilAdmin {
+    width: 395px;
+    height: 395px;
 }

@@ -3,13 +3,12 @@
     <div class="card">
 
       <div class="card-header" style="height: 96px;" ><p>Pefil Administrador</p></div>
+        
         <div class="card-block" id="izquierda">
-
             <div class="imagenPerfil">       
-                <img [src]="imageSrc" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/>
-                <input type="file" name="file" accept="image/*" (change)="handleInputChange($event)">  
-            </div>
-                
+                <img class="imgPerfilAdmin" [src]="imageSrc" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/>
+                    <input type="file" name="file" accept="image/*" (change)="handleInputChange($event)">
+            </div>                
         </div>
 
 
