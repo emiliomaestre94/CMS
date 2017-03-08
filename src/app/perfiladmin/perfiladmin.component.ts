@@ -16,10 +16,10 @@ export class PerfiladminComponent implements OnInit {
   }
 
 
-
 imageSrc;
   handleInputChange(foto) {
-    if (foto.target.files[0]) {
+    var files = foto.target.files;
+    if (files[0]) {
       let reader = new FileReader();
       reader.onload = (e : any) => {
         this.imageSrc = e.target.result;
@@ -27,7 +27,7 @@ imageSrc;
     reader.readAsDataURL(foto.target.files[0]);
 
     }
-
   }
+  
 
 }
