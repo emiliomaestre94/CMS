@@ -27,20 +27,19 @@
 }
 
 #izquierda{
-    width: 500px; 
+    width: 40%;
+    height: 500px; 
     float: left;
-    height: 500px;
-    margin-left: 90px;
+    margin-left: 5%;
 }
-
 #derecha{
-    width: 600px;
+    width: 45%;
     height: 500px;
     float: right;
-    margin-left: 45%;
-    margin-top: -495px;
+    margin-left: 50%;
+    margin-top: 10%;
+    position: absolute;
 }
-
 .sexo {
     border-bottom: 1px solid #cfd8dc;
     border-top: 1px solid #cfd8dc;
@@ -58,20 +57,22 @@ label#hombre {
 
 input[type="file"] {
     opacity: 0;
-    width: 350px;
-    height: 350px;
+    width: 395px;
+    height: 395px;
+    position: absolute;
+    top: 120px;
+    border-radius: 200px;
 }
-
 .imagenPerfil {
     border: 2px solid;
     border-style: dashed;
     height: 400px;
     width: 400px;
     margin-left: 30px;
+    border-radius: 200px;
 }
-
-
 img.imgPerfilAdmin {
     width: 395px;
     height: 395px;
+    border-radius: 200px;
 }

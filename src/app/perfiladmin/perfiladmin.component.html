@@ -6,8 +6,8 @@
         
         <div class="card-block" id="izquierda">
             <div class="imagenPerfil">       
-                <img class="imgPerfilAdmin" [src]="imageSrc" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/>
-                    <input type="file" name="file" accept="image/*" (change)="handleInputChange($event)">
+                <img class="imgPerfilAdmin" id="imagenSrc" [src]="imageSrc" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/>
+                <input type="file" id="files" name="files[]" accept="image/*" (change)="handleInputChange($event)">
             </div>                
         </div>
 
