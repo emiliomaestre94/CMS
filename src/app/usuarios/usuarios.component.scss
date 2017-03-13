@@ -80,7 +80,7 @@
 
 tab.active.tab-pane {
     overflow: auto;
-    height: 520px;
+    height: 390px;
 }
 .modal-content {
     height: 95%;
@@ -88,6 +88,16 @@ tab.active.tab-pane {
 .modal-dialog.modal-lg {
     height: 100%;
 }
+
+
+.modal-footer {
+    display: block;
+}
+.col-md-12.mb-2 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
 
 
 
