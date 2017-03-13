@@ -37,7 +37,7 @@
     height: 500px;
     float: right;
     margin-left: 50%;
-    margin-top: 10%;
+    margin-top: 8%;
     position: absolute;
 }
 .sexo {
@@ -53,8 +53,6 @@ label.radio-inline {
 label#hombre {
     padding-left: 70px;
 }
-
-
 input[type="file"] {
     opacity: 0;
     width: 395px;
@@ -64,8 +62,7 @@ input[type="file"] {
     border-radius: 200px;
 }
 .imagenPerfil {
-    border: 2px solid;
-    border-style: dashed;
+    border: 2px dashed #124570;
     height: 400px;
     width: 400px;
     margin-left: 30px;
