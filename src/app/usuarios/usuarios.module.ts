@@ -1,3 +1,4 @@
+import { PaginationModule } from 'ng2-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
 import { BuscadorUsuariosPipe } from './buscadorusuarios.pipe';
 import { UsuariosService } from './../services/usuarios.service';
@@ -26,7 +27,9 @@ BuscadorUsuariosPipe
     FormsModule,
     ChartsModule,
     DropdownModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    PaginationModule.forRoot()
+
   ],
   declarations: [ 
     UsuariosComponent,

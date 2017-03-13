@@ -26,6 +26,7 @@ button { cursor: pointer; cursor: hand; }
     bottom: 0px;
     background-color: #1e272b;
     width: 100%;
+    cursor: pointer;
 }
 li.nav-item.dropdown {
     padding-right: 30px;
@@ -40,6 +41,7 @@ li.nav-item.dropdown {
     animation: spin 1.5s linear infinite;
     margin:0 auto;
     margin-bottom: 30px;
+    
 }
 
 @keyframes spin {
