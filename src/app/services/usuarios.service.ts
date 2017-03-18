@@ -8,7 +8,7 @@ import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class Usuario{
     //Constructor(id: number, name: string){ }
-    Constructor(Nombre_usuario: string, Localicadad_usuario: string, Telefono_usuario: string,CP_usuario:string, Email_usuario:string,Fecha_usuario:string){ }
+    Constructor(Nombre_usuario: string, Email_usuario:string, CP_usuario:string, Localicadad_usuario: string, Telefono_usuario: string, Sexo_usuario: string){ }
 } 
  
 @Injectable()

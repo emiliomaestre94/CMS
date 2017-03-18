@@ -6,8 +6,9 @@
         
         <div class="card-block" id="izquierda">
             <div class="imagenPerfil">     
-                 <input type="file" id="files" name="files[]" accept="image/*" (change)="handleInputChange($event)"/>  
-                <img class="imgPerfilAdmin" id="imagenSrc" [src]="imageSrc" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/>
+                 <input type="file" id="files" name="files[]" accept="image/*" (change)="handleInputChange($event)"/> 
+                 <img class="imgPerfilAdmin" id="imagenSrc"  src="{{foto}}" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/> 
+            <!--<img class="imgPerfilAdmin" id="imagenSrc" [src]="imageSrc" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/>-->
             </div>                
         </div>
 
@@ -17,7 +18,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><strong>Email</strong></span>
-                                <input class="form-control" id="email3" name="email3" type="email">
+                                <span class="form-control">{{nombre}}</span>
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                             </div>
                         </div>
@@ -25,7 +26,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><strong>Usuario</strong></span>
                                 <input class="form-control" id="username3" name="username3" type="text">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <span class="input-group-addon">{{email}}<i class="fa fa-user"></i></span>
                             </div>
                         </div>
                         <div class="form-group">
