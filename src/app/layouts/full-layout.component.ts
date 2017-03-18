@@ -31,8 +31,8 @@ export class FullLayoutComponent implements OnInit {
       this.authService.getToken().subscribe(
           usuario =>{
           console.log(usuario);
-          this.foto=usuario.data.Foto;
-          this.nombre=usuario.data.Nombre
+          this.foto=usuario.data.Foto_usuario;
+          this.nombre=usuario.data.Nombre_usuario;
           },
           err => {
               console.log(err);

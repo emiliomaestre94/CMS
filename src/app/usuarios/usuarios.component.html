@@ -3,14 +3,18 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" ><p>Clientes de H&M</p>
-                    <ul class="pagination" id="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
+                <pagination class="pagination" id="pagination"
+                    [totalItems]="bigTotalItems" 
+                    [itemsPerPage]="itemsPorPagina" 
+                    [(ngModel)]="bigCurrentPage" 
+                    [maxSize]="5" class="pagination-sm"
+                    [boundaryLinks]="true"   
+                    previousText="&lsaquo;" 
+                    nextText="&rsaquo;" 
+                    firstText="&laquo;" 
+                    lastText="&raquo;" 
+                    (pageChanged)="pageChanged($event)">
+                </pagination>
             </div>
  
             <h1 *ngIf="!usuarios"> CARGANDO USUARIOS... </h1>
@@ -18,7 +22,7 @@
             <div *ngIf="usuarios" class="card-block">
 
                 <div id="buscador" class="form-group row">
-                    <div class="col-md-12">
+                    <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -50,22 +54,22 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div>{{usuarios.Nombre}}</div>
+                                    <div>{{usuarios.Nombre_usuario}}</div>
                                     <div class="small text-muted">
-                                        Registro: {{usuarios.Fecha}} 
+                                        Registro: {{usuarios.Fecha_usuario}} 
                                     </div>
                                 </td>
                                 <td>
-                                    <strong>{{usuarios.Email}}</strong>
+                                    <strong>{{usuarios.Email_usuario}}</strong>
                                 </td>
                                 <td class="text-center">
-                                    <strong>{{usuarios.CP}}</strong>
+                                    <strong>{{usuarios.CP_usuario}}</strong>
                                 </td>
                                 <td class="text-center">
-                                    <strong>{{usuarios.Municipio}}</strong>
+                                    <strong>{{usuarios.Localidad_usuario}}</strong>
                                 </td>
                                 <td>
-                                    <strong>{{usuarios.Telefono}}</strong>
+                                    <strong>{{usuarios.Telefono_usuario}}</strong>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="perfilClienteModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>

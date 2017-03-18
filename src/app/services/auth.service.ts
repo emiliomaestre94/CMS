@@ -35,7 +35,7 @@ export class AuthService{
         let options = new RequestOptions({ headers: headers, withCredentials: true });
         console.log(user.username);
         console.log(user.password);
-        return this.http.post(environment.dominio + '/loginjwt', 
+        return this.http.post(environment.dominio + '/loginjwt/admin', 
             JSON.stringify({username:user.username, password:user.password}), options)
             .delay(environment.timeout)
             .map((res: Response) => {
