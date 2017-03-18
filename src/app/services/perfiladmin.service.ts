@@ -8,8 +8,8 @@ import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class Perfiladmin{
     //Constructor(id: number, name: string){ }
-    Constructor(Nombre: string, Municipio: string, Telefono: string, Precio: string,CP:string, Email:string,Fecha:string){ }
-}
+    Constructor(Nombre_usuario: string, Email_usuario:string, CP_usuario:string, Localicadad_usuario: string, Telefono_usuario: string, Sexo_usuario: string){ }
+} 
  
 @Injectable()
 
@@ -22,8 +22,7 @@ export class PerfiladminService {
     comprobacion(){
         console.log("DEBERIA IR");
     }
-    
-    private usersUrl= environment.dominio + '/usuarios';
+    private usersUrl= environment.dominio + '/usuario';
      getUsers(): Observable<Perfiladmin[]>{
         return this.authHttp.get(this.usersUrl)
         .map(this.extractData);
@@ -33,9 +32,9 @@ export class PerfiladminService {
     {
         console.log("Entra");
         let body = res.json(); //los parseamos a json
-       console.log(body.Usuarios);
+       console.log(body.usuario);
         //return body.data || { }; //devolvemos los datos
-        return body.Usuarios || { };
+        return body.usuario || { };
     }
 
 

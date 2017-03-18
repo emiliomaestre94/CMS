@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from './../services/auth.service';
 
 /*import {FileUploaderComponent} from './file-uploader.component';*/
 
@@ -10,10 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfiladminComponent implements OnInit {
 
-  constructor() { }
+  //datos del admin
+  public foto: string;
+  public nombre: string;
+  public email: string;
 
-  ngOnInit() {
+
+  constructor(private authService:AuthService) { }
+
+
+
+ ngOnInit(): void {
+      this.authService.getToken().subscribe(
+          usuario =>{
+          console.log(usuario);
+          this.foto=usuario.data.Foto_usuario;
+          this.nombre=usuario.data.Nombre_usuario;
+          this.email=usuario.data.Email_usuario;
+
+          },
+          err => {
+              console.log(err);
+          }
+      );
   }
+
+
 
 
 imageSrc;
