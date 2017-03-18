@@ -8,7 +8,7 @@ import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class Usuario{
     //Constructor(id: number, name: string){ }
-    Constructor(Nombre: string, Municipio: string, Telefono: string, Precio: string,CP:string, Email:string,Fecha:string){ }
+    Constructor(Nombre_usuario: string, Localicadad_usuario: string, Telefono_usuario: string,CP_usuario:string, Email_usuario:string,Fecha_usuario:string){ }
 } 
  
 @Injectable()
@@ -22,7 +22,7 @@ export class UsuariosService {
     comprobacion(){
         console.log("DEBERIA IR");
     }
-    private usersUrl= environment.dominio + '/usuarios';
+    private usersUrl= environment.dominio + '/usuario';
      getUsers(): Observable<Usuario[]>{
         return this.authHttp.get(this.usersUrl)
         .map(this.extractData);
@@ -32,9 +32,9 @@ export class UsuariosService {
     {
         console.log("Entra");
         let body = res.json(); //los parseamos a json
-       console.log(body.Usuarios);
+       console.log(body.usuario);
         //return body.data || { }; //devolvemos los datos
-        return body.Usuarios || { };
+        return body.usuario || { };
     }
 
 
