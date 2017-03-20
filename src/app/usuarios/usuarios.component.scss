@@ -1,4 +1,3 @@
-
 .input-group{
  margin-bottom: 20px;
 }
@@ -13,7 +12,9 @@
     color: #124570;
 }
 
-
+.card-header {
+    background-color: #b7d9f3;
+}
 
 .card-header {
     background-color: #b7d9f3;
@@ -21,6 +22,7 @@
 
 #pagination {
     float: right;
+    padding-top: 20px;
 }
 
 ////////////////////////////MODAL USUARIO///////////////////////
@@ -77,13 +79,17 @@
 
 tab.active.tab-pane {
     overflow: auto;
-    height: 520px;
+    height: 390px;
 }
 .modal-content {
     height: 95%;
 }
 .modal-dialog.modal-lg {
     height: 100%;
+}
+
+.modal-footer {
+    display:block;
 }
 
 
