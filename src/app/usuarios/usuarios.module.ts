@@ -1,7 +1,7 @@
 
 import { PaginationModule } from 'ng2-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
-import { BuscadorUsuariosPipe } from './buscadorusuarios.pipe';
+//import { BuscadorUsuariosPipe } from './buscadorusuarios.pipe';
 import { UsuariosService } from './../services/usuarios.service';
 import { UsuariosComponent } from './usuarios.component';
 import { UsuariosRoutingModule } from './usuarios-routing.module';
@@ -21,7 +21,7 @@ import { provideAuth } from 'angular2-jwt';
 
 
  
-BuscadorUsuariosPipe
+
 @NgModule({
   imports: [ 
     UsuariosRoutingModule,
@@ -35,7 +35,7 @@ BuscadorUsuariosPipe
   ],
   declarations: [ 
     UsuariosComponent,
-    BuscadorUsuariosPipe
+    //BuscadorUsuariosPipe
   ],
   providers:[
     UsuariosService, //con declararlo aqui es suficiente

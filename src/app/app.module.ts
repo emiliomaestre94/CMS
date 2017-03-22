@@ -1,3 +1,4 @@
+import { DatosTokenService } from './services/datostoken.service';
 
 import { EditPasswordComponent } from './pages/edit-password.component';
 import { ResetPasswordComponent } from './pages/reset-password.component';
@@ -89,7 +90,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     useClass: HashLocationStrategy
   },
   AuthService,
-  AuthGuard
+  AuthGuard,
+  DatosTokenService
   ],
   bootstrap: [ AppComponent]
 })
