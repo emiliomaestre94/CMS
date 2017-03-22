@@ -1,5 +1,4 @@
 
-
 .input-group{
  margin-bottom: 20px;
 }
@@ -40,8 +39,10 @@
 .imagenPerfil {
     border: 2px dashed #124570;
     border-radius: 100px;
-    width: 400px;
-    height: 400px;
+    /*width: 400px;
+    height: 400px;*/
+    width: 140%;
+    height: 800%;
 }
 
 .datosProducto {
@@ -65,5 +66,7 @@
     padding: 15px;
     border-bottom: 1px solid #cfd8dc;
 }
+
+
 
 /////////////////////////////////////////////////////////////////////
