@@ -34,14 +34,14 @@
         -->
         <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: rgb(255, 255, 255);" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
-                <img src="{{foto}}" class="img-avatar" alt="admin@bootstrapmaster.com">
-                <span class="hidden-md-down">{{nombre}}</span>
+                <img src="{{datostokenservice.foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                <span class="hidden-md-down">{{datostokenservice.nombre_usuario}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
 
                 <div class="dropdown-header text-center" style="color:#cfd8dc; background: #263238;">
                     <strong>Mi Cuenta</strong>
-                </div>
+                </div> 
 
                 <a class="dropdown-item" [routerLink]="['/perfiladmin']" style="  border-bottom: 0px solid #cfd8dc; color: rgb(255, 255, 255); background: #263238;"><i class="fa fa-user"></i> Perfil</a>
                 <a class="dropdown-item" href="#" style=" border-bottom: 0px solid #cfd8dc; color: rgb(255, 255, 255); background: #263238;"><i class="fa fa-envelope-o"></i> Mensajes</a>
@@ -78,8 +78,8 @@
             <ul class="nav">
                 <!--Aqui ponemos lo de la foto -->
                 <div class="usuario-navbar">
-                    <img src="http://www.catalunyawork.com/wp-content/uploads/2016/09/store_logo_hm.png" class="img-avatar fotosidebar" alt="admin@bootstrapmaster.com">
-                    <p class="text-center">H&M Maisonave</p>
+                    <img src="{{datostokenservice.logo_tienda}}" class="img-avatar fotosidebar" alt="admin@bootstrapmaster.com">
+                    <p class="text-center">{{datostokenservice.nombre_tienda}}</p>
                     <li class="divider"></li>
                 </div>
 

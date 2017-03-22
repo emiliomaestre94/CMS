@@ -1,3 +1,4 @@
+/*
 import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({name: 'search'})
@@ -13,4 +14,4 @@ export class BuscadorUsuariosPipe implements PipeTransform
             return res[field].includes(search) || res[field2].includes(search);
         })
     }
-} 
+} */

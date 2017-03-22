@@ -2,32 +2,47 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" ><p>Clientes de H&M</p>
-                    <ul class="pagination" id="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
+            <div class="card-header" ><p>Clientes de {{datostokenservice.nombre_tienda}}</p>
+                <pagination class="pagination" id="pagination"
+                    [totalItems]="bigTotalItems" 
+                    [itemsPerPage]="itemsPorPagina" 
+                    [(ngModel)]="bigCurrentPage" 
+                    [maxSize]="5" class="pagination-sm"
+                    [boundaryLinks]="true"   
+                    previousText="&lsaquo;" 
+                    nextText="&rsaquo;" 
+                    firstText="&laquo;" 
+                    lastText="&raquo;" 
+                    (pageChanged)="pageChanged($event)">
+                </pagination>
             </div>
  
-            <h1 *ngIf="!usuarios"> CARGANDO USUARIOS... </h1>
-            <div  *ngIf="!usuarios" class="loader"></div>
+          <div  *ngIf="!usuarios" class="loader"  style="margin-top:30px"></div>
+            <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
+              {{mensajeError}}
+           </div> 
+
             <div *ngIf="usuarios" class="card-block">
 
                 <div id="buscador" class="form-group row">
                     <div class="col-md-12">
-                        <div class="input-group">
+                        <div style="width:50%" class="input-group">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
                             </span>
                             <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
                         </div>
                     </div>
 
-                    <table class="table table-hover table-outline mb-0 hidden-sm-down">
+                        <button *ngIf="busquedaActiva == true" (click)="eliminarBusqueda();"type="button" class="close" aria-label="Close">
+                            {{tag}}
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
+                                        {{mensajeError}}
+                                    </div> 
+                        <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
                                 <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
@@ -39,12 +54,15 @@
                                 <th class="text-center" style="width: 100px;"></th>
                             </tr>
                         </thead>
-
+                
                         <tbody>
-                            <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios">
+            
+                            <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios"> -->
+                            <tr *ngFor="let usuarios of usuarios">
+                          
                                 <td class="text-center">
                                     <div class="avatar">
-                                        <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
+                                        <img src="{{usuarios.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
                                         <span *ngIf="usuarios.Eliminado==0" class="avatar-status badge-success"></span>
                                         <span *ngIf="usuarios.Eliminado==1" class="avatar-status badge-danger"></span>
                                     </div>
@@ -75,6 +93,9 @@
                     </table>
                 </div>
             </div>
+
+ 
+
         </div>
 
         <!--<button class="btn btn-primary" type="button"><i class="fa fa-refresh"></i> Actualizar lista Productos</button>-->

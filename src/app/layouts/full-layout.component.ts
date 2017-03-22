@@ -1,3 +1,4 @@
+import { DatosTokenService } from './../services/datostoken.service';
 import { AuthService } from './../services/auth.service';
 //import { LoginService } from './../services/login.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,11 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FullLayoutComponent implements OnInit {
 
-  //datos del admin
-  public foto: string;
-  public nombre: string;
+
   //cerrandosesion: boolean=false;
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, private datostokenservice: DatosTokenService) { }
 
   public disabled:boolean = false;
   public status:{isopen:boolean} = {isopen: false};
@@ -31,8 +30,8 @@ export class FullLayoutComponent implements OnInit {
       this.authService.getToken().subscribe(
           usuario =>{
           console.log(usuario);
-          this.foto=usuario.data.Foto_usuario;
-          this.nombre=usuario.data.Nombre_usuario;
+            //lo guardamos en el servicio
+            this.datostokenservice.almacenardatostoken(usuario);
           },
           err => {
               console.log(err);
