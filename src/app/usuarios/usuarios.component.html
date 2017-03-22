@@ -33,18 +33,29 @@
                             </span>
                             <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
                         </div>
+
+
+                        
+                        <div *ngIf="busquedaActiva == true"  class="col-sm-12 filtro">
+                            <span class="bold fp">Filtrado por:</span>
+                            <span class="filtros">
+                                <span class="tag bolds">
+                                    <a (click)="eliminarBusqueda();" class="btn btn-sm btn-instagram text" href="#">
+                                    <span data-value="busqueda" class="closex">X</span>
+                                    <span class="item">{{tag}}</span>
+                                    </a>
+                                </span>
+					        </span>
+	                    </div>
                     </div>
 
-                        <button *ngIf="busquedaActiva == true" (click)="eliminarBusqueda();"type="button" class="close" aria-label="Close">
-                            {{tag}}
-                        <span aria-hidden="true">&times;</span>
-                        </button>
                         <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
                                         {{mensajeError}}
                                     </div> 
-                        <table class="table table-hover table-outline mb-0 hidden-sm-down">
+                    <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
+                                <th class="text-center" style="width: 114px;">Activado</th>
                                 <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
                                 <th style="width: 300px;">Cliente</th>
                                 <th>Correo electrónico</th>
@@ -60,6 +71,13 @@
                             <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios"> -->
                             <tr *ngFor="let usuarios of usuarios">
                           
+                                <td class="text-center">
+                                    <label class="switch switch-text switch-primary">
+                                        <input type="checkbox" class="switch-input" checked>
+                                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                </td>  
                                 <td class="text-center">
                                     <div class="avatar">
                                         <img src="{{usuarios.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">

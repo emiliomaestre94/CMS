@@ -1,0 +1,111 @@
+
+.input-group{
+ margin-bottom: 20px;
+}
+
+.card-header p {
+    font-size: 25px;
+    position: absolute;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: 29px;
+    /* color: #124570;*/
+    color: white;
+}
+.card-header {
+    /*background-color: #b7d9f3;*/
+    background-color: #517fa4;
+}
+#pagination {
+    float: right;
+    padding-top: 20px;
+}
+
+
+#anyadir {
+    float: left;
+    margin-top: 35px;
+}
+
+////////////////////////////FACTURA///////////////////////
+
+.modal-lg {
+    max-width: 1200px;
+    width: 65%;
+}
+
+.filtrosOferta {
+    width: 30%;
+    height: 30%;
+    float: left;
+
+}
+.resultadoUsuarios {
+    width: 65%;
+    height: 80%;
+    float: right;
+    padding-right: 5px;
+    padding-top: 10px;
+}
+
+p.bClientes {
+    font-size: 20px;
+    color: #124570;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #b7d9f3;
+}
+
+
+#tableClientes1 {
+ overflow: auto;
+}
+
+
+.ofertaProductos {
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+}
+
+#tablaProductos1 {
+    height: 100%;
+    overflow: auto;
+}
+
+#card-block-modal {
+    padding-top: 0;
+}
+
+label.radio-inline {
+    padding-top: 5px;
+    padding-left: 21px;
+    padding-right: 7px;
+}
+
+td.text-center {
+    color:black;
+} 
+
+form.ng-untouched.ng-pristine.ng-valid {
+    padding: 10px;
+}
+
+.modal-header-producto {
+    color: #fff;
+    background-color: #20a8d8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #cfd8dc;
+}
+
+/////////////////////////////////////////////////////////////////////

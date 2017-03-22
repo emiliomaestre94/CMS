@@ -1,0 +1,74 @@
+
+.input-group{
+ margin-bottom: 20px;
+}
+
+#pagination {
+    float: right;
+    padding-top: 20px;
+}
+
+.card-header p {
+    font-size: 25px;
+    position: absolute;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: 29px;
+    /* color: #124570;*/
+    color: white;
+}
+
+.card-header {
+    /*background-color: #b7d9f3;*/
+    background-color: #517fa4;
+}
+
+
+////////////////////////////FACTURA///////////////////////
+
+.modal-lg {
+    max-width: 1200px;
+    width: 70%;
+}
+
+.imagenProducto {
+    width: 40%;
+    height: 45%;
+    float: left;
+    padding: 20px 20px 20px 20px;
+
+}
+.imagenPerfil {
+    border: 2px dashed #124570;
+    border-radius: 100px;
+    /*width: 400px;
+    height: 400px;*/
+    width: 140%;
+    height: 800%;
+}
+
+.datosProducto {
+    width: 55%;
+    float: right;
+    padding: 20px 20px 20px 0px;
+}
+
+.modal-header-producto {
+    color: #fff;
+    background-color: #20a8d8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #cfd8dc;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////
