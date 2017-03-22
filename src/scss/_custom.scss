@@ -7,17 +7,31 @@ ol.breadcrumb {
    // margin-bottom: 0px;
 }
 
-/*
+/////////HEADER/////////
+.input-group{
+ margin-bottom: 20px;
+}
 .card-header p {
     font-size: 25px;
     position: absolute;
     font-weight: 600;
     line-height: 24px;
     text-align: 29px;
-    color: #124570;
-    background-color: #b7d9f3;
+   /* color: #124570;*/
+    color: white;
 }
-*/
+
+.card-header {
+    /*background-color: #b7d9f3;*/
+    background-color: #517fa4;
+    padding-bottom: 0px;
+}
+#pagination {
+    float: right;
+}
+//////////////////////////
+
+
 
 button { cursor: pointer; cursor: hand; }
 
