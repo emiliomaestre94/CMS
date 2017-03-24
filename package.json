@@ -28,14 +28,17 @@
     "@angular/upgrade": "2.4.4",
     "angular2-cool-infinite-grid": "^1.1.4",
     "angular2-jwt": "^0.1.28",
+    "angularfire2": "^2.0.0-beta.8",
     "chart.js": "2.4.0",
     "core-js": "2.4.1",
+    "firebase": "^3.7.3",
     "moment": "2.17.1",
     "ng2-bootstrap": "^1.2.6",
     "ng2-charts": "^1.5.0",
     "ng2-datepicker": "^1.8.0",
     "rxjs": "5.0.3",
     "ts-helpers": "1.1.2",
+    "ts-md5": "^1.2.0",
     "zone.js": "0.7.6"
   },
   "devDependencies": {

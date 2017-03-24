@@ -28,28 +28,11 @@ export class FullLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.authService.getToken().subscribe(
-          usuario =>{
-          console.log(usuario);
-            //lo guardamos en el servicio
-            this.datostokenservice.almacenardatostoken(usuario);
-          },
-          err => {
-              console.log(err);
-          }
-      );
+   
   }
 
   logout(){
     this.authService.logout();
-    /*
-    console.log("Cerrando sesión");
-    this.cerrandosesion=true;
-    setTimeout(() => {
-         this.authService.logout();
-         this.cerrandosesion=false;
-    }, 3000);
-    */
   }
 }
  

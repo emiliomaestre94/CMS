@@ -47,23 +47,28 @@ export const routes: Routes = [
       },
       {
         path: 'usuarios',
-        loadChildren: './usuarios/usuarios.module#UsuariosModule'
+        loadChildren: './usuarios/usuarios.module#UsuariosModule',
+        canActivate: [AuthGuard]
       },
       {
         path: 'facturas',
-        loadChildren: './facturas/facturas.module#FacturasModule'
+        loadChildren: './facturas/facturas.module#FacturasModule',
+        canActivate: [AuthGuard]
       },
       {
         path: 'productos',
-        loadChildren: './productos/productos.module#ProductosModule'
+        loadChildren: './productos/productos.module#ProductosModule',
+        canActivate: [AuthGuard]
       },
       {
         path: 'ofertas',
-        loadChildren: './ofertas/ofertas.module#OfertasModule'
+        loadChildren: './ofertas/ofertas.module#OfertasModule',
+        canActivate: [AuthGuard]
       },
             {
         path: 'perfiladmin',
-        loadChildren: './perfiladmin/perfiladmin.module#PerfiladminModule'
+        loadChildren: './perfiladmin/perfiladmin.module#PerfiladminModule',
+        canActivate: [AuthGuard]
       },
     ]
   },

@@ -1,3 +1,4 @@
+import { DatosTokenService } from './../services/datostoken.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { 
@@ -13,7 +14,7 @@ export class AuthGuard implements CanActivate
 {
 
     //le pasamos el authservice y el router
-    constructor(private authService: AuthService, private router: Router)
+    constructor(private authService: AuthService, private router: Router,private tokenservice:DatosTokenService)
     {
 
     }
@@ -28,6 +29,8 @@ export class AuthGuard implements CanActivate
         return this.authService.getToken().map(x => {
             console.log("TOKEN CORRECTO");
             console.log(x);
+            if(!this.tokenservice.token["id_usuario"])
+                this.tokenservice.setToken(x);
             return true; //CONTINUAMOS
         }).catch((err) => {
             console.log(err);
