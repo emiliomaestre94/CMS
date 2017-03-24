@@ -42,6 +42,8 @@ import { provideAuth } from 'angular2-jwt';
 
 import { HttpModule,Http, RequestOptions } from '@angular/http';
 
+import { AngularFireModule } from 'angularfire2'; //firebase
+
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     tokenName: 'id_token',
@@ -52,6 +54,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 @NgModule({
   imports: [
+    AngularFireModule.initializeApp(
+      {
+        apiKey: "AIzaSyDLKoRFudOfPFqIvY7gZC6Nr15O4HBZSRc",
+        authDomain: "appay-aefd5.firebaseapp.com",
+        databaseURL: "https://appay-aefd5.firebaseio.com",
+        storageBucket: "appay-aefd5.appspot.com",
+      }
+    ),
     BrowserModule,
     CommonModule,
     HttpModule,
@@ -91,7 +101,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   },
   AuthService,
   AuthGuard,
-  DatosTokenService
+  DatosTokenService,
+  PerfiladminService
   ],
   bootstrap: [ AppComponent]
 })

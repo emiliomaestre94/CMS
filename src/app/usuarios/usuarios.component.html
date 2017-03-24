@@ -2,7 +2,7 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" ><p>Clientes de {{datostokenservice.nombre_tienda}}</p>
+            <div class="card-header" ><p>Clientes de {{datostokenservice.token['nombre_tienda']}}</p>
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 
@@ -127,6 +127,9 @@
         </ul>
     </div>
 </div>
+
+
+<!--(click)="perfilClienteModal.show()"-->
 
 <!---MODAL PERFIL CLIENTE-->
 <div bsModal #perfilClienteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -34,8 +34,8 @@
         -->
         <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: rgb(255, 255, 255);" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
-                <img src="{{datostokenservice.foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com">
-                <span class="hidden-md-down">{{datostokenservice.nombre_usuario}}</span>
+                <img src="{{datostokenservice.token['foto_usuario']}}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                <span class="hidden-md-down">{{datostokenservice.token['nombre_usuario']}}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" dropdownMenu aria-labelledby="simple-dropdown">
 
@@ -78,8 +78,8 @@
             <ul class="nav">
                 <!--Aqui ponemos lo de la foto -->
                 <div class="usuario-navbar">
-                    <img src="{{datostokenservice.logo_tienda}}" class="img-avatar fotosidebar" alt="admin@bootstrapmaster.com">
-                    <p class="text-center">{{datostokenservice.nombre_tienda}}</p>
+                    <img src="{{datostokenservice.token['logo_tienda']}}" class="img-avatar fotosidebar" alt="admin@bootstrapmaster.com">
+                    <p class="text-center">{{datostokenservice.token['nombre_tienda']}}</p>
                     <li class="divider"></li>
                 </div>
 

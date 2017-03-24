@@ -1,0 +1,86 @@
+////////////////////OBJETOS/////////////////
+ token: Object = {
+    foto_usuario: '',
+    nombre_usuario:  '',
+    id_usuario:  '',
+    id_tienda:  '',
+    logo_tienda:  '',
+    nombre_tienda:  ''
+  };
+if(!this.token["id_usuario"]) //cuando está '' se detecta asi 
+
+
+
+////////////PROMESAS/////////////
+
+        //LLAMADA
+        let getToken =this.datostokenservice.getToken().then(
+            (resolve) =>{
+                console.log("Resolve");
+                console.log(resolve);
+                this.id=resolve;
+                return Promise.resolve(resolve); //Este return se pone en caso de que quedamos acceder a ella leuego con el promise.all
+            }
+        );
+
+        Promise.all([ //Se ejectua cuando se han ejecutado las otras promesas (tienen que estar en el mismo método)
+                getToken
+                getToken2
+            ]).then((result) => {
+              console.log("Promise all");
+              console.log(result); //result[0] será getToken
+               console.log(result);//result[2] será getToken2
+            });
+
+        //METODO QUE DEVUELVE LA PROMESA
+            getToken(){
+ 
+                    return Promise.resolve(this.id_usuario) //forma 1
+                
+                else{
+    
+                    return new Promise( //forma 2 
+                        resolve =>{
+                            this.authService.getToken2()
+                            .then(
+                                usuario =>{
+                                    console.log("token");
+                                    console.log(usuario);
+                                    this.token=usuario;
+                                    resolve(usuario);
+                                    
+                                },
+                                err => {
+                                    console.log(err);
+                                    resolve(err);
+                                }
+                            
+                            );
+                        }
+                    );
+                }
+///////FIN PROMESAS
+
+//METODO OBSERVABLE PASARLO A PROMESA
+import 'rxjs/add/operator/toPromise';
+
+        return this.authHttp.post(environment.dominio +'/loginjwt/info', "", options)
+            .map( response => { 
+                var respJson = response.json(); 
+                return respJson;
+            })
+            .toPromise(); //===> ESTO ES LO IMPORTANTE
+
+
+//SET TIME OUT
+    setTimeout(() => {
+         this.authService.logout();
+         this.cerrandosesion=false;
+    }, 3000);
+
+
+//Coger elemento del DOM
+import {ElementRef, ViewChild} from '@angular/core';
+
+  @ViewChild('image') el:ElementRef; //cogemos el input del dom
+   console.log(this.el.nativeElement); // contiene todas las propiedades de ese elemento del DOM
