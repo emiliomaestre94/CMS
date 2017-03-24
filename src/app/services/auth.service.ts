@@ -9,6 +9,7 @@ import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/toPromise';
 //estos ultimos 3 metodos son para que cuando trabajemos con observables tengamos mas funcionalidades
 
 @Injectable()
@@ -28,7 +29,9 @@ export class AuthService{
                var respJson = response.json(); 
                return respJson;
             });
+            
     }
+ 
 
     login(user){   
         let headers = new Headers({ 'content-type': 'application/json' });
@@ -40,6 +43,7 @@ export class AuthService{
             .delay(environment.timeout)
             .map((res: Response) => {
                 if (res.status === 200) {
+                    console.log(res.json());
                     localStorage.setItem("id_token",res.json());
                     return [{ status: res.status}]
                 }
