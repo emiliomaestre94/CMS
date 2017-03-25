@@ -1,158 +1,20 @@
-<!-- TABLA USUARIOS TOTALES -->
-<div class="row" >
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header" ><p>Clientes de {{datostokenservice.token['nombre_tienda']}}</p>
-                <pagination class="pagination" id="pagination"
-                    [totalItems]="bigTotalItems" 
-                    [itemsPerPage]="itemsPorPagina" 
-                    [(ngModel)]="bigCurrentPage" 
-                    [maxSize]="5" class="pagination-sm"
-                    [boundaryLinks]="true"   
-                    previousText="&lsaquo;" 
-                    nextText="&rsaquo;" 
-                    firstText="&laquo;" 
-                    lastText="&raquo;" 
-                    (pageChanged)="pageChanged($event)">
-                </pagination>
-            </div>
- 
-          <div  *ngIf="!usuarios" class="loader"  style="margin-top:30px"></div>
-            <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
-              {{mensajeError}}
-           </div> 
-
-            <div *ngIf="usuarios" class="card-block">
-
-                <div id="buscador" class="form-group row">
-                    <div class="col-md-12">
-                        <div style="width:50%" class="input-group">
-                            <span class="input-group-btn">
-                                <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                                <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
-                            </span>
-                            <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
-                        </div>
-
-
-                        
-                        <div *ngIf="busquedaActiva == true"  class="col-sm-12 filtro">
-                            <span class="bold fp">Filtrado por:</span>
-                            <span class="filtros">
-                                <span class="tag bolds">
-                                    <a (click)="eliminarBusqueda();" class="btn btn-sm btn-instagram text">
-                                    <span data-value="busqueda" class="closex">x</span>
-                                    <span class="item">{{tag}}</span>
-                                    </a>
-                                </span>
-					        </span>
-	                    </div>
-                    </div>
-
-                        <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
-                                        {{mensajeError}}
-                                    </div> 
-                    <table class="table table-hover table-outline mb-0 hidden-sm-down">
-                        <thead class="thead-default">
-                            <tr>
-                                <th class="text-center" style="width: 114px;">Activado</th>
-                                <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
-                                <th style="width: 300px;">Cliente</th>
-                                <th>Correo electrónico</th>
-                                <th class="text-center" style="width: 125px;">CP</th>
-                                <th class="text-center" style="width: 250px;">Municipio</th>
-                                <th style="width: 150px;">Teléfono</th>
-                                <th class="text-center" style="width: 100px;"></th>
-                            </tr>
-                        </thead>
-                
-                        <tbody>
-            
-                            <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios"> -->
-                            <tr *ngFor="let usuario of usuarios">
-                          
-                                <td class="text-center">
-                                    <label class="switch switch-text switch-primary">
-                                        <input type="checkbox" class="switch-input" checked>
-                                        <span class="switch-label" data-on="On" data-off="Off"></span>
-                                        <span class="switch-handle"></span>
-                                    </label>
-                                </td>  
-                                <td class="text-center">
-                                    <div class="avatar">
-                                        <img src="{{usuario.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
-                                        <span *ngIf="usuario.Eliminado_usuario==0" class="avatar-status badge-success"></span>
-                                        <span *ngIf="usuario.Eliminado_usuario==1" class="avatar-status badge-danger"></span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>{{usuario.Nombre_usuario}}</div>
-                                    <div class="small text-muted">
-                                        Registro: {{usuario.Fecha_usuario}} 
-                                    </div>
-                                </td>
-                                <td>
-                                    <strong>{{usuario.Email_usuario}}</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>{{usuario.CP_usuario}}</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>{{usuario.Localidad_usuario}}</strong>
-                                </td>
-                                <td>
-                                    <strong>{{usuario.Telefono_usuario}}</strong>
-                                </td>
-                                <td class="text-center">
-                                    <!--perfilClienteModal.show() -->
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(usuario)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
- 
-
-        </div>
-
-        <!--<button class="btn btn-primary" type="button"><i class="fa fa-refresh"></i> Actualizar lista Productos</button>-->
-        <ul class="pagination" id="pagination" >
-            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </div>
-</div>
-
-
-
 <!---MODAL PERFIL CLIENTE-->
-<div bsModal #perfilClienteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <modal-perfil (onSelect)="hideChildModal()"></modal-perfil> <!-- Componente externo-->
-</div>
 
-<!---MODAL PERFIL CLIENTE-->
-<div bsModal #putaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header-producto" id="producto">
                 <h4 class="modal-title">Perfil Cliente</h4>
-                <button type="button" class="close" (click)="perfilClienteModal.hide()" aria-label="Close">
+                <button type="button" class="close" (click)="clickCLose()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
                 <div class="modal-body">
-
+                  
                     <div class="imagenUsuario">
                         <div class="imagenPerfil">
-                            <img class="imgPerfil"/>
+                            <img class="imgPerfil" src="{{usuario.Foto_usuario}}" style="width:80%"/>
                         </div>
                     </div>
   
@@ -161,28 +23,28 @@
 
                         <div class="form-group row">
                             <div class="col-md-7">
-                                <label class="col-md-3 form-control-label"><strong>Nombre: </strong> Jose Fco Moreno Fernández</label>
+                                <label class="col-md-3 form-control-label"><strong>Nombre: </strong> {{usuario.Nombre_usuario}}</label>
                             </div>
                             <div class="col-md-5">
-                                 <label class="col-md-3 form-control-label"><strong>Sexo: </strong> Hombre</label>
+                                 <label class="col-md-3 form-control-label"><strong>Sexo: </strong> {{usuario.Sexo_usuario}}</label>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-7">
-                                <label class="col-md-3 form-control-label"><strong>Email: </strong> josefcomoreno85@mail.com</label>
+                                <label class="col-md-3 form-control-label"><strong>Email: </strong>{{usuario.Email_usuario}}</label>
                             </div>
                             <div class="col-md-5">
-                                <label class="col-md-3 form-control-label"><strong>Telefono: </strong> 653 25 53 91</label>
+                                <label class="col-md-3 form-control-label"><strong>Telefono: </strong> {{usuario.Telefono_usuario}}</label>
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <div class="col-md-7">
-                                <label class="col-md-3 form-control-label"><strong>CP: </strong> 03006</label>
+                                <label class="col-md-3 form-control-label"><strong>CP: </strong>  {{usuario.CP_usuario}}</label>
                             </div>
                             <div class="col-md-5">
-                                <label class="col-md-3 form-control-label"><strong>Municipio: </strong> Alicante</label>
+                                <label class="col-md-3 form-control-label"><strong>Localidad: </strong>  {{usuario.Localidad_usuario}}</label>
                             </div>
                         </div>
   
@@ -198,12 +60,12 @@
                             <table class="table table-hover table-outline mb-0 hidden-sm-down">
                                 <thead class="thead-default">
                                     <tr>
-                                        <th class="text-center" style="width: 200px;">Nº Fact</th>
-                                        <th class="text-center" style="width: 110px;">Fecha</th>
-                                        <th class="text-center" style="width: 90px;">Hora</th>
+                                        <th class="text-center" >Nº Fact</th>
+                                        <th class="text-center" >Fecha</th>
+                                        <th class="text-center" >Hora</th>
                                         <th class="text-center">Total</th>
-                                        <th class="text-center" style="width: 400px;">Usuario</th>
-                                        <th class="text-center" style="width: 100px;"></th>
+                                        <th class="text-center">Usuario</th>
+                                        <th class="text-center"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -225,7 +87,7 @@
                                             <strong>josefcomoreno85@gmail.com</strong>
                                         </td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="putaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                         </td>
                                     </tr>
 
@@ -602,4 +464,3 @@
 
         </div>
     </div>
-</div>

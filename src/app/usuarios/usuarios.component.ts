@@ -1,7 +1,10 @@
+import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
 import { Router } from '@angular/router';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario, UsuariosService } from './../services/usuarios.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+import { ModalDirective } from 'ng2-bootstrap/modal';
+
 
 @Component({
   selector: 'app-usuarios',
@@ -28,6 +31,22 @@ export class UsuariosComponent implements OnInit {
   public error2: boolean=false; //error que no sea el del ngoninit (el de abajo)
 
   constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService, public router: Router) { }
+
+  @ViewChild('perfilClienteModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide
+  @ViewChild(UsuariosModalPerfilComponent) public modalPerfil:UsuariosModalPerfilComponent; //cogemos el componente para poder enviarle los datos
+
+ 
+  public showChildModal(usuario):void {
+    console.log(usuario);
+    this.childModal.show();
+    this.modalPerfil.usuario=usuario;
+    
+  }
+
+  public hideChildModal():void {
+    this.childModal.hide();
+  }
+
 
   public setPage(pageNo: number): void {
     this.bigCurrentPage = pageNo;
