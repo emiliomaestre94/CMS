@@ -1,3 +1,4 @@
+import { TabsModule } from 'ng2-bootstrap/tabs';
 import { PerfiladminRoutingModule } from './perfiladmin-routing.module';
 import { PerfiladminComponent } from './perfiladmin.component';
 
@@ -22,6 +23,7 @@ import { provideAuth } from 'angular2-jwt';
       FormsModule,
       ChartsModule,
       DropdownModule,
+      TabsModule,
       ModalModule.forRoot()
     ],
 
