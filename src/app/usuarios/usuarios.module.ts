@@ -1,3 +1,4 @@
+import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
 
 import { PaginationModule } from 'ng2-bootstrap/pagination';
 import { FormsModule } from '@angular/forms';
@@ -35,6 +36,7 @@ import { provideAuth } from 'angular2-jwt';
   ],
   declarations: [ 
     UsuariosComponent,
+    UsuariosModalPerfilComponent
     //BuscadorUsuariosPipe
   ],
   providers:[

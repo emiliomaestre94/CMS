@@ -7,9 +7,8 @@ import 'rxjs/Rx'; //para el map, catch, thow...etc
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class Factura{
-    //Constructor(id: number, name: string){ }
-    //Constructor(Nombre: string, Municipio: string, Telefono: string, Precio: string,CP:string, Email:string,Fecha:string){ }
-    Constructor(){}
+    Constructor( Id_factura: string, Id_tienda_factura: string, Fecha_factura: string, 	Total_factura: string, Pagada:string){ }
+
 }
  
 @Injectable()
@@ -19,40 +18,26 @@ export class FacturasService {
     constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
         
     }
+    getFacturasUser(idUsuario,idTienda){
+        console.log(idUsuario);
+        console.log(idTienda);
+        let url=environment.dominio + '/factura';
+        return this.authHttp.get(url)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            if (res.status === 200) {;
+                console.log("status 200");
+                //return res.json().usuario
+                return  [{ status: res.status, data: res.json() }]
+            }
+            else if (res.status === 206) {
+                console.log("status 206");
+                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
+            }
+        }).catch((error: any) => {
+            console.log(error);
 
-    comprobacion(){
-        console.log("DEBERIA IR");
+            return Observable.throw(new Error(error.status));
+        });
     }
-/*
-    getFacturasPaginada(paginacion): Observable<Factura[]>{
-          return this.authHttp.get(this.usersUrl),
-          .delay(environment.timeout)
-          
-        .map(this.extractData);
-    }
-    */
-    private usersUrl= environment.dominio + '/usuarios';
-     getUsers(): Observable<Factura[]>{
-        return this.authHttp.get(this.usersUrl)
-        .map(this.extractData);
-    }
-    
-     private extractData(res: Response) //el elemento que enviamos es de tipo responde
-    {
-        console.log("Entra");
-        let body = res.json(); //los parseamos a json
-       console.log(body.Usuarios);
-        //return body.data || { }; //devolvemos los datos
-        return body.Usuarios || { };
-    }
-
-
-    private handleError(error: any) //te indica el eror
-    {
-        let errMsg = (error.message) ? error.message :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
-    }
-
 }

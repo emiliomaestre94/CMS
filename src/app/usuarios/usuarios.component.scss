@@ -93,5 +93,16 @@ tab.active.tab-pane {
     padding-right: 0px;
 }
 
+.modal{
+    th.text-center{
+      padding-top: 5px !important;
+      padding-bottom: 5px !important;
+    }
+
+    .table thead th{
+        vertical-align:middle !important;
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////
