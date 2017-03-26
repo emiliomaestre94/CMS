@@ -1,7 +1,10 @@
+import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
 import { Router } from '@angular/router';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario, UsuariosService } from './../services/usuarios.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+
+ 
 
 @Component({
   selector: 'app-usuarios',
@@ -27,7 +30,21 @@ export class UsuariosComponent implements OnInit {
   public mensajeError: string=''; //indica el mensaje del error del backend
   public error2: boolean=false; //error que no sea el del ngoninit (el de abajo)
 
+  //para el boton de Actualizar Activado
+  public errorActivo: boolean=false;
+  public loadingActivo: boolean=false;
+  public msgActivo;
+
   constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService, public router: Router) { }
+
+  
+  @ViewChild(UsuariosModalPerfilComponent) public modalPerfil:UsuariosModalPerfilComponent; //cogemos el componente para poder enviarle los datos
+
+
+  showChildModal(usuario){
+    this.modalPerfil.showChildModal(usuario, this.datostokenservice.token['id_tienda']); //llamamos al metodo del componente hijo para que muestre la modal
+    //this.modalPerfil.usuario=usuario; //asignamos los datos del usuario a la variable input del componente hijo
+  }
 
   public setPage(pageNo: number): void {
     this.bigCurrentPage = pageNo;
@@ -187,6 +204,32 @@ export class UsuariosComponent implements OnInit {
               this.error=true;
               this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
         },   
+    );
+  }
+
+  //Se llama cuando se cambia de posicion un switch. Enviamos el usuario y cambiamos su estado de eliminado
+  changeActivo(usuario){
+    if(usuario.Eliminado_usuario==1) usuario.Eliminado_usuario=0;
+    else if (usuario.Eliminado_usuario==0) usuario.Eliminado_usuario=1;
+    //console.log(usuario);
+  }
+
+  //enviamos todos los usuarios para que actualice su estado de eliminado o no
+  updateUserActivo(){
+    this.loadingActivo=true;
+    this.usuariosService.updateStateActivo(this.usuarios).subscribe(
+      res =>{
+        console.log("Actualizado correctamente");
+        this.loadingActivo=false;
+        this.errorActivo=false;
+        this.msgActivo="Los datos se han actualizado correctamente";  
+      },
+      err=>{ //Error de conexion con el servidor
+          console.log(err);
+          this.loadingActivo=false;
+          this.errorActivo=true;
+          this.msgActivo="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";   
+      },   
     );
   }
 

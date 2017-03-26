@@ -15,10 +15,15 @@ export class Usuario{
 
 export class UsuariosService {
 
+    
+    headers = new Headers({ 'content-type': 'application/json' });
+    options = new RequestOptions({ headers: this.headers, withCredentials: true });
+
+
     constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {}
 
     getUsers(pag:number,usuario:string){
-         console.log(pag);
+         console.log(pag); 
          pag +=-1; //restamos 1 siempre
          pag.toString(); //pasamos a string el number
          console.log(pag);
@@ -41,37 +46,20 @@ export class UsuariosService {
         });
     }
 
-
-//environment.dominio + '/usuario?pag=' + pag
-
-/*
-     getUsers(pag:number,usuario:string): Observable<Usuario[]>{
-         console.log(pag);
-         pag +=-1; //restamos 1 siempre
-         pag.toString(); //pasamos a string el number
-         console.log(pag);
-        return this.authHttp.get(environment.dominio + '/usuario?pagina=' + pag + '&nombre='+usuario)
-        .map(this.extractData);
+    updateStateActivo(usuario: Object){
+       //console.log(JSON.stringify({usuario:usuario}));
+        return this.authHttp.put(environment.dominio + '/usuario/updateState', 
+        {
+         usuario:usuario
+        }, this.options)
+        .delay(environment.timeout) 
+        .map((res: Response) => {
+            //console.log(res);
+            return res;
+        }).catch((error: any) => {
+            console.log(error);
+            return Observable.throw(new Error(error.status));
+        });
     }
-    
-     private extractData(res: Response) //el elemento que enviamos es de tipo responde
-    {
-        console.log("Entra");
-        let body = res.json(); //los parseamos a json
-       console.log(body.usuario);
-        //return body.data || { }; //devolvemos los datos
-        return body.usuario || { };
-    }
-
-
-    private handleError(error: any) //te indica el eror
-    {
-        let errMsg = (error.message) ? error.message :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
-    }
-    */
-    
 
 }

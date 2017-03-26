@@ -267,8 +267,9 @@ export class PerfiladminComponent implements OnInit {
     console.log(this.el.nativeElement);
     console.log(this.el.nativeElement.files[0]);
     var files = this.el.nativeElement.files[0];
-    this.loading3=true;
+   
     if(files){
+      this.loading3=true;
       this.path="images/Perfil/"+ "Perfil_"+this.idAdmin+"_"+files.name;
       console.log(this.path);
       var storageref= this.firebase.storage().ref().child(this.path);

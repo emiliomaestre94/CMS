@@ -1,3 +1,4 @@
+import { DashboardService } from './services/dashboard.service';
 import { DatosTokenService } from './services/datostoken.service';
 
 import { EditPasswordComponent } from './pages/edit-password.component';
@@ -102,7 +103,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   AuthService,
   AuthGuard,
   DatosTokenService,
-  PerfiladminService
+  PerfiladminService,
+  DashboardService,
+  FacturasService,
+  OfertasService,
   ],
   bootstrap: [ AppComponent]
 })
