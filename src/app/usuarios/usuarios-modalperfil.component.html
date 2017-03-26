@@ -1,16 +1,17 @@
 <!---MODAL PERFIL CLIENTE-->
-
+<div bsModal #perfilClienteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header-producto" id="producto">
-                <h4 class="modal-title">Perfil Cliente</h4>
-                <button type="button" class="close" (click)="clickCLose()" aria-label="Close">
+                <h4 class="modal-title">Perfil de {{usuario.Nombre_usuario}}</h4>
+                <button type="button" class="close" (click)="hideChildModal()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-                <div class="modal-body">
+            <!--MODAL BODY -->
+            <div class="modal-body">
                   
                     <div class="imagenUsuario">
                         <div class="imagenPerfil">
@@ -51,370 +52,59 @@
                
                     </div>
             </div>
+             <!--FIN MODAL BODY -->
 
             <div class="modal-footer">
                 <div class="col-md-12 mb-2">
                     <tabset>
                         
+                        <!-- FACTURAS -->
                         <tab heading="Facturas">
-                            <table class="table table-hover table-outline mb-0 hidden-sm-down">
+                            <table class="table table-hover table-outline mb-0 hidden-sm-down ">
                                 <thead class="thead-default">
                                     <tr>
-                                        <th class="text-center" >Nº Fact</th>
+                                        <th class="text-center" >Id </th>
                                         <th class="text-center" >Fecha</th>
-                                        <th class="text-center" >Hora</th>
                                         <th class="text-center">Total</th>
-                                        <th class="text-center">Usuario</th>
-                                        <th class="text-center"></th>
+                                        <th class="text-center">Pagada</th>
+                                        <th class="text-center">
+                                            <button type="button" *ngIf="!loadingFacturas"  (click)="getFacturasUser();" class="btn btn-success">Actualizar</button>
+                                            <button type="button" *ngIf="loadingFacturas" class="btn btn-success" ><i class="fa fa-spinner fa-spin"></i> Actualizando</button>
+                                        </th>
                                     </tr>
+                                    
                                 </thead>
-                                <tbody>
-                            
-                                    <tr>
+                               
+                                <div *ngIf="loadingFacturas" class="loader"  style="margin-top:30px;"></div>
+                                <div  *ngIf="msgFacturas && loadingFacturas==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgFacturas}} </div>                      
+
+                                <tbody *ngIf="!loadingFacturas">
+
+                                    <tr  *ngFor="let factura of facturas">
+
                                         <td class="text-center">
-                                            <strong>N05</strong>
+                                            <strong>{{factura.Id_factura}}</strong>
                                         </td>
                                         <td class="text-center">
-                                            <strong>17-01-2017</strong>
+                                            <strong>{{factura.Fecha_factura}}</strong>
                                         </td>
                                         <td class="text-center">
-                                            <strong>17:00</strong>
+                                            <strong>{{factura.Total_factura}} </strong><i class="fa fa-eur"></i>
                                         </td>
                                         <td class="text-center">
-                                            <strong>200 </strong><i class="fa fa-eur"></i>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>josefcomoreno85@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
+                                            <strong>{{factura.Pagada}}</strong>
+                                        </td> 
+                                        <td id="actualizar" class="text-center actualizar">
                                             <button class="btn btn-primary" type="button" data-toggle="modal" (click)="putaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                         </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N025</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>100€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>josefcomoreno85@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N050</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>400€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>josefcomoreno85@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N055</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>800€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>josefcomoreno85@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N065</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>200€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>casfgjkooef@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N075</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>1200€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>lkjumvhquruma@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N085</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>600€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>pohgjhmg@gmail.com</strong>
-                                        </td>
-                                         <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                       
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N095</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>200€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>josefcomliuñuñuinhoreno85@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N105</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>2100€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>asdafdasfaf@gmail.com</strong>
-                                        </td>
-                                         <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                       
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N205</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>2000€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>josefcomoreno85@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N305</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>4000€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>jfmf85@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N405</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>200€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>ymtyml@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N05</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>250€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>axcvhdfjddgaasebntj@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N505</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>100€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>iluvcb@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N605</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>300€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>nytmmt@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N705</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>350€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>yjtjt@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                        <strong>N805</strong>
-                                        </td>
-                                        <td class="text-center">
-                                        <strong>17-01-2017</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>17:00</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>200€</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>asfbfdhgs@gmail.com</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                        </td>                                        
-                                    </tr>
+                                    </tr>                                           
                                 </tbody>
+                       
                             </table>
                         </tab>
-
+                        <!-- FIN FACTURAS -->
+                        
+                        <!-- OFERTAS-->
                         <tab heading="Ofertas">
                             <table class="table table-hover table-outline mb-0 hidden-sm-down">
                                 <thead class="thead-default">
@@ -457,6 +147,7 @@
                                 </tbody>
                             </table>
                         </tab>
+                        <!--FIN OFERTAS-->
 
                     </tabset>
                 </div>
@@ -464,3 +155,4 @@
 
         </div>
     </div>
+</div>

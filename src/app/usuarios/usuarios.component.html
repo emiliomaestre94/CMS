@@ -73,7 +73,12 @@
                           
                                 <td class="text-center">
                                     <label class="switch switch-text switch-primary">
-                                        <input type="checkbox" class="switch-input" checked>
+                                        <!--
+                                        <input *ngIf="usuario.Eliminado_usuario==0" type="checkbox" class="switch-input" checked>
+                                        <input *ngIf="usuario.Eliminado_usuario==1" type="checkbox" class="switch-input" [checked]="saveUsername" >
+                                        
+                                        -->
+                                        <input  type="checkbox" class="switch-input"  [checked]="!usuario.Eliminado_usuario" (change)="changeActivo(usuario)">
                                         <span class="switch-label" data-on="On" data-off="Off"></span>
                                         <span class="switch-handle"></span>
                                     </label>
@@ -106,10 +111,30 @@
                                 <td class="text-center">
                                     <!--perfilClienteModal.show() -->
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(usuario)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                                    
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
+                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>                      
+                    
+                <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:204px;" type="submit"  class="btn btn-primary px-2">Guardar cambios</button>
+                <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:204px;"><i class="fa fa-spinner fa-spin"></i> Guardando cambios</button>
+
+                <pagination class="pagination" id="pagination"
+                    [totalItems]="bigTotalItems" 
+                    [itemsPerPage]="itemsPorPagina" 
+                    [(ngModel)]="bigCurrentPage" 
+                    [maxSize]="5" class="pagination-sm"
+                    [boundaryLinks]="true"   
+                    previousText="&lsaquo;" 
+                    nextText="&rsaquo;" 
+                    firstText="&laquo;" 
+                    lastText="&raquo;" 
+                    (pageChanged)="pageChanged($event)">
+                </pagination>
                 </div>
             </div>
 
@@ -117,24 +142,15 @@
 
         </div>
 
-        <!--<button class="btn btn-primary" type="button"><i class="fa fa-refresh"></i> Actualizar lista Productos</button>-->
-        <ul class="pagination" id="pagination" >
-            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
+
     </div>
 </div>
 
 
 
 <!---MODAL PERFIL CLIENTE-->
-<div bsModal #perfilClienteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <modal-perfil (onSelect)="hideChildModal()"></modal-perfil> <!-- Componente externo-->
-</div>
+<!--(onSelect)="hideChildModal()"-->
+<modal-perfil ></modal-perfil> <!-- Componente externo-->
 
 <!---MODAL PERFIL CLIENTE-->
 <div bsModal #putaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

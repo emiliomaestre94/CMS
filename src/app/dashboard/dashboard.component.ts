@@ -1,3 +1,5 @@
+import { DashboardService } from './../services/dashboard.service';
+import { DatosTokenService } from './../services/datostoken.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {JwtHelper} from 'angular2-jwt';
@@ -9,34 +11,35 @@ import {JwtHelper} from 'angular2-jwt';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
-/*
-  //COSAS LOGIN 
-  user = { name: "emiliomaestre@gmail.com", password: "fordmondeo1"};
-  alertMessage = '';
-  onLoginClicked(){//al hacer submit
-      console.log("Onloginclicked");
-      console.log(this.user);
-      this.loginService.login(this.user).subscribe(
-          x => console.log(x),
-          err => {
-              console.log(err);
-              this.alertMessage = err.json().reason; 
-          }
-      );
-  }
-  enviarToken(){
-      this.loginService.getToken().subscribe(
-          x => console.log(x),
-          err => {
-              console.log(err);
-              this.alertMessage = err.json().reason; 
-          }
-      );
-  }
-*/
-  //FIN COSAS LOGIN  
+  idTienda:string; //id de la tienda
 
+  constructor(public datostokenservice: DatosTokenService, public dashboardservice: DashboardService) { }
+
+  ngOnInit(): void {
+    //generamos valores random para el chart (mas adelante los quitaremos)
+    for (var i = 0; i <= this.mainChartElements; i++) {
+      this.mainChartData1.push(this.random(50,200));
+      this.mainChartData2.push(this.random(80,100));
+      this.mainChartData3.push(65);
+    }
+    this.idTienda=this.datostokenservice.token['id_tienda'];
+    console.log(this.idTienda);
+    this.getTotalUsers();
+  }
+
+  getTotalUsers(){
+          this.dashboardservice.getTotalUsers(this.idTienda).subscribe(
+          res =>{
+            console.log(res);
+            console.log(res[0].usuario);  
+          },
+          err=>{ //Error de conexion con el servidor
+              console.log(err);
+          },   
+      );
+  }
+
+  //MIERDA DE ESTADISTICAS
   public brandPrimary:string =  '#20a8d8';
   public brandSuccess:string =  '#4dbd74';
   public brandInfo:string =   '#63c2de';
@@ -514,12 +517,5 @@ export class DashboardComponent implements OnInit {
   
 
 
-  ngOnInit(): void {
-    //generate random values for mainChart
-    for (var i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(this.random(50,200));
-      this.mainChartData2.push(this.random(80,100));
-      this.mainChartData3.push(65);
-    }
-  }
+
 }
