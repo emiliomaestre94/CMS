@@ -49,9 +49,9 @@
 	                    </div>
                     </div>
 
-                        <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
-                                        {{mensajeError}}
-                                    </div> 
+                    <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
+                        {{mensajeError}}
+                    </div> 
                     <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
@@ -115,14 +115,15 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-
+                    </table>                       
+                </div>
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
-                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>                      
-                    
-                <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:204px;" type="submit"  class="btn btn-primary px-2">Guardar cambios</button>
-                <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:204px;"><i class="fa fa-spinner fa-spin"></i> Guardando cambios</button>
+                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
+            </div>
 
+            <diV>
+                <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:180px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar cambios</button>
+                <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:180px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando cambios</button>
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 
@@ -135,14 +136,9 @@
                     lastText="&raquo;" 
                     (pageChanged)="pageChanged($event)">
                 </pagination>
-                </div>
-            </div>
-
- 
+            </diV>
 
         </div>
-
-
     </div>
 </div>
 
