@@ -14,6 +14,10 @@ export class DashboardComponent implements OnInit {
   idTienda:string; //id de la tienda
 
   constructor(public datostokenservice: DatosTokenService, public dashboardservice: DashboardService) { }
+  
+  
+  totalUsers: string  //guarda los usuarios totales (primera tarjeta)
+  loadingUsers: boolean=false;  //cargando primera tarjeta
 
   ngOnInit(): void {
     //generamos valores random para el chart (mas adelante los quitaremos)
@@ -24,19 +28,24 @@ export class DashboardComponent implements OnInit {
     }
     this.idTienda=this.datostokenservice.token['id_tienda'];
     console.log(this.idTienda);
-    this.getTotalUsers();
+
+    //Primera gil
+    this.getTotalUsers();  
   }
 
   getTotalUsers(){
-          this.dashboardservice.getTotalUsers(this.idTienda).subscribe(
-          res =>{
-            console.log(res);
-            console.log(res[0].usuario);  
-          },
-          err=>{ //Error de conexion con el servidor
-              console.log(err);
-          },   
-      );
+    this.loadingUsers=true;
+    this.dashboardservice.getTotalUsers(this.idTienda).subscribe(
+        res =>{
+          console.log(res);
+          console.log(res[0].usuario); 
+          this.totalUsers=res[0].usuario;
+          this.loadingUsers=false;
+        },
+        err=>{ //Error de conexion con el servidor
+            console.log(err);
+        },   
+    );
   }
 
   //MIERDA DE ESTADISTICAS

@@ -7,44 +7,112 @@ import 'rxjs/Rx'; //para el map, catch, thow...etc
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class Producto{
-    //Constructor(id: number, name: string){ }
-    Constructor(Nombre: string, Municipio: string, Telefono: string, Precio: string,CP:string, Email:string,Fecha:string){ }
+    
+    Constructor(
+      Id_producto: string,
+      Codigo_producto: string,
+      Nombre_producto: string,
+      Precio_producto: string,
+      Imagen_producto: string,
+      Descripcion_producto: string,
+      Stock_producto: string,
+      URL_video_producto: string,
+      Estado_producto: string,
+      Eliminado_producto: string
+    ){ }
+}
+
+export class ImageProducto{
+    Constructor(
+      imageurl: string,
+      word: string
+    ){ }
 }
  
 @Injectable()
 
 export class ProductosService {
 
+    headers = new Headers({ 'content-type': 'application/json' });
+    options = new RequestOptions({ headers: this.headers, withCredentials: true });
+
     constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
         
     }
 
-    comprobacion(){
-        console.log("DEBERIA IR");
+    getProductos(tienda){
+        console.log("idtienda es " +tienda);
+        let consulta= environment.dominio + '/producto?idtienda=' + tienda;
+        return this.authHttp.get(consulta)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            if (res.status === 200) {;
+                console.log("status 200");
+                //return res.json().usuario
+                return  [{ status: res.status, data: res.json() }]
+            }
+            else if (res.status === 206) {
+                console.log("status 206");
+                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
+            }
+        }).catch((error: any) => {
+            console.log(error);
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
     }
-    
-    private usersUrl= environment.dominio + '/usuarios';
-     getUsers(): Observable<Producto[]>{
-        return this.authHttp.get(this.usersUrl)
-        .map(this.extractData);
+
+    getImagesAPI(image){
+        console.log("Image es  " +image);
+        let consulta= "http://api.pixplorer.co.uk/image?word="+image+"&amount=10&size=tb";
+        console.log(consulta);
+        return this.authHttp.get(consulta)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            console.log(res);
+            return res.json().images;
+        }).catch((error: any) => {
+            console.log(error);
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
     }
+
+    producto: Object={  //datos que recibimos del componente padre
+        Id_producto:'',
+      Codigo_producto:'',
+      Nombre_producto:'',
+      Precio_producto:'',
+      Descripcion_producto:'',
+      URL_video_producto:'',  
+      Imagen_producto:''
+    };
+    updateProducto(producto){
+
+        console.log(producto);
+        console.log(producto.Id_producto);
+        console.log(producto.Descripcion_producto);
+        console.log(producto.URL_video_producto);
+        console.log(producto.Imagen_producto);
+        //console.log(JSON.stringify({usuario:usuario}));
+        return this.authHttp.put(environment.dominio + '/producto', 
+        {
+            id: producto.Id_producto,
+            descripcion: producto.Descripcion_producto,
+            url_video: producto.URL_video_producto,
+            imagen: producto.Imagen_producto
+        }, this.options)
+        .delay(environment.timeout) 
+        .map((res: Response) => {
+            console.log(res);
+            return res;
+        }).catch((error: any) => {
+            console.log(error);
+            return Observable.throw(new Error(error.status));
+        });
     
-     private extractData(res: Response) //el elemento que enviamos es de tipo responde
-    {
-        console.log("Entra");
-        let body = res.json(); //los parseamos a json
-       console.log(body.Usuarios);
-        //return body.data || { }; //devolvemos los datos
-        return body.Usuarios || { };
     }
 
 
-    private handleError(error: any) //te indica el eror
-    {
-        let errMsg = (error.message) ? error.message :
-        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
-    }
 
 }

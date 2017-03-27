@@ -1,7 +1,7 @@
+import { UsuariosModalFacturaComponent } from './usuarios-modalfactura.component';
 import { Factura, FacturasService } from './../services/facturas.service';
 import { Component, Input,ViewChild} from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
-
 
 
 @Component({
@@ -34,16 +34,21 @@ export class UsuariosModalPerfilComponent {
  constructor(public facturasService:FacturasService) { }
 
  @ViewChild('perfilClienteModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide
-  
+ @ViewChild(UsuariosModalFacturaComponent) public modalFactura:UsuariosModalFacturaComponent; //cogemos el componente para poder enviarle los datos
+
   public showChildModal(usuario,idTienda):void {
     this.childModal.show(); //mostrar modal
     this.usuario=usuario;
     this.idTienda=idTienda;
     this.getFacturasUser(); //obtener todas las facturas de ese usuario
-  }
+  } 
 
   public hideChildModal():void {
     this.childModal.hide();
+  }
+
+  showFacturaModal(){
+    this.modalFactura.showChildModal();
   }
 
   public getFacturasUser(){

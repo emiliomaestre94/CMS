@@ -1,3 +1,8 @@
+///IFS FORS ETC////////
+*ngFor="let factura of facturas"
+*ngFor="factura == null"
+(click)= "pepito();"
+
 ////////////////////OBJETOS/////////////////
  token: Object = {
     foto_usuario: '',
@@ -8,7 +13,7 @@
     nombre_tienda:  ''
   };
 if(!this.token["id_usuario"]) //cuando está '' se detecta asi 
-
+this.token.foto_usuario;
 
 
 ////////////PROMESAS/////////////
@@ -61,7 +66,7 @@ if(!this.token["id_usuario"]) //cuando está '' se detecta asi
                 }
 ///////FIN PROMESAS
 
-//METODO OBSERVABLE PASARLO A PROMESA
+//METODO OBSERVABLE PASARLO A PROMESA//
 import 'rxjs/add/operator/toPromise';
 
         return this.authHttp.post(environment.dominio +'/loginjwt/info', "", options)
@@ -72,15 +77,24 @@ import 'rxjs/add/operator/toPromise';
             .toPromise(); //===> ESTO ES LO IMPORTANTE
 
 
-//SET TIME OUT
+//SET TIME OUT//
     setTimeout(() => {
          this.authService.logout();
          this.cerrandosesion=false;
     }, 3000);
 
 
-//Coger elemento del DOM
+//Coger elemento del DOM//
 import {ElementRef, ViewChild} from '@angular/core';
 
   @ViewChild('image') el:ElementRef; //cogemos el input del dom
    console.log(this.el.nativeElement); // contiene todas las propiedades de ese elemento del DOM
+
+
+ //CAMBIAR ATRIBUTOS DINAMICAMENTE 
+  [style.color]="colorLoadingText" //Esto dentro de la etiqueta. Se iguala a un string 
+
+   //ELEMENTO POSICION ABSOLUTA DENTRO DE OTRO
+   Padre: Position:relative;
+   Hijo: Position: absolute;
+   //si quieres poner al hijo en medio: left: 50%; margin-left:-24px //en caso de que el width sea 48 px
