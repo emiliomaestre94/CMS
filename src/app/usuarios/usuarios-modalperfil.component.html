@@ -95,7 +95,7 @@
                                             <strong>{{factura.Pagada}}</strong>
                                         </td> 
                                         <td id="actualizar" class="text-center actualizar">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="putaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showFacturaModal()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                         </td>
                                     </tr>                                           
                                 </tbody>
@@ -156,3 +156,6 @@
         </div>
     </div>
 </div>
+
+<!---MODAL FACTURAS  CLIENTE-->
+<modal-perfil-factura></modal-perfil-factura>

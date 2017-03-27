@@ -1,8 +1,10 @@
+import { ProductosDetalleModalComponent } from './modal-productos.component';
 import { ProductosService } from './../services/productos.service';
 import { BuscadorProductosPipe } from './buscadorproductos.pipe';
 import { ProductosComponent } from './productos.component';
 import { ProductosRoutingModule } from './productos-routing.module';
 
+import { PaginationModule } from 'ng2-bootstrap/pagination';
 //// Modal Component
 import { ModalModule } from 'ng2-bootstrap/modal';
 ////////////////////
@@ -26,11 +28,13 @@ BuscadorProductosPipe
       ChartsModule,
       DropdownModule,
       DatePickerModule, 
-      ModalModule.forRoot()
+      ModalModule.forRoot(),
+      PaginationModule.forRoot()
     ],
 
     declarations: [ 
       ProductosComponent,
+      ProductosDetalleModalComponent,
       BuscadorProductosPipe
     ],
     
