@@ -7,3 +7,15 @@ a.navbar-brand {
 .app-header .navbar-toggler {
     color: white;
 }
+
+#dropdown-item:hover {
+       color: deepskyblue; 
+}
+
+.nav-item:hover {
+ color: deepskyblue;
+}
+
+a.dropdown-item:hover {
+    background: #20a8d8 !important;
+}
