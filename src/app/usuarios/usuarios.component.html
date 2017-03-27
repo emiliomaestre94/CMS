@@ -25,17 +25,14 @@
             <div *ngIf="usuarios" class="card-block">
 
                 <div id="buscador" class="form-group row">
-                    <div class="col-md-12">
-                        <div style="width:50%" class="input-group">
+                    <div class="col-md-6">
+                        <div class="input-group">
                             <span class="input-group-btn">
                                 <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
                             </span>
                             <input type="text" iFid="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
-                        </div>
-
-
-                        
+                        </div>                        
                         <div *ngIf="busquedaActiva == true"  class="col-sm-12 filtro">
                             <span class="bold fp">Filtrado por:</span>
                             <span class="filtros">
@@ -47,6 +44,10 @@
                                 </span>
 					        </span>
 	                    </div>
+                    </div>
+
+                    <div class="col-md-6">
+                         <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>
                     </div>
 
                     <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
@@ -122,8 +123,8 @@
             </div>
 
             <diV>
-                <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:180px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar cambios</button>
-                <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:180px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando cambios</button>
+                <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
+                <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 
