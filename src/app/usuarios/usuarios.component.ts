@@ -1,5 +1,4 @@
 import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
-import { Router } from '@angular/router';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario, UsuariosService } from './../services/usuarios.service';
 import { Component, OnInit, ViewChild  } from '@angular/core';
@@ -35,11 +34,36 @@ export class UsuariosComponent implements OnInit {
   public loadingActivo: boolean=false;
   public msgActivo;
 
-  constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService, public router: Router) { }
+  constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService) { }
 
-  
+  ngOnInit() {
+    console.log("Entra en el ngOnInit");
+    this.usuariosService.getUsers(this.bigCurrentPage,'').subscribe(
+        res =>{
+          console.log(res);  
+          if(res[0]){
+            if (res[0].status==200){ //todo bien
+              this.usuarios=res[0].data;
+              console.log(this.usuarios);
+              this.error=false;
+            }
+            if (res[0].status==206){ //no encontrado
+              console.log(res[0].status);
+              this.error=true;
+              this.mensajeError="No tienes ningún usuario registrado en tu tienda";
+            }
+          }
+           //this.accesocorrecto=true;        
+        },
+        err=>{ //Error de conexion con el servidor
+            console.log(err);
+              this.error=true;
+              this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
+        },   
+    );
+  }
+
   @ViewChild(UsuariosModalPerfilComponent) public modalPerfil:UsuariosModalPerfilComponent; //cogemos el componente para poder enviarle los datos
-
 
   showChildModal(usuario){
     this.modalPerfil.showChildModal(usuario, this.datostokenservice.token['id_tienda']); //llamamos al metodo del componente hijo para que muestre la modal
@@ -180,32 +204,7 @@ export class UsuariosComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    console.log("Entra en el ngOnInit");
-    this.usuariosService.getUsers(this.bigCurrentPage,'').subscribe(
-        res =>{
-          console.log(res);  
-          if(res[0]){
-            if (res[0].status==200){ //todo bien
-              this.usuarios=res[0].data;
-              console.log(this.usuarios);
-              this.error=false;
-            }
-            if (res[0].status==206){ //no encontrado
-              console.log(res[0].status);
-              this.error=true;
-              this.mensajeError="No tienes ningún usuario registrado en tu tienda";
-            }
-          }
-           //this.accesocorrecto=true;        
-        },
-        err=>{ //Error de conexion con el servidor
-            console.log(err);
-              this.error=true;
-              this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
-        },   
-    );
-  }
+
 
   //Se llama cuando se cambia de posicion un switch. Enviamos el usuario y cambiamos su estado de eliminado
   changeActivo(usuario){

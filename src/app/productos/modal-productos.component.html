@@ -1,0 +1,73 @@
+<div bsModal #productoDetalleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header-producto" id="producto">
+                <h4 class="modal-title">Detalle Producto</h4>
+                <button type="button" class="close" (click)="hideChildModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="imagenProducto">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/4119ahlFmTL.jpg" class="img-avatar" style=" width:100px; height: 100px;"alt="admin@bootstrapmaster.com">
+                    <div *ngFor="let image of imagesProducto" id="pene">
+                        <img src="{{image.imageurl}}" class="img-avatar" style=" width:100px; display: inline-block;float: left"alt="admin@bootstrapmaster.com">
+                    </div>
+                    <!--
+                    <div class="form-group row">
+                        <div class="col-md-9">
+                            <div class="imagenPerfil">
+                                <img class="imgPerfil"/>
+                            </div>
+                            <input type="file" id="file-input" name="file-input">
+                        </div>
+                    </div>
+                    -->
+                </div>
+  
+    
+                <div class="datosProducto">
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Cod Producto</strong></label>
+                            <div class="col-md-9">
+                                <input type="text" id="disabled-input" name="disabled-input" class="form-control" value="{{producto.Codigo_producto}}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Nombre Producto</strong></label>
+                            <div class="col-md-9">
+                                <input type="text" id="disabled-input" name="disabled-input" class="form-control"  value="{{producto.Nombre_producto}}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Precio Producto</strong></label>
+                            <div class="col-md-9">
+                                <input type="text" id="disabled-input" name="disabled-input" class="form-control" value="{{producto.Precio_producto}}" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción</strong></label>
+                            <div class="col-md-9">
+                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" value="{{producto.Descripcion_producto}}"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
+                            <div class="col-md-9">
+                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{producto.URL_video_producto}}">
+                                <span class="help-block">Ponga una url como en el ejemplo</span>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" (click)="updateProducto();" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

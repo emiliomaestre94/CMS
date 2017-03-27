@@ -62,3 +62,17 @@ li.nav-item.dropdown {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.spinnerDashboard{
+    font-size: 40px;
+    position: absolute;
+    top: 34%;
+    opacity: 0.6;
+    left: 50%;
+    font-size: 42px;
+    margin-left: -24px; //le restas la mitad del tamaño
+}
+
+.tarjetasDashboard{
+    position:relative;
+}
