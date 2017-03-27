@@ -4,7 +4,7 @@
         <div class="modal-content">
 
             <div class="modal-header-producto" id="producto">
-                <h4 class="modal-title">Perfil de {{usuario.Nombre_usuario}}</h4>
+                <h4 class="modal-title">Perfil: {{usuario.Nombre_usuario}}</h4>
                 <button type="button" class="close" (click)="hideChildModal()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,7 +15,7 @@
                   
                     <div class="imagenUsuario">
                         <div class="imagenPerfil">
-                            <img class="imgPerfil" src="{{usuario.Foto_usuario}}" style="width:80%"/>
+                            <img class="imgPerfil" src="{{usuario.Foto_usuario}}" style="width:100%; border-radius: 90px;"/>
                         </div>
                     </div>
   
