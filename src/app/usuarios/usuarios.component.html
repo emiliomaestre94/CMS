@@ -74,11 +74,6 @@
                           
                                 <td class="text-center">
                                     <label class="switch switch-text switch-success">
-                                        <!--
-                                        <input *ngIf="usuario.Eliminado_usuario==0" type="checkbox" class="switch-input" checked>
-                                        <input *ngIf="usuario.Eliminado_usuario==1" type="checkbox" class="switch-input" [checked]="saveUsername" >
-                                        
-                                        -->
                                         <input  type="checkbox" class="switch-input"  [checked]="!usuario.Eliminado_usuario" (change)="changeActivo(usuario)">
                                         <span class="switch-label" data-on="On" data-off="Off"></span>
                                         <span class="switch-handle"></span>

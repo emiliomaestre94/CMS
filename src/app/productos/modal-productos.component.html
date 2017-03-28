@@ -11,10 +11,14 @@
 
             <div class="modal-body">
                 <div class="imagenProducto">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/4119ahlFmTL.jpg" class="img-avatar" style=" width:100px; height: 100px;"alt="admin@bootstrapmaster.com">
+                    <img #imageProducto src="{{producto.Imagen_producto}}" class="img-avatar" style=" width:100px; height: 100px;"alt="admin@bootstrapmaster.com">
+                    <!-- Imagenes de la API -->
+                    <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button> 
+
                     <div *ngFor="let image of imagesProducto" id="pene">
-                        <img src="{{image.imageurl}}" class="img-avatar" style=" width:100px; display: inline-block;float: left"alt="admin@bootstrapmaster.com">
+                        <img #imageAPI src="{{image.imageurl}}" (click)="selectImageAPI($event);" style=" width:100px;" alt="admin@bootstrapmaster.com">
                     </div>
+
                     <!--
                     <div class="form-group row">
                         <div class="col-md-9">
@@ -27,46 +31,47 @@
                     -->
                 </div>
   
-    
-                <div class="datosProducto">
+                <form #productosComponentForm="ngForm" >
+                    <div class="datosProducto">
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="disabled-input"><strong>Cod Producto</strong></label>
                             <div class="col-md-9">
-                                <input type="text" id="disabled-input" name="disabled-input" class="form-control" value="{{producto.Codigo_producto}}" disabled>
+                                <input type="text" id="disabled-input" name="codigo" [(ngModel)]="producto.Codigo_producto"  class="form-control"  disabled>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="disabled-input"><strong>Nombre Producto</strong></label>
                             <div class="col-md-9">
-                                <input type="text" id="disabled-input" name="disabled-input" class="form-control"  value="{{producto.Nombre_producto}}" disabled>
+                                <input type="text" id="disabled-input" name="nombre" class="form-control" [(ngModel)]="producto.Nombre_producto"   disabled>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="disabled-input"><strong>Precio Producto</strong></label>
                             <div class="col-md-9">
-                                <input type="text" id="disabled-input" name="disabled-input" class="form-control" value="{{producto.Precio_producto}}" disabled>
+                                <input type="text" id="disabled-input" name="precio" class="form-control" [(ngModel)]="producto.Precio_producto" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción</strong></label>
                             <div class="col-md-9">
-                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" value="{{producto.Descripcion_producto}}"></textarea>
+                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"[(ngModel)]="producto.Descripcion_producto" ></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
                             <div class="col-md-9">
-                                <input type="text" id="text-input" name="text-input" class="form-control" value="{{producto.URL_video_producto}}">
+                                <input type="text" id="text-input" name="text-input" class="form-control" [(ngModel)]="producto.URL_video_producto">
                                 <span class="help-block">Ponga una url como en el ejemplo</span>
                             </div>
                         </div>
-                </div>
-
+                    </div>
+                </form> 
             </div>
 
             <div class="modal-footer">
                 <button type="button" (click)="updateProducto();" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
             </div>
+             
 
         </div>
     </div>
