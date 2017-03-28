@@ -29,7 +29,7 @@ export class ProductosComponent implements OnInit {
 
   idTienda //id de la tienda (le asignamos el valor de datostokenservice)
   productos: Producto[]; //productos será un vector de Objetos de la clase Producto
-
+ 
   constructor(public productosService: ProductosService, public datostokenservice: DatosTokenService) { 
         this.options = new DatePickerOptions();
   }
@@ -58,8 +58,28 @@ export class ProductosComponent implements OnInit {
         }
         
       },
-      err=>{ 
+      err=>{  
           console.log(err);
+      },   
+    );
+  }
+
+    //Se llama cuando se cambia de posicion un switch. Enviamos el usuario y cambiamos su estado de eliminado
+  changeActivo(producto){
+    if(producto.Eliminado_producto==1) producto.Eliminado_producto=0;
+    else if (producto.Eliminado_producto==0) producto.Eliminado_producto=1;
+    console.log(producto);
+  }
+
+  updateProductoActivo(){
+    this.productosService.updateStateActivo(this.productos).subscribe(
+      res =>{
+        console.log("Actualizado correctamente");
+
+      },
+      err=>{ //Error de conexion con el servidor
+          console.log(err);
+  
       },   
     );
   }

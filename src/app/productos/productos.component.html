@@ -2,7 +2,7 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" ><p>Productos Tienda</p>
+            <div class="card-header" ><p>Productos de {{datostokenservice.token['nombre_tienda']}}</p>
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 
@@ -16,7 +16,7 @@
                     (pageChanged)="pageChanged($event)">
                 </pagination>
             </div>
-
+ 
             <div class="card-block">
 
                 <div id="buscador" class="form-group row">
@@ -53,14 +53,14 @@
                             <tr *ngFor="let producto of productos">
                                 <td class="text-center">
                                     <label class="switch switch-text switch-success">
-                                        <input type="checkbox" class="switch-input" checked>
+                                        <input type="checkbox" class="switch-input" [checked]="!producto.Eliminado_producto" (change)="changeActivo(producto)">
                                         <span class="switch-label" data-on="On" data-off="Off"></span>
                                         <span class="switch-handle"></span>
                                     </label>
                                 </td>  
                                 <td class="text-center">
                                     <div class="avatar">
-                                        <img src="https://images-na.ssl-images-amazon.com/images/I/4119ahlFmTL.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                        <img src="{{producto.Imagen_producto}}" class="img-avatar">
                                         <span *ngIf="" class="avatar-status badge-success"></span>
                                     </div>
                                 </td>     
@@ -105,7 +105,8 @@
             </div>
 
             <diV>
-
+                <button (click)="updateProductoActivo();" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
+                <button  class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
                 <!--PAGINACION AQUI DENTRO-->
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 

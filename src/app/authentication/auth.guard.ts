@@ -29,8 +29,7 @@ export class AuthGuard implements CanActivate
         return this.authService.getToken().map(x => {
             console.log("TOKEN CORRECTO");
             console.log(x);
-            if(!this.tokenservice.token["id_usuario"])
-                this.tokenservice.setToken(x);
+            this.tokenservice.setToken(x);
             return true; //CONTINUAMOS
         }).catch((err) => {
             console.log(err);

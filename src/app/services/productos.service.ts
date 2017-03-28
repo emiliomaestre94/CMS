@@ -87,8 +87,8 @@ export class ProductosService {
       URL_video_producto:'',  
       Imagen_producto:''
     };
-    updateProducto(producto){
 
+    updateProducto(producto){
         console.log(producto);
         console.log(producto.Id_producto);
         console.log(producto.Descripcion_producto);
@@ -110,7 +110,22 @@ export class ProductosService {
             console.log(error);
             return Observable.throw(new Error(error.status));
         });
-    
+    }
+
+    updateStateActivo(producto: Object){
+       //console.log(JSON.stringify({usuario:usuario}));
+        return this.authHttp.put(environment.dominio + '/producto/updateState', 
+        {
+         usuario:producto
+        }, this.options)
+        .delay(environment.timeout) 
+        .map((res: Response) => {
+            //console.log(res);
+            return res;
+        }).catch((error: any) => {
+            console.log(error);
+            return Observable.throw(new Error(error.status));
+        });
     }
 
 
