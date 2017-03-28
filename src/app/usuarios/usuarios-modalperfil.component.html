@@ -1,7 +1,7 @@
 <!---MODAL PERFIL CLIENTE-->
 <div bsModal #perfilClienteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="height: 95%;">
 
             <div class="modal-header-producto" id="producto">
                 <h4 class="modal-title">Perfil: {{usuario.Nombre_usuario}}</h4>
@@ -27,7 +27,7 @@
                                 <label class="col-md-3 form-control-label"><strong>Nombre: </strong> {{usuario.Nombre_usuario}}</label>
                             </div>
                             <div class="col-md-5">
-                                 <label class="col-md-3 form-control-label"><strong>Sexo: </strong> {{usuario.Sexo_usuario}}</label>
+                                    <label class="col-md-3 form-control-label"><strong>Sexo: </strong> {{usuario.Sexo_usuario}}</label>
                             </div>
                         </div>
 
@@ -48,8 +48,7 @@
                                 <label class="col-md-3 form-control-label"><strong>Localidad: </strong>  {{usuario.Localidad_usuario}}</label>
                             </div>
                         </div>
-  
-               
+
                     </div>
             </div>
              <!--FIN MODAL BODY -->
@@ -63,7 +62,7 @@
                             <table class="table table-hover table-outline mb-0 hidden-sm-down ">
                                 <thead class="thead-default">
                                     <tr>
-                                        <th class="text-center" >Id </th>
+                                        <th class="text-center" >Nº Fact</th>
                                         <th class="text-center" >Fecha</th>
                                         <th class="text-center">Total</th>
                                         <th class="text-center">Pagada</th>

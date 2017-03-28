@@ -72,9 +72,7 @@ tab.active.tab-pane {
     overflow: auto;
     height: 390px;
 }
-.modal-content {
-    height: 95%;
-}
+
 .modal-dialog.modal-lg {
     height: 100%;
 }
@@ -102,6 +100,71 @@ tab.active.tab-pane {
         vertical-align:middle !important;
     }
 }
+/////////////////////////////////////////////////////////////////////
 
+////////////////////////////FACTURA///////////////////////
+#datosTienda {
+    font-size: 14px;
+    text-align: left;
+    float: left;
+    line-height: 5px;
+    padding-bottom: 10px;
+    p span{
+            font-weight: bold;
+        }
+}
+#datosCliente {
+    font-size: 14px;
+    text-align: right;
+    float: right;
+    line-height: 5px;
+    padding-bottom: 10px;
+        p span{
+        font-weight: bold;
+        }
+}
+
+th.cantidad {
+    width: 95px;
+}
+
+th.precio {
+    width: 95px;
+}
+
+.modal-header-factura {
+    color: #fff;
+    background-color: #20a8d8;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #cfd8dc;
+}
+
+.importe {
+    width: 50%;
+    float: right;
+    text-align: right;
+    line-height: 10px;
+}
+
+.total {
+    font-size: 25px;
+     color: #124570;
+     font-weight: bold;
+}
+.base {
+    font-size: 16px;
+}
+.impuestos {
+    text-align:left;
+}
 
 /////////////////////////////////////////////////////////////////////
