@@ -62,9 +62,10 @@ export class ProductosService {
         });
     }
 
+//CONTROL DE NUMERO DE IMAGENES
     getImagesAPI(image){
         console.log("Image es  " +image);
-        let consulta= "http://api.pixplorer.co.uk/image?word="+image+"&amount=10&size=tb";
+        let consulta= "http://api.pixplorer.co.uk/image?word="+image+"&amount=20&size=tb";
         console.log(consulta);
         return this.authHttp.get(consulta)
         .delay(environment.timeout)
