@@ -35,16 +35,20 @@
                     <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
-                                <th class="text-center">Activado</th>
-                                <th class="text-center" style="width:100px;">Imagen</th>
-                                <th class="text-center" style="width: 110px;">Código</th>
-                                <th class="text-center" style="width: 20%;">Nombre</th>
-                                <th class="text-center">Precio</th>
+                                <th class="text-center" style="width: 80px;">Activado</th>
+                                <th class="text-center" style="width: 75px;">Imagen</th>
+                                <th class="text-center" style="width: 80px;">Código</th>
+                                <th class="text-center" style="width: 25%;">Nombre</th>
+                                <th class="text-center" style="width: 25%;">Descripción</th>
+                                <th class="text-center" style="width: 70px;">Precio</th>
+                                <th class="text-center" style="width: 70px;">Oferta</th>
+<!--
                                 <th class="oferta" style = "text-align: center; width: 90px;">Oferta</th>
                                 <th class="finicio" style = "text-align: center;">F. Inicio</th>
                                 <th class="ffinal" style = "text-align: center;">F. Final</th>
                                 <th class="oferta" for="orden" style = "text-align: center; width: 110px;">Orden</th>
-                                <th class="text-center" style="width: 100px;"></th>
+-->
+                                <th class="text-center" style="width: 90px;"></th>
                             </tr>
                         </thead>
                         
@@ -71,8 +75,15 @@
                                     <strong>{{producto.Nombre_producto}}</strong>
                                 </td>
                                 <td class="text-center">
+                                    <input class="form-control" disabled="" id="disabled-input" name="disabled-input" placeholder="Pequeña Descripcion Producto...." type="text">
+                                </td>
+                                <td class="text-center">
                                     <strong>{{producto.Precio_producto}} </strong><i class="fa fa-eur"></i>
                                 </td>
+                                <td class="text-center" style="color:#4dbd74; font-size: 18px;">
+                                    <strong>{{producto.Precio_producto}}</strong> <i class="fa fa-eur"></i>
+                                </td>
+<!--
                                 <td class="text-center">
                                     <input type="text" class="form-control" style = "text-align: center" placeholder="%">
                                 </td>
@@ -90,9 +101,9 @@
                                         <option>3</option>
                                         <option>4</option>
                                         <option>5</option>
-                                        <option>155</option>
                                     </select>
                                 </td>
+-->
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(producto)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
