@@ -15,8 +15,8 @@
                     <input type="file" id="files" name="files[]" accept="image/*" (change)="handleInputChange($event)"/> 
                     <img class="imgPerfilAdmin" id="imagenSrc"  src="{{usuario['Foto_usuario']}}" (load)="handleImageLoad()" [class.loaded]="imageLoaded"/> 
                     -->
-                    <img class="imgPerfilAdmin" id="imagenSrc"  src="{{imageSrc}}" />
-                    <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
+                    <img class="imgPerfilAdmin" id="imagenSrc"  src="{{imageSrc}}"/>
+                    <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">
                     <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
                 </div>
 
@@ -92,14 +92,14 @@
 
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><strong>Password</strong></span>
+                                        <span class="input-group-addon"><strong>Password Actual</strong></span>
                                         <input required class="form-control" [(ngModel)]="password" id="password3" name="password" type="password">
                                         <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><strong>Nueva Password</strong></span>
+                                        <span class="input-group-addon"><strong>Nuevo Password</strong></span>
                                         <input required class="form-control" [(ngModel)]="newPassword" id="password4" name="newPassword" type="password">
                                         <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                                     </div>

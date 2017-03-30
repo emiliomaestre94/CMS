@@ -2,20 +2,7 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" ><p>Productos de {{datostokenservice.token['nombre_tienda']}}</p>
-                <pagination class="pagination" id="pagination"
-                    [totalItems]="bigTotalItems" 
-                    [itemsPerPage]="itemsPorPagina" 
-                    [(ngModel)]="bigCurrentPage" 
-                    [maxSize]="5" class="pagination-sm"
-                    [boundaryLinks]="true"   
-                    previousText="&lsaquo;" 
-                    nextText="&rsaquo;" 
-                    firstText="&laquo;" 
-                    lastText="&raquo;" 
-                    (pageChanged)="pageChanged($event)">
-                </pagination>
-            </div>
+            <div class="card-header" ><p>Productos de {{datostokenservice.token['nombre_tienda']}}</p></div>
  
             <div class="card-block">
 
@@ -29,14 +16,26 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>
+                        <pagination class="pagination" id="pagination"
+                        [totalItems]="bigTotalItems" 
+                        [itemsPerPage]="itemsPorPagina" 
+                        [(ngModel)]="bigCurrentPage" 
+                        [maxSize]="5" class="pagination-sm"
+                        [boundaryLinks]="true"   
+                        previousText="&lsaquo;" 
+                        nextText="&rsaquo;" 
+                        firstText="&laquo;" 
+                        lastText="&raquo;" 
+                        (pageChanged)="pageChanged($event)">
+                        </pagination>
+                        <!--<button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>-->
                     </div>
                     
                     <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
                                 <th class="text-center" style="width: 60px;">Activado</th>
-                                <th class="text-center" style="width: 65px;">Imagen</th>
+                                <th class="text-center" style="width: 65px;"><i class="icon-picture icons font-2xl d-block m-t-2"></i></th>
                                 <th class="text-center" style="width: 60px;">Código</th>
                                 <th class="text-center" style="width: 20%;">Nombre</th>
                                 <th class="text-center" style="width: 25%;">Descripción</th>
@@ -61,49 +60,29 @@
                                         <span class="switch-label" data-on="On" data-off="Off"></span>
                                         <span class="switch-handle"></span>
                                     </label>
-                                </td>  
-                                <td class="text-center">
+                                </td>
+    
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                     <div class="avatar">
                                         <img src="{{producto.Imagen_producto}}" class="img-avatar">
                                         <span *ngIf="" class="avatar-status badge-success"></span>
                                     </div>
                                 </td>     
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                         <strong>{{producto.Codigo_producto}}</strong>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                     <strong>{{producto.Nombre_producto}}</strong>
                                 </td>
-                                <td class="text-center">
-                                    <input class="form-control" disabled="" id="disabled-input" name="disabled-input" placeholder="Pequeña Descripcion Producto...." type="text">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
+                                    <strong>Pequeña Descripcion Producto....</strong>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                     <strong>{{producto.Precio_producto}} </strong><i class="fa fa-eur"></i>
                                 </td>
-                                <td class="text-center" style="color:#4dbd74; font-size: 16px;">
+                                <td class="text-center" style="color:#4dbd74; font-size: 16px;" data-toggle="modal" (click)="showChildModal(producto)">
                                     <strong>{{producto.Precio_producto}}</strong> <i class="fa fa-eur"></i>
                                 </td>
-<!--
-                                <td class="text-center">
-                                    <input type="text" class="form-control" style = "text-align: center" placeholder="%">
-                                </td>
-                                <td class="text-center">
-                                    <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
-                                </td>
-                                <td class="text-center">
-                                    <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
-                                </td>
-                                <td class="text-center">
-                                    <select class="form-control" id="orden">
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </td>
--->
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(producto)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
