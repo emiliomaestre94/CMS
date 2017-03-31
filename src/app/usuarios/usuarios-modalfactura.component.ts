@@ -25,4 +25,4 @@ export class UsuariosModalFacturaComponent {
     this.childModal.hide();
   }
 
-}
+} 

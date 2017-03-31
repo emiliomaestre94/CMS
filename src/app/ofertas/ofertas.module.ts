@@ -1,3 +1,7 @@
+import { ProductosService } from './../services/productos.service';
+import { UsuariosService } from './../services/usuarios.service';
+import { ModalDetalleOfertasComponent } from './modal-detalle-ofertas.component';
+import { ModalOfertasComponent } from './modal-ofertas.component';
 
 import { OfertasRoutingModule } from './ofertas-routing.module';
 import { OfertasComponent } from './ofertas.component';
@@ -33,11 +37,15 @@ BuscadorOfertasPipe
 
     declarations: [ 
       OfertasComponent,
+      ModalOfertasComponent,
+      ModalDetalleOfertasComponent,
       BuscadorOfertasPipe
     ],
     
     providers:[
       OfertasService,
+      UsuariosService,
+      ProductosService
     ]
 })
 export class OfertasModule { 
