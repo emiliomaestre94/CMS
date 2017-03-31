@@ -3,31 +3,7 @@
     <div class="col-md-12">
         <div class="card">
 
-            <div class="card-header" ><p>Facturas Usuarios</p>
-            <!--
-                <ul class="pagination" id="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-                -->
-                
-                <pagination class="pagination" id="pagination"
-                    [totalItems]="bigTotalItems" 
-                    [itemsPerPage]="itemsPorPagina" 
-                    [(ngModel)]="bigCurrentPage" 
-                    [maxSize]="5" class="pagination-sm"
-                    [boundaryLinks]="true"   
-                    previousText="&lsaquo;" 
-                    nextText="&rsaquo;" 
-                    firstText="&laquo;" 
-                    lastText="&raquo;" 
-                    (pageChanged)="pageChanged($event)">
-                </pagination>
-            </div>
+            <div class="card-header" ><p>Facturas Usuarios</p></div>
             <!--
                 <pre class="card card-block card-header">La pagina seleccionada es: {{bigCurrentPage}}/{{numPages}}</pre>
                 <button type="button" class="btn btn-info" (click)="setPage(3)">Establecer pagina seleccionada a: 3</button>
@@ -56,6 +32,21 @@
                     </div>
                 </div>
 
+                   <div class="col-md-6">
+                        <pagination class="pagination" id="pagination"
+                        [totalItems]="bigTotalItems" 
+                        [itemsPerPage]="itemsPorPagina" 
+                        [(ngModel)]="bigCurrentPage" 
+                        [maxSize]="5" class="pagination-sm"
+                        [boundaryLinks]="true"   
+                        previousText="&lsaquo;" 
+                        nextText="&rsaquo;" 
+                        firstText="&laquo;" 
+                        lastText="&raquo;" 
+                        (pageChanged)="pageChanged($event)">
+                        </pagination>
+                       <!--  <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>-->
+                    </div>
 
                     <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
@@ -76,19 +67,19 @@
                                 <td class="text-center">
                                     <input type="checkbox" name="" value="">
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
                                     <strong>N05</strong>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
                                     <strong>17-01-2017</strong>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
                                     <strong>17:00</strong>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
                                     <strong>200 </strong><i class="fa fa-eur"></i>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
                                     <strong>josefcomoreno85@gmail.com</strong>
                                 </td>
                                 <td class="text-center">
@@ -466,19 +457,22 @@
                 </div>
             </div>
 
+            <diV>
+                <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+                <pagination class="pagination" id="pagination"
+                    [totalItems]="bigTotalItems" 
+                    [itemsPerPage]="itemsPorPagina" 
+                    [(ngModel)]="bigCurrentPage" 
+                    [maxSize]="5" class="pagination-sm"
+                    [boundaryLinks]="true"   
+                    previousText="&lsaquo;" 
+                    nextText="&rsaquo;" 
+                    firstText="&laquo;" 
+                    lastText="&raquo;" 
+                    (pageChanged)="pageChanged($event)">
+                </pagination>
+            </diV>
         </div>
-
-            <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
-
-            <ul class="pagination" id="pagination" >
-                <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-
     </div>
 </div>
 

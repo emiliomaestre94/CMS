@@ -49,7 +49,16 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <div class="col-md-7">
+                            </div>
+                            <div class="col-md-5">
+                                <button type="button" *ngIf="!loadingFacturas"  (click)="getFacturasUser();" class="btn btn-success">Actualizar</button>
+                                <button type="button" *ngIf="loadingFacturas" class="btn btn-success" ><i class="fa fa-spinner fa-spin"></i> Actualizando</button>
+                            </div>
+                        </div>
                     </div>
+
             </div>
              <!--FIN MODAL BODY -->
 
@@ -66,12 +75,8 @@
                                         <th class="text-center" >Fecha</th>
                                         <th class="text-center">Total</th>
                                         <th class="text-center">Pagada</th>
-                                        <th class="text-center">
-                                            <button type="button" *ngIf="!loadingFacturas"  (click)="getFacturasUser();" class="btn btn-success">Actualizar</button>
-                                            <button type="button" *ngIf="loadingFacturas" class="btn btn-success" ><i class="fa fa-spinner fa-spin"></i> Actualizando</button>
-                                        </th>
+                                        <th class="text-center"></th>
                                     </tr>
-                                    
                                 </thead>
                                
                                 <div *ngIf="loadingFacturas" class="loader"  style="margin-top:30px;"></div>
@@ -79,7 +84,7 @@
 
                                 <tbody *ngIf="!loadingFacturas">
 
-                                    <tr  *ngFor="let factura of facturas">
+                                    <tr  *ngFor="let factura of facturas" data-toggle="modal" (click)="showFacturaModal()">
 
                                         <td class="text-center">
                                             <strong>{{factura.Id_factura}}</strong>

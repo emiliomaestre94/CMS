@@ -7,6 +7,7 @@ import { ProductosRoutingModule } from './productos-routing.module';
 import { PaginationModule } from 'ng2-bootstrap/pagination';
 //// Modal Component
 import { ModalModule } from 'ng2-bootstrap/modal';
+import { TabsModule } from 'ng2-bootstrap/tabs';
 ////////////////////
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,8 @@ BuscadorProductosPipe
       DropdownModule,
       DatePickerModule, 
       ModalModule.forRoot(),
-      PaginationModule.forRoot()
+      PaginationModule.forRoot(),
+       TabsModule
     ],
 
     declarations: [ 

@@ -10,9 +10,144 @@
             </div>
 
             <div class="modal-body">
+
+                <div class="animated fadeIn">
+                <div class="row">
+                <div class="col-md-12">
+                    <!-- Nav tabs -->
+                    <tabset>
+                        <tab>
+                            <template tabHeading><i class="icon-list"></i> Info. Producto</template>
+                            
+                            <div class="form-group row">
+                                <div class="col-md-5">
+                                    <div style="width: 200px; height:200px;">
+                                    <img #imageProducto src="{{producto.Imagen_producto}}" class="img-avatar" style="padding-left: 20%; border-radius: 0em;" alt="Ninguna Imagen Seleccionada">
+                                    
+                                    <!-- Imagenes de la API --> 
+                                    <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button>
+                                    </div>
+                                    <div class="galeriaImagenes">
+                                        <div *ngFor="let image of imagesProducto" id="pene">
+                                            <div class="col-xs-3" id="imglibreria">
+                                            <img #imageAPI src="{{image.imageurl}}" (click)="selectImageAPI($event);" style="width:75px;" alt="admin@bootstrapmaster.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="form-group row">
+                                        <div class="col-md-9">
+                                            <div class="imagenPerfil">
+                                                <img class="imgPerfil"/>
+                                            </div>
+                                            <input type="file" id="file-input" name="file-input">
+                                        </div>
+                                    </div>
+                                    -->
+                                </div>
+
+                                <div class="col-md-7">
+                                    <form #productosComponentForm="ngForm">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Cod Producto</strong></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="disabled-input" name="codigo" [(ngModel)]="producto.Codigo_producto"  class="form-control"  disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Nombre Producto</strong></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="disabled-input" name="nombre" class="form-control" [(ngModel)]="producto.Nombre_producto"   disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Precio Producto</strong></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="disabled-input" name="precio" class="form-control" [(ngModel)]="producto.Precio_producto" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción</strong></label>
+                                                <div class="col-md-9">
+                                                    <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"[(ngModel)]="producto.Descripcion_producto" ></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="text-input" name="text-input" class="form-control" [(ngModel)]="producto.URL_video_producto">
+                                                    <span class="help-block">Ponga una url como en el ejemplo</span>
+                                                </div>
+                                            </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab>
+                            <template tabHeading><i class="icon-present"></i> Oferta Producto</template>
+                            <div class="form-group row">
+                                <div class="col-md-7">
+                                    <form #productosComponentForm="ngForm">
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Orden de Visualización</strong></label>
+                                            <div class="col-md-2">
+                                                <select class="form-control" id="ccmonth">
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </select>
+                                            </div>
+                                       
+                                            <label class="col-md-2 form-control-label" for="disabled-input"><strong>Oferta</strong></label>
+                                            <div class="col-md-2">
+                                               <input type="text" class="form-control" style = "text-align: center" placeholder="%">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Inicio</strong></label>
+                                            <div class="col-md-6">
+                                                <ng2-datepicker class="form-control" name="finicio" [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Final</strong></label>
+                                            <div class="col-md-6">
+                                                <ng2-datepicker class="form-control" name="ffinal" [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción Oferta</strong></label>
+                                            <div class="col-md-6">
+                                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"[(ngModel)]="producto.Descripcion_producto" ></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-md-5">
+                                <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta HxW</strong></p>
+                                <div class="imagenBanner">
+                                <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
+                                <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
+                                </div>
+                                 <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
+                                </div>
+
+                            </div>
+                        </tab>
+                    </tabset>
+                </div>
+                </div>
+                </div>
+                <!--
                 <div class="imagenProducto">
                     <img #imageProducto src="{{producto.Imagen_producto}}" class="img-avatar" style=" width:100px; height: 100px;"alt="admin@bootstrapmaster.com">
                     <!-- Imagenes de la API -->
+                    <!--
                     <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button> 
 
                     <div *ngFor="let image of imagesProducto" id="pene">
@@ -29,7 +164,7 @@
                         </div>
                     </div>
                     -->
-                </div>
+                <!--</div>
   
                 <form #productosComponentForm="ngForm" >
                     <div class="datosProducto">
@@ -65,7 +200,7 @@
                             </div>
                         </div>
                     </div>
-                </form> 
+                </form> -->
             </div>
 
             <div class="modal-footer">

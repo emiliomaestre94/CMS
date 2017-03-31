@@ -2,20 +2,7 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header" ><p>Clientes de {{datostokenservice.token['nombre_tienda']}}</p>
-                <pagination class="pagination" id="pagination"
-                    [totalItems]="bigTotalItems" 
-                    [itemsPerPage]="itemsPorPagina" 
-                    [(ngModel)]="bigCurrentPage" 
-                    [maxSize]="5" class="pagination-sm"
-                    [boundaryLinks]="true"   
-                    previousText="&lsaquo;" 
-                    nextText="&rsaquo;" 
-                    firstText="&laquo;" 
-                    lastText="&raquo;" 
-                    (pageChanged)="pageChanged($event)">
-                </pagination>
-            </div> 
+            <div class="card-header" ><p>Clientes de {{datostokenservice.token['nombre_tienda']}}</p></div> 
  
           <div  *ngIf="!usuarios" class="loader"  style="margin-top:30px"></div>
             <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
@@ -46,8 +33,20 @@
 	                    </div>
                     </div>
 
-                    <div class="col-md-6">
-                         <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>
+                   <div class="col-md-6">
+                        <pagination class="pagination" id="pagination"
+                        [totalItems]="bigTotalItems" 
+                        [itemsPerPage]="itemsPorPagina" 
+                        [(ngModel)]="bigCurrentPage" 
+                        [maxSize]="5" class="pagination-sm"
+                        [boundaryLinks]="true"   
+                        previousText="&lsaquo;" 
+                        nextText="&rsaquo;" 
+                        firstText="&laquo;" 
+                        lastText="&raquo;" 
+                        (pageChanged)="pageChanged($event)">
+                        </pagination>
+                       <!--  <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>-->
                     </div>
 
                     <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
@@ -57,7 +56,7 @@
                         <thead class="thead-default">
                             <tr>
                                 <th class="text-center" style="width: 114px;">Activado</th>
-                                <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
+                                <th class="text-center" style="width: 100px;"><i class="icon-people icons font-2xl d-block m-t-2"></i></th>
                                 <th style="width: 300px;">Cliente</th>
                                 <th>Correo electrónico</th>
                                 <th class="text-center" style="width: 125px;">CP</th>
@@ -79,29 +78,29 @@
                                         <span class="switch-handle"></span>
                                     </label>
                                 </td>  
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(usuario)">
                                     <div class="avatar">
                                         <img src="{{usuario.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com" src="assets/img/avatars/1.jpg">
                                         <span *ngIf="usuario.Eliminado_usuario==0" class="avatar-status badge-success"></span>
                                         <span *ngIf="usuario.Eliminado_usuario==1" class="avatar-status badge-danger"></span>
                                     </div>
                                 </td>
-                                <td>
+                                <td data-toggle="modal" (click)="showChildModal(usuario)">
                                     <div>{{usuario.Nombre_usuario}}</div>
                                     <div class="small text-muted">
                                         Registro: {{usuario.Fecha_usuario}} 
                                     </div>
                                 </td>
-                                <td>
+                                <td data-toggle="modal" (click)="showChildModal(usuario)">
                                     <strong>{{usuario.Email_usuario}}</strong>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(usuario)">
                                     <strong>{{usuario.CP_usuario}}</strong>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(usuario)">
                                     <strong>{{usuario.Localidad_usuario}}</strong>
                                 </td>
-                                <td>
+                                <td data-toggle="modal" (click)="showChildModal(usuario)">
                                     <strong>{{usuario.Telefono_usuario}}</strong>
                                 </td>
                                 <td class="text-center">
