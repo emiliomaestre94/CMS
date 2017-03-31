@@ -1,8 +1,9 @@
 import {Producto, ProductosService } from './../services/productos.service';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario,UsuariosService } from './../services/usuarios.service';
-import { Component, ViewChild,ViewChildren} from '@angular/core';
+import { Component,ElementRef, ViewChild,ViewChildren, Inject} from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
+import { AngularFire, FirebaseApp } from 'angularfire2';
 import * as moment from 'moment';
 
 @Component({
@@ -25,28 +26,53 @@ export class ModalOfertasComponent {
     edad_min:'',
     edad_max:'',
   }
-
+  public oferta: Object={
+    Orden:1,
+    Precio:'',
+    Fecha_inicio:'',
+    Fecha_final:'',
+    Descripcion:'',
+    Imagen:'',
+    Estado:'1',
+    Eliminado:'0',
+  }
   public edad_min = []; //creamos un array de edades
   public edad_max = [];
   public IdUsuarios=[]; //array que contiene el id de los usuarios que checkeamos
+  public idProducto; //id del producto que enviamos al servicio. Mas adelante será un array para poder añadir varios productos
   public idTienda: string; //id de la tienda que cogemos de datostokenservice
   public edadminima:string=''; //guarda la edad minima del form
   public edadmaxima:string=''; //edad maxima del form
-  
-  constructor(public usuariosService:UsuariosService,public datostokenservice: DatosTokenService, public productosService: ProductosService) {
-    this.idTienda=this.datostokenservice.token["id_tienda"];
-    for (let i = 16; i < 100; i++) { //para rellenar los arrays de checkbox de edades
-      let newName = {
-        id:i.toString(),
-      };
-      this.edad_min.push(newName);
-      this.edad_max.push(newName);
-    }
+  public imageSrc; //src de la imagen de la oferta
+
+  firebase:any;//variable global de firebase
+  constructor(
+    public usuariosService:UsuariosService,
+    public datostokenservice: DatosTokenService, 
+    public productosService: ProductosService,
+    public af: AngularFire, 
+    @Inject(FirebaseApp) firebase: any) 
+    {
+      this.idTienda=this.datostokenservice.token["id_tienda"];
+      for (let i = 16; i < 100; i++) { //para rellenar los arrays de checkbox de edades
+        let newName = {id:i.toString(),};
+        this.edad_min.push(newName);
+        this.edad_max.push(newName);
+      }
+      this.firebase = firebase; //metodo para pasar el firebase del constructor a todos los metodos
    }
 
   public showChildModal():void {
     this.childModal.show(); //mostrar modal
     this.getProductos();
+  }
+
+  public addOferta(){
+    console.log("ADD OFERTA");
+    console.log(this.IdUsuarios);
+    console.log(this.idProducto);
+    console.log(this.oferta);
+    this.uploadImage();
   }
 
   public getProductos(){
@@ -69,6 +95,17 @@ export class ModalOfertasComponent {
       },   
     );
   }
+
+
+    selectProducto(event,idProducto){
+     console.log("entra");
+     if(event.target.checked==true){ //si pulsamos a checkear
+       this.idProducto=idProducto;
+     }
+
+     console.log(this.idProducto);
+   }
+
 
 
 
@@ -122,16 +159,6 @@ export class ModalOfertasComponent {
     console.log(this.IdUsuarios);
    }
 
-  
-  
-  
-  
-  
-  
-  
-
-
-
   public buildDates(edad){
     var today= moment().format('L');
     var res = today.split("/");
@@ -173,6 +200,71 @@ export class ModalOfertasComponent {
   public hideChildModal():void {
     this.childModal.hide();
     this.usuarios=null;
+  }
+
+    @ViewChild('image') el:ElementRef; //cogemos el input del dom
+  storageref;
+  storage;
+  path;
+
+  uploadImage(){
+    console.log(this.el);
+    console.log(this.el.nativeElement);
+    console.log(this.el.nativeElement.files[0]);
+    var files = this.el.nativeElement.files[0];
+    var newthis=this;
+    if(files){
+      var date=moment().format();
+      this.path="images/Oferta/"+ "Oferta_"+this.idTienda+"_"+this.idProducto+"_"+date+"_"+files.name;
+      console.log(this.path);
+      var storageref= this.firebase.storage().ref().child(this.path);
+      var image;
+      let uploadTask=storageref.put(files);
+      let newthis=this;
+      uploadTask.on('state_changed', function(snapshot){}, 
+      function(error) {
+        console.log("Error subiendo la foto");
+        this.loading3=false;
+        this.error3=true;
+        this.msgImage="Error subiendo la foto al servidor (850386)";
+  
+      }, function() {
+        console.log("Foto subida correctamente");
+        var downloadURL = uploadTask.snapshot.downloadURL;
+        console.log(downloadURL);
+        newthis.oferta["Imagen"]=downloadURL;
+        console.log(newthis.oferta);
+      });
+    }
+
+  }
+
+ 
+
+
+  files;
+  imageloaded: boolean=false//si hay una fotocargada
+  handleInputChange(foto) {
+    this.files = foto.target.files;
+    if (this.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (e : any) => {
+        this.imageSrc = e.target.result;
+      }
+      reader.readAsDataURL(foto.target.files[0]);
+      this.imageloaded=true;
+    }
+    else{
+     this.imageSrc=this.oferta["Imagen"];
+     this.imageloaded=false;
+    }
+
+  }
+
+  cancelImageLoad(){
+    this.imageSrc=this.oferta["Imagen"];
+    this.el.nativeElement.value=null;
+    this.imageloaded=false;
   }
 
 }
