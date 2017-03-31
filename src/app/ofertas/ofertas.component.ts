@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ModalDetalleOfertasComponent } from './modal-detalle-ofertas.component';
+import { ModalOfertasComponent } from './modal-ofertas.component';
+import { Component, OnInit,ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ofertas',
@@ -12,4 +14,18 @@ export class OfertasComponent implements OnInit {
   ngOnInit() {
   }
 
+  @ViewChild(ModalOfertasComponent) public modalOfertas:ModalOfertasComponent; //cogemos el componente para poder enviarle los datos
+  @ViewChild(ModalDetalleOfertasComponent) public modalClientesOfertados:ModalOfertasComponent; //cogemos el componente para poder enviarle los datos
+
+  showChildModal(){
+    this.modalOfertas.showChildModal();
+  }
+
+  showChildModalClientesOfertados(){
+    this.modalClientesOfertados.showChildModal();
+  }
+
+  
+
 }
+ 

@@ -1,0 +1,200 @@
+<!---MODAL AÑADIR OFERTA-->
+<div bsModal #ModalOfertas="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header-producto" id="producto">
+                <h4 class="modal-title">Añadir Oferta</h4>
+                <button type="button" class="close" (click)="hideChildModal();" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!--Zona de Arriba-->
+                <div class="card">
+                    <p class="bClientes">Buscar Clientes</p>
+                    <div class="card-block" id="card-block-modal">
+                    <div class="filtrosOferta">
+                        <div class="buscadorClientes">     
+                            <form #searchUsersForm="ngForm" (ngSubmit)="onLogin()" >
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><strong>Usuario</strong></span>
+                                        <input [(ngModel)]="filtro.nombre" class="form-control" id="usuario" name="nombre" type="text">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><strong>Edad mínima</strong></span>
+                                        <select [(ngModel)]="edadminima" class="form-control" id="edad" name="edadmin" type="number" size="1">
+                                            <option default [ngValue]="''">Selecione una edad</option>
+                                            <option *ngFor="let edad_minima of edad_min" [ngValue]=edad_minima.id>
+                                                {{edad_minima.id}}
+                                            </option>
+                               
+                                        </select>
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><strong>Edad máxima</strong></span>
+                                        <select [(ngModel)]="edadmaxima" class="form-control" id="edad" name="edadmax" type="number" size="1">
+                                            <option [ngValue]="''">Selecione una edad</option>
+                                            <option *ngFor="let edad_maxima of edad_max" [ngValue]=edad_maxima.id>
+                                                {{edad_maxima.id}}
+                                            </option>
+                               
+                                        </select>
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>  
+ 
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><strong>Sexo</strong></span>
+                                        <select [(ngModel)]="filtro.sexo" class="form-control" id="sexo" name="sexo">
+                                            <option [ngValue]="''">Selecione un sexo</option>
+                                            <option [ngValue]="'h'">Hombre</option>
+                                            <option [ngValue]="'m'">Mujer</option>
+                                        </select>
+                                        
+                                         <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>          
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><strong>CP</strong></span>
+                                        <input [(ngModel)]="filtro.cp"class="form-control" id="codigoPostal" name="codigoPostal" type="text">
+                                        <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group form-actions">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                </div>
+                            </form>
+
+                      </div>
+                    </div>
+
+        
+                      <div class="resultadoUsuarios">
+                        <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaClientes1">
+                              <thead class="thead-default">
+                                  <tr>
+                                      <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value="" (change)="selectAllUsers($event);"></th>
+                                      <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
+                                      <th>Cliente</th>
+                                      <th class="text-center" style="width: 340px;">Correo electrónico</th>
+                                      <th class="text-center" style="width: 80px;">CP</th>
+                                  </tr>
+                              </thead>
+                              
+                              <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                               
+                                <td>
+                                    <div><input type="checkbox" #checkboxUser (ngModelChange)="selectUser($event,usuario.Id_usuario_tienda);" (change)="selectUser($event,usuario.Id_usuario_tienda);" name="" value={{usuario.Id_usuario_tienda}}></div>
+         
+                                </td>
+                                <td class="text-center">
+                                    <div class="avatar">
+                                        <img src="{{usuario.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com" >
+                                        <span *ngIf="usuario.Eliminado_usuario==0" class="avatar-status badge-success"></span>
+                                        <span *ngIf="usuario.Eliminado_usuario==1" class="avatar-status badge-danger"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <strong>{{usuario.Nombre_usuario}}</strong>
+                                </td>
+
+                                <td>
+                                    <strong>{{usuario.Email_usuario}}</strong>
+                                </td>
+
+                                <td class="text-center">
+                                    <strong>{{usuario.CP_usuario}}</strong>
+                                </td>
+                            </tr>
+                                  
+                              </tbody>
+        
+                          </table>
+                      </div>
+                    </div>
+                </div>
+
+            <!--Zona de Abajo-->
+            <div class="card">
+                <p class="bClientes">Buscar Producto</p>
+                <div class="card-block" id="card-block-modal">
+                    <div id="buscador" class="form-group row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                </span>
+                                <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorProductos">
+                            </div>
+                        </div>
+          
+                            <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaProductos1">
+                                <thead class="thead-default">
+                                    <tr>
+                                        <th class="text-center" style="width: 100px;">Imagen</th>
+                                        <th class="text-center" style="width: 135px;">Código</th>
+                                        <th class="text-center" style="width: 30%;"> Nombre</th>
+                                        <th class="text-center" style="width: 200px;">Precio</th>
+                                        <th class="oferta" style = "text-align: center; width: 80px;">Oferta</th>
+                                        <th class="finicio" style = "text-align: center; width: 170px;">F. Inicio</th>
+                                        <th class="ffinal" style = "text-align: center; width: 170px;">F. Final</th>
+                                    </tr>
+                                </thead>
+                            
+                                <tbody>
+                                    
+                                    <tr class="" >
+                                        <td class="text-center">
+                                            <div class="avatar">
+                                            </div>
+                                        </td>     
+                                        <td class="text-center">
+                                                <strong>27001</strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>Coca Cola Zero </strong>
+                                        </td>
+                                        <td class="text-center">
+                                            <strong>0,39 </strong><i class="fa fa-eur"></i>
+                                        </td>
+                                        <td class="text-center">
+                                            <input type="text" class="form-control" style = "text-align: center" placeholder="%">
+                                        </td>
+                                        <td class="text-center">
+                                            <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                                        </td>
+                                        <td class="text-center">
+                                            <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+
+        </div> <!--Fin modal-body-->
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Añadir</button>
+        </div>
+
+        </div>
+    </div>
+</div>
+<!----------------------------------------->

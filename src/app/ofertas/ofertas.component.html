@@ -11,7 +11,7 @@
             <li class="page-item"><a class="page-link" href="#">4</a></li>
             <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
-        <button id="anyadir" class="btn btn-primary" type="button" data-toggle="modal" (click)="anyadirModal.show()"><i class="fa fa-plus"></i> Añadir Oferta</button>
+        <button id="anyadir" class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal()"><i class="fa fa-plus"></i> Añadir Oferta</button>
       </div>
 
       <div class="card-block">
@@ -70,7 +70,7 @@
                                     <p class="form-control-static"><strong>17/03/2017</strong></p>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="clientesOfertadosModal.show()"><i class="fa fa-info-circle"></i> Ver</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModalClientesOfertados();"><i class="fa fa-info-circle"></i> Ver</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -98,206 +98,8 @@
 </div>
 
 
-<!---MODAL AÑADIR OFERTA-->
-<div bsModal #anyadirModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+<!--MODAL AÑADIR OFERTA-->
+<modal-oferta ></modal-oferta>
 
-            <div class="modal-header-producto" id="producto">
-                <h4 class="modal-title">Añadir Oferta</h4>
-                <button type="button" class="close" (click)="anyadirModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <!--Zona de Arriba-->
-                <div class="card">
-                    <p class="bClientes">Buscar Clientes</p>
-                    <div class="card-block" id="card-block-modal">
-                    <div class="filtrosOferta">
-                        <div class="buscadorClientes">     
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><strong>Usuario</strong></span>
-                                        <input class="form-control" id="usuario" name="username3" type="text">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><strong>Edad</strong></span>
-                                        <select class="form-control" id="edad" name="edad" type="number" size="1">
-                                            <option value="0">Selecione una edad</option>
-                                            <option value="1">18</option>
-                                            <option value="2">19</option>
-                                            <option value="3">20</option>
-                                        </select>
-                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><strong>Sexo</strong></span>
-                                        <select class="form-control" id="sexo" name="sexo" type="number" size="1">
-                                            <option value="0">Selecione un sexo</option>
-                                            <option value="1">Hombre</option>
-                                            <option value="2">Mujer</option>
-                                        </select>
-                                         <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>          
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><strong>CP</strong></span>
-                                        <input class="form-control" id="codigoPostal" name="codigoPostal" type="text">
-                                        <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
-                                    </div>
-                                </div>
-                                <div class="form-group form-actions">
-                                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
-                                </div>
-                            </form>
-                      </div>
-                    </div>
-
-        
-                      <div class="resultadoUsuarios">
-                        <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaClientes1">
-                              <thead class="thead-default">
-                                  <tr>
-                                      <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
-                                      <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
-                                      <th>Cliente</th>
-                                      <th class="text-center" style="width: 340px;">Correo electrónico</th>
-                                      <th class="text-center" style="width: 80px;">CP</th>
-                                  </tr>
-                              </thead>
-                              <!--
-                              <tbody>
-                                
-                                  
-
-                              </tbody>
-                              -->
-                          </table>
-                      </div>
-                    </div>
-                </div>
-
-            <!--Zona de Abajo-->
-            <div class="card">
-                <p class="bClientes">Buscar Producto</p>
-                <div class="card-block" id="card-block-modal">
-                    <div id="buscador" class="form-group row">
-                        <div class="col-md-12">
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                                </span>
-                                <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorProductos">
-                            </div>
-                        </div>
-          
-                            <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaProductos1">
-                                <thead class="thead-default">
-                                    <tr>
-                                        <th class="text-center" style="width: 100px;">Imagen</th>
-                                        <th class="text-center" style="width: 135px;">Código</th>
-                                        <th class="text-center" style="width: 30%;"> Nombre</th>
-                                        <th class="text-center" style="width: 200px;">Precio</th>
-                                        <th class="oferta" style = "text-align: center; width: 80px;">Oferta</th>
-                                        <th class="finicio" style = "text-align: center; width: 170px;">F. Inicio</th>
-                                        <th class="ffinal" style = "text-align: center; width: 170px;">F. Final</th>
-                                    </tr>
-                                </thead>
-                            
-                                <tbody>
-                                    
-                                    <tr class="" >
-                                        <td class="text-center">
-                                            <div class="avatar">
-                                            </div>
-                                        </td>     
-                                        <td class="text-center">
-                                                <strong>27001</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>Coca Cola Zero </strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>0,39 </strong><i class="fa fa-eur"></i>
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="text" class="form-control" style = "text-align: center" placeholder="%">
-                                        </td>
-                                        <td class="text-center">
-                                            <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
-                                        </td>
-                                        <td class="text-center">
-                                            <ng2-datepicker [options]="options" [(ngModel)]="date"></ng2-datepicker>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-            </div>
-
-        </div> <!--Fin modal-body-->
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Añadir</button>
-        </div>
-
-        </div>
-    </div>
-</div>
-<!----------------------------------------->
-
-<!---MODAL CLIENTES CON ESA OFERTA-->
-<div bsModal #clientesOfertadosModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header-producto" id="producto">
-                <h4 class="modal-title">Clientes Ofertados</h4>
-                <button type="button" class="close" (click)="clientesOfertadosModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="card">
-                 <div class="card-block">
-                        <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaClientes1">
-                              <thead class="thead-default">
-                                  <tr>
-                                      <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
-                                      <th class="text-center"style="width: 100px;"><i class="icon-people"></i></th>
-                                      <th class="text-center">Nombre</th>
-                                      <th style="width: 300px;">Correo electrónico</th>
-                                      <th class="text-center" style="width: 90px;">CP</th>
-                                  </tr>
-                              </thead>
-                              <!--
-                              <tbody>
-                                
-                                  
-                              </tbody>
-                              -->
-                        </table>
-                    </div>
-                </div>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- MODAL DETALLE OFERTA -->
+<modal-detalle-oferta></modal-detalle-oferta>
