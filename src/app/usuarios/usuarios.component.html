@@ -116,7 +116,7 @@
                 <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
             </div>
 
-            <diV>
+            <div>
                 <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
                 <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
                 <pagination class="pagination" id="pagination"
@@ -131,7 +131,7 @@
                     lastText="&raquo;" 
                     (pageChanged)="pageChanged($event)">
                 </pagination>
-            </diV>
+            </div>
 
         </div>
     </div>
