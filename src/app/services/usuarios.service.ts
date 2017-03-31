@@ -46,6 +46,68 @@ export class UsuariosService {
         });
     }
 
+    public idTienda:string;
+    	
+    getUsersOfertaModal(filtro,idTienda){
+        console.log(idTienda);
+        this.idTienda=idTienda;
+        var consulta=this.construirconsulta(filtro);
+        return this.authHttp.get(consulta)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            if (res.status === 200) {;
+                console.log("status 200");
+                //return res.json().usuario
+                return  [{ status: res.status, data: res.json().usuario }]
+            }
+            else if (res.status === 206) {
+                console.log("status 206");
+                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
+            }
+        }).catch((error: any) => {
+            console.log(error);
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+    
+    construirconsulta(filtro){
+        console.log(filtro)
+        let consulta=environment.dominio + "/usuario/tienda?id_tienda="+this.idTienda;
+        if (filtro["nombre"]!='')  consulta+="&nombre="+filtro["nombre"];
+        if (filtro["sexo"]!='')  consulta+="&sexo="+filtro["sexo"];
+        if (filtro["cp"]!='')  consulta+="&cp="+filtro["cp"];
+        if (filtro["fecha_min"]!='')  consulta+="&fechanac_min="+filtro["fecha_min"];
+        if (filtro["fecha_max"]!='')  consulta+="&fechanac_max="+filtro["fecha_max"];
+        
+        /*
+        let i=0;
+
+        if (filtro["nombre"]!=''){
+            consulta+="?nombre="+filtro["nombre"];
+            i++;
+        }
+        if (filtro["sexo"]!=''){
+            (i>=1) ? consulta+="&sexo="+filtro["sexo"] :  consulta+="?sexo="+filtro["sexo"];
+            i++;
+        }
+        if (filtro["cp"]!=''){
+            (i>=1) ? consulta+="&cp="+filtro["cp"] :  consulta+="?cp="+filtro["cp"];
+            i++;
+        }
+        if (filtro["edad_min"]!=''){
+            (i>=1) ? consulta+="&fechanac_min="+filtro["edad_min"] :  consulta+="?fechanac_min="+filtro["edad_min"];
+            i++;
+        }
+        if (filtro["edad_max"]!=''){
+            (i>=1) ? consulta+="&fechanac_max="+filtro["edad_max"] :  consulta+="?fechanac_max="+filtro["edad_max"];
+            i++;
+        }
+        */
+        console.log(consulta);
+        return consulta;
+    }
+
     updateStateActivo(usuario: Object){
        //console.log(JSON.stringify({usuario:usuario}));
         return this.authHttp.put(environment.dominio + '/usuario/updateState', 
@@ -62,4 +124,4 @@ export class UsuariosService {
         });
     }
 
-}
+} 
