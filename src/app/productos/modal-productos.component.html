@@ -22,10 +22,10 @@
                             <div class="form-group row">
                                 <div class="col-md-5">
                                     <div style="width: 200px; height:200px;">
-                                    <img #imageProducto src="{{producto.Imagen_producto}}" class="img-avatar" style="padding-left: 20%; border-radius: 0em;" alt="Ninguna Imagen Seleccionada">
+                                        <img #imageProducto src="{{producto.Imagen_producto}}" class="img-avatar" style="padding-left: 20%; border-radius: 0em;" alt="Ninguna Imagen Seleccionada">
                                     
-                                    <!-- Imagenes de la API --> 
-                                    <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button>
+                                         <!-- Imagenes de la API --> 
+                                        <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button>
                                     </div>
                                     <div class="galeriaImagenes">
                                         <div *ngFor="let image of imagesProducto" id="pene">
@@ -129,12 +129,13 @@
                                 </div>
 
                                 <div class="col-md-5">
-                                <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta HxW</strong></p>
-                                <div class="imagenBanner">
-                                <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
-                                <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
-                                </div>
-                                 <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
+                                    <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta HxW</strong></p>
+                                    <div class="imagenBanner">
+                                    <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
+                                    <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
+                                    </div>
+                                    <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
+                                    <button type="button" class="btn btn-danger" style="float:right;"><i class="fa fa-trash-o"></i> Eliminar</button>
                                 </div>
 
                             </div>

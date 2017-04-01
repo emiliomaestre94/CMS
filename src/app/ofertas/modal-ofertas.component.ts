@@ -239,7 +239,7 @@ export class ModalOfertasComponent {
 
   }
 
- 
+
 
 
   files;
@@ -266,5 +266,9 @@ export class ModalOfertasComponent {
     this.el.nativeElement.value=null;
     this.imageloaded=false;
   }
+
+
+
+
 
 }
