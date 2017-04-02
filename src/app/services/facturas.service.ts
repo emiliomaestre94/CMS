@@ -18,6 +18,38 @@ export class FacturasService {
     constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
         
     }
+
+    headers = new Headers({ 'content-type': 'application/json' });
+    options = new RequestOptions({ headers: this.headers, withCredentials: true });
+
+        getFacturas(pag:number,usuario:string,idTienda:string){
+         console.log(pag); 
+         pag +=-1; //restamos 1 siempre
+         pag.toString(); //pasamos a string el number
+         console.log(pag);
+        return this.authHttp.get(environment.dominio + '/factura?id_tienda='+idTienda)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            console.log(res);
+            if (res.status === 200) {;
+                console.log("status 200");
+                //return res.json().usuario
+                return  [{ status: res.status, data: res.json() }]
+            }
+            else if (res.status === 204) {
+                console.log("status 204");
+                return  [{ status: res.status, json: "Factura no encontrada en la base de datos" }]
+            }
+        }).catch((error: any) => {
+            console.log(error);
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
+
+
+
     getFacturasUser(idUsuario,idTienda){
         console.log(idUsuario);
         console.log(idTienda);
