@@ -52,7 +52,7 @@ export class ProductosComponent implements OnInit {
             this.productos=res[0].data.Productos
             console.log(this.productos);
           }
-          if (res[0].status==206){ //no encontrado
+          if (res[0].status==204){ //no encontrado
               console.log("No hay usuarios");
           }
         }

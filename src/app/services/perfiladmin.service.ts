@@ -40,8 +40,8 @@ export class PerfiladminService {
                 //return res.json().usuario
                 return  [{ status: res.status, data: res.json().usuario }]
             }
-            else if (res.status === 206) {
-                //console.log("status 206");
+            else if (res.status === 204) {
+                //console.log("status 204");
                 return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
             }
         }).catch((error: any) => {
@@ -86,8 +86,8 @@ export class PerfiladminService {
                 //return res.json().usuario
                 return  [{ status: res.status, data: res.json() }]
             }
-            else if (res.status === 206) {
-                //console.log("status 206");
+            else if (res.status === 204) {
+                //console.log("status 204");
                 return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
             }
         }).catch((error: any) => {

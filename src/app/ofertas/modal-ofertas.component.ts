@@ -1,3 +1,4 @@
+import { OfertasService } from './../services/ofertas.service';
 import {Producto, ProductosService } from './../services/productos.service';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario,UsuariosService } from './../services/usuarios.service';
@@ -50,6 +51,7 @@ export class ModalOfertasComponent {
     public usuariosService:UsuariosService,
     public datostokenservice: DatosTokenService, 
     public productosService: ProductosService,
+    public ofertasService: OfertasService,
     public af: AngularFire, 
     @Inject(FirebaseApp) firebase: any) 
     {
@@ -75,6 +77,17 @@ export class ModalOfertasComponent {
     this.uploadImage();
   }
 
+  public postOferta(){ //se llama desde uploadImage una vez se ha subido la foto correctamente
+      this.ofertasService.uploadOferta(this.IdUsuarios,this.idProducto,this.oferta,this.idTienda).subscribe(
+        res =>{
+          console.log(res);
+        },
+        err=>{ //Error de conexion con el servidor
+          console.log(err);
+        },
+    );
+  }
+
   public getProductos(){
     this.productosService.getProductos(this.idTienda).subscribe(
       res =>{
@@ -84,7 +97,7 @@ export class ModalOfertasComponent {
             this.productos=res[0].data.Productos
             console.log(this.productos);
           }
-          if (res[0].status==206){ //no encontrado
+          if (res[0].status==204){ //no encontrado
               console.log("No hay usuarios");
           }
         }
@@ -185,7 +198,7 @@ export class ModalOfertasComponent {
  
                 
               }
-              if (res[0].status==206){ //no encontrado
+              if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
 
               }
@@ -227,6 +240,7 @@ export class ModalOfertasComponent {
         this.loading3=false;
         this.error3=true;
         this.msgImage="Error subiendo la foto al servidor (850386)";
+        
   
       }, function() {
         console.log("Foto subida correctamente");
@@ -234,6 +248,7 @@ export class ModalOfertasComponent {
         console.log(downloadURL);
         newthis.oferta["Imagen"]=downloadURL;
         console.log(newthis.oferta);
+        newthis.postOferta();
       });
     }
 
