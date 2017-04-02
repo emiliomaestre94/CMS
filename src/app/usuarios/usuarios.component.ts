@@ -36,18 +36,18 @@ export class UsuariosComponent implements OnInit {
 
   constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     console.log("Entra en el ngOnInit");
     this.usuariosService.getUsers(this.bigCurrentPage,'').subscribe(
         res =>{
-          console.log(res);  
+          console.log(res);   
           if(res[0]){
             if (res[0].status==200){ //todo bien
               this.usuarios=res[0].data;
               console.log(this.usuarios);
               this.error=false;
             }
-            if (res[0].status==206){ //no encontrado
+            if (res[0].status==204){ //no encontrado
               console.log(res[0].status);
               this.error=true;
               this.mensajeError="No tienes ningún usuario registrado en tu tienda";
@@ -91,7 +91,7 @@ export class UsuariosComponent implements OnInit {
                 if(this.bigCurrentPage!=1)
                   this.bigCurrentPage=1;
               }
-              if (res[0].status==206){ //no encontrado
+              if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
                 this.error2=true;
                 this.mensajeError="No hay ningún usuario que coincida con el término: "+this.buscadorUsuarios;
@@ -154,7 +154,7 @@ export class UsuariosComponent implements OnInit {
                 console.log(this.usuarios);
                 this.error2=false;
               }
-              if (res[0].status==206){ //no encontrado
+              if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
                 this.error2=true;
                 this.mensajeError="No tienes ningún usuario registrado en tu tienda";
@@ -182,7 +182,7 @@ export class UsuariosComponent implements OnInit {
               this.error=false;
               this.tag= this.buscadorUsuarios;
             }
-            if (res[0].status==206){ //no encontrado
+            if (res[0].status==204){ //no encontrado
               console.log(res[0].status);
               this.error2=true;
               this.mensajeError="Ningún resultado coincide con la búsqueda ";
