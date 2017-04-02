@@ -21,7 +21,6 @@
                         <!--BUSCAR CLIENTES-->
                         <tab style="padding-left: 5px; padding-bottom: 5px; padding-right: 5px; padding-top: 5px;">
                             <template tabHeading><i class="icon-list"></i> 1º Buscar Clientes</template>
-                            <p class="bClientes">Buscar Cliente</p>
                             <div class="card-block" id="card-block-modal" style="padding-bottom: 0px; padding-right: 15px; padding-left: 15px;">
 
                                 <div class="form-group row">
@@ -139,7 +138,6 @@
                         <!--BUSCAR PRODUCTOS-->
                         <tab id="busquedaProducto" style="padding-left: 5px;padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
                             <template tabHeading><i class="icon-calculator"></i> 2º Buscar Producto</template>
-                            <p class="bClientes">Buscar Producto</p>
                             <div class="card-block" id="card-block-modal" style="padding-bottom: 0px; padding-right: 15px; padding-left: 15px;">
                                 <div id="buscador" class="form-group row">
                                     <div class="col-md-6">
@@ -206,14 +204,14 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
+                                    <button type="button" onclick="" class="btn btn-secondary"><i class="fa fa-arrow-left fa-lg m-t-2"></i> Atras</button>
                                     <button type="button" onclick="next($id)" class="btn btn-primary"><i class="fa fa-arrow-right fa-lg m-t-2"></i> Siguiente</button>
                                 </div>                         
                         </tab>
 
                         <!--DETALLES DE OFERTA-->
                         <tab id="detalleOferta" style="padding-left: 5px; padding-bottom: 5px; padding-right: 5px; padding-top: 5px;">
-                            <template tabHeading><i class="icon-pie-chart"></i> Charts</template>
-                            <p class="bClientes">Detalles de Oferta</p>
+                            <template tabHeading><i class="icon-pie-chart"></i> 3º Detalles de Oferta</template>
                             <div class="card-block" id="card-block-modal" style="padding-bottom: 0px; padding-right: 15px; padding-left: 15px;">
                                 <div class="form-group row">
                                     <div class="col-md-7">
@@ -222,7 +220,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-3 form-control-label" for="disabled-input"><strong>Orden de Visualización</strong></label>
                                                 <div class="col-md-2">
-                                                    <select [(ngModel)]="oferta.Orden" name="orden" class="form-control" id="ccmonth">
+                                                    <select [(ngModel)]="oferta.Orden" name="orden" class="form-control" id="ccmonth" style="padding:0px;">
                                                         <option [ngValue]=1>1</option>
                                                         <option [ngValue]=2>2</option>
                                                         <option [ngValue]=3>3</option>
@@ -269,6 +267,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
+                                <button type="button" onclick="" class="btn btn-secondary"><i class="fa fa-arrow-left fa-lg m-t-2"></i> Atras</button>
                                 <button type="button" (click)="addOferta();"class="btn btn-primary"><i class="fa fa-save"></i> Añadir</button>
                             </div>      
                         </tab>
