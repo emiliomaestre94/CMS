@@ -33,7 +33,7 @@ export class UsuariosComponent implements OnInit {
   public errorActivo: boolean=false;
   public loadingActivo: boolean=false;
   public msgActivo;
-
+ 
   constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService) { }
 
   ngOnInit() { 
