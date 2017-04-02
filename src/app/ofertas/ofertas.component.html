@@ -1,33 +1,49 @@
 <div class="row" >
-  <div class="col-md-12">
-    <div class="card">
+    <div class="col-md-12">
+        <div class="card">
 
-      <div class="card-header" ><p>Ofertas Personalizadas</p>
-        <ul class="pagination" id="pagination">
-            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-        <button id="anyadir" class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal()"><i class="fa fa-plus"></i> Añadir Oferta</button>
-      </div>
+        <div class="card-header" style="padding-bottom: 0px;" ><p>Ofertas Personalizadas</p>
+            <button id="anyadir" class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal()"><i class="fa fa-plus"></i> Añadir Oferta</button>
+        </div>
 
-      <div class="card-block">
-        <div id="buscador" class="form-group row">
+            <div class="card-block">
 
-          <div class="col-md-6">
-            <div class="input-group">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-              </span>
-              <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorOfertas">
-            </div>
-          </div>
-            <!-- Aqui va el listado de ofertas-->
-
-            <table class="table table-hover table-outline mb-0 hidden-sm-down">
+                <div id="buscador" class="form-group row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
+                            </span>
+                            <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorOfertas">
+                        </div>
+                        <div *ngIf="busquedaActiva == true"  class="col-sm-12 filtro">
+                            <span class="bold fp">Filtrado por:</span>
+                            <span class="filtros">
+                                <span class="tag bolds">
+                                    <a (click)="eliminarBusqueda();" class="btn btn-sm btn-instagram text">
+                                    <span data-value="busqueda" class="closex">x</span>
+                                    <span class="item">{{tag}}</span>
+                                    </a>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="pagination" id="pagination" >
+                            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </div>
+                    <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
+                        {{mensajeError}}
+                    </div> 
+                    <!-- Aqui va el listado de ofertas-->
+                    <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
                                 <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
@@ -61,10 +77,10 @@
                                     <strong>0,39 </strong><i class="fa fa-eur"></i>
                                 </td>
                                 <td class="text-center">
-                                   <p class="form-control-static"><strong>25 </strong><i class="fa fa-percent"></i></p>
+                                    <p class="form-control-static"><strong>25 </strong><i class="fa fa-percent"></i></p>
                                 </td>
                                 <td class="text-center">
-                                     <p class="form-control-static"><strong>17/02/2017</strong></p>
+                                        <p class="form-control-static"><strong>17/02/2017</strong></p>
                                 </td>
                                 <td class="text-center">
                                     <p class="form-control-static"><strong>17/03/2017</strong></p>
@@ -74,27 +90,26 @@
                                 </td>
                             </tr>
                         </tbody>
+                    </table>
+                </div>
+                <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
+                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
+            </div>
+            <div>
+                <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
 
-                </table>
+                <ul class="pagination" id="pagination" >
+                    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
 
         </div>
-      </div>
-      
-  
-
     </div>
-        <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
-
-        <ul class="pagination" id="pagination" >
-            <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    
-  </div>
 </div>
 
 
@@ -102,4 +117,4 @@
 <modal-oferta ></modal-oferta>
 
 <!-- MODAL DETALLE OFERTA -->
-<modal-detalle-oferta></modal-detalle-oferta>
+<modal-detalle-oferta></modal-detalle-oferta> 

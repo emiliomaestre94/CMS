@@ -63,7 +63,7 @@ export class UsuariosModalPerfilComponent {
                 console.log(this.facturas);
                 this.errorFacturas=false;
               }
-              if (res[0].status==206){ //no encontrado
+              if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
                 this.errorFacturas=true;
                 this.msgFacturas=this.usuario['Nombre:usuario'] + " no ha generado aún ninguna factura";

@@ -1,3 +1,4 @@
+
 import { ProductosService } from './../services/productos.service';
 import { UsuariosService } from './../services/usuarios.service';
 import { ModalDetalleOfertasComponent } from './modal-detalle-ofertas.component';
@@ -10,6 +11,7 @@ import { OfertasService } from './../services/ofertas.service';
 
 
 //// Modal Component
+import { TabsModule } from 'ng2-bootstrap/tabs';
 import { ModalModule } from 'ng2-bootstrap/modal';
 ////////////////////
 import { FormsModule } from '@angular/forms';
@@ -32,7 +34,8 @@ BuscadorOfertasPipe
       ChartsModule,
       DropdownModule,
       DatePickerModule, 
-      ModalModule.forRoot()
+      ModalModule.forRoot(),
+      TabsModule
     ],
 
     declarations: [ 

@@ -206,7 +206,7 @@ export class PerfiladminComponent implements OnInit {
                 console.log("Contraseña actual correcta");
                 this.updatePassword();
               }
-              else if (res[0].status==206){
+              else if (res[0].status==204){
                 console.log("Contraseña actual incorrecta");
                 this.msgPassword="La contraseña actual introducida no es correcta";
                 this.loading2=false;
