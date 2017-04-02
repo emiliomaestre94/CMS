@@ -459,7 +459,7 @@
             </div>
 
             <diV>
-                <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+                <button type="button" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Eliminar</button>
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 
@@ -481,13 +481,13 @@
 <!--DETALLE FACTURA-->
 
 <div bsModal #facturaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-lg" role="document" style="width: 50%;">
         <div class="modal-content">
 
-            <div class="modal-header-factura" id="factura">
+            <div class="modal-header-factura" id="factura" style="background-color: #124570;">
                 <h4 class="modal-title">Factura</h4>
                 <button type="button" class="close" (click)="facturaModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true" style="color:white;"><i class="fa fa-remove fa-lg m-t-2"></i></span>
                 </button>
             </div>
 
@@ -505,7 +505,8 @@
                         <p>DNI: 48362351K</p>
                         <p>C/: Princesa Mercedez Nº12 4C</p>
                         <p>Alicante - 03006</p>
-                        <p><span>josefcomoreno85@gmail.com</span></p>  
+                        <p><span>josefcomoreno85@gmail.com</span></p> 
+                        <button type="button" class="btn btn-danger">Descargar Pdf <i class="fa fa-file-pdf-o"></i></button> 
                 </div>
    
                 <div class="tablaFactura">
@@ -583,10 +584,7 @@
 
         </div>
 
-            <div class="modal-footer">
-                <!--<button type="button" class="btn btn-secondary" (click)="facturaModal.hide()">Cerrar</button>-->
-                <button type="button" class="btn btn-danger">Descargar Pdf <i class="fa fa-file-pdf-o"></i></button>
-            </div>
+            <div class="modal-footer"></div>
 
         </div>
     </div>
