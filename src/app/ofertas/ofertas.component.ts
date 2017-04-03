@@ -36,6 +36,26 @@ export class OfertasComponent implements OnInit {
               console.log(res[0].status);
   
             }
+          } 
+           //this.accesocorrecto=true;        
+        },
+        err=>{ //Error de conexion con el servidor
+            console.log(err);
+        },   
+    );
+
+      this.ofertasService.getOfertasDetail('6',this.idTienda).subscribe(
+        res =>{
+          console.log(res);   
+          if(res[0]){
+            if (res[0].status==200){ //todo bien
+              //this.ofertas=res[0].data;
+          
+            }
+            if (res[0].status==204){ //no encontrado
+              console.log(res[0].status);
+  
+            }
           }
            //this.accesocorrecto=true;        
         },
