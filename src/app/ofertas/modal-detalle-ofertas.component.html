@@ -11,9 +11,61 @@
                 </button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body" style="padding-bottom: 5px;">
                 <div class="card">
-                 <div class="card-block">
+                 <div class="card-block" style="padding-bottom: 5px; padding-left: 10px; padding-right: 10px;">
+                    <div class="form-group row" style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">
+                        <div class="col-md-7">
+                            <form style="height: 365px;">
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" ><strong>Orden de Visualización</strong></label>
+                                    <div class="col-md-2">
+                                        <select name="orden" class="form-control" id="ccmonth" style="padding:0px;">
+                                            <option [ngValue]=1>1</option>
+                                            <option [ngValue]=2>2</option>
+                                            <option [ngValue]=3>3</option>
+                                            <option [ngValue]=4>4</option>
+                                            <option [ngValue]=5>5</option>
+                                        </select>
+                                    </div>
+                                
+                                    <label class="col-md-2 form-control-label" ><strong>Oferta</strong></label>
+                                    <div class="col-md-2">
+                                        <input type="text" name="precio" class="form-control" style = "text-align: center" placeholder="%">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" ><strong>Fecha Inicio</strong></label>
+                                    <div class="col-md-6">
+                                        <ng2-datepicker class="form-control"  name="finicio" [options]="options" ></ng2-datepicker>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" ><strong>Fecha Final</strong></label>
+                                    <div class="col-md-6">
+                                        <ng2-datepicker class="form-control" name="ffinal" [options]="options" ></ng2-datepicker>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" ><strong>Descripción Oferta</strong></label>
+                                    <div class="col-md-6">
+                                        <textarea id="textarea-input" name="descripcion" rows="9" class="form-control" style="height: 70%;"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-5">
+                        <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta 320x180</strong></p>
+                        <div class="imagenBanner">
+                        <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
+                        <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
+                        </div>
+                            <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiarla.</p>
+                        </div>
+                    </div>
+                    <div class="tablascroll1">
                         <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaClientes1">
                               <thead class="thead-default">
                                   <tr>
@@ -32,11 +84,12 @@
                               -->
                         </table>
                     </div>
+                     <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
+                    </div>
                 </div>
-                    <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
             </div>
 
-            <div class="modal-footer">
+            <div class="modal-footer" style="padding-top: 5px; padding-bottom: 5px;">
                 <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
             </div>
         </div>
