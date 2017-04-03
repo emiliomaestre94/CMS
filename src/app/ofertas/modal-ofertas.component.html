@@ -16,7 +16,7 @@
                 <div class="row">
                 <div class="col-md-12">
                 <!-- Nav tabs -->
-                    <tabset>
+                    <tabset #staticTabs > 
 
                         <!--BUSCAR CLIENTES-->
                         <tab style="padding-left: 5px; padding-bottom: 5px; padding-right: 5px; padding-top: 5px;">
@@ -130,8 +130,13 @@
                                         </table>
                                     </div>
                             </div>
+
+                            <div class="modal-footer">
+                                <button type="button"  class="btn btn-primary"><i class="fa fa-arrow-right fa-lg m-t-2"></i> Siguiente</button>
+
                             <div class="modal-footer" style="padding-top: 5px; padding-bottom: 5px;">
-                                <button type="button" ng-href="#busquedaProducto" class="btn btn-primary"><i class="fa fa-arrow-right fa-lg m-t-2"></i> Siguiente</button>
+                                <button type="button" (click)="selectTab(1);" class="btn btn-primary"><i class="fa fa-arrow-right fa-lg m-t-2"></i> Siguiente</button>
+
                             </div>  
                         </tab>
 
@@ -203,9 +208,11 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="modal-footer" style="padding-top: 5px; padding-bottom: 5px;">
-                                    <button type="button" onclick="" class="btn btn-secondary"><i class="fa fa-arrow-left fa-lg m-t-2"></i> Atras</button>
-                                    <button type="button" onclick="next($id)" class="btn btn-primary"><i class="fa fa-arrow-right fa-lg m-t-2"></i> Siguiente</button>
+                                    <button type="button" (click)="selectTab(0);"  class="btn btn-secondary"><i class="fa fa-arrow-left fa-lg m-t-2"></i> Atras</button>
+                                    <button type="button" (click)="selectTab(2);"  class="btn btn-primary"><i class="fa fa-arrow-right fa-lg m-t-2"></i> Siguiente</button>
+
                                 </div>                         
                         </tab>
 
@@ -266,8 +273,10 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="modal-footer" style="padding-top: 5px; padding-bottom: 5px;">
-                                <button type="button" onclick="" class="btn btn-secondary"><i class="fa fa-arrow-left fa-lg m-t-2"></i> Atras</button>
+                                <button type="button" (click)="selectTab(1);" class="btn btn-secondary"><i class="fa fa-arrow-left fa-lg m-t-2"></i> Atras</button>
+
                                 <button type="button" (click)="addOferta();"class="btn btn-primary"><i class="fa fa-save"></i> Añadir</button>
                             </div>      
                         </tab>

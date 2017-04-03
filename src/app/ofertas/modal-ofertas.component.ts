@@ -16,6 +16,7 @@ export class ModalOfertasComponent {
   
   @ViewChild('ModalOfertas') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide
   @ViewChildren('checkboxUser') checkboxUsers; //te coge todos los elementos del DOM que tengan la etiqueta imageAPI
+  @ViewChild('staticTabs') staticTabs; 
 
   public usuarios:Usuario[];//objeto que guardara el objeto de usuarios;
   public productos:Producto[];//objeto que guardara el objeto de usuarios;
@@ -67,6 +68,8 @@ export class ModalOfertasComponent {
   public showChildModal():void {
     this.childModal.show(); //mostrar modal
     this.getProductos();
+      this.staticTabs.tabs[1].disabled=true;
+      this.staticTabs.tabs[2].disabled=true;
   }
 
   public addOferta(){
@@ -110,13 +113,17 @@ export class ModalOfertasComponent {
   }
 
 
-    selectProducto(event,idProducto){
+  selectProducto(event,idProducto){
+    
      console.log("entra");
      if(event.target.checked==true){ //si pulsamos a checkear
        this.idProducto=idProducto;
      }
-
+     else{
+       this.idProducto=null;
+     }
      console.log(this.idProducto);
+     this.checkValidTabs();
    }
 
 
@@ -124,6 +131,7 @@ export class ModalOfertasComponent {
 
   
    selectUser(event,idUsu){
+     
      console.log("entra");
      if(event.target.checked==true){ //si pulsamos a checkear añadimos al array el id del usutienda
         this.IdUsuarios.push(idUsu);
@@ -136,6 +144,7 @@ export class ModalOfertasComponent {
         }
      }
      console.log(this.IdUsuarios);
+     this.checkValidTabs();
    }
 
    selectUserBucle(event,idUsu){
@@ -170,6 +179,7 @@ export class ModalOfertasComponent {
       //console.log(checkboxusers);
     }
     console.log(this.IdUsuarios);
+    this.checkValidTabs();
    }
 
   public buildDates(edad){
@@ -282,6 +292,34 @@ export class ModalOfertasComponent {
     this.imageloaded=false;
   }
 
+  
+  checkValidTabs(){
+    if(this.IdUsuarios.length!=0 && this.IdUsuarios[0]!=null){
+      this.staticTabs.tabs[1].disabled=false;
+       if(this.idProducto!=null){
+        this.staticTabs.tabs[2].disabled=false;
+      }
+      else{
+        this.staticTabs.tabs[2].disabled=true;
+      }
+    
+    }
+    else{
+      this.staticTabs.tabs[1].disabled=true;
+      this.staticTabs.tabs[2].disabled=true;
+    }
+     
+  }
+
+  selectTab(tab_id: number){
+    console.log(this.IdUsuarios);
+    console.log(this.idProducto);
+    console.log(this.IdUsuarios[0]);
+    this.checkValidTabs();
+   
+
+     this.staticTabs.tabs[tab_id].active = true;
+  }
 
 
 
