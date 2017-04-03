@@ -2,9 +2,7 @@
     <div class="col-md-12">
         <div class="card">
 
-        <div class="card-header" style="padding-bottom: 0px;" ><p>Ofertas Personalizadas</p>
-            <button id="anyadir" class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal()"><i class="fa fa-plus"></i> Añadir Oferta</button>
-        </div>
+        <div class="card-header"><p>Ofertas Personalizadas</p></div>
 
             <div class="card-block">
 
@@ -12,7 +10,7 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                <button  type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
                             </span>
                             <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorOfertas">
@@ -28,6 +26,7 @@
                                 </span>
                             </span>
                         </div>
+
                     </div>
                     <div class="col-md-6">
                         <ul class="pagination" id="pagination" >
@@ -39,6 +38,7 @@
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </div>
+                    <button id="anyadir" class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal()"><i class="fa fa-plus"></i> Añadir Oferta</button>
                     <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
                         {{mensajeError}}
                     </div> 
