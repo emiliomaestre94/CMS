@@ -44,7 +44,7 @@ export class OfertasComponent implements OnInit {
         },   
     );
 
-      this.ofertasService.getOfertasDetail('6',this.idTienda).subscribe(
+      this.ofertasService.getOfertasDetail('4',this.idTienda).subscribe(
         res =>{
           console.log(res);   
           if(res[0]){
