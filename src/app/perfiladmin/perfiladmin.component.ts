@@ -56,7 +56,7 @@ export class PerfiladminComponent implements OnInit {
    }
 
    
-
+ 
 
   setSexo(){
     if(this.usuario["Sexo_usuario"]=="m"){ this.usuario["Sexo_usuario"]=2 }

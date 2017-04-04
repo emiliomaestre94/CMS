@@ -9,14 +9,14 @@
                 <button type="button" class="close" (click)="hideChildModal()" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-remove fa-lg m-t-2"></i></span>
                 </button>
-            </div>
-
+            </div> 
+ 
             <div class="modal-body" style="padding-bottom: 5px;">
                 <div class="card">
                  <div class="card-block" style="padding-bottom: 5px; padding-left: 10px; padding-right: 10px;">
                     <div class="form-group row" style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">
                         <div class="col-md-7">
-                            <form style="height: 365px;">
+                            <form *ngIf="oferta" style="height: 365px;">
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" ><strong>Orden de Visualización</strong></label>
                                     <div class="col-md-2">
@@ -31,26 +31,28 @@
                                 
                                     <label class="col-md-2 form-control-label" ><strong>Oferta</strong></label>
                                     <div class="col-md-2">
-                                        <input type="text" name="precio" class="form-control" style = "text-align: center" placeholder="%">
+                                        <input type="text"  [(ngModel)]="oferta.P_oferta_oferta_usuario" name="precio" class="form-control" style = "text-align: center" placeholder="%">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" ><strong>Fecha Inicio</strong></label>
                                     <div class="col-md-6">
-                                        <ng2-datepicker class="form-control"  name="finicio" [options]="options" ></ng2-datepicker>
+                                        <!-- <ng2-datepicker class="form-control" [(ngModel)]="fechaini.formatted"  name="finicio" [options]="options" ></ng2-datepicker> -->
+                                        <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_inicio_oferta_usuario" name="fechaini">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" ><strong>Fecha Final</strong></label>
                                     <div class="col-md-6">
-                                        <ng2-datepicker class="form-control" name="ffinal" [options]="options" ></ng2-datepicker>
+                                        <!-- <ng2-datepicker class="form-control" name="ffinal" [options]="options" ></ng2-datepicker> -->
+                                        <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_fin_oferta_usuario" name="fechafin">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" ><strong>Descripción Oferta</strong></label>
                                     <div class="col-md-6">
-                                        <textarea id="textarea-input" name="descripcion" rows="9" class="form-control" style="height: 70%;"></textarea>
+                                        <textarea id="textarea-input"  [(ngModel)]="oferta.Descripcion_oferta_usuario" name="descripcion" rows="9" class="form-control" style="height: 70%;"></textarea>
                                     </div>
                                 </div>
                             </form>
@@ -59,8 +61,9 @@
                         <div class="col-md-5">
                         <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta 320x180</strong></p>
                         <div class="imagenBanner">
-                        <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
+                        <img  *ngIf="oferta" class="imgBanner" id="imagenSrc" src="{{imageSrc}}"/>
                         <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
+                        <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger">Cancelar</button> 
                         </div>
                             <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiarla.</p>
                         </div>
@@ -69,19 +72,40 @@
                         <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaClientes1">
                               <thead class="thead-default">
                                   <tr>
-                                      <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
-                                      <th class="text-center"style="width: 100px;"><i class="icon-people"></i></th>
-                                      <th class="text-center">Nombre</th>
-                                      <th style="width: 300px;">Correo electrónico</th>
-                                      <th class="text-center" style="width: 90px;">CP</th>
+                                    <th class="text-center" style="width: 70px;"><input type="checkbox" name="" value="" (change)="selectAllUsers($event);"></th>
+                                    <th class="text-center" style="width: 100px;"><i class="icon-people"></i></th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center" style="width: 20%;">>Correo electrónico</th>
+                                    <th class="text-center" style="width: 80px;">CP</th>
                                   </tr>
                               </thead>
-                              <!--
+                          
                               <tbody>
-                                
-                                  
+                                <tr *ngFor="let usuario of usuarios">
+                                    <td>
+                                        <!-- (ngModelChange)="selectUser($event,usuario.Id_usuario_tienda);" -->
+                                        <div><input type="checkbox" #checkboxUser (change)="selectUser($event,usuario.Id_usuario_tienda);" name="" value={{usuario.Id_usuario_tienda}}></div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="avatar">
+                                            <img src="{{usuario.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com" >
+                                            <span *ngIf="usuario.Eliminado_usuario==0" class="avatar-status badge-success"></span>
+                                            <span *ngIf="usuario.Eliminado_usuario==1" class="avatar-status badge-danger"></span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <strong>{{usuario.Nombre_usuario}}</strong>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <strong>{{usuario.Email_usuario}}</strong>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <strong>{{usuario.CP_usuario}}</strong>
+                                    </td>
+                                </tr>
                               </tbody>
-                              -->
                         </table>
                     </div>
                      <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i> Eliminar</button>
@@ -90,7 +114,7 @@
             </div>
 
             <div class="modal-footer" style="padding-top: 5px; padding-bottom: 5px;">
-                <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                <button type="button" (click)="saveData();" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
             </div>
         </div>
     </div>
