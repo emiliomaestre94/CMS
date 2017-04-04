@@ -1,0 +1,21 @@
+#tablaSincro {
+    margin-left: 27%;
+    overflow: auto; 
+    height: 320px;
+}
+button.btn.btn-primary {
+    margin-left: 47%;
+    margin-top: 25px;
+}
+.galeriaImagenes {
+    overflow: auto; 
+    height: 250px;
+}
+
+
+@media (max-width: 1200px) {
+  #tablaSincro {
+        margin-left: 28%;
+    }
+
+}

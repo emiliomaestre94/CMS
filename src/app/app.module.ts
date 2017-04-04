@@ -43,7 +43,8 @@ import { provideAuth } from 'angular2-jwt';
 
 import { HttpModule,Http, RequestOptions } from '@angular/http';
 
-import { AngularFireModule } from 'angularfire2'; //firebase
+import { AngularFireModule } from 'angularfire2';
+
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
