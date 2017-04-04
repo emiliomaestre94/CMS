@@ -65,6 +65,11 @@ export const routes: Routes = [
         loadChildren: './ofertas/ofertas.module#OfertasModule',
         canActivate: [AuthGuard]
       },
+      {
+        path: 'sincronizar',
+        loadChildren: './sincronizar/sincronizar.module#SincronizarModule',
+        canActivate: [AuthGuard]
+      },
             {
         path: 'perfiladmin',
         loadChildren: './perfiladmin/perfiladmin.module#PerfiladminModule',
