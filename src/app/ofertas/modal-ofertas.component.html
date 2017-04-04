@@ -8,7 +8,7 @@
                 <button type="button" class="close" (click)="hideChildModal();" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-remove fa-lg m-t-2"></i></span>
                 </button>
-            </div>
+            </div> 
 
             <div class="modal-body">
             <!--BUSCAR CLIENTES-->
@@ -233,18 +233,21 @@
                                                 <div class="col-md-2">
                                                     <input type="text" [(ngModel)]="oferta.Precio" name="precio" class="form-control" style = "text-align: center" placeholder="%">
                                                 </div>
-                                            </div>
+                                            </div> 
 
                                             <div class="form-group row">
                                                 <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Inicio</strong></label>
                                                 <div class="col-md-6">
-                                                    <ng2-datepicker class="form-control"  [(ngModel)]="oferta.Fecha_inicio" name="finicio" [options]="options" ></ng2-datepicker>
+                                                    <!--<ng2-datepicker class="form-control"  [(ngModel)]="oferta.Fecha_inicio" name="finicio" [options]="options" ></ng2-datepicker>-->
+                                                    <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_inicio" name="fechaini">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Final</strong></label>
                                                 <div class="col-md-6">
-                                                    <ng2-datepicker class="form-control" [(ngModel)]="oferta.Fecha_final" name="ffinal" [options]="options" ></ng2-datepicker>
+                                                    <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_final" name="fechafinal">
+                                                    <!--<ng2-datepicker class="form-control" [(ngModel)]="oferta.Fecha_final" name="ffinal" [options]="options" ></ng2-datepicker> -->
+                                                    
                                                 </div>
                                             </div>
                                             <div class="form-group row">

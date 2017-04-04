@@ -11,9 +11,9 @@ import * as moment from 'moment';
   selector: 'modal-oferta',
   templateUrl: './modal-ofertas.component.html',
   styleUrls: ['./ofertas.component.scss']
-})
+}) 
 export class ModalOfertasComponent {
-  
+   
   @ViewChild('ModalOfertas') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide
   @ViewChildren('checkboxUser') checkboxUsers; //te coge todos los elementos del DOM que tengan la etiqueta imageAPI
   @ViewChild('staticTabs') staticTabs; 
@@ -65,7 +65,7 @@ export class ModalOfertasComponent {
       this.firebase = firebase; //metodo para pasar el firebase del constructor a todos los metodos
    }
 
-  public showChildModal():void {
+  public showChildModal():void { 
     this.childModal.show(); //mostrar modal
     this.getProductos();
       this.staticTabs.tabs[1].disabled=true;
@@ -78,7 +78,7 @@ export class ModalOfertasComponent {
     console.log(this.idProducto);
     console.log(this.oferta);
     this.uploadImage();
-  }
+  } 
 
   public postOferta(){ //se llama desde uploadImage una vez se ha subido la foto correctamente
       this.ofertasService.uploadOferta(this.IdUsuarios,this.idProducto,this.oferta,this.idTienda).subscribe(

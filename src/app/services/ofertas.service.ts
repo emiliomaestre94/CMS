@@ -75,14 +75,59 @@ export class OfertasService {
         JSON.stringify({
            usuarios: usuarios,
            p_oferta: oferta.Precio,
-           fechaini: oferta.Fecha_final.formatted,
-           fechafin: oferta.Fecha_inicio.formatted,
+           fechaini: oferta.Fecha_inicio,
+           fechafin: oferta.Fecha_final,
            id_tienda: idTienda,
            id_producto_tienda: idProducto,
            foto: oferta.Imagen,
            Descripcion: oferta.Descripcion,
            estado: oferta.Estado,
            eliminado: oferta.Eliminado
+        }), this.options)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+        return  [{ status: res.status}]
+        }).catch((error: any) => {
+            console.log(error)
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
+    public updateOferta(oferta,idTienda){ 
+        return this.authHttp.put(environment.dominio + '/oferta/ofertaUsuario', 
+        JSON.stringify({
+           p_oferta: oferta.P_oferta_oferta_usuario,
+           fechaini: oferta.Fecha_inicio_oferta_usuario,
+           fechafin: oferta.Fecha_fin_oferta_usuario,
+           foto: oferta.Foto_oferta_usuario,
+           descripcion: oferta.Descripcion_oferta_usuario,
+           id_tienda:idTienda,
+           id: oferta.Id_oferta_usuario
+        }), this.options)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+        return  [{ status: res.status}]
+        }).catch((error: any) => {
+            console.log(error)
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
+
+    public postOfertaProducto(oferta,idTienda,idProducto){ 
+        return this.authHttp.post(environment.dominio + '/oferta/ofertaProducto', 
+        JSON.stringify({
+           p_oferta: oferta.P_oferta_oferta_producto,
+           fechaini: oferta.Fecha_inicio_oferta_producto,
+           fechafin: oferta.Fecha_fin_oferta_producto,
+           id_tienda: idTienda,
+           id_producto_tienda: idProducto,
+           foto: oferta.Foto_oferta_producto,
+           Descripcion: oferta.Descripcion_oferta_producto,
+           estado: oferta.Estado_oferta_producto,
+           eliminado: oferta.Eliminado_oferta_producto
         }), this.options)
         .delay(environment.timeout)
         .map((res: Response) => {

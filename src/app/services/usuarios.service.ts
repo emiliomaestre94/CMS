@@ -74,7 +74,7 @@ export class UsuariosService {
     
     construirconsulta(filtro){
         console.log(filtro)
-        let consulta=environment.dominio + "/usuario/tienda?id_tienda="+this.idTienda;
+        let consulta=environment.dominio + "/usuario?id_tienda="+this.idTienda;
         if (filtro["nombre"]!='')  consulta+="&nombre="+filtro["nombre"];
         if (filtro["sexo"]!='')  consulta+="&sexo="+filtro["sexo"];
         if (filtro["cp"]!='')  consulta+="&cp="+filtro["cp"];
