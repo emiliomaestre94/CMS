@@ -1,3 +1,4 @@
+import { ModalDetalleFacturasComponent } from './modal-detalle-facturas.component';
 import { ModalDirective } from 'ng2-bootstrap/modal/modal.component';
 import { Factura, FacturasService } from './../services/facturas.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -21,7 +22,7 @@ export class FacturasComponent implements OnInit {
   public bigCurrentPage:number = 1; //pagina que se selecciona por defecto
   public numPages:number = this.bigTotalItems/this.itemsPorPagina; //numero de paginas en total
 
-  constructor(public facturasService: FacturasService, public datostokenservice: DatosTokenService) { }
+  constructor(public facturasService: FacturasService, public datostokenservice: DatosTokenService) { } 
 
   ngOnInit() {
     this.idTienda=this.datostokenservice.token["id_tienda"];  
@@ -56,16 +57,12 @@ export class FacturasComponent implements OnInit {
     console.log('Items por pagina: ' + event.itemsPerPage);
   }
 
+  @ViewChild(ModalDetalleFacturasComponent) public modalDetalle:ModalDetalleFacturasComponent; //cogemos el componente para poder enviarle los datos
 
-
-  @ViewChild('childModal') public childModal:ModalDirective;
-
-  public showChildModal():void {
-    this.childModal.show();
+  showChildModal(factura){
+    this.modalDetalle.showChildModal(factura); //llamamos al metodo del componente hijo para que muestre la modal
+    //this.modalPerfil.usuario=usuario; //asignamos los datos del usuario a la variable input del componente hijo
   }
 
-  public hideChildModal():void {
-    this.childModal.hide();
-  }
 
 }

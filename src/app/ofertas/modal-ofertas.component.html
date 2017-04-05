@@ -264,6 +264,7 @@
                                     <div class="imagenBanner">
                                     <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
                                     <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
+                                    <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger">Cancelar</button> 
                                     </div>
                                         <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiarla.</p>
                                     </div>

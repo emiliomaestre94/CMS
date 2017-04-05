@@ -1,3 +1,4 @@
+import { YouTubeAPIService } from './services/youtube.service';
 import { DashboardService } from './services/dashboard.service';
 import { DatosTokenService } from './services/datostoken.service';
 
@@ -108,6 +109,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   DashboardService,
   FacturasService,
   OfertasService,
+  YouTubeAPIService
   ],
   bootstrap: [ AppComponent]
 })

@@ -1,3 +1,4 @@
+import { YoutubeModalComponent } from './youtube-modal.component';
 import { OfertasService } from './../services/ofertas.service';
 import { ProductosService, ImageProducto } from './../services/productos.service';
 import { Component, OnInit,ViewChild, ViewChildren,Inject, ElementRef } from '@angular/core';
@@ -5,6 +6,8 @@ import { ModalDirective } from 'ng2-bootstrap/modal';
 import { DatosTokenService } from './../services/datostoken.service';
 import { AngularFire, FirebaseApp } from 'angularfire2';
 import * as moment from 'moment';
+
+
 
 @Component({
   selector: 'modal-detalle-producto', 
@@ -43,6 +46,7 @@ export class ProductosDetalleModalComponent {
   public tabselected; //indica que tab es el seleccionado
 
   @ViewChild('productoDetalleModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide 
+  @ViewChild(YoutubeModalComponent) public modalYoutube:YoutubeModalComponent; //cogemos el componente para poder enviarle los datos
   @ViewChildren('imageAPI') imagesDOM; //te coge todos los elementos del DOM que tengan la etiqueta imageAPI
   @ViewChild('imageProducto') imageProducto; //te coge todos los elementos del DOM que tengan la etiqueta imageAPI
   @ViewChild('staticTabs') staticTabs; 
@@ -73,6 +77,12 @@ export class ProductosDetalleModalComponent {
   public formatDate(){
     this.oferta["Fecha_inicio_oferta_producto"]= this.oferta["Fecha_inicio_oferta_producto"].split("T")[0];
     this.oferta["Fecha_fin_oferta_producto"]=this.oferta["Fecha_fin_oferta_producto"].split("T")[0];
+  }
+
+
+  public showYoutubeModal(){
+    this.modalYoutube.showChildModal(this.producto["Nombre_producto"]); //llamamos al metodo del componente hijo para que muestre la modal
+    //this.modalPerfil.usuario=usuario; //asignamos los datos del usuario a la variable input del componente hijo
   }
 
   public showChildModal(producto):void {
@@ -195,7 +205,7 @@ export class ProductosDetalleModalComponent {
 
  
 
-
+ 
   files;
   imageloaded: boolean=false//si hay una fotocargada
   handleInputChange(foto) {
@@ -228,7 +238,6 @@ export class ProductosDetalleModalComponent {
    console.log(this.tabselected);
   }
 
-  
 
 
 
