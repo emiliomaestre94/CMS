@@ -24,6 +24,11 @@ export const routes: Routes = [
       title: 'Home' 
     },
     children: [
+            {
+        path: 'empresa',
+        loadChildren: './empresa/empresa.module#EmpresaModule',
+        canActivate: [AuthGuard]
+      },
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule',

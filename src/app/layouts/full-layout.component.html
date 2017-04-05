@@ -77,7 +77,7 @@
         <nav class="sidebar-nav">
             <ul class="nav">
                 <!--Aqui ponemos lo de la foto -->
-                <div class="usuario-navbar">
+                <div class="usuario-navbar" routerLinkActive="active" [routerLink]="['/empresa']">
                     <img src="{{datostokenservice.token['logo_tienda']}}" class="img-avatar fotosidebar" alt="admin@bootstrapmaster.com">
                     <p class="text-center">{{datostokenservice.token['nombre_tienda']}}</p>
                     <li class="divider"></li>

@@ -2,7 +2,6 @@ import { TabsModule } from 'ng2-bootstrap/tabs';
 import { PerfiladminRoutingModule } from './perfiladmin-routing.module';
 import { PerfiladminComponent } from './perfiladmin.component';
 
-
 //// Modal Component
 import { ModalModule } from 'ng2-bootstrap/modal';
 ////////////////////
@@ -34,6 +33,4 @@ import { provideAuth } from 'angular2-jwt';
     providers:[
     ]
 })
-export class PerfiladminModule { 
-
-}
+export class PerfiladminModule { }

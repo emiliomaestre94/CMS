@@ -1,0 +1,35 @@
+
+input[type="file"] {
+    opacity: 0;
+    width: 195px;
+    height: 195px;
+    position: absolute;
+    top: 20px;
+    border-radius: 200px;
+}
+
+.imagenLogo {
+    border: 2px dashed #124570;
+    height: 220px;
+    width: 220px;
+    margin-left: 25px;
+    border-radius: 200px;
+}
+img.imgLogoTienda {
+    width: 215px;
+    height: 215px;
+    border-radius: 200px;
+}
+
+
+.imagenTienda {
+    border: 2px dashed #124570;
+    height: 180px;
+    width: 320px;
+    margin-left: 25px;
+
+}
+img.imgTienda {
+    height: 175px;
+    width: 315px;
+}
