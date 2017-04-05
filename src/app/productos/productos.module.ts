@@ -1,3 +1,4 @@
+import { YoutubeModalComponent, SafePipe } from './youtube-modal.component';
 import { ProductosDetalleModalComponent } from './modal-productos.component';
 import { ProductosService } from './../services/productos.service';
 import { BuscadorProductosPipe } from './buscadorproductos.pipe';
@@ -37,7 +38,9 @@ BuscadorProductosPipe
     declarations: [ 
       ProductosComponent,
       ProductosDetalleModalComponent,
-      BuscadorProductosPipe
+      YoutubeModalComponent,
+      BuscadorProductosPipe,
+      SafePipe
     ],
     
     providers:[

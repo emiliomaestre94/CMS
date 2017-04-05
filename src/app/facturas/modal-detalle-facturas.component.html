@@ -1,0 +1,64 @@
+<div bsModal #facturaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="width: 50%;">
+        <div class="modal-content">
+
+            <div class="modal-header-factura" id="factura" style="background-color: #124570;">
+                <h4 class="modal-title">Factura</h4>
+                <button type="button" class="close" (click)="hideChildModal();" aria-label="Close">
+                    <span aria-hidden="true" style="color:white;"><i class="fa fa-remove fa-lg m-t-2"></i></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div *ngIf="facturaDetalle"class="datosTienda">
+                        <p><span>Tienda de Ropa</span> - CIF: {{facturaDetalle.CIF_tienda}}</p>
+                        <p><strong>Id:</strong>{{facturaDetalle.Id_factura}}</p>
+                        <p>{{facturaDetalle.Direccion_tienda}}</p>
+                        <p>{{facturaDetalle.Localidad_tienda}} - {{facturaDetalle.CP_tienda}}</p>
+                        <p><em>{{facturaDetalle.Fecha_factura}}</em></p>
+                        <p>Tlf: {{facturaDetalle.Telefono_tienda}}</p>  
+                </div>
+                <div *ngIf="facturaDetalle"class="datosCliente">
+                        <p><span>{{facturaDetalle.Nombre_usuario}}</span></p>
+                        <p>DNI: {{facturaDetalle.DNI_usuario}}</p>
+                        <p>C/: {{facturaDetalle.Direccion_usuario}}</p>
+                        <p>{{facturaDetalle.Localidad_usuario}} - {{facturaDetalle.CP_usuario}}</p>
+                        <p><span>{{facturaDetalle.Email_usuario}}</span></p> 
+                        <button type="button" (click)="download();"class="btn btn-danger">Descargar Pdf <i class="fa fa-file-pdf-o"></i></button> 
+                </div>
+   
+                <div *ngIf="facturaLineas" class="tablaFactura">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="descripcion" style="text-align: center">Descripción</th>
+                                    <th class="cantidad" style="text-align: center">Cantidad</th>
+                                    <th class="precio" style="text-align: center">Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let facturalinea of facturaLineas" >
+                                    <td>{{facturalinea.Nombre_producto}}</td>
+                                    <td style="text-align: center">{{facturalinea.Cantidad_linea_factura}}</td>
+                                    <td style="text-align: center">{{facturalinea.Precio_producto}}</td>
+                                </tr>
+                             
+                            </tbody>
+                        </table>
+                </div>
+
+                <div class="importe">
+                    <div>
+                        <p>Base: <span class="base">1000,00€</span></p>
+                        <p><span class="impuestos">IVA 4%: 10€ · IVA 8%: 25€ · IVA 21%: 15,50€</span></p>
+                        <p><strong>Total con IVA:</strong><span class="total">1050,50€</span></p>
+                     </div>
+                </div>
+
+        </div>
+
+            <div class="modal-footer"></div>
+
+        </div>
+    </div>
+</div>

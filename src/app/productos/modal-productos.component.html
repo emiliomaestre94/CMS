@@ -76,7 +76,8 @@
                                                 <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
                                                 <div class="col-md-9">
                                                     <input type="text" id="text-input" name="text-input" class="form-control" [(ngModel)]="producto.URL_video_producto">
-                                                    <span class="help-block">Ponga una url como en el ejemplo</span>
+                                                    <button type="button" (click)="showYoutubeModal();" class="btn btn-primary"> Buscar videos</button> 
+
                                                 </div>
                                             </div>
                                     </form>
@@ -160,3 +161,6 @@
         </div>
     </div>
 </div>
+
+<!--MODAL DE YOUTUBE-->
+<youtube-modal></youtube-modal>
