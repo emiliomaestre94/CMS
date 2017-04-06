@@ -98,3 +98,24 @@ import {ElementRef, ViewChild} from '@angular/core';
    Padre: Position:relative;
    Hijo: Position: absolute;
    //si quieres poner al hijo en medio: left: 50%; margin-left:-24px //en caso de que el width sea 48 px
+
+   Oferta=pablogay
+
+   Fecha_final
+:
+Object
+day
+:
+"09"
+formatted
+:
+"2017-04-09"
+momentObj
+:
+Moment
+month
+:
+"04"
+year
+:
+"2017"

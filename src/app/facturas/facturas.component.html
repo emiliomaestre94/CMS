@@ -2,36 +2,29 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
+            <div class="card-header" ><p>Facturas de usuarios</p></div> 
 
-            <div class="card-header" ><p>Facturas Usuarios</p></div>
-            <!--
-                <pre class="card card-block card-header">La pagina seleccionada es: {{bigCurrentPage}}/{{numPages}}</pre>
-                <button type="button" class="btn btn-info" (click)="setPage(3)">Establecer pagina seleccionada a: 3</button>
-                -->
-            <!--
-            <h1 *ngIf="!usuarios"> CARGANDO USUARIOS... </h1>
-            <div  *ngIf="!usuarios" class="loader"></div>
-            -->
-
-        <!--<div *ngIf="usuarios" class="card-block">-->
-        <div class="card-block">
-
-            <!--
-            <div  *ngIf="!pene" class="loader"></div> 
-            <div  *ngIf="!pene" style="text-align:center;" class="alert alert-danger">
-                Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.
-            </div>
-            -->
-            <!-- *ngIf="pene" --> 
-            <div  id="buscador" class="form-group row">
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                        </span>
-                        <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="NºFact/Fecha/Hora/Total/Usuario" [(ngModel)]="buscadorFacturas">
+            <div  class="card-block">
+                <div id="buscador" class="form-group row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button  type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                            </span>
+                            <input type="text" iFid="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
+                        </div>                        
+                        <div *ngIf="busquedaActiva == true"  class="col-sm-12 filtro">
+                            <span class="bold fp">Filtrado por:</span>
+                            <span class="filtros">
+                                <span class="tag bolds">
+                                    <a (click)="eliminarBusqueda();" class="btn btn-sm btn-instagram text">
+                                    <span data-value="busqueda" class="closex">x</span>
+                                    <span class="item">{{tag}}</span>
+                                    </a>
+                                </span>
+					        </span>
+	                    </div>
                     </div>
-                </div>
 
                    <div class="col-md-6">
                         <pagination class="pagination" id="pagination"
@@ -49,14 +42,16 @@
                        <!--  <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>-->
                     </div>
 
-                    <table class="table table-hover table-outline mb-0 hidden-sm-down">
+                    <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
+                        {{mensajeError}}
+                    </div> 
+                       <table class="table table-hover table-outline mb-0 hidden-sm-down">
                         <thead class="thead-default">
                             <tr>
                                 <!--<th class="text-center"><i class="icon-people"></i></th>-->
                                 <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
                                 <th class="text-center" style="width: 200px;">Nº Fact</th>
                                 <th class="text-center" style="width: 110px;">Fecha</th>
-                                <th class="text-center" style="width: 90px;">Hora</th>
                                 <th class="text-center">Total</th>
                                 <th class="text-center" style="width: 400px;">Usuario</th>
                                 <th class="text-center" style="width: 100px;"></th>
@@ -64,402 +59,37 @@
                         </thead>
                         <tbody>
                     
-                            <tr>
+                            <tr *ngFor="let factura of facturas">
                                 <td class="text-center">
                                     <input type="checkbox" name="" value="">
                                 </td>
-                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
-                                    <strong>N05</strong>
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
+                                    <strong>{{factura.Id_factura}}</strong>
                                 </td>
-                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
-                                    <strong>17-01-2017</strong>
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
+                                    <strong>{{factura.Fecha_factura}}</strong>
                                 </td>
-                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
-                                    <strong>17:00</strong>
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
+                                    <strong>{{factura.Total_factura}} </strong><i class="fa fa-eur"></i>
                                 </td>
-                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
-                                    <strong>200 </strong><i class="fa fa-eur"></i>
-                                </td>
-                                <td class="text-center" data-toggle="modal" (click)="facturaModal.show()">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
                                     <strong>josefcomoreno85@gmail.com</strong>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N025</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>100€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>josefcomoreno85@gmail.com</strong>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="facturaModal.show()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N050</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>400€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>josefcomoreno85@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N055</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>800€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>josefcomoreno85@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N065</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>200€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>casfgjkooef@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N075</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>1200€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>lkjumvhquruma@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N085</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>600€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>pohgjhmg@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N095</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>200€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>josefcomliuñuñuinhoreno85@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N105</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>2100€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>asdafdasfaf@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N205</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>2000€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>josefcomoreno85@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N305</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>4000€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>jfmf85@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N405</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>200€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>ymtyml@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N05</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>250€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>axcvhdfjddgaasebntj@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N505</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>100€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>iluvcb@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N605</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>300€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>nytmmt@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N705</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>350€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>yjtjt@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N805</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>200€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>asfbfdhgs@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N905</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>700€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>sdadasdasdasd@gmail.com</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">
-                                <input type="checkbox" name="" value="">
-                                </td>
-                                <td class="text-center">
-                                <strong>N1105</strong>
-                                </td>
-                                <td class="text-center">
-                                <strong>17-01-2017</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>17:00</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>450€</strong>
-                                </td>
-                                <td class="text-center">
-                                    <strong>qweqweqeweqw@gmail.com</strong>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(factura)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-
-                </div>
+                    </table>                   
+                </div> 
+         
             </div>
 
-            <diV>
+
+            <div>
+
                 <button type="button" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Eliminar</button>
+
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 
@@ -472,120 +102,13 @@
                     lastText="&raquo;" 
                     (pageChanged)="pageChanged($event)">
                 </pagination>
-            </diV>
-        </div>
-    </div>
-</div>
-
-
-<!--DETALLE FACTURA-->
-
-<div bsModal #facturaModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" style="width: 50%;">
-        <div class="modal-content">
-
-            <div class="modal-header-factura" id="factura" style="background-color: #124570;">
-                <h4 class="modal-title">Factura</h4>
-                <button type="button" class="close" (click)="facturaModal.hide()" aria-label="Close">
-                    <span aria-hidden="true" style="color:white;"><i class="fa fa-remove fa-lg m-t-2"></i></span>
-                </button>
             </div>
 
-            <div class="modal-body">
-                <div class="datosTienda">
-                        <p><span>Tienda de Ropa</span> - CIF: 21212121F</p>
-                        <p><strong>Num:</strong> F1231</p>
-                        <p>C/: Reyes Catolicos Nº25</p>
-                        <p>Alicante - 03005</p>
-                        <p><em>21/02/2017 · 14:55</em></p>
-                        <p>Tlf: 965 48 48 48</p>  
-                </div>
-                <div class="datosCliente">
-                        <p><span>Jose Fco Moreno Fernández</span></p>
-                        <p>DNI: 48362351K</p>
-                        <p>C/: Princesa Mercedez Nº12 4C</p>
-                        <p>Alicante - 03006</p>
-                        <p><span>josefcomoreno85@gmail.com</span></p> 
-                        <button type="button" class="btn btn-danger">Descargar Pdf <i class="fa fa-file-pdf-o"></i></button> 
-                </div>
-   
-                <div class="tablaFactura">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="descripcion" style="text-align: center">Descripción</th>
-                                    <th class="cantidad" style="text-align: center">Cantidad</th>
-                                    <th class="precio" style="text-align: center">Precio</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Coca Cola Zero</td>
-                                    <td style="text-align: center">1</td>
-                                    <td style="text-align: center">0,49€</td>
-                                </tr>
-                                <tr>
-                                    <td>Barra de Pan</td>
-                                    <td style="text-align: center">2</td>
-                                    <td style="text-align: center">0,90€</td>
-                                </tr>
-                                <tr>
-                                    <td>Caja de Galletas Tostarica</td>
-                                    <td style="text-align: center">10</td>
-                                    <td style="text-align: center">3,85€</td>
-
-                                </tr>
-                                <tr>
-                                    <td>Chocolate Milka con Caramelo</td>
-                                    <td style="text-align: center">10</td>
-                                    <td style="text-align: center">23,34€</td>
-                                </tr>
-                                <tr>
-                                    <td>Caramelos Explosivos</td>
-                                    <td style="text-align: center">5</td>
-                                    <td style="text-align: center">53,34€</td>
-                                </tr>
-                                <tr>
-                                    <td>Langostinos del Mar Muerto</td>
-                                    <td style="text-align: center">1</td>
-                                    <td style="text-align: center">23,34€</td>
-                                </tr>
-                                <tr>
-                                    <td>Fanta Limón</td>
-                                    <td style="text-align: center">25</td>
-                                    <td style="text-align: center">0,44€</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerceza Guinnes</td>
-                                    <td style="text-align: center">50</td>
-                                    <td style="text-align: center">2,5€</td>
-                                </tr>
-                                <tr>
-                                    <td>Chocolate Milka con Caramelo</td>
-                                    <td style="text-align: center">10</td>
-                                    <td style="text-align: center">23,34€</td>
-                                </tr>
-                                <tr>
-                                    <td>Caramelos Explosivos</td>
-                                    <td style="text-align: center">5</td>
-                                    <td style="text-align: center">53,34€</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                </div>
-
-                <div class="importe">
-                    <div>
-                        <p>Base: <span class="base">1000,00€</span></p>
-                        <p><span class="impuestos">IVA 4%: 10€ · IVA 8%: 25€ · IVA 21%: 15,50€</span></p>
-                        <p><strong>Total con IVA:</strong><span class="total">1050,50€</span></p>
-                     </div>
-                </div>
-
-        </div>
-
-            <div class="modal-footer"></div>
-
         </div>
     </div>
 </div>
+
+
+
+<!--MODAL DETALLE FACTURA-->
+<modal-detalle-facturas></modal-detalle-facturas>

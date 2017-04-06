@@ -3,7 +3,7 @@
         <div class="modal-content">
 
             <div class="modal-header-producto" id="producto">
-                <h4 class="modal-title">Detalle Producto</h4>
+                <h4 class="modal-title">{{producto.Nombre_producto}}</h4>
                 <button type="button" class="close" (click)="hideChildModal()" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-remove fa-lg m-t-2"></i></span>
                 </button>
@@ -15,9 +15,9 @@
                 <div class="row">
                 <div class="col-md-12">
                     <!-- Nav tabs -->
-                    <tabset>
-                        <tab>
-                            <template tabHeading><i class="icon-list"></i> Info. Producto</template>
+                    <tabset #staticTabs>
+                        <tab (select)="selectTab(1);" >
+                          <template tabHeading> <i class="icon-list"></i> Info. Producto </template>
                             
                             <div class="form-group row">
                                 <div class="col-md-5">
@@ -76,53 +76,54 @@
                                                 <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
                                                 <div class="col-md-9">
                                                     <input type="text" id="text-input" name="text-input" class="form-control" [(ngModel)]="producto.URL_video_producto">
-                                                    <span class="help-block">Ponga una url como en el ejemplo</span>
+                                                    <button type="button" (click)="showYoutubeModal();" class="btn btn-primary"> Buscar videos</button> 
+
                                                 </div>
                                             </div>
                                     </form>
                                 </div>
                             </div>
                         </tab>
-                        <tab>
+                        <tab (select)="selectTab(2);">
                             <template tabHeading><i class="icon-present"></i> Oferta Producto</template>
                             <div class="form-group row">
                                 <div class="col-md-7">
-                                    <form #productosComponentForm="ngForm">
+                                    <form #productosComponentForm="ngForm"> 
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Orden de Visualización</strong></label>
+                                            <label class="col-md-3 form-control-label"   for="disabled-input"><strong>Orden de Visualización</strong></label>
                                             <div class="col-md-2">
-                                                <select class="form-control" id="ccmonth">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                <select [(ngModel)]="oferta.Orden" class="form-control" name="orden" id="ccmonth">
+                                                    <option [ngValue]=1>1</option>
+                                                    <option [ngValue]=2>2</option>
+                                                    <option [ngValue]=3>3</option>
+                                                    <option [ngValue]=4>4</option>
+                                                    <option [ngValue]=5>5</option>
                                                 </select>
                                             </div>
                                        
                                             <label class="col-md-2 form-control-label" for="disabled-input"><strong>Oferta</strong></label>
                                             <div class="col-md-2">
-                                               <input type="text" class="form-control" style = "text-align: center" placeholder="%">
+                                               <input type="text" class="form-control" name="poferta" [(ngModel)]="oferta.P_oferta_oferta_producto"  style = "text-align: center" placeholder="%">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Inicio</strong></label>
                                             <div class="col-md-6">
-                                                <ng2-datepicker class="form-control" name="finicio" [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                                                 <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_inicio_oferta_producto" name="fechaini">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Final</strong></label>
                                             <div class="col-md-6">
-                                                <ng2-datepicker class="form-control" name="ffinal" [options]="options" [(ngModel)]="date"></ng2-datepicker>
+                                                <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_fin_oferta_producto" name="fechafin">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción Oferta</strong></label>
                                             <div class="col-md-6">
-                                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"[(ngModel)]="producto.Descripcion_producto" ></textarea>
+                                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"  [(ngModel)]="oferta.Descripcion_oferta_producto" ></textarea>
                                             </div>
                                         </div>
                                     </form>
@@ -135,6 +136,7 @@
                                     <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
                                     </div>
                                     <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
+                                    <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger">Cancelar</button> 
                                     <button type="button" class="btn btn-danger" style="float:right;"><i class="fa fa-trash-o"></i> Eliminar</button>
                                 </div>
 
@@ -144,71 +146,21 @@
                 </div>
                 </div>
                 </div>
-                <!--
-                <div class="imagenProducto">
-                    <img #imageProducto src="{{producto.Imagen_producto}}" class="img-avatar" style=" width:100px; height: 100px;"alt="admin@bootstrapmaster.com">
-                    <!-- Imagenes de la API -->
-                    <!--
-                    <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button> 
-
-                    <div *ngFor="let image of imagesProducto" id="pene">
-                        <img #imageAPI src="{{image.imageurl}}" (click)="selectImageAPI($event);" style=" width:100px;" alt="admin@bootstrapmaster.com">
-                    </div>
-
-                    <!--
-                    <div class="form-group row">
-                        <div class="col-md-9">
-                            <div class="imagenPerfil">
-                                <img class="imgPerfil"/>
-                            </div>
-                            <input type="file" id="file-input" name="file-input">
-                        </div>
-                    </div>
-                    -->
-                <!--</div>
-  
-                <form #productosComponentForm="ngForm" >
-                    <div class="datosProducto">
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Cod Producto</strong></label>
-                            <div class="col-md-9">
-                                <input type="text" id="disabled-input" name="codigo" [(ngModel)]="producto.Codigo_producto"  class="form-control"  disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Nombre Producto</strong></label>
-                            <div class="col-md-9">
-                                <input type="text" id="disabled-input" name="nombre" class="form-control" [(ngModel)]="producto.Nombre_producto"   disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Precio Producto</strong></label>
-                            <div class="col-md-9">
-                                <input type="text" id="disabled-input" name="precio" class="form-control" [(ngModel)]="producto.Precio_producto" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción</strong></label>
-                            <div class="col-md-9">
-                                <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"[(ngModel)]="producto.Descripcion_producto" ></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
-                            <div class="col-md-9">
-                                <input type="text" id="text-input" name="text-input" class="form-control" [(ngModel)]="producto.URL_video_producto">
-                                <span class="help-block">Ponga una url como en el ejemplo</span>
-                            </div>
-                        </div>
-                    </div>
-                </form> -->
+      
             </div>
 
             <div class="modal-footer">
-                <button type="button" (click)="updateProducto();" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+               
+                <button type="button" *ngIf="tabselected==1" (click)="updateProducto();" class="btn btn-primary"><i class="fa fa-save"></i> Actualizar producto</button> 
+                <button type="button" *ngIf="tabselected==2 && ofertaActiva==false"(click)="saveData();" class="btn btn-primary"><i class="fa fa-save"></i> Crear oferta</button>
+                <button type="button" *ngIf="tabselected==2 && ofertaActiva==true"(click)="saveData();" class="btn btn-danger"><i class="fa fa-save"></i> Eliminar oferta</button>
+                <button type="button" *ngIf="tabselected==2 && ofertaActiva==true"(click)="saveData();" class="btn btn-success"><i class="fa fa-save"></i> Actualizar oferta</button>
             </div>
              
 
         </div>
     </div>
 </div>
+
+<!--MODAL DE YOUTUBE-->
+<youtube-modal></youtube-modal>

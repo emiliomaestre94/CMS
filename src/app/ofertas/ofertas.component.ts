@@ -36,7 +36,7 @@ export class OfertasComponent implements OnInit {
               console.log(res[0].status);
   
             }
-          }
+          } 
            //this.accesocorrecto=true;        
         },
         err=>{ //Error de conexion con el servidor
@@ -46,14 +46,14 @@ export class OfertasComponent implements OnInit {
   }
 
   @ViewChild(ModalOfertasComponent) public modalOfertas:ModalOfertasComponent; //cogemos el componente para poder enviarle los datos
-  @ViewChild(ModalDetalleOfertasComponent) public modalClientesOfertados:ModalOfertasComponent; //cogemos el componente para poder enviarle los datos
+  @ViewChild(ModalDetalleOfertasComponent) public modalClientesOfertados:ModalDetalleOfertasComponent; //cogemos el componente para poder enviarle los datos
 
   showChildModal(){
     this.modalOfertas.showChildModal();
   }
 
-  showChildModalClientesOfertados(){
-    this.modalClientesOfertados.showChildModal();
+  showChildModalClientesOfertados(oferta){
+    this.modalClientesOfertados.showChildModal(oferta,this.idTienda,);
   }
 
   

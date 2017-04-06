@@ -1,3 +1,4 @@
+import { ModalDetalleFacturasComponent } from './modal-detalle-facturas.component';
 // Modal Component
 import { ModalModule } from 'ng2-bootstrap/modal';
 
@@ -31,6 +32,7 @@ BuscadorFacturasPipe
     ],
     declarations: [ 
       FacturasComponent,
+      ModalDetalleFacturasComponent,
       BuscadorFacturasPipe
     ],
     providers:[
