@@ -19,3 +19,7 @@ a.navbar-brand {
 a.dropdown-item:hover {
     background: #20a8d8 !important;
 }
+header.navbar .nav-item .nav-link > .img-avatar {
+    width: 35px !important;
+    object-fit: cover;
+}

@@ -52,8 +52,9 @@ img.imgPerfilAdmin {
     width: 395px;
     height: 395px;
     border-radius: 200px;
-}
+    object-fit: cover;
 
+}
 span.input-group-addon.addonIzq{
     width: 70px;
 }

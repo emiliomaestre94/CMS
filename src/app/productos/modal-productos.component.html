@@ -22,15 +22,18 @@
                             <div class="form-group row">
                                 <div class="col-md-5">
                                     <div style="width: 200px; height:200px;">
-                                        <img #imageProducto src="{{producto.Imagen_producto}}" class="img-avatar" style="padding-left: 20%; border-radius: 0em;" alt="Ninguna Imagen Seleccionada">
-                                    
-                                         <!-- Imagenes de la API --> 
-                                        <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button>
+                                        <div class="imgP" style="width: 190px; height:190px;">
+                                            <img class="img-avatar"  #imageProducto src="{{producto.Imagen_producto}}" alt="Ninguna Imagen Seleccionada">
+                                        </div>
+                                         <!-- Imagenes de la API -->
+                                         <div class="botonImgP" > 
+                                            <button  *ngIf="imageSelected==true"  (click)="cancelSelectImage();"  type="button" class="btn btn-danger">Cancelar</button>
+                                        </div>
                                     </div>
                                     <div class="galeriaImagenes">
                                         <div *ngFor="let image of imagesProducto" id="pene">
-                                            <div class="col-xs-3" id="imglibreria">
-                                            <img #imageAPI src="{{image.imageurl}}" (click)="selectImageAPI($event);" style="width:75px;" alt="admin@bootstrapmaster.com">
+                                            <div class="col-xs-3" id="imglibreria" style="width: 75px; height:75px;">
+                                                <img #imageAPI src="{{image.imageurl}}" (click)="selectImageAPI($event);" style="width:100%;height:100%; object-fit: scale-down;" alt="admin@bootstrapmaster.com">
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +133,7 @@
                                 </div>
 
                                 <div class="col-md-5">
-                                    <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta HxW</strong></p>
+                                    <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta 210x350</strong></p>
                                     <div class="imagenBanner">
                                     <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
                                     <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >

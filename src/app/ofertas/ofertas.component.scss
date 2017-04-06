@@ -80,5 +80,8 @@ input[type="file"] {
 }
 img.imgBanner {
     width: 100%;
-    height: 210px;
+    height:100%;
+    object-fit: cover;
+    /*object-fit: contain;*/
+    /*der-radius: 200px;*/
 }
