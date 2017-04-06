@@ -1,107 +1,104 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
-        <div class="card-header" ><p>Perfil Tienda: CHARA</p></div>
+        <div class="card-header" ><p>Datos de la tienda</p></div>
             <div class="card-block">
-                <div class="form-group row">
+                <div *ngIf="tienda"class="form-group row"> 
+                    <div class="col-md-5" style="float:left;">
+                        <p style="text-align: left; font-size: 16px;"><strong>Logo Tienda</strong></p>
+                        <div class="imagenLogo">
+                            <img class="imgLogoTienda" id="imagenSrc"  src="{{imageSrc}}"/>
+                            <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">
+                            <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
+                        </div>
 
-                                  <div class="col-md-5" style="float:left;">
-                                      <p style="text-align: left; font-size: 16px;"><strong>Logo Tienda</strong></p>
-                                      <div class="imagenLogo">
-                                          <img class="imgLogoTienda" id="imagenSrc"  src="{{imageSrc}}"/>
-                                          <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">
-                                          <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
-                                      </div>
+                        <!--(change)="filebuttoni($event)"-->
+                        <div class="botonesImagen" style="padding-bottom: 15px; padding-top: 40px; padding-left: 20px">
+                            <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger">Cancelar</button> 
+                            <button (click)="uploadImageLogo()" class="btn btn-primary px-2" style="width:130px"><i class="fa fa-save"></i>  Guardar</button>
+                        </div>
 
-                                      <!--(change)="filebuttoni($event)"-->
-                                      <div class="botonesImagen" style="padding-bottom: 15px; padding-top: 40px; padding-left: 20px">
-                                          <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger">Cancelar</button> 
-                                          <button *ngIf="loading3==false" (click)="uploadImage()" class="btn btn-primary px-2" style="width:130px"><i class="fa fa-save"></i>  Guardar</button>
-                                          <button *ngIf="loading3==true" class="btn btn-info px-2" style="width:130px"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
-                                      </div>
-
-                                      <!--<input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">-->
-                                      <div  *ngIf="msgImage && error3==true && loading3==false"  class="alert alert-danger"> {{msgImage}}</div>
-                                      <div  *ngIf="msgImage && error3==false && loading3==false"  class="alert alert-success" > {{msgImage}}</div>
-                                  </div>
+                        <!--<input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">-->
+                        <div  *ngIf="msgImage && error3==true && loading3==false"  class="alert alert-danger"> {{msgImage}}</div>
+                        <div  *ngIf="msgImage && error3==false && loading3==false"  class="alert alert-success" > {{msgImage}}</div>
+                    </div>
 
 
-                                  <div class="col-md-7" style="float:right;">
-                                    <form>
-                                        <div class="form-group">
-                                            <div class="form-group row">
-                                              <div class="input-group col-md-6">
-                                                  <span class="input-group-addon"><strong>CIF</strong></span>
-                                                  <input class="form-control"   type="text">
-                                                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                              </div>
-                                              <div class="input-group col-md-6">
-                                                  <span class="input-group-addon"><strong>Tlf</strong></span>
-                                                  <input class="form-control"    type="text">
-                                                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                              </div>
-                                            </div>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><strong>Nombre</strong></span>
-                                                <span class="form-control"></span>
-                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                            </div>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><strong>Dirección</strong></span>
-                                                <input class="form-control"   type="text">
-                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            </div>
-                                            <div class="form-group row">
-                                              <div class="input-group col-md-8">
-                                                  <span class="input-group-addon"><strong>Provincia</strong></span>
-                                                  <input class="form-control"   type="text">
-                                                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                              </div>
-                                              <div class="input-group col-md-4">
-                                                  <span class="input-group-addon"><strong>CP</strong></span>
-                                                  <input class="form-control"    type="text">
-                                                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                              </div>
-                                            </div>
-                                            <div class="form-group row col-md-12">
-                                              <span class="input-group-addon"><strong>Horario</strong></span>
-                                              <div class="col-md-8">
-                                                <textarea id="textarea-input" name="descripcion" rows="9" class="form-control"></textarea>
-                                              </div>
-                                            </div>
-                                            <div class="form-group row col-md-12">
-                                              <span class="input-group-addon"><strong>Descripción</strong></span>
-                                              <div class="col-md-8">
-                                                  <textarea id="textarea-input" name="descripcion" rows="9" class="form-control"></textarea>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                  </div>
-
-                                  <div class="col-md-6" style="float:left; margin-top: -270px;">
-                                      <p style="text-align: left; font-size: 16px;"><strong>Imagen Tienda 320x180</strong></p>
-                                      <div class="imagenTienda">
-                                          <img class="imgTienda" id="imagenSrc"  src="{{imageSrc}}"/>
-                                          <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">
-                                          <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
-                                      </div>
-
-                                      <!--(change)="filebuttoni($event)"-->
-                                      <div class="botonesImagen" style="padding-bottom: 15px; padding-top: 40px; padding-left: 20px">
-                                          <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger">Cancelar</button> 
-                                          <button *ngIf="loading3==false" (click)="uploadImage()" class="btn btn-primary px-2" style="width:130px"><i class="fa fa-save"></i>  Guardar</button>
-                                          <button *ngIf="loading3==true" class="btn btn-info px-2" style="width:130px"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
-                                      </div>
-
-                                      <!--<input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">-->
-                                      <div  *ngIf="msgImage && error3==true && loading3==false"  class="alert alert-danger"> {{msgImage}}</div>
-                                      <div  *ngIf="msgImage && error3==false && loading3==false"  class="alert alert-success" > {{msgImage}}</div>
+                    <div class="col-md-7" style="float:right;">
+                        <form #EmpresaForm="ngForm">
+                            <div class="form-group">
+                                <div class="form-group row">
+                                    <div class="input-group col-md-6">
+                                        <span class="input-group-addon"><strong>CIF</strong></span>
+                                        <input class="form-control"[(ngModel)]="tienda.CIF_tienda" name="CIF" type="text">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <div class="input-group col-md-6">
+                                        <span class="input-group-addon"><strong>Tlf</strong></span>
+                                        <input class="form-control"[(ngModel)]="tienda.Telefono_tienda" name="tlf"  type="text">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    </div>
                                 </div>
-                              
+                                <div class="input-group">
+                                    <span class="input-group-addon"><strong>Nombre</strong></span>
+                                    <input class="form-control" type="text" [(ngModel)]="tienda.Nombre_tienda" name="nombre" >
+                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><strong>Dirección</strong></span>
+                                    <input class="form-control" type="text" [(ngModel)]="tienda.Direccion_tienda" name="direccion">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="input-group col-md-8">
+                                        <span class="input-group-addon"><strong>Provincia</strong></span>
+                                        <input class="form-control" type="text" [(ngModel)]="tienda.Provincia_tienda" name="provincia">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <div class="input-group col-md-4">
+                                        <span class="input-group-addon"><strong>CP</strong></span>
+                                        <input class="form-control" [(ngModel)]="tienda.CP_tienda" name="CP" type="text">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <span class="input-group-addon"><strong>Horario</strong></span>
+                                    <div class="col-md-8">
+                                    <textarea id="textarea-input" [(ngModel)]="tienda.Horario_tienda" name="Horario" rows="9" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <span class="input-group-addon"><strong>Descripción</strong></span>
+                                    <div class="col-md-8">
+                                        <textarea id="textarea-input"  [(ngModel)]="tienda.Descripcion_tienda"name="descripcion" rows="9" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form> 
+                    </div>
 
+                    <div class="col-md-6" style="float:left; margin-top: -270px;">
+                        <p style="text-align: left; font-size: 16px;"><strong>Imagen Tienda 320x180</strong></p>
+                        <div class="imagenTienda">
+                            <img class="imgTienda" id="imagenSrc"  src="{{imageSrc2}}"/>
+                            <input #image2 type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange2($event)">
+                            <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiar la.</p>
+                        </div>
+
+                        <!--(change)="filebuttoni($event)"-->
+                        <div class="botonesImagen" style="padding-bottom: 15px; padding-top: 40px; padding-left: 20px">
+                            <button  *ngIf="imageloaded2==true"  (click)="cancelImageLoad2()"  type="button" class="btn btn-danger">Cancelar</button> 
+                            <button (click)="uploadImageFondo()" class="btn btn-primary px-2" style="width:130px"><i class="fa fa-save"></i>  Guardar</button>
+                        </div>
+
+                        <!--<input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)">-->
+                        <div  *ngIf="msgImage && error3==true && loading3==false"  class="alert alert-danger"> {{msgImage}}</div>
+                        <div  *ngIf="msgImage && error3==false && loading3==false"  class="alert alert-success" > {{msgImage}}</div>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-primary" style="float: right;"><i class="fa fa-save"></i> Guardar</button>
+
+                <button type="button" (click)="updateTienda();" class="btn btn-primary" style="float: right;"><i class="fa fa-save"></i> Guardar </button>
+
             </div>
         </div>
     </div>

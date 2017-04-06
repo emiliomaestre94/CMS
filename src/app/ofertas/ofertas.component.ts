@@ -43,7 +43,7 @@ export class OfertasComponent implements OnInit {
             console.log(err);
         },   
     );
-  }
+  } 
 
   @ViewChild(ModalOfertasComponent) public modalOfertas:ModalOfertasComponent; //cogemos el componente para poder enviarle los datos
   @ViewChild(ModalDetalleOfertasComponent) public modalClientesOfertados:ModalDetalleOfertasComponent; //cogemos el componente para poder enviarle los datos

@@ -2,6 +2,7 @@ import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario, UsuariosService } from './../services/usuarios.service';
 import { Component, OnInit, ViewChild  } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
  
 

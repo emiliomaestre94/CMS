@@ -81,10 +81,10 @@
                                     <p class="form-control-static"><strong>{{oferta.P_oferta_oferta_usuario}} </strong><i class="fa fa-percent"></i></p>
                                 </td>
                                 <td class="text-center">
-                                        <p class="form-control-static"><strong>{{oferta.Fecha_inicio_oferta_usuario}}</strong></p>
+                                        <p class="form-control-static"><strong>{{oferta.Fecha_inicio_oferta_usuario | fecha }}</strong></p>
                                 </td>
                                 <td class="text-center">
-                                    <p class="form-control-static"><strong>{{oferta.Fecha_fin_oferta_usuario}}</strong></p>
+                                    <p class="form-control-static"><strong>{{oferta.Fecha_fin_oferta_usuario | fecha }}</strong></p>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);"><i class="fa fa-info-circle"></i> Ver</button>

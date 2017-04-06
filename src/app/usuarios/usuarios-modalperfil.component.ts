@@ -1,3 +1,4 @@
+import { OfertasService } from './../services/ofertas.service';
 import { UsuariosModalFacturaComponent } from './usuarios-modalfactura.component';
 import { Factura, FacturasService } from './../services/facturas.service';
 import { Component, Input,ViewChild} from '@angular/core';
@@ -29,9 +30,10 @@ export class UsuariosModalPerfilComponent {
     errorFacturas:boolean=false;
     msgFacturas:string;
 
- facturas: Factura[];
+ public facturas: Factura[];
+ public ofertas;
 
- constructor(public facturasService:FacturasService) { }
+ constructor(public facturasService:FacturasService,public ofertasService:OfertasService) { }
 
  @ViewChild('perfilClienteModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide
  @ViewChild(UsuariosModalFacturaComponent) public modalFactura:UsuariosModalFacturaComponent; //cogemos el componente para poder enviarle los datos
@@ -40,7 +42,10 @@ export class UsuariosModalPerfilComponent {
     this.childModal.show(); //mostrar modal
     this.usuario=usuario;
     this.idTienda=idTienda;
+    this.facturas=null;
+    this.ofertas=null;
     this.getFacturasUser(); //obtener todas las facturas de ese usuario
+    this.getOfertasUser();
   } 
 
   public hideChildModal():void {
@@ -53,20 +58,22 @@ export class UsuariosModalPerfilComponent {
 
   public getFacturasUser(){
     this.loadingFacturas=true;
+    this.msgFacturas=null;
      this.facturasService.getFacturasUser(this.usuario['Id_usuario'],this.idTienda).subscribe(
         res =>{
+          console.log(res);
            console.log(res[0].status);
           //console.log(res[0].data.Facturas);
             if(res[0]){
               if (res[0].status==200){ //todo bien
-                this.facturas=res[0].data.Facturas;
+                this.facturas=res[0].data.Factura;
                 console.log(this.facturas);
                 this.errorFacturas=false;
               }
               if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
                 this.errorFacturas=true;
-                this.msgFacturas=this.usuario['Nombre:usuario'] + " no ha generado aún ninguna factura";
+                this.msgFacturas=this.usuario['Nombre_usuario'] + " no ha generado aún ninguna factura";
               }
             }
               this.loadingFacturas=false;
@@ -80,6 +87,29 @@ export class UsuariosModalPerfilComponent {
     );
   }
 
+  public getOfertasUser(){
+     this.ofertasService.getOfertasUser(this.usuario['Id_usuario'],this.idTienda).subscribe(
+        res =>{
+
+            if(res[0]){
+              if (res[0].status==200){ //todo bien
+                //this.facturas=res[0].data.Facturas;
+                this.ofertas=res[0].data;
+                console.log(this.ofertas);
+              }
+              if (res[0].status==204){ //no encontrado
+                console.log(res[0].status);
+          
+              }
+            }
+    
+        },
+        err=>{ //Error de conexion con el servidor
+            console.log(err);
+        
+        },   
+    );
+  }
 
 
 

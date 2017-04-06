@@ -52,7 +52,9 @@
                                 <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
                                 <th class="text-center" style="width: 200px;">Nº Fact</th>
                                 <th class="text-center" style="width: 110px;">Fecha</th>
+                                <th class="text-center" style="width: 110px;">Hora</th>
                                 <th class="text-center">Total</th>
+                                <th class="text-center" style="width: 100px;"><i class="icon-people icons font-2xl d-block m-t-2"></i></th>
                                 <th class="text-center" style="width: 400px;">Usuario</th>
                                 <th class="text-center" style="width: 100px;"></th>
                             </tr>
@@ -67,13 +69,23 @@
                                     <strong>{{factura.Id_factura}}</strong>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
-                                    <strong>{{factura.Fecha_factura}}</strong>
+                                    <strong>{{factura.Fecha_factura | fecha}}</strong>
+                                </td>
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
+                                    <strong>{{factura.Fecha_factura | hora}}</strong>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
                                     <strong>{{factura.Total_factura}} </strong><i class="fa fa-eur"></i>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
-                                    <strong>josefcomoreno85@gmail.com</strong>
+                                    <div class="avatar">
+                                        <img src="{{factura.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                                        <span *ngIf="factura.Eliminado_usuario==0" class="avatar-status badge-success"></span>
+                                        <span *ngIf="factura.Eliminado_usuario==1" class="avatar-status badge-danger"></span>
+                                    </div>
+                                </td>
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
+                                    <strong>{{factura.Nombre_usuario}}</strong>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(factura)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
