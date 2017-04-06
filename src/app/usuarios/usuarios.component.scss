@@ -23,6 +23,10 @@ background-color: #f86c6b;
     width: 65%;
 }
 
+#prodructo {
+    height: 67px !important;
+}
+
 .imagenUsuario {
     width: 30%;
     /*height: 45%;*/
@@ -79,12 +83,11 @@ tab.active.tab-pane {
 
 .modal-footer {
     display:block;
+        height: 100%;
 }
 
 
-.modal-footer {
-    display: block;
-}
+
 .col-md-12.mb-2 {
     padding-left: 0px;
     padding-right: 0px;
@@ -149,7 +152,7 @@ th.precio {
 }
 
 .importe {
-    width: 50%;
+    width: 55%;
     float: right;
     text-align: right;
     line-height: 10px;
