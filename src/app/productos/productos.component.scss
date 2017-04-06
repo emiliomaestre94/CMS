@@ -32,7 +32,7 @@ input[type="file"] {
     position: absolute;
     top: 20px;
     top: 45px;
-    height: 210px;
+    height: 200px;
     width: 90%;
 }
 .imagenBanner {
@@ -42,7 +42,10 @@ input[type="file"] {
 }
 img.imgBanner {
     width: 100%;
-    border-radius: 200px;
+    height:100%;
+    object-fit: cover;
+    /*object-fit: contain;*/
+    /*der-radius: 200px;*/
 }
 
 .avatar .img-avatar {
@@ -52,12 +55,22 @@ img.imgBanner {
 
 #imglibreria {
     float:left;
-
-
+    object-fit: cover;
 }
 .galeriaImagenes {
     overflow: auto; 
     height: 250px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    
+    border: 1px solid rgba(0, 0, 0, 0.15); 
+}
+
+.botonImgP {
+    margin-left: 200px;
+    margin-top: -150px;
+}
+img.img-avatar {
+    padding-left: 20%;
+    border-radius: 0em;
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
 }
