@@ -85,6 +85,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
+
   ],
   providers: [/*{
     provide: LocationStrategy,
@@ -111,6 +112,9 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   OfertasService,
   YouTubeAPIService
   ],
-  bootstrap: [ AppComponent]
+  bootstrap: [ AppComponent],
+  exports:[
+
+  ]
 })
 export class AppModule { }

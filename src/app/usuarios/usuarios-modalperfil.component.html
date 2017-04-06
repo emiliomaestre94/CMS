@@ -112,40 +112,43 @@
                         <tab heading="Ofertas">
                             <table class="table table-hover table-outline mb-0 hidden-sm-down">
                                 <thead class="thead-default">
-                                    <tr>
+                                    <tr >
+                                        <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
                                         <th class="text-center" style="width: 130px;">Imagen</th>
                                         <th class="text-center" style="width: 135px;">Código</th>
                                         <th class="text-center" style="width: 20%;">Nombre</th>
                                         <th class="text-center" style="width: 150px;">Precio</th>
                                         <th class="oferta" style = "text-align: center; width: 100px;">Oferta</th>
-                                        <th class="finicio" style = "text-align: center; width: 110px;">F. Inicio</th>
-                                        <th class="ffinal" style = "text-align: center; width: 110px;">F. Final</th>
+                                        <th class="text-center" style="width: 100px;"></th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr class="" >
+                                    <tr *ngFor="let oferta of ofertas" >
+                                        <td class="text-center">
+                                            <input type="checkbox" name="" value="">
+                                        </td>  
                                         <td class="text-center">
                                             <div class="avatar">
+                                                <img src="{{oferta.Foto_oferta_usuario}}" class="img-avatar">
+                                                <span *ngIf="" class="avatar-status badge-success"></span>
                                             </div>
                                         </td>     
                                         <td class="text-center">
-                                            <strong>27001</strong>
+                                            <strong>{{oferta.Id_oferta_usuario}}</strong>
                                         </td>
                                         <td class="text-center">
-                                            <strong>Coca Cola Zero </strong>
+                                            <strong>{{oferta.Nombre_producto}}</strong>
                                         </td>
                                         <td class="text-center">
-                                            <strong>0,39 </strong><i class="fa fa-eur"></i>
+                                            <strong>{{oferta.Precio_producto}}</strong><i class="fa fa-eur"></i>
                                         </td>
                                         <td class="text-center">
-                                        <p class="form-control-static"><strong>25 </strong><i class="fa fa-percent"></i></p>
+                                            <p class="form-control-static"><strong>{{oferta.P_oferta_oferta_usuario}} </strong><i class="fa fa-percent"></i></p>
                                         </td>
+
                                         <td class="text-center">
-                                            <p class="form-control-static"><strong>17/02/2017</strong></p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="form-control-static"><strong>17/03/2017</strong></p>
+                                            <button class="btn btn-primary" type="button" data-toggle="modal" ><i class="fa fa-info-circle"></i> Ver</button>
                                         </td>
                                     </tr>
                                 </tbody>

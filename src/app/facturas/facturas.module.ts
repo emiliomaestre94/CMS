@@ -1,3 +1,6 @@
+import { PipesModule } from './../pipes/pipes.module';
+import { HoraPipe } from './../pipes/hora.pipe';
+import { FechaPipe } from './../pipes/fecha.pipe';
 import { ModalDetalleFacturasComponent } from './modal-detalle-facturas.component';
 // Modal Component
 import { ModalModule } from 'ng2-bootstrap/modal';
@@ -23,6 +26,7 @@ BuscadorFacturasPipe
 @NgModule({
     imports: [ 
       FacturasRoutingModule,
+      PipesModule,
       CommonModule,
       FormsModule,
       ChartsModule,
@@ -33,7 +37,8 @@ BuscadorFacturasPipe
     declarations: [ 
       FacturasComponent,
       ModalDetalleFacturasComponent,
-      BuscadorFacturasPipe
+      //FechaPipe,
+      //HoraPipe
     ],
     providers:[
       FacturasService,

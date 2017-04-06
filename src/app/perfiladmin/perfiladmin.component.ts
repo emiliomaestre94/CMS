@@ -78,6 +78,7 @@ export class PerfiladminComponent implements OnInit {
   this.perfilAdminService.getUser(this.idAdmin).subscribe(
         usuario =>{
           this.usuario=usuario[0].data[0];
+          this.formatDate();
           this.imageSrc=this.usuario["Foto_usuario"];
           console.log("USUARIO ES");
           console.log(this.usuario);
@@ -90,9 +91,13 @@ export class PerfiladminComponent implements OnInit {
     );
   }
 
+  public formatDate(){
+    this.usuario.Fecha_nac_usuario= this.usuario.Fecha_nac_usuario.split("T")[0];
+  }
+
     updateTokenServidor(){
- 
-        this.token.updateTokenServidor(this.usuario).subscribe(
+      
+      this.token.updateTokenServidor(this.usuario).subscribe(
         res =>{
             console.log(res);
         if(res[0]){
@@ -145,10 +150,7 @@ export class PerfiladminComponent implements OnInit {
     );
   }
 
-
-
-
-
+  
   validarDatos(){
     if(this.newPassword.length<8){
       
@@ -252,7 +254,7 @@ export class PerfiladminComponent implements OnInit {
             this.loading3=false;
         },
     );
-
+ 
  }
 
 
@@ -330,3 +332,4 @@ export class PerfiladminComponent implements OnInit {
   }
 
 } 
+ 
