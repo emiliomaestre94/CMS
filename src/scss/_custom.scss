@@ -7,6 +7,27 @@ ol.breadcrumb {
    // margin-bottom: 0px;
 }
 
+.h4.mb-0 {
+    font-size: 50px;
+    margin-top: -80px;
+}
+small.text-muted.text-uppercase.font-weight-bold {
+    font-size: 16px;
+}
+
+#diagramaI {
+height: 460px !important;
+width: 500px !important; 
+margin-left: 10%;
+}
+
+#diagramaD {
+height: 460px !important;
+width: 500px !important; 
+margin-left: 10%;
+}
+
+
 /////////HEADER/////////
 .input-group{
  margin-bottom: 20px;
@@ -71,7 +92,7 @@ li.nav-item.dropdown {
 .spinnerDashboard{
     font-size: 40px;
     position: absolute;
-    top: 34%;
+    top: 20%;
     opacity: 0.6;
     left: 50%;
     font-size: 42px;
