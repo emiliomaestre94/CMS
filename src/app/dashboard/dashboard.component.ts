@@ -16,7 +16,8 @@ export class DashboardComponent implements OnInit {
   constructor(public datostokenservice: DatosTokenService, public dashboardservice: DashboardService) { }
   
   
-  totalUsers: string  //guarda los usuarios totales (primera tarjeta)
+  totalUsuariosTotales: string  //guarda los usuarios totales
+  totalCompradoresTotales: string  //guarda los usuarios totales (primera tarjeta)
   loadingUsers: boolean=false;  //cargando primera tarjeta
 
   ngOnInit(): void {
@@ -30,16 +31,31 @@ export class DashboardComponent implements OnInit {
     console.log(this.idTienda);
 
     //Primera gil
-    this.getTotalUsers();  
+    this.getTotalUsers(); //usuarios de la itenda 
+    this.getCompradoresTotales();   // numero de usuario que han realizado una compra en un establecimiento
   }
 
-  getTotalUsers(){
+  getTotalUsers(){ 
     this.loadingUsers=true;
     this.dashboardservice.getTotalUsers(this.idTienda).subscribe(
         res =>{
           console.log(res);
           console.log(res[0].usuario); 
-          this.totalUsers=res[0].usuario;
+          this.totalUsuariosTotales=res[0].usuario;
+          this.loadingUsers=false;
+        },
+        err=>{ //Error de conexion con el servidor
+            console.log(err);
+        },   
+    );
+  }
+  getCompradoresTotales(){ 
+    this.loadingUsers=true;
+    this.dashboardservice.getCompradoresTotales(this.idTienda).subscribe(
+        res =>{
+          console.log(res);
+         // console.log(res[0].usuario); 
+          //this.totalUsuariosTotales=res[0].usuario;
           this.loadingUsers=false;
         },
         err=>{ //Error de conexion con el servidor

@@ -14,7 +14,8 @@
                 <div class="animated fadeIn">
                 <div class="row">
                 <div *ngIf="videosURL" class="col-md-12">
-                    <iframe *ngFor="let videoURL of videosURL" width="30%" [src]="'https://www.youtube.com/embed/' + videoURL.id.videoId | safe"> </iframe>
+                   <iframe *ngFor="let videoURL of videosURL" width="30%" [src]="'https://www.youtube.com/embed/' + videoURL.id.videoId | safe"> </iframe>
+                   <!--<img *ngFor="let videoURL of videosURL"  [src]="videoURL.snippet.thumbnails.medium.url"> -->
                 </div>
                 </div>
                 </div>
