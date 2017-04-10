@@ -31,7 +31,7 @@
                                 
                                     <label class="col-md-2 form-control-label" ><strong>Oferta</strong></label>
                                     <div class="col-md-2">
-                                        <input type="text"  [(ngModel)]="oferta.P_oferta_oferta_usuario" name="precio" class="form-control" style = "text-align: center" placeholder="%">
+                                        <input type="text"  [(ngModel)]="oferta.P_oferta_oferta_usuario" name="precio" class="form-control" style="text-align: center; padding-left: 5px; padding-right: 5px;" placeholder="%">
                                     </div>
                                 </div>
 
@@ -63,9 +63,9 @@
                         <div class="imagenBanner">
                         <img  *ngIf="oferta" class="imgBanner" id="imagenSrc" src="{{imageSrc}}"/>
                         <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
-                        <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger">Cancelar</button> 
+                        <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger" style="margin-top: 10px;">Cancelar</button> 
                         </div>
-                            <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiarla.</p>
+                            <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 50px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiarla.</p>
                         </div>
                     </div>
                     <div class="tablascroll1">
