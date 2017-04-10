@@ -1,3 +1,4 @@
+import { EmpresaService } from './../services/empresa.service';
 import { DashboardService } from './../services/dashboard.service';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,9 +14,8 @@ export class DashboardComponent implements OnInit {
 
   idTienda:string; //id de la tienda
 
-  constructor(public datostokenservice: DatosTokenService, public dashboardservice: DashboardService) { }
-  
-  
+  constructor(public datostokenservice: DatosTokenService, public dashboardservice: DashboardService, public empresaService: EmpresaService,) { }
+
   totalUsuariosTotales: string  //guarda los usuarios totales
   totalCompradoresTotales: string  //guarda los usuarios totales (primera tarjeta)
   loadingUsers: boolean=false;  //cargando primera tarjeta
@@ -29,12 +29,25 @@ export class DashboardComponent implements OnInit {
     }
     this.idTienda=this.datostokenservice.token['id_tienda'];
     console.log(this.idTienda);
-
+    this.getTienda();
     //Primera gil
-    this.getTotalUsers(); //usuarios de la itenda 
-    this.getCompradoresTotales();   // numero de usuario que han realizado una compra en un establecimiento
+   // this.getTotalUsers(); //usuarios de la itenda 
+   // this.getCompradoresTotales();   // numero de usuario que han realizado una compra en un establecimiento
   }
-
+  public tienda;
+    getTienda(){
+      this.empresaService.getTienda(this.idTienda).subscribe(
+        res =>{
+          console.log(res);  
+          this.tienda=res[0].data.Tiendas[0];
+          console.log(this.tienda);   
+        },
+        err=>{ //Error de conexion con el servidor
+            console.log(err);
+        },   
+    ); 
+  }
+/*
   getTotalUsers(){ 
     this.loadingUsers=true;
     this.dashboardservice.getTotalUsers(this.idTienda).subscribe(
@@ -63,6 +76,7 @@ export class DashboardComponent implements OnInit {
         },   
     );
   }
+  */
 
   //MIERDA DE ESTADISTICAS
   public brandPrimary:string =  '#20a8d8';

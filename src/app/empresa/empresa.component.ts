@@ -12,7 +12,6 @@ import * as moment from 'moment';
   styleUrls: ['./empresa.component.scss']
 })
 export class EmpresaComponent implements OnInit {
-  
   public tienda;//contiene los datos de la tienda que recibimos del servidor
   public idTienda; //id de la tienda del token
   public imageSrc; //logo
