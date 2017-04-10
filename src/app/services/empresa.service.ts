@@ -54,6 +54,8 @@ export class EmpresaService {
            descripcion:tienda.Descripcion_tienda,
            foto:tienda.Foto_tienda,
            logo:tienda.Logo_tienda,
+           facebook: tienda.Facebook_tienda,
+           twitter: tienda.Facebook_tienda
         }), this.options)
         .delay(environment.timeout)
         .map((res: Response) => {

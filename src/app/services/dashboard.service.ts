@@ -29,6 +29,20 @@ export class DashboardService {
         });
     }
 
+    getCompradoresTotales(idTienda){
+        let consulta=environment.dominio + '/estadisticas/usuarioFacturaTienda?id='+idTienda;
+        console.log(consulta);
+        return this.authHttp.get(consulta)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            return res.json();
+        }).catch((error: any) => {
+            console.log(error);
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
    
 
 }

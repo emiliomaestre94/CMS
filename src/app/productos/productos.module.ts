@@ -1,3 +1,4 @@
+import { PipesModule } from './../pipes/pipes.module';
 import { YoutubeModalComponent, SafePipe } from './youtube-modal.component';
 import { ProductosDetalleModalComponent } from './modal-productos.component';
 import { ProductosService } from './../services/productos.service';
@@ -25,6 +26,7 @@ BuscadorProductosPipe
 @NgModule({
     imports: [ 
       ProductosRoutingModule,
+      PipesModule,
       CommonModule,
       FormsModule,
       ChartsModule,

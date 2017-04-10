@@ -80,8 +80,9 @@
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                     <strong>{{producto.Precio_producto}} </strong><i class="fa fa-eur"></i>
                                 </td>
+                                <!-- producto.P_oferta_oferta_producto -->
                                 <td *ngIf="producto.P_oferta_oferta_producto"class="text-center" style="color:#4dbd74; font-size: 16px;" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.P_oferta_oferta_producto}} %</strong> <!--<i class="fa fa-eur"></i> -->
+                                    <strong>{{producto.Precio_producto | oferta : producto.P_oferta_oferta_producto }} €</strong> <!--<i class="fa fa-eur"></i> -->
                                 </td>
                                 <td *ngIf="!producto.P_oferta_oferta_producto"class="text-center" style="color:red; font-size: 16px;" data-toggle="modal" (click)="showChildModal(producto)">
                                     <strong>-</strong>
@@ -99,7 +100,7 @@
 
             <diV>
                 <button (click)="updateProductoActivo();" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
-                <button  class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
+              <!--  <button  class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button> -->
                 <!--PAGINACION AQUI DENTRO-->
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 

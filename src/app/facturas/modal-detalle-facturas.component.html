@@ -9,7 +9,7 @@
                 </button>
             </div>
 
-            <div class="modal-body">
+            <div style="background:#FFF" #factura class="modal-body">
                 <div *ngIf="facturaDetalle"class="datosTienda">
                         <p><span>Tienda de Ropa</span> - CIF: {{facturaDetalle.CIF_tienda}}</p>
                         <p><strong>Id:</strong>{{facturaDetalle.Id_factura}}</p>
@@ -34,30 +34,31 @@
                                     <th class="descripcion" style="text-align: center">Descripción</th>
                                     <th class="cantidad" style="text-align: center">Cantidad</th>
                                     <th class="precio" style="text-align: center">Precio</th>
+                                    <th class="cantidad" style="text-align: center">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let facturalinea of facturaLineas" >
                                     <td>{{facturalinea.Nombre_producto}}</td>
                                     <td style="text-align: center">{{facturalinea.Cantidad_linea_factura}}</td>
-                                    <td style="text-align: center">{{facturalinea.Precio_producto}}</td>
+                                    <td style="text-align: center">{{facturalinea.Precio_producto}} €</td>
+                                     <td style="text-align: center">{{facturalinea.Cantidad_linea_factura | totalFactura: facturalinea.Precio_producto}} €</td>
                                 </tr>
                              
                             </tbody>
                         </table>
                 </div>
 
-                <div class="importe">
+                <div *ngIf="facturaDetalle" class="importe">
                     <div>
-                        <p>Base: <span class="base">1000,00€</span></p>
-                        <p><span class="impuestos">IVA 4%: 10€ · IVA 8%: 25€ · IVA 21%: 15,50€</span></p>
-                        <p><strong>Total con IVA:</strong><span class="total">1050,50€</span></p>
+                        <p>Base: <span class="base">{{facturaDetalle.Total_factura | quitarIVA}} €</span></p>
+                        <p><strong>Total con IVA: </strong><span class="total">{{facturaDetalle.Total_factura}} €</span></p>
                      </div>
                 </div>
 
         </div>
 
-
+ 
         </div>
     </div>
 </div>

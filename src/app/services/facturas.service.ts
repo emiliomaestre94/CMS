@@ -19,6 +19,8 @@ export class FacturasService {
         
     }
 
+    TotalPrecio
+
     headers = new Headers({ 'content-type': 'application/json' });
     options = new RequestOptions({ headers: this.headers, withCredentials: true });
 
