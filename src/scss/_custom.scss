@@ -7,6 +7,122 @@ ol.breadcrumb {
    // margin-bottom: 0px;
 }
 
+
+
+
+/////////////////////////DASHBOARD//////////////////
+.h4.mb-0 {
+    font-size: 50px;
+    margin-top: -80px;
+}
+small.text-muted.text-uppercase.font-weight-bold {
+    font-size: 16px;
+}
+
+#diagramaI {
+    height: 460px !important;
+    width: 460px !important; 
+    margin-left: 15%;
+}
+
+#diagramaD {
+    height: 460px !important;
+    width: 460px !important; 
+    margin-left: 15%;
+}
+@media (max-width: 1550px) {
+    .h4.mb-0 {
+    font-size: 45px;
+    }
+    small.text-muted.text-uppercase.font-weight-bold {
+    font-size: 14px;
+    }
+    #diagramaI {
+         margin-left: 12%;
+    }
+
+    #diagramaD {
+         margin-left: 12%;
+    }
+}
+
+@media (max-width: 1430px) {
+    small.text-muted.text-uppercase.font-weight-bold {
+        font-size: 14px;
+        }
+    .h4.mb-0 {
+        font-size: 40px;
+        margin-top: -70px;
+        }
+    #diagramaI {
+        margin-left: 5%;
+    }
+    #diagramaD {
+        margin-left: 5%;
+    }
+}
+@media (max-width: 1330px) {
+    small.text-muted.text-uppercase.font-weight-bold {
+        font-size: 12px;
+        }
+    .h4.mb-0 {
+        font-size: 35px;
+        margin-top: -70px;
+        }
+    #diagramaI {
+        height: 440px !important;
+        width: 440px !important; 
+        margin-left: 0%;
+    }
+    #diagramaD {
+        height: 440px !important;
+        width: 440px !important; 
+        margin-left: 0%;
+    }
+}
+@media (max-width: 1200px) {
+    .h4.mb-0 {
+        font-size: 30px;
+        margin-top: -60px;
+    }
+    #diagramaI {
+        height: 400px !important;
+        width: 400px !important; 
+        margin-left: 0%;
+    }
+    #diagramaD {
+        height: 400px !important;
+        width: 400px !important; 
+        margin-left: 0%;
+    }
+}
+
+@media (max-width: 1160px) {
+    small.text-muted.text-uppercase.font-weight-bold {
+        font-size: 10px;
+        }
+    .h4.mb-0 {
+        font-size: 25px;
+        margin-top: -60px;
+    }
+    #diagramaI {
+        height: 350px !important;
+        width: 350px !important; 
+        margin-left: 0%;
+    }
+    #diagramaD {
+        height: 350px !important;
+        width: 350px !important; 
+        margin-left: 0%;
+    }
+}
+
+////////////////////////////////////////////////////
+
+
+
+
+
 /////////HEADER/////////
 .input-group{
  margin-bottom: 20px;
@@ -71,7 +187,7 @@ li.nav-item.dropdown {
 .spinnerDashboard{
     font-size: 40px;
     position: absolute;
-    top: 34%;
+    top: 20%;
     opacity: 0.6;
     left: 50%;
     font-size: 42px;
