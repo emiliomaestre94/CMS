@@ -202,3 +202,10 @@ td.text-center {
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+a.navbar-brand:hover {
+    /* transform: scale(1.01); */
+    transform: scale-width(1.01);
+    transform: scaleX;
+    transform: scaleX(1.02);
+}
