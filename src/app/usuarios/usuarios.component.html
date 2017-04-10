@@ -86,19 +86,19 @@
                                     </div>
                                 </td>
                                 <td data-toggle="modal" (click)="showChildModal(usuario)">
-                                    <div>{{usuario.Nombre_usuario}}</div>
-                                    <div class="small text-muted">
-                                        Registro: {{ usuario.Fecha_usuario | fecha }}  
+                                    <div>
+                                        <p class="cliente" style="margin-bottom: 0px;">{{usuario.Nombre_usuario}}</p>
                                     </div>
+                                    <div class="small text-muted">Registro: {{ usuario.Fecha_usuario | fecha }}</div>
                                 </td>
                                 <td data-toggle="modal" (click)="showChildModal(usuario)">
-                                    <p class="tableP">{{usuario.Email_usuario}}</p>
+                                    <p class="email">{{usuario.Email_usuario}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(usuario)">
                                     <p class="tableP">{{usuario.CP_usuario}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(usuario)">
-                                    <p class="tableP">{{usuario.Localidad_usuario}}</p>
+                                    <p class="municipio">{{usuario.Localidad_usuario}}</p>
                                 </td>
                                 <td data-toggle="modal" (click)="showChildModal(usuario)">
                                     <p class="tableP">{{usuario.Telefono_usuario}}</p>
