@@ -33,3 +33,25 @@ img.imgTienda {
     height: 175px;
     width: 315px;
 }
+
+.botonesImagen {
+    padding-bottom: 15px; 
+    padding-top: 50px !important; 
+    padding-left: 20px;
+}
+
+#horario {
+      border-right: 1px solid;
+    border-right-color: rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+
+#descripcion {
+       border-right: 1px solid;
+    border-right-color: rgba(0, 0, 0, 0.15);
+    width: 100%;
+}
+textarea#textarea-input {
+    height: 80px;
+
+}
