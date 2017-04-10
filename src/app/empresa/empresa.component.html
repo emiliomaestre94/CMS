@@ -36,58 +36,60 @@
                                     <div class="input-group col-md-6">
                                         <span class="input-group-addon"><strong>Tlf</strong></span>
                                         <input class="form-control"[(ngModel)]="tienda.Telefono_tienda" name="tlf"  type="text">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <span class="input-group-addon"><i class="fa fa-phone fa-lg m-t-2"></i></span>
                                     </div>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><strong>Nombre</strong></span>
                                     <input class="form-control" type="text" [(ngModel)]="tienda.Nombre_tienda" name="nombre" >
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <span class="input-group-addon"><i class="fa fa-institution fa-lg m-t-2"></i></span>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><strong>Dirección</strong></span>
                                     <input class="form-control" type="text" [(ngModel)]="tienda.Direccion_tienda" name="direccion">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <span class="input-group-addon"><i class="fa fa-home fa-lg m-t-2"></i></span>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="input-group col-md-8">
+                                    <div class="input-group col-md-6">
                                         <span class="input-group-addon"><strong>Provincia</strong></span>
                                         <input class="form-control" type="text" [(ngModel)]="tienda.Provincia_tienda" name="provincia">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
-                                    <div class="input-group col-md-4">
-                                        <span class="input-group-addon"><strong>CP</strong></span>
+                                    <div class="input-group col-md-6">
+                                        <span class="input-group-addon"><strong>Cod Postal</strong></span>
                                         <input class="form-control" [(ngModel)]="tienda.CP_tienda" name="CP" type="text">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><strong>Facebook</strong></span>
-                                    <input class="form-control" type="text" [(ngModel)]="tienda.Facebook_tienda" name="direccion">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><strong>Twitter</strong></span>
-                                    <input class="form-control" type="text" [(ngModel)]="tienda.Twitter_tienda" name="direccion">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                </div>
-                                <div class="form-group row col-md-12">
-                                    <span class="input-group-addon"><strong>Horario</strong></span>
-                                    <div class="col-md-8">
-                                    <textarea id="textarea-input" [(ngModel)]="tienda.Horario_tienda" name="Horario" rows="9" class="form-control"></textarea>
+                                <div class="form-group">
+                                    <div class="col-md-12"style="padding-left: 0px; padding-right: 0px;">
+                                        <span class="input-group-addon" id="horario"><strong>Horario</strong></span>
+                                        <textarea id="textarea-input" [(ngModel)]="tienda.Horario_tienda" name="Horario" rows="9" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row col-md-12">
-                                    <span class="input-group-addon"><strong>Descripción</strong></span>
-                                    <div class="col-md-8">
+                                <div class="form-group">
+                                    <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                        <span class="input-group-addon" id="descripcion"><strong>Descripción</strong></span>
                                         <textarea id="textarea-input"  [(ngModel)]="tienda.Descripcion_tienda"name="descripcion" rows="9" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="input-group col-md-6">
+                                        <span class="input-group-addon"><strong>Facebook</strong></span>
+                                        <input class="form-control" type="text" [(ngModel)]="tienda.Facebook_tienda" name="direccion">
+                                        <span class="input-group-addon"><i class="fa fa-facebook fa-lg m-t-2"></i></span>
+                                    </div>
+                                    <div class="input-group col-md-6">
+                                        <span class="input-group-addon"><strong>Twitter</strong></span>
+                                        <input class="form-control" type="text" [(ngModel)]="tienda.Twitter_tienda" name="direccion">
+                                        <span class="input-group-addon"><i class="fa fa-twitter fa-lg m-t-2"></i></span>
                                     </div>
                                 </div>
                             </div>
                         </form> 
                     </div>
 
-                    <div class="col-md-6" style="float:left; margin-top: -270px;">
+                    <div class="col-md-6" style="float:left; margin-top: -200px;">
                         <p style="text-align: left; font-size: 16px;"><strong>Imagen Tienda 320x180</strong></p>
                         <div class="imagenTienda">
                             <img class="imgTienda" id="imagenSrc"  src="{{imageSrc2}}"/>
@@ -96,7 +98,7 @@
                         </div>
 
                         <!--(change)="filebuttoni($event)"-->
-                        <div class="botonesImagen" style="padding-bottom: 15px; padding-top: 40px; padding-left: 20px">
+                        <div class="botonesImagen">
                             <button  *ngIf="imageloaded2==true"  (click)="cancelImageLoad2()"  type="button" class="btn btn-danger">Cancelar</button> 
                             <button (click)="uploadImageFondo()" class="btn btn-primary px-2" style="width:130px"><i class="fa fa-save"></i>  Guardar</button>
                         </div>

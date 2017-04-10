@@ -46,14 +46,14 @@
                         <thead class="thead-default">
                             <tr >
                                 <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
-                                <th class="text-center" style="width: 130px;">Imagen</th>
-                                <th class="text-center" style="width: 135px;">Código</th>
+                                <th class="text-center" style="width: 90px;">Banner</th>
+                                <th class="text-center" style="width: 90px;">Código</th>
                                 <th class="text-center" style="width: 20%;">Nombre</th>
-                                <th class="text-center" style="width: 150px;">Precio</th>
-                                <th class="oferta" style = "text-align: center; width: 100px;">Oferta</th>
-                                <th class="finicio" style = "text-align: center; width: 110px;">F. Inicio</th>
-                                <th class="ffinal" style = "text-align: center; width: 110px;">F. Final</th>
-                                <th class="text-center" style="width: 100px;"></th>
+                                <th class="text-center" style="width: 120px;">Precio</th>
+                                <th class="oferta" style = "text-align: center; width: 90px;">Oferta</th>
+                                <th class="finicio" style = "text-align: center; width: 131px;">F. Inicio</th>
+                                <th class="ffinal" style = "text-align: center; width: 130px;">F. Final</th>
+                                <th class="text-center" style="width: 90px;"></th>
                             </tr>
                         </thead>
 
@@ -62,29 +62,29 @@
                                 <td class="text-center">
                                     <input type="checkbox" name="" value="">
                                 </td>  
-                                <td class="text-center">
+                                <td class="text-center" style="padding-left: 5px; padding-right: 35px;">
                                     <div class="avatar">
-                                        <img src="{{oferta.Foto_oferta_usuario}}" class="img-avatar">
+                                        <img src="{{oferta.Foto_oferta_usuario}}" class="img-avatar oferta">
                                         <span *ngIf="" class="avatar-status badge-success"></span>
                                     </div>
                                 </td>     
                                 <td class="text-center">
-                                    <strong>{{oferta.Id_oferta_usuario}}</strong>
+                                    <p>{{oferta.Id_oferta_usuario}}</p>
                                 </td>
                                 <td class="text-center">
-                                    <strong>{{oferta.Nombre_producto}}</strong>
+                                    <p class="nombre">{{oferta.Nombre_producto}}</p>
                                 </td>
                                 <td class="text-center">
-                                    <strong>{{oferta.Precio_producto}}</strong><i class="fa fa-eur"></i>
+                                    <p style="margin-bottom: 0px;">{{oferta.Precio_producto}} <i class="fa fa-eur"></i></p>
                                 </td>
                                 <td class="text-center">
-                                    <p class="form-control-static"><strong>{{oferta.P_oferta_oferta_usuario}} </strong><i class="fa fa-percent"></i></p>
+                                    <p class="form-control-static" style="color:#4dbd74; font-size: 16px;" >{{oferta.P_oferta_oferta_usuario}} <i class="fa fa-percent"></i></p>
                                 </td>
                                 <td class="text-center">
-                                        <p class="form-control-static"><strong>{{oferta.Fecha_inicio_oferta_usuario | fecha }}</strong></p>
+                                    <p class="form-control-static">{{oferta.Fecha_inicio_oferta_usuario | fecha }}</p>
                                 </td>
                                 <td class="text-center">
-                                    <p class="form-control-static"><strong>{{oferta.Fecha_fin_oferta_usuario | fecha }}</strong></p>
+                                    <p class="form-control-static">{{oferta.Fecha_fin_oferta_usuario | fecha }}</p>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);"><i class="fa fa-info-circle"></i> Ver</button>

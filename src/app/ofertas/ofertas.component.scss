@@ -85,3 +85,19 @@ img.imgBanner {
     /*object-fit: contain;*/
     /*der-radius: 200px;*/
 }
+///////////////////////////////////////////////////////////////
+ p {
+     font-weight: 500;
+ }
+
+ p.nombre {
+    width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+
+img.img-avatar.oferta {
+    width: auto;
+    border-radius: 0em;
+}

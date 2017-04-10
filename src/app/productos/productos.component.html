@@ -38,15 +38,9 @@
                                 <th class="text-center" style="width: 65px;"><i class="icon-picture icons font-2xl d-block m-t-2"></i></th>
                                 <th class="text-center" style="width: 60px;">Código</th>
                                 <th class="text-center" style="width: 20%;">Nombre</th>
-                                <th class="text-center" style="width: 25%;">Descripción</th>
+                                <th class="text-center" style="width: 20%;">Descripción</th>
                                 <th class="text-center" style="width: 170px;">Precio</th>
-                                <th class="text-center" style="width: 170px;">Oferta</th>
-<!--
-                                <th class="oferta" style = "text-align: center; width: 90px;">Oferta</th>
-                                <th class="finicio" style = "text-align: center;">F. Inicio</th>
-                                <th class="ffinal" style = "text-align: center;">F. Final</th>
-                                <th class="oferta" for="orden" style = "text-align: center; width: 110px;">Orden</th>
--->
+                                <th class="text-center" style="width: 180px;">Oferta</th>
                                 <th class="text-center" style="width: 90px;"></th>
                             </tr>
                         </thead>
@@ -69,20 +63,21 @@
                                     </div>
                                 </td>     
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                        <strong>{{producto.Codigo_producto}}</strong>
+                                    <p>{{producto.Codigo_producto}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.Nombre_producto}}</strong>
+                                    <p class="nombre">{{producto.Nombre_producto}}</p>
+                                    
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.Descripcion_producto}}</strong>
+                                    <p class="descripcion">{{producto.Descripcion_producto}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.Precio_producto}} </strong><i class="fa fa-eur"></i>
+                                    <p>{{producto.Precio_producto}} <i class="fa fa-eur"></i></p>
                                 </td>
                                 <!-- producto.P_oferta_oferta_producto -->
                                 <td *ngIf="producto.P_oferta_oferta_producto"class="text-center" style="color:#4dbd74; font-size: 16px;" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.Precio_producto | oferta : producto.P_oferta_oferta_producto }} €</strong> <!--<i class="fa fa-eur"></i> -->
+                                    <p>{{producto.Precio_producto | oferta : producto.P_oferta_oferta_producto }} <i class="fa fa-eur"></i></p> <!--<i class="fa fa-eur"></i> -->
                                 </td>
                                 <td *ngIf="!producto.P_oferta_oferta_producto"class="text-center" style="color:red; font-size: 16px;" data-toggle="modal" (click)="showChildModal(producto)">
                                     <strong>-</strong>

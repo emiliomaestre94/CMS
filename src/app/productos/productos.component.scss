@@ -77,8 +77,23 @@ img.img-avatar {
 
 p.lineas {
     width: 250px;
-    font-weight: 500;
     text-overflow: ellipsis; 
     overflow:hidden;
     white-space:nowrap;
 }
+
+p.nombre {
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+p.descripcion {
+    width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+ p {
+     font-weight: 500;
+ }
