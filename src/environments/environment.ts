@@ -8,4 +8,3 @@ export const environment = {
   dominio: 'http://localhost:5000',
   timeout: 1000
 };
- 

@@ -1,3 +1,4 @@
+import { EmpresaService } from './../services/empresa.service';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { DropdownModule } from 'ng2-bootstrap/dropdown';
@@ -15,7 +16,11 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     FormsModule,
     CommonModule
   ],
-  declarations: [ DashboardComponent ]
+  declarations: [ DashboardComponent ],
+  
+  providers:[
+    EmpresaService
+  ]
 })
 export class DashboardModule { }
  
