@@ -14,6 +14,27 @@ background-color: #f86c6b;
 }
 /////////////////////////////
 
+ p {
+     font-weight: 500;
+ }
+p.cliente {
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+p.email {
+    width: 250px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
+p.municipio {
+    width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
 
 
 ////////////////////////////MODAL USUARIO///////////////////////
