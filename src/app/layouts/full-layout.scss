@@ -23,3 +23,8 @@ header.navbar .nav-item .nav-link > .img-avatar {
     width: 35px !important;
     object-fit: cover;
 }
+
+.usuario-navbar:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+}
