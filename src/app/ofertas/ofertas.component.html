@@ -62,28 +62,28 @@
                                 <td class="text-center">
                                     <input type="checkbox" name="" value="">
                                 </td>  
-                                <td class="text-center" style="padding-left: 5px; padding-right: 35px;">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);" style="padding-left: 5px; padding-right: 35px;">
                                     <div class="avatar">
                                         <img src="{{oferta.Foto_oferta_usuario}}" class="img-avatar oferta">
                                         <span *ngIf="" class="avatar-status badge-success"></span>
                                     </div>
                                 </td>     
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);">
                                     <p>{{oferta.Id_oferta_usuario}}</p>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);">
                                     <p class="nombre">{{oferta.Nombre_producto}}</p>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);">
                                     <p style="margin-bottom: 0px;">{{oferta.Precio_producto}} <i class="fa fa-eur"></i></p>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);">
                                     <p class="form-control-static" style="color:#4dbd74; font-size: 16px;" >{{oferta.P_oferta_oferta_usuario}} <i class="fa fa-percent"></i></p>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);">
                                     <p class="form-control-static">{{oferta.Fecha_inicio_oferta_usuario | fecha }}</p>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);">
                                     <p class="form-control-static">{{oferta.Fecha_fin_oferta_usuario | fecha }}</p>
                                 </td>
                                 <td class="text-center">
