@@ -1,3 +1,4 @@
+import { PipesModule } from './../pipes/pipes.module';
 
 import { ProductosService } from './../services/productos.service';
 import { UsuariosService } from './../services/usuarios.service';
@@ -35,7 +36,8 @@ BuscadorOfertasPipe
       DropdownModule,
       DatePickerModule, 
       ModalModule.forRoot(),
-      TabsModule
+      TabsModule,
+      PipesModule
     ],
 
     declarations: [ 

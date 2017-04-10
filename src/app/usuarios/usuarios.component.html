@@ -66,7 +66,7 @@
                             </tr>
                         </thead>
                 
-                        <tbody>
+                        <tbody> 
             
                             <!-- <tr *ngFor="let usuarios of usuarios | search: 'Nombre': 'Email':  buscadorUsuarios"> -->
                             <tr *ngFor="let usuario of usuarios">
@@ -88,20 +88,20 @@
                                 <td data-toggle="modal" (click)="showChildModal(usuario)">
                                     <div>{{usuario.Nombre_usuario}}</div>
                                     <div class="small text-muted">
-                                        Registro: {{usuario.Fecha_usuario}} 
+                                        Registro: {{ usuario.Fecha_usuario | fecha }}  
                                     </div>
                                 </td>
                                 <td data-toggle="modal" (click)="showChildModal(usuario)">
-                                    <strong>{{usuario.Email_usuario}}</strong>
+                                    <p class="tableP">{{usuario.Email_usuario}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(usuario)">
-                                    <strong>{{usuario.CP_usuario}}</strong>
+                                    <p class="tableP">{{usuario.CP_usuario}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(usuario)">
-                                    <strong>{{usuario.Localidad_usuario}}</strong>
+                                    <p class="tableP">{{usuario.Localidad_usuario}}</p>
                                 </td>
                                 <td data-toggle="modal" (click)="showChildModal(usuario)">
-                                    <strong>{{usuario.Telefono_usuario}}</strong>
+                                    <p class="tableP">{{usuario.Telefono_usuario}}</p>
                                 </td>
                                 <td class="text-center">
                                     <!--perfilClienteModal.show() -->

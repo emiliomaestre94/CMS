@@ -74,7 +74,8 @@ export class FacturasService {
     getFacturasUser(idUsuario,idTienda){
         console.log(idUsuario);
         console.log(idTienda);
-        let url=environment.dominio + '/factura';
+        let url=environment.dominio + '/factura/usuario?id='+idUsuario+'&id_tienda='+idTienda;
+        console.log(url);
         return this.authHttp.get(url)
         .delay(environment.timeout)
         .map((res: Response) => {

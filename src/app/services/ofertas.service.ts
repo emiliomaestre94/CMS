@@ -48,6 +48,29 @@ export class OfertasService {
         });
     }
 
+    getOfertasUser(idUsuario:string, idTienda:string){
+        let consulta=environment.dominio + '/oferta/ofertasUsuario?id_tienda='+idTienda+"&id_usuario="+idUsuario;
+        console.log(consulta);
+        return this.authHttp.get(consulta)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            console.log(res);
+            if (res.status === 200) {;
+                console.log("status 200");
+                //return res.json().usuario
+                return  [{ status: res.status, data: res.json().Ofertas }]
+            }
+            else if (res.status === 204) {
+                console.log("status 204");
+                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
+            }
+        }).catch((error: any) => {
+            console.log(error);
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
     getOfertasDetail(idOferta:string,idTienda:string){
 
         return this.authHttp.get(environment.dominio + '/oferta/ofertasUsuario?id_tienda='+idTienda+'&id_oferta_usuario='+idOferta)

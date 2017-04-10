@@ -1,3 +1,4 @@
+import { PipesModule } from './../pipes/pipes.module';
 import { UsuariosModalFacturaComponent } from './usuarios-modalfactura.component';
 import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
 
@@ -27,6 +28,7 @@ import { provideAuth } from 'angular2-jwt';
 @NgModule({
   imports: [ 
     UsuariosRoutingModule,
+    PipesModule,
     CommonModule,
     FormsModule,
     ChartsModule,
@@ -38,12 +40,13 @@ import { provideAuth } from 'angular2-jwt';
   declarations: [ 
     UsuariosComponent,
     UsuariosModalPerfilComponent,
-    UsuariosModalFacturaComponent
+    UsuariosModalFacturaComponent,
     //BuscadorUsuariosPipe
   ],
   providers:[
     UsuariosService, //con declararlo aqui es suficiente
 
-  ]
+  ],
+
 })
 export class UsuariosModule { }

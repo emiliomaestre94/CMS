@@ -15,7 +15,7 @@ export class Perfiladmin{
  
 @Injectable()
 
-export class PerfiladminService {
+export class PerfiladminService { 
 
     headers = new Headers({ 'content-type': 'application/json' });
     options = new RequestOptions({ headers: this.headers, withCredentials: true });
@@ -29,6 +29,7 @@ export class PerfiladminService {
         ) {}
 
      getUser(id){
+        console.log("EL ID EEEEEEEEEEEEEEEES "+id);
         //console.log("GETUSER");
         return this.authHttp.get(environment.dominio + '/usuario?id='+id)
         .delay(environment.timeout)
@@ -61,7 +62,8 @@ export class PerfiladminService {
             nombre: usuario.Nombre_usuario,
             email: usuario.Email_usuario,
             sexo: sexo,
-            foto: image
+            foto: image,
+            fecha: usuario.Fecha_nac_usuario,
         }), this.options)
         .delay(environment.timeout)
         .map((res: Response) => {

@@ -60,7 +60,14 @@ export class DatosTokenService {
         console.log(this.token);
     }
 
+    updateTokenEmpresa(tienda){
+        this.token["logo_tienda"]=tienda.Logo_tienda;
+        this.token["nombre_tienda"]=tienda.Nombre_tienda;
+        console.log(this.token);
+    }
+
     updateTokenServidor(usuario){
+        console.log("UPDATE TOKEN SERVIDOR");
         this.token["foto_usuario"]=usuario.Foto_usuario;
         this.token["nombre_usuario"]=usuario.Nombre_usuario;
          console.log(usuario.Email_usuario);
@@ -84,7 +91,7 @@ export class DatosTokenService {
                 return Observable.throw(new Error(error.status));
             });
     }
-    
+     
 
 
 

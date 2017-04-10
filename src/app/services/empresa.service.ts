@@ -15,29 +15,54 @@ export class Sincronizar{
 
 export class EmpresaService {
 
-    constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
-        
-    }
-    getFacturasUser(idUsuario,idTienda){
-        console.log(idUsuario);
-        console.log(idTienda);
-        let url=environment.dominio + '/factura';
+    headers = new Headers({ 'content-type': 'application/json' });
+    options = new RequestOptions({ headers: this.headers, withCredentials: true });
+
+    constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {}
+
+    getTienda(idTienda){
+        let url=environment.dominio + '/tienda?id='+idTienda;
+        console.log(url);
         return this.authHttp.get(url)
         .delay(environment.timeout)
         .map((res: Response) => {
             if (res.status === 200) {;
                 console.log("status 200");
-                //return res.json().usuario
                 return  [{ status: res.status, data: res.json() }]
             }
             else if (res.status === 204) {
                 console.log("status 204");
-                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
+                return  [{ status: res.status, json: "TIenda no encontrado en la base de datos" }]
             }
         }).catch((error: any) => {
             console.log(error);
-
             return Observable.throw(new Error(error.status));
         });
     }
+
+    updateTienda(tienda,url){
+        console.log(tienda);
+       return this.authHttp.put(environment.dominio + '/tienda', 
+        JSON.stringify({
+           id_tienda: tienda.Id_tienda,
+           nombre: tienda.Nombre_tienda,
+           direccion:tienda.Direccion_tienda,
+           provincia:tienda.Provincia_tienda,
+           cp:tienda.CP_tienda,
+           cif:tienda.CIF_tienda,
+           horario:tienda.Horario_tienda,
+           descripcion:tienda.Descripcion_tienda,
+           foto:tienda.Foto_tienda,
+           logo:tienda.Logo_tienda,
+        }), this.options)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+        return  [{ status: res.status}]
+        }).catch((error: any) => {
+            console.log(error)
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });      
+    }
+
 }
