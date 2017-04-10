@@ -74,3 +74,11 @@ img.img-avatar {
     height: 190px;
     object-fit: contain;
 }
+
+p.lineas {
+    width: 250px;
+    font-weight: 500;
+    text-overflow: ellipsis; 
+    overflow:hidden;
+    white-space:nowrap;
+}
