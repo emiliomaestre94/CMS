@@ -69,16 +69,17 @@
                                     </div>
                                 </td>     
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                        <strong>{{producto.Codigo_producto}}</strong>
+                                    <p>{{producto.Codigo_producto}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.Nombre_producto}}</strong>
+                                    <p class="nombre">{{producto.Nombre_producto}}</p>
+                                    
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.Descripcion_producto}}</strong>
+                                    <p class="descripcion">{{producto.Descripcion_producto}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
-                                    <strong>{{producto.Precio_producto}} </strong><i class="fa fa-eur"></i>
+                                    <p>{{producto.Precio_producto}} <i class="fa fa-eur"></i></p>
                                 </td>
                                 <!-- producto.P_oferta_oferta_producto -->
                                 <td *ngIf="producto.P_oferta_oferta_producto"class="text-center" style="color:#4dbd74; font-size: 16px;" data-toggle="modal" (click)="showChildModal(producto)">
