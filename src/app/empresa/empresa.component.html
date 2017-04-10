@@ -61,11 +61,29 @@
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon"><strong>Facebook</strong></span>
+                                    <input class="form-control" type="text" [(ngModel)]="tienda.Facebook_tienda" name="direccion">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><strong>Twitter</strong></span>
+                                    <input class="form-control" type="text" [(ngModel)]="tienda.Twitter_tienda" name="direccion">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <span class="input-group-addon"><strong>Horario</strong></span>
+                                    <div class="col-md-8">
+                                    <textarea id="textarea-input" [(ngModel)]="tienda.Horario_tienda" name="Horario" rows="9" class="form-control"></textarea>
+                                    </div>
+
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <span class="input-group-addon" id="horario"><strong>Horario</strong></span>
                                         <textarea id="textarea-input" [(ngModel)]="tienda.Horario_tienda" name="Horario" rows="9" class="form-control"></textarea>
                                     </div>                                 
+
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-12">

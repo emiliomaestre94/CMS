@@ -40,6 +40,8 @@ export class EmpresaComponent implements OnInit {
       this.empresaService.updateTienda(this.tienda,null).subscribe(
         res =>{
           console.log(res);
+          this.token.updateTokenEmpresa(this.tienda);
+          this.getUser();
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);

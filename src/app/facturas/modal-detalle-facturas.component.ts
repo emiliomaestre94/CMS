@@ -14,6 +14,7 @@ declare let jsPDF;
 export class ModalDetalleFacturasComponent {
 
   @ViewChild('facturaModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide 
+  @ViewChild('factura') factura: ElementRef;
   public facturaDetalle;
   public facturaLineas;
 
@@ -24,6 +25,12 @@ export class ModalDetalleFacturasComponent {
     s.type = "text/javascript";
     s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js";
     this.elementRef.nativeElement.appendChild(s);
+
+
+      var m = document.createElement("script");
+    m.type = "text/javascript";
+    m.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js";
+    this.elementRef.nativeElement.appendChild(m);
   }
 
   public showChildModal(factura):void {
@@ -53,6 +60,7 @@ export class ModalDetalleFacturasComponent {
   }
 
   public download() {
+    /*
     var doc = new jsPDF();
     // doc.addImage('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/2000px-Apple_logo_black.svg.png', 'PNG',0, 0, 500, 500);
     // var imgData = 'data:image/jpeg;base64,'+ Base64.encode('Koala.jpeg');
@@ -68,6 +76,22 @@ export class ModalDetalleFacturasComponent {
     };
 
     doc.save('Test.pdf');
+    */
+    /*
+        let pdf = new jsPDF();
+        let options = {
+            pagesplit: true
+        };
+        pdf.addHTML(this.factura.nativeElement, 0, 0, options, () => {
+            pdf.save("test.pdf");
+        });
+        */
+var pdf = new jsPDF('p', 'pt', 'a4'); // basic create pdf
+pdf.internal.scaleFactor = 1; // play with this value
+
+pdf.addHTML(this.factura.nativeElement, {pagesplit: true, retina: true}, function () { // addHtml with automatic pageSplit
+    var out = pdf.output('dataurlnewwindow'); // output format of your pdf -> there are a lot blob, base64....
+});
   }
 
   
