@@ -71,3 +71,14 @@ th.precio {
 }
 
 /////////////////////////////////////////////////////////////////////
+
+ p {
+     font-weight: 500;
+ }
+
+ p.cliente {
+    width: 250px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space:nowrap;
+}
