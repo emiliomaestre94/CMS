@@ -40,6 +40,7 @@ export class YoutubeModalComponent {
     this.childModal.show();
   }
 
+
   public getVideos(query){
       this.youtubeService.search(query).subscribe(
         res =>{
