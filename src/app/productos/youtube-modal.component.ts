@@ -27,26 +27,33 @@ export class YoutubeModalComponent {
 
   public videosURL;
   public nombreProducto;
+  public buscadorVideos;
 
   @ViewChild('YoutubeModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide 
   constructor(public youtubeService:YouTubeAPIService){}
 
   public showChildModal(nombreProducto):void {
+    this.videosURL=null;
     this.nombreProducto=nombreProducto;
     console.log(nombreProducto);
-      this.youtubeService.search(nombreProducto).subscribe(
+    this.getVideos(nombreProducto);
+    this.childModal.show();
+  }
+
+
+  public getVideos(query){
+      this.youtubeService.search(query).subscribe(
         res =>{
           console.log("YOUTUUUUUUUUUUUUUUUUUUUUBE");
           console.log(res);
           this.videosURL=res;
           //this.videosURL="https://www.youtube.com/embed/"+res.id.videoId;
-          console.log(this.videosURL);
+          //console.log(this.videosURL);
         },
         err=>{ //Error de conexion con el servidor
           console.log(err);
         },
     );
-    this.childModal.show();
   }
 
   public hideChildModal():void {

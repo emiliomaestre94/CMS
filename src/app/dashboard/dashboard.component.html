@@ -41,11 +41,12 @@
         <div class="col-sm-6 col-md-3">
             <div class="card card-inverse card-success">
                 <div class="card-block tarjetasDashboard" >
-                    <i  class="fa fa-spinner fa-spin spinnerDashboard" ></i>
+                    <i *ngIf="loadingUsers==true" class="fa fa-spinner fa-spin spinnerDashboard" ></i>
                     <div class="h1 text-muted text-right mb-2">
                         <i class="icon-user-follow"></i>
                     </div>
-                    <div class="h4 mb-0">385</div>
+                    <div *ngIf="loadingUsers==true" class="h4 mb-0" style="color:transparent;" >Cargando...</div>
+                    <div  *ngIf="loadingUsers==false" class="h4 mb-0">{{totalNuevosUsuarios}}</div>
                     <small class="text-muted text-uppercase font-weight-bold">Nuevos Usuarios</small>
                 </div>
             </div>
@@ -54,11 +55,12 @@
         <div class="col-sm-6 col-md-3">
             <div class="card card-inverse card-warning">
                 <div class="card-block tarjetasDashboard" >
-                    <i  class="fa fa-spinner fa-spin spinnerDashboard" ></i>
+                    <i *ngIf="loadingUsers==true" class="fa fa-spinner fa-spin spinnerDashboard" ></i>
                     <div class="h1 text-muted text-right mb-2">
                         <i class="icon-basket-loaded"></i>
                     </div>
-                    <div class="h4 mb-0">1238</div>
+                    <div *ngIf="loadingUsers==true" class="h4 mb-0" style="color:transparent;" >Cargando...</div>
+                    <div  *ngIf="loadingUsers==false" class="h4 mb-0">{{totalCompradoresTotales}}</div>
                     <small class="text-muted text-uppercase font-weight-bold">Compradores totales</small>
                 </div>
             </div>
@@ -67,11 +69,12 @@
         <div class="col-sm-6 col-md-3">
             <div class="card card-inverse card-danger">
                 <div class="card-block tarjetasDashboard ">
-                    <i  class="fa fa-spinner fa-spin spinnerDashboard" ></i>
+                    <i *ngIf="loadingUsers==true" class="fa fa-spinner fa-spin spinnerDashboard" ></i>
                     <div class="h1 text-muted text-right mb-2">
                         <i class="icon-docs"></i>
                     </div>
-                    <div class="h4 mb-0">324</div>
+                    <div *ngIf="loadingUsers==true" class="h4 mb-0" style="color:transparent;" >Cargando...</div>
+                    <div  *ngIf="loadingUsers==false" class="h4 mb-0">{{totalFacturas}}</div>
                     <small class="text-muted text-uppercase font-weight-bold">Facturas Generadas</small>
                 </div>
             </div>

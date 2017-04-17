@@ -27,18 +27,6 @@
                     <div class="col-md-7" style="float:right;">
                         <form #EmpresaForm="ngForm">
                             <div class="form-group">
-                                <div class="form-group row">
-                                    <div class="input-group col-md-6">
-                                        <span class="input-group-addon"><strong>CIF</strong></span>
-                                        <input class="form-control"[(ngModel)]="tienda.CIF_tienda" name="CIF" type="text">
-                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    </div>
-                                    <div class="input-group col-md-6">
-                                        <span class="input-group-addon"><strong>Tlf</strong></span>
-                                        <input class="form-control"[(ngModel)]="tienda.Telefono_tienda" name="tlf"  type="text">
-                                        <span class="input-group-addon"><i class="fa fa-phone fa-lg m-t-2"></i></span>
-                                    </div>
-                                </div>
                                 <div class="input-group">
                                     <span class="input-group-addon"><strong>Nombre</strong></span>
                                     <input class="form-control" type="text" [(ngModel)]="tienda.Nombre_tienda" name="nombre" >
@@ -59,6 +47,18 @@
                                         <span class="input-group-addon"><strong>Cod Postal</strong></span>
                                         <input class="form-control" [(ngModel)]="tienda.CP_tienda" name="CP" type="text">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="input-group col-md-6">
+                                        <span class="input-group-addon"><strong>CIF</strong></span>
+                                        <input class="form-control"[(ngModel)]="tienda.CIF_tienda" name="CIF" type="text">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <div class="input-group col-md-6">
+                                        <span class="input-group-addon"><strong>Teléfono</strong></span>
+                                        <input class="form-control"[(ngModel)]="tienda.Telefono_tienda" name="tlf"  type="text">
+                                        <span class="input-group-addon"><i class="fa fa-phone fa-lg m-t-2"></i></span>
                                     </div>
                                 </div>
                                 <div class="form-group">

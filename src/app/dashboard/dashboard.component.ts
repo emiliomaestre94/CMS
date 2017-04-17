@@ -17,8 +17,10 @@ export class DashboardComponent implements OnInit {
   constructor(public datostokenservice: DatosTokenService, public dashboardservice: DashboardService, public empresaService: EmpresaService,) { }
 
   totalUsuariosTotales: string  //guarda los usuarios totales
-  totalCompradoresTotales: string  //guarda los usuarios totales (primera tarjeta)
-  loadingUsers: boolean=false;  //cargando primera tarjeta
+  totalCompradoresTotales: string  //guarda los usuarios totales
+  totalNuevosUsuarios: string  //guarda los usuarios totales (primera tarjeta)
+  totalFacturas: string  //guarda los usuarios totales (primera tarjeta)
+  loadingUsers: boolean=true;  //cargando primera tarjeta
 
   ngOnInit(): void {
     //generamos valores random para el chart (mas adelante los quitaremos)
@@ -30,53 +32,27 @@ export class DashboardComponent implements OnInit {
     this.idTienda=this.datostokenservice.token['id_tienda'];
     console.log(this.idTienda);
     this.getTienda();
-    //Primera gil
-   // this.getTotalUsers(); //usuarios de la itenda 
-   // this.getCompradoresTotales();   // numero de usuario que han realizado una compra en un establecimiento
   }
+  
   public tienda;
     getTienda(){
       this.empresaService.getTienda(this.idTienda).subscribe(
         res =>{
           console.log(res);  
           this.tienda=res[0].data.Tiendas[0];
+          this.totalUsuariosTotales=this.tienda.Numero_usuarios_tienda;
+          this.totalCompradoresTotales=this.tienda.Numero_usuarios_compran_tienda;
+          this.totalNuevosUsuarios=this.tienda.Numero_usuarios_mes_tienda;
+          this.totalFacturas=this.tienda.Numero_facturas_mes_tienda
           console.log(this.tienda);   
+          this.loadingUsers=false;
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
         },   
     ); 
-  }
-/*
-  getTotalUsers(){ 
-    this.loadingUsers=true;
-    this.dashboardservice.getTotalUsers(this.idTienda).subscribe(
-        res =>{
-          console.log(res);
-          console.log(res[0].usuario); 
-          this.totalUsuariosTotales=res[0].usuario;
-          this.loadingUsers=false;
-        },
-        err=>{ //Error de conexion con el servidor
-            console.log(err);
-        },   
-    );
-  }
-  getCompradoresTotales(){ 
-    this.loadingUsers=true;
-    this.dashboardservice.getCompradoresTotales(this.idTienda).subscribe(
-        res =>{
-          console.log(res);
-         // console.log(res[0].usuario); 
-          //this.totalUsuariosTotales=res[0].usuario;
-          this.loadingUsers=false;
-        },
-        err=>{ //Error de conexion con el servidor
-            console.log(err);
-        },   
-    );
-  }
-  */
+  } 
+
 
   //MIERDA DE ESTADISTICAS
   public brandPrimary:string =  '#20a8d8';
