@@ -61,3 +61,22 @@ span.input-group-addon.addonIzq{
 span.input-group-addon.addonIzq2{
     width: 147px;
 }
+
+@media (max-width: 1250px) {
+input[type="file"] {
+    width: 370px;
+    height: 370px;
+}
+
+.imagenPerfil {
+    height: 375px;
+    width: 375px;
+}
+img.imgPerfilAdmin {
+    width: 370px;
+    height: 370px;
+
+}
+
+
+}

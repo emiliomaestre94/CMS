@@ -22,11 +22,11 @@
                             <input type="text" id="input1-group2" name="input1-group2" class="form-control"  [(ngModel)]="buscadorVideos" placeholder="Buscar Video" >
                         </div>
                     </div>
-                <div class="col-md-4 col-sm-6 "  style="float:left; margin-bottom:25px" *ngFor="let videoURL of videosURL">
-                   <iframe   [src]="'https://www.youtube.com/embed/' + videoURL.id.videoId | safe"> </iframe>
-                   <p style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap; margin-bottom: 2px;">{{videoURL.snippet.title}}</p>
-                   <button style="width:100%"type="button" class="btn btn-primary">Seleccionar Video</button> 
-                </div>
+                    <div class="col-md-4 col-sm-6" style="float:left; margin-bottom:20px" *ngFor="let videoURL of videosURL">
+                        <iframe [src]="'https://www.youtube.com/embed/' + videoURL.id.videoId | safe" style="width:100%"></iframe>
+                        <p style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap; margin-bottom: 2px;">{{videoURL.snippet.title}}</p>
+                        <button style="width:100%"type="button" class="btn btn-primary">Seleccionar Video</button> 
+                    </div>
                    <!--<img *ngFor="let videoURL of videosURL"  [src]="videoURL.snippet.thumbnails.medium.url"> -->
                 </div>
                 </div>
