@@ -76,11 +76,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 form-control-label" for="text-input"><strong>Url Video</strong></label>
+                                                <label class="col-md-3 form-control-label" for="text-input"><strong>Video </strong><i class="fa fa-youtube-square icons font-2xl"></i></label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="text-input" name="text-input" class="form-control" [(ngModel)]="producto.URL_video_producto">
-                                                    <button type="button" (click)="showYoutubeModal();" class="btn btn-primary"> Buscar videos</button> 
-
+                                                    <div class="input-group">
+                                                        <input type="text" id="text-input" name="text-input" class="form-control" [(ngModel)]="producto.URL_video_producto">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" (click)="showYoutubeModal();" class="btn btn-primary">Buscar <i class="fa fa-search"></i></button> 
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                     </form>
