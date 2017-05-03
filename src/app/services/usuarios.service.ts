@@ -14,7 +14,7 @@ export class Usuario{
 @Injectable()
 
 export class UsuariosService {
-
+ 
     
     headers = new Headers({ 'content-type': 'application/json' });
     options = new RequestOptions({ headers: this.headers, withCredentials: true });
@@ -22,12 +22,16 @@ export class UsuariosService {
 
     constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {}
 
-    getUsers(pag:number,usuario:string){
-         console.log(pag); 
+    getUsers(pag:number,usuario:string,filtro){
+         console.log(pag);  
          pag +=-1; //restamos 1 siempre
          pag.toString(); //pasamos a string el number
          console.log(pag);
-        return this.authHttp.get(environment.dominio + '/usuario?pagina=' + pag + '&nombre='+usuario)
+        if(filtro)
+            var consulta=this.construirconsulta2(filtro,pag);
+        else
+           var consulta= environment.dominio + '/usuario?pagina=' + pag + '&nombre='+usuario
+        return this.authHttp.get(consulta)
         .delay(environment.timeout)
         .map((res: Response) => {
             console.log(res);
@@ -105,6 +109,18 @@ export class UsuariosService {
             i++;
         }
         */
+        console.log(consulta);
+        return consulta;
+    }
+    construirconsulta2(filtro,pag){
+        console.log(filtro,pag)
+        let consulta= environment.dominio + "/usuario?pagina=" + pag;
+        if (filtro["nombre"]!='')  consulta+="&nombre="+filtro["nombre"];
+        if (filtro["sexo"]!='')  consulta+="&sexo="+filtro["sexo"];
+        if (filtro["cp"]!='')  consulta+="&cp="+filtro["cp"];
+        if (filtro["fecha_min"]!='')  consulta+="&fechanac_min="+filtro["fecha_min"];
+        if (filtro["fecha_max"]!='')  consulta+="&fechanac_max="+filtro["fecha_max"];
+
         console.log(consulta);
         return consulta;
     }

@@ -148,7 +148,10 @@
 
                             </div>
                         </tab>
-                        <tab style="text-align:center" (select)="selectTab(3);" >
+                        <tab (select)="selectTab(3);">
+                            <template tabHeading><i class="icon-present"></i> Registro ofertas </template>
+                        </tab>
+                        <tab style="text-align:center" (select)="selectTab(4);" >
                           <template tabHeading><i class="fa fa-cube fa-lg m-t-2"></i> 3D </template>
                             <div class="sketchfab-embed-wrapper">
                                 <iframe width="640" height="480" src="https://sketchfab.com/models/5f5fe4d8b75f4f4e9fc9f13726b29adb/embed" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
@@ -162,17 +165,37 @@
             </div>
 
             <div class="modal-footer">
-               
-                <button type="button" *ngIf="tabselected==1" (click)="updateProducto();" class="btn btn-primary"><i class="fa fa-save"></i> Actualizar producto</button> 
+
+                <div  *ngIf="msgAlert && errorUpdateProducto==true && loadingUpdateProducto==false && tabselected==1" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgAlert}} </div>
+                <div  *ngIf="msgAlert && errorUpdateProducto==false && loadingUpdateProducto==false && tabselected==1" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgAlert}} </div>
+                <button type="button" *ngIf="tabselected==1 && loadingUpdateProducto==false" (click)="updateProducto();" class="btn btn-primary"><i class="fa fa-save"></i> Actualizar producto</button>
+                <button type="button" *ngIf="tabselected==1 && loadingUpdateProducto==true"  class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i> Actualizando producto</button>
                 <button type="button" *ngIf="tabselected==2 && ofertaActiva==false"(click)="saveData();" class="btn btn-primary"><i class="fa fa-save"></i> Crear oferta</button>
-                <button type="button" *ngIf="tabselected==2 && ofertaActiva==true"(click)="saveData();" class="btn btn-danger"><i class="fa fa-save"></i> Eliminar oferta</button>
-                <button type="button" *ngIf="tabselected==2 && ofertaActiva==true"(click)="saveData();" class="btn btn-success"><i class="fa fa-save"></i> Actualizar oferta</button>
+                
+                <div  *ngIf="msgAlertOferta && errorUpdateOferta==true && loadingUpdateOferta==false && tabselected==2" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgAlertOferta}} </div>
+                <div  *ngIf="msgAlertOferta && errorUpdateOferta==false && loadingUpdateOferta==false && tabselected==2" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgAlertOferta}} </div>
+                <button  type="button" *ngIf="tabselected==2 && ofertaActiva==true" [popover]="popTemplate" popoverTitle="Confirmar acción" class="btn btn-danger"><i class="fa fa-save"></i> Eliminar oferta</button>
+                <button type="button" *ngIf="tabselected==2 && ofertaActiva==true && !loadingUpdateOferta"(click)="updateOferta(0);" class="btn btn-success"><i class="fa fa-save"></i> Actualizar oferta</button>
+                <button type="button" *ngIf="tabselected==2 && loadingUpdateOferta==true"  class="btn btn-success"><i class="fa fa-spinner fa-spin"></i> Actualizando oferta</button>  
+
+                
+                <template #popTemplate>
+                    <p style="text-align: center;">¿Estás seguro de que deseas eliminar la oferta actual? La oferta quedará almacenada en el registro de ofertas.</p> 
+                    <div class="form-group row">
+                        <div style="margin-left: 25px; margin-top: 10px;">
+                            <button  class="btn btn-danger" >Cancelar</button>
+                        </div>
+                        <div style="margin-left: 25px; margin-top: 10px;">
+                            <button class="btn btn-success" (click)="updateOferta(1);">Confirmar</button>
+                        </div>
+                    </div>
+                </template>
             </div>
              
 
         </div>
     </div>
 </div>
-
+ 
 <!--MODAL DE YOUTUBE-->
-<youtube-modal></youtube-modal>
+<youtube-modal  (change)="videoChange($event)" ></youtube-modal>

@@ -1,3 +1,4 @@
+import { PopoverModule } from 'ng2-bootstrap';
 import { PipesModule } from './../pipes/pipes.module';
 import { YoutubeModalComponent, SafePipe } from './youtube-modal.component';
 import { ProductosDetalleModalComponent } from './modal-productos.component';
@@ -33,6 +34,7 @@ BuscadorProductosPipe
       DropdownModule,
       DatePickerModule, 
       ModalModule.forRoot(),
+      PopoverModule.forRoot(),
       PaginationModule.forRoot(),
        TabsModule
     ],

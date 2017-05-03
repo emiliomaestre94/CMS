@@ -138,6 +138,27 @@ export class OfertasService {
         });
     }
 
+        public putOfertaProducto(oferta){ 
+        return this.authHttp.put(environment.dominio + '/oferta/ofertaProducto', 
+        JSON.stringify({
+           id: oferta.Id_oferta_producto,
+           p_oferta: oferta.P_oferta_oferta_producto,
+           fechaini: oferta.Fecha_inicio_oferta_producto,
+           fechafin: oferta.Fecha_fin_oferta_producto,
+           foto: oferta.Foto_oferta_producto,
+           descripcion: oferta.Descripcion_oferta_producto,
+           estado: oferta.Estado_oferta_producto,
+           eliminado: oferta.Eliminado_oferta_producto
+        }), this.options)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+        return  [{ status: res.status}]
+        }).catch((error: any) => {
+            console.log(error)
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
 
     public postOfertaProducto(oferta,idTienda,idProducto){ 
         return this.authHttp.post(environment.dominio + '/oferta/ofertaProducto', 

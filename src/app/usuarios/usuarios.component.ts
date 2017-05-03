@@ -3,7 +3,7 @@ import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario, UsuariosService } from './../services/usuarios.service';
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import {Pipe, PipeTransform} from '@angular/core';
-
+import * as moment from 'moment';
  
 
 @Component({
@@ -34,12 +34,19 @@ export class UsuariosComponent implements OnInit {
   public errorActivo: boolean=false;
   public loadingActivo: boolean=false;
   public msgActivo;
- 
-  constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService) { }
+
+  
+  constructor(public usuariosService: UsuariosService,public datostokenservice: DatosTokenService) { 
+      for (let i = 16; i < 100; i++) { //para rellenar los arrays de checkbox de edades
+        let newName = {id:i.toString(),};
+        this.edad_min.push(newName);
+        this.edad_max.push(newName);
+      }
+  }
 
   ngOnInit() { 
     console.log("Entra en el ngOnInit");
-    this.usuariosService.getUsers(this.bigCurrentPage,'').subscribe(
+    this.usuariosService.getUsers(this.bigCurrentPage,'',null).subscribe(
         res =>{
           console.log(res);   
           if(res[0]){
@@ -79,7 +86,7 @@ export class UsuariosComponent implements OnInit {
     if(this.buscadorUsuarios!=''){
       this.buscando=true;
       console.log(this.buscadorUsuarios);
-      this.usuariosService.getUsers(1,this.buscadorUsuarios).subscribe(
+      this.usuariosService.getUsers(1,this.buscadorUsuarios,null).subscribe(
           res =>{
             console.log(res);  
             if(res[0]){
@@ -109,12 +116,68 @@ export class UsuariosComponent implements OnInit {
       );
     }
   }
+  
+  //Busqueda avanzada
+  public filtro: Object={ nombre:'', sexo:'', cp:'', edad_min:'', edad_max:''}
+  public edadminima:string=''; //guarda la edad minima del form
+  public edadmaxima:string=''; //edad maxima del form
+  public edad_min = []; //creamos un array de edades
+  public edad_max = [];
+
+  public busquedaAvanzada(){
+    console.log("Entra a busquedaAvanzada");
+    (this.edadminima!='') ? this.filtro["fecha_max"]=this.buildDates(this.edadminima) :this.filtro["fecha_max"]='' ;
+    (this.edadmaxima!='') ? this.filtro["fecha_min"]=this.buildDates(this.edadmaxima) :this.filtro["fecha_min"]='' ;
+   // if(this.buscadorUsuarios!=''){
+      this.buscando=true;
+      console.log(this.buscadorUsuarios);
+      this.usuariosService.getUsers(1,this.buscadorUsuarios,this.filtro).subscribe(
+          res =>{
+            console.log(res);  
+            if(res[0]){
+              if (res[0].status==200){ //todo bien
+                this.usuarios=res[0].data;
+                console.log(this.usuarios);
+                this.error=false; this.error2=false;
+                this.busquedaActiva=true;
+                this.tag= this.buscadorUsuarios;
+                if(this.bigCurrentPage!=1)
+                  this.bigCurrentPage=1;
+              }
+              if (res[0].status==204){ //no encontrado
+                console.log(res[0].status);
+                this.error2=true;
+                this.mensajeError="No hay ningún usuario que coincida con el término: "+this.buscadorUsuarios;
+              }
+            }
+            this.buscando=false;        
+          },
+          err=>{ //Error de conexion con el servidor
+              console.log(err);
+                this.error2=true;
+                this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
+                this.buscando=false;   
+          },   
+      );
+    //}
+  }
+
+    public buildDates(edad){
+    var today= moment().format('L');
+    var res = today.split("/");
+    var anyo= +res[2] -edad; //el + para pasar a number
+    anyo.toString();
+    var final:string=anyo+"-"+res[0]+"-"+res[1];
+    console.log(final);
+    return final;
+  }
+  
 
   public eliminarBusqueda(){
     this.error=this.error2=this.busquedaActiva=false;
 
      if(this.bigCurrentPage==1){ //solo se ejecuta cuando no cambia la pagina
-          this.usuariosService.getUsers(1,'').subscribe(
+          this.usuariosService.getUsers(1,'',null).subscribe(
             res =>{
               console.log(res);  
               if(res[0]){
@@ -146,13 +209,13 @@ export class UsuariosComponent implements OnInit {
     //console.log('Items por pagina: ' + event.itemsPerPage);
 
     if(this.busquedaActiva==false && this.buscando==false){ //cuando tienes un filtro de busqueda
-        this.usuariosService.getUsers(event.page,'').subscribe(
+        this.usuariosService.getUsers(event.page,'',null).subscribe(
           res =>{
             console.log(res);  
             if(res[0]){
               if (res[0].status==200){ //todo bien
                 this.usuarios=res[0].data;
-                console.log(this.usuarios);
+                console.log(this.usuarios); 
                 this.error2=false;
               }
               if (res[0].status==204){ //no encontrado
@@ -172,7 +235,7 @@ export class UsuariosComponent implements OnInit {
     }
     else{ //si no tienes filtro de busqueda
      
-      this.usuariosService.getUsers(event.page,this.buscadorUsuarios).subscribe(
+      this.usuariosService.getUsers(event.page,this.buscadorUsuarios,this.filtro).subscribe(
         res =>{
           console.log(res);  
           if(res[0]){
@@ -232,6 +295,7 @@ export class UsuariosComponent implements OnInit {
       },   
     );
   }
+  
 
   
 }

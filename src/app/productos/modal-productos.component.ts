@@ -45,6 +45,8 @@ export class ProductosDetalleModalComponent {
   public ofertaActiva=false; // booleano que indica si tiene una oferta activa o no el producto
   public tabselected; //indica que tab es el seleccionado
 
+  public myCount="PRUEBITAAAAAAAAA";
+
   @ViewChild('productoDetalleModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide 
   @ViewChild(YoutubeModalComponent) public modalYoutube:YoutubeModalComponent; //cogemos el componente para poder enviarle los datos
   @ViewChildren('imageAPI') imagesDOM; //te coge todos los elementos del DOM que tengan la etiqueta imageAPI
@@ -63,8 +65,10 @@ export class ProductosDetalleModalComponent {
     this.uploadImage();
   }
 
+
+
   postOferta(){
-      this.ofertasService.postOfertaProducto(this.oferta,this.idTienda,this.producto["Id_producto"]).subscribe(
+    this.ofertasService.postOfertaProducto(this.oferta,this.idTienda,this.producto["Id_producto"]).subscribe(
         res =>{
           console.log(res);
         },
@@ -73,6 +77,9 @@ export class ProductosDetalleModalComponent {
         },
     );
   }
+
+
+
 
   public formatDate(){
     this.oferta["Fecha_inicio_oferta_producto"]= this.oferta["Fecha_inicio_oferta_producto"].split("T")[0];
@@ -86,6 +93,7 @@ export class ProductosDetalleModalComponent {
   }
 
   public showChildModal(producto):void {
+    this.msgAlert=this.msgAlertOferta=null;
     this.tabselected=1;
     this.staticTabs.tabs[0].active = true;
 
@@ -115,19 +123,58 @@ export class ProductosDetalleModalComponent {
     this.childModal.hide();
   }
 
+
+  public errorUpdateOferta: boolean=false;
+  public loadingUpdateOferta: boolean=false;
+  public msgAlertOferta;
+
+  updateOferta(eliminado){
+    console.log("updateOferta");
+    if(eliminado==1) this.oferta["Eliminado_oferta_producto"]=1;
+    else this.oferta["Eliminado_oferta_producto"]=0;
+    this.loadingUpdateOferta=true;
+    this.ofertasService.putOfertaProducto(this.oferta).subscribe(
+        res =>{
+          console.log(res);
+          this.errorUpdateOferta=false;
+          this.loadingUpdateOferta=false;
+          this.msgAlertOferta="Los datos se han actualizado correctamente";  
+        },
+        err=>{ //Error de conexion con el servidor
+          console.log(err);
+          this.errorUpdateOferta=true;
+          this.loadingUpdateOferta=false;
+          this.msgAlertOferta="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";       
+        },
+    );
+  }
+ 
+
+
+  public errorUpdateProducto: boolean=false;
+  public loadingUpdateProducto: boolean=false;
+  public msgAlert;
+
   public updateProducto(){
+    this.loadingUpdateProducto=true;
     if(this.imageSelected==true){
       this.producto["Imagen_producto"]= this.imageAux;
     }
     console.log("updateProducto");
     this.productosService.updateProducto(this.producto).subscribe(
       res =>{
-          console.log(res);    
-        },
+          console.log(res);
+          this.errorUpdateProducto=false;
+          this.loadingUpdateProducto=false;
+          this.msgAlert="Los datos se han actualizado correctamente";  
+        }, 
       err=>{ 
           console.log(err);
+          this.errorUpdateProducto=true;
+          this.loadingUpdateProducto=false;
+          this.msgAlert="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";       
       },    
-    );
+    ); 
   }
  
   public getImagesAPI(){
@@ -239,8 +286,9 @@ export class ProductosDetalleModalComponent {
   }
 
 
+ videoChange(event) {
+    console.log("El evento es "+event);
+    this.producto["URL_video_producto"]=event;
+  }
 
-
- 
- 
 }

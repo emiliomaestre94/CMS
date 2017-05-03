@@ -1,5 +1,5 @@
 import { YouTubeAPIService } from './../services/youtube.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output,EventEmitter } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 
 import { DomSanitizer} from '@angular/platform-browser';
@@ -24,6 +24,8 @@ export class SafePipe implements PipeTransform {
 })
 
 export class YoutubeModalComponent {
+  
+  @Output() change: EventEmitter<string> = new EventEmitter<string>();
 
   public videosURL;
   public nombreProducto;
@@ -39,7 +41,7 @@ export class YoutubeModalComponent {
     this.getVideos(nombreProducto);
     this.childModal.show();
   }
-
+ 
 
   public getVideos(query){
       this.youtubeService.search(query).subscribe(
@@ -58,8 +60,13 @@ export class YoutubeModalComponent {
 
   public hideChildModal():void {
     this.childModal.hide();
-  }
+  } 
  
+  public seleccionar(video:string){
+    console.log("El id del video es "+video);
+    this.change.emit(video);
+    this.childModal.hide();
+  }
  
 
 

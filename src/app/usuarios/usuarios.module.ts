@@ -1,3 +1,4 @@
+import { PopoverModule } from 'ng2-bootstrap';
 import { PipesModule } from './../pipes/pipes.module';
 import { UsuariosModalFacturaComponent } from './usuarios-modalfactura.component';
 import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
@@ -35,6 +36,7 @@ import { provideAuth } from 'angular2-jwt';
     DropdownModule,
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
+    PopoverModule.forRoot(),
     TabsModule
   ],
   declarations: [ 

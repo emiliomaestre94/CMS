@@ -122,6 +122,7 @@
                                         <th class="text-center" style="width: 100px;"></th>
                                     </tr>
                                 </thead>
+                                <div  *ngIf="msgOfertas && loadingFacturas==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgOfertas}} </div>                      
 
                                 <tbody>
                                     <tr *ngFor="let oferta of ofertas" >

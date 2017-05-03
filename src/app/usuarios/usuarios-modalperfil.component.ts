@@ -29,6 +29,7 @@ export class UsuariosModalPerfilComponent {
     loadingFacturas:boolean=false;
     errorFacturas:boolean=false;
     msgFacturas:string;
+    msgOfertas:string;
 
  public facturas: Factura[];
  public ofertas;
@@ -88,6 +89,7 @@ export class UsuariosModalPerfilComponent {
   }
 
   public getOfertasUser(){
+     this.msgOfertas=null;
      this.ofertasService.getOfertasUser(this.usuario['Id_usuario'],this.idTienda).subscribe(
         res =>{
 
@@ -99,14 +101,14 @@ export class UsuariosModalPerfilComponent {
               }
               if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
-          
+                this.msgOfertas=this.usuario['Nombre_usuario'] + " no ha recibido aún ninguna oferta";
               }
             }
     
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
-        
+             this.msgOfertas="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
         },   
     );
   }

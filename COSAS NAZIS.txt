@@ -99,23 +99,6 @@ import {ElementRef, ViewChild} from '@angular/core';
    Hijo: Position: absolute;
    //si quieres poner al hijo en medio: left: 50%; margin-left:-24px //en caso de que el width sea 48 px
 
-   Oferta=pablogay
-
-   Fecha_final
-:
-Object
-day
-:
-"09"
-formatted
-:
-"2017-04-09"
-momentObj
-:
-Moment
-month
-:
-"04"
-year
-:
-"2017"
+//JSON MOLONEEEES
+    (this.edadminima!='') ? this.filtro["fecha_max"]=this.buildDates(this.edadminima) :this.filtro["fecha_max"]='' ;
+    (this.edadmaxima!='') ? this.filtro["fecha_min"]=this.buildDates(this.edadmaxima) :this.filtro["fecha_min"]='' ;

@@ -25,15 +25,83 @@
                             <span class="filtros">
                                 <span class="tag bolds">
                                     <a (click)="eliminarBusqueda();" class="btn btn-sm btn-instagram text">
-                                    <span data-value="busqueda" class="closex">x</span>
+                                    <span data-value="busqueda" class="closex">x</span> 
                                     <span class="item">{{tag}}</span>
                                     </a>
                                 </span>
 					        </span>
 	                    </div>
-                    </div> 
+                    </div>
+                    <!-- BUSQUEDA AVANZADA -->
+                    <div  class="col-md-3"><button placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
 
-                   <div class="col-md-6">
+                    <template #popTemplate> 
+                                <div class="form-group row">
+                                    <div class="col-md-12">     
+                                        <form #searchUsersForm="ngForm" (ngSubmit)="busquedaAvanzada()" style="padding-left: 5px; height: 180px;">
+                                            <div class="form-group row">
+
+                                                <div class="col-md-7">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><strong>Usuario</strong></span>
+                                                        <input [(ngModel)]="filtro.nombre" class="form-control" id="usuario" name="nombre" type="text">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                    </div>
+
+                                                    <div class="input-group">
+                                                    <span class="input-group-addon"><strong>Edad mínima</strong></span>
+                                                        <select [(ngModel)]="edadminima" class="form-control" id="edad" name="edadmin" type="number" size="1">
+                                                            <option default [ngValue]="''">Selecione una edad</option>
+                                                            <option *ngFor="let edad_minima of edad_min" [ngValue]=edad_minima.id>
+                                                                {{edad_minima.id}}
+                                                            </option>
+                                             
+                                                        </select>
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+
+                                                    <div class="input-group">                                                
+                                                        <span class="input-group-addon"><strong>Edad máxima</strong></span>
+                                                        <select [(ngModel)]="edadmaxima" class="form-control" id="edad" name="edadmax" type="number" size="1">
+                                                            <option [ngValue]="''">Selecione una edad</option>
+                                                            <option *ngFor="let edad_maxima of edad_max" [ngValue]=edad_maxima.id>
+                                                                {{edad_maxima.id}}
+                                                            </option>
+                                                        </select>
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><strong>Sexo</strong></span>
+                                                        <select [(ngModel)]="filtro.sexo" class="form-control" id="sexo" name="sexo">
+                                                            <option [ngValue]="''">Selecione un sexo</option>
+                                                            <option [ngValue]="'h'">Hombre</option>
+                                                            <option [ngValue]="'m'">Mujer</option>
+                                                        </select>
+                                                        <span class="input-group-addon"><i class="fa fa-venus-mars"></i></span>    
+                                                    </div>
+
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><strong>CP</strong></span>
+                                                        <input [(ngModel)]="filtro.cp"class="form-control" id="codigoPostal" name="codigoPostal" type="text">
+                                                        <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+                                                    </div>
+
+                                                    <div class="form-group form-actions">
+                                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                    </template>
+                    <!-- Fin busqueda avanzada--> 
+
+                   <div class="col-md-3">
                         <pagination class="pagination" id="pagination"
                         [totalItems]="bigTotalItems" 
                         [itemsPerPage]="itemsPorPagina" 
@@ -115,7 +183,7 @@
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
                 <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
             </div>
-
+ 
             <div>
                 <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
                 <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>

@@ -103,3 +103,12 @@ p.descripcion {
     overflow: auto;
     height: 500px;
 }
+
+.popover {
+  background-color: #009688;
+  color: #fff;
+}
+
+popover-container.popover.in.popover-bottom.bottom.show {
+    width: 1px;
+}
