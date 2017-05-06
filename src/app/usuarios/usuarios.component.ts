@@ -85,7 +85,7 @@ export class UsuariosComponent implements OnInit {
 
   public buscar(){
     if(this.buscadorUsuarios!=''){
-      this.tag=[]; 
+      
       this.buscando=true;
       for (var filtro in this.filtro){ //Vaciamos el filtro para que no se quede guardada la etiqueta de la busqueda avanzada
         this.filtro[filtro]="";
@@ -99,6 +99,7 @@ export class UsuariosComponent implements OnInit {
             console.log(res);  
             if(res[0]){
               if (res[0].status==200){ //todo bien
+                this.tag=[];
                 this.usuarios=res[0].data;
                 console.log(this.usuarios);
                 this.error=false; this.error2=false;
@@ -137,7 +138,7 @@ export class UsuariosComponent implements OnInit {
     (this.edadminima!='') ? this.filtro["fecha_max"]=this.buildDates(this.edadminima) :this.filtro["fecha_max"]='' ;
     (this.edadmaxima!='') ? this.filtro["fecha_min"]=this.buildDates(this.edadmaxima) :this.filtro["fecha_min"]='' ;
     if(this.filtro["nombre"]!="" || this.filtro["sexo"]!="" || this.filtro["cp"]!="" || this.filtro["fecha_max"]!="" || this.filtro["fecha_min"]!=""){
-      this.tag=[];
+     
       this.buscandoAvanzado=true;
       console.log(this.buscadorUsuarios);
       this.usuariosService.getUsers(1,this.buscadorUsuarios,this.filtro).subscribe(
@@ -145,6 +146,7 @@ export class UsuariosComponent implements OnInit {
             console.log(res);  
             if(res[0]){
               if (res[0].status==200){ //todo bien
+                this.tag=[];
                 this.usuarios=res[0].data;
                 console.log(this.usuarios);
                 this.error=false; this.error2=false;

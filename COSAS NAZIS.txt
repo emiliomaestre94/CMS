@@ -106,4 +106,10 @@ import {ElementRef, ViewChild} from '@angular/core';
 
 //FIREBASE
 firebase init
-firebase deployde
+firebase deploy
+
+
+
+
+//BUGS
+CUANDO INTRODUCES UN ELEMENTO Y LUEGO  NO ENCUENTRA NADA SE VA A LA PUTA
