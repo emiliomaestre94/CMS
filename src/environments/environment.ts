@@ -12,7 +12,7 @@ export const environment = {
 
 /*
 export const environment = {
-  production: false,
+  production: true,
   dominio: 'https://appayservidor.herokuapp.com',
   timeout: 0
 };*/

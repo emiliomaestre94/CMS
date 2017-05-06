@@ -11,30 +11,37 @@
 
             <div *ngIf="usuarios" class="card-block">
 
+                <!--BUSCADOR-->    
                 <div id="buscador" class="form-group row">
                     <div class="col-md-6">
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                                <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
-                            </span>
-                            <input type="text" iFid="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
-                        </div>                        
-                        <div *ngIf="busquedaActiva == true"  class="col-sm-12 filtro">
+                        <form #searchUserForm="ngForm" (ngSubmit)="buscar()">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
+                                </span>
+                                <input type="text" iFid="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
+                            </div>
+                        </form>
+
+                        <!--FILTROS-->                        
+                        <div class="col-sm-12 filtro">
                             <span class="bold fp">Filtrado por:</span>
                             <span class="filtros">
-                                <span class="tag bolds">
-                                    <a (click)="eliminarBusqueda();" class="btn btn-sm btn-instagram text">
+                                <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
+                                    <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
                                     <span data-value="busqueda" class="closex">x</span> 
-                                    <span class="item">{{tag}}</span>
+                                    <span class="item">{{etiqueta}}</span>
                                     </a>
+                                    
                                 </span>
-					        </span>
+					        </span> 
 	                    </div>
+ 
                     </div>
                     <!-- BUSQUEDA AVANZADA -->
-                    <div  class="col-md-3"><button placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
-
+                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3"><button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
+                    <div   *ngIf="buscandoAvanzado==true" class="col-md-3"><button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i>Buscando</button></div>
                     <template #popTemplate> 
                                 <div class="form-group row">
                                     <div class="col-md-12">     
@@ -90,7 +97,8 @@
                                                     </div>
 
                                                     <div class="form-group form-actions">
-                                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                                        
+                                                        <button class="btn btn-primary" (click)="pop.hide(); busquedaAvanzada()" type="submit"><i class="fa fa-search"></i> Buscar</button>
                                                     </div>
 
                                                 </div>
@@ -99,8 +107,9 @@
                                     </div>
                                 </div>
                     </template>
-                    <!-- Fin busqueda avanzada--> 
-
+                    
+                    
+                   <!-- PAGINACION -->
                    <div class="col-md-3">
                         <pagination class="pagination" id="pagination"
                         [totalItems]="bigTotalItems" 

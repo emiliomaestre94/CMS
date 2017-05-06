@@ -51,8 +51,9 @@ BuscadorOfertasPipe
       OfertasService,
       UsuariosService,
       ProductosService
-    ]
+    ],
+    exports: [ModalDetalleOfertasComponent]
 })
 export class OfertasModule { 
 
-}
+} 

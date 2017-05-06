@@ -56,7 +56,7 @@ p.municipio {
 
 }
 .imagenPerfil {
-    border: 2px dashed #124570;
+    //border: 2px dashed #124570;
     border-radius: 150px;
     width: 150px;
     height: 150px;
@@ -189,6 +189,10 @@ th.precio {
 }
 .impuestos {
     text-align:left;
+}
+
+a.btn.btn-sm.btn-instagram.text:hover {
+    cursor: pointer !important;
 }
 
 /////////////////////////////////////////////////////////////////////
