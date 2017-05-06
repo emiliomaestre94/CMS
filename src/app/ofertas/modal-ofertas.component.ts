@@ -92,7 +92,7 @@ export class ModalOfertasComponent {
   }
 
   public getProductos(){
-    this.productosService.getProductos(this.idTienda).subscribe(
+    this.productosService.getProductos(this.idTienda,null,null,null).subscribe(
       res =>{
         console.log(res);  
         if(res[0]){
