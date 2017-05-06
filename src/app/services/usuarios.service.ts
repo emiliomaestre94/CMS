@@ -50,7 +50,7 @@ export class UsuariosService {
             return Observable.throw(new Error(error.status));
         });
     }
-
+ 
     public idTienda:string;
     	
     getUsersOfertaModal(filtro,idTienda){

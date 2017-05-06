@@ -33,16 +33,17 @@ BuscadorFacturasPipe
       DropdownModule,
       ModalModule.forRoot(),
       PaginationModule.forRoot()
-    ],
+    ], 
     declarations: [ 
-      FacturasComponent,
+      FacturasComponent, 
       ModalDetalleFacturasComponent,
       //FechaPipe,
       //HoraPipe
     ],
     providers:[
       FacturasService,
-    ]
+    ],
+    exports: [ModalDetalleFacturasComponent]
 })
 export class FacturasModule { 
 

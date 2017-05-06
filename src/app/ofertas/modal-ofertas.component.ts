@@ -35,7 +35,7 @@ export class ModalOfertasComponent {
     Fecha_final:'',
     Descripcion:'',
     Imagen:'',
-    Estado:'1',
+    Estado:'1', 
     Eliminado:'0',
   }
   public edad_min = []; //creamos un array de edades
@@ -193,7 +193,7 @@ export class ModalOfertasComponent {
   }
   
   //Boton buscar del formulario
-  public onLogin(){
+  public onLogin(){ 
     (this.edadminima!='') ? this.filtro["fecha_max"]=this.buildDates(this.edadminima) :this.filtro["fecha_max"]='' ;
     (this.edadmaxima!='') ? this.filtro["fecha_min"]=this.buildDates(this.edadmaxima) :this.filtro["fecha_min"]='' ;
 

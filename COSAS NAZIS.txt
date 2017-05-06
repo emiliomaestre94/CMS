@@ -99,6 +99,11 @@ import {ElementRef, ViewChild} from '@angular/core';
    Hijo: Position: absolute;
    //si quieres poner al hijo en medio: left: 50%; margin-left:-24px //en caso de que el width sea 48 px
 
-//JSON MOLONEEEES
+//IFS MOLONEEEES
     (this.edadminima!='') ? this.filtro["fecha_max"]=this.buildDates(this.edadminima) :this.filtro["fecha_max"]='' ;
     (this.edadmaxima!='') ? this.filtro["fecha_min"]=this.buildDates(this.edadmaxima) :this.filtro["fecha_min"]='' ;
+
+
+//FIREBASE
+firebase init
+firebase deployde

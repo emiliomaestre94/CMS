@@ -1,7 +1,7 @@
 import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario, UsuariosService } from './../services/usuarios.service';
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Pipe, PipeTransform} from '@angular/core';
 import * as moment from 'moment';
  
@@ -14,8 +14,8 @@ import * as moment from 'moment';
 
 export class UsuariosComponent implements OnInit {
 
-  usuarios: Usuario[];
-  buscadorUsuarios: string="";
+  usuarios: Usuario[]; 
+  buscadorUsuarios: string=""; 
 
   public maxSize:number = 5; //numero maximo de paginas que queremos que se vean en el frontend
   public bigTotalItems:number = 100; //Numero total factura (falta por hacerlo en el servidor)
@@ -25,7 +25,8 @@ export class UsuariosComponent implements OnInit {
   
   public busquedaActiva: boolean=false; //esta un filtro de busqueda activo
   public buscando: boolean=false; //está buscando (cambio de boton de buscar)
-  public tag: string; //tag de busqueda
+  public buscandoAvanzado: boolean=false; //está buscando (cambio de boton de busqueda avanzada)
+  public tag = []; //tag de busqueda
   public error: boolean=false; //indica si hay un error de respuesta en el backend
   public mensajeError: string=''; //indica el mensaje del error del backend
   public error2: boolean=false; //error que no sea el del ngoninit (el de abajo)
@@ -84,7 +85,14 @@ export class UsuariosComponent implements OnInit {
 
   public buscar(){
     if(this.buscadorUsuarios!=''){
+      this.tag=[]; 
       this.buscando=true;
+      for (var filtro in this.filtro){ //Vaciamos el filtro para que no se quede guardada la etiqueta de la busqueda avanzada
+        this.filtro[filtro]="";
+         if(filtro=="fecha_max") this.edadminima="";
+         if(filtro=="fecha_min") this.edadmaxima="";
+      }
+      this.filtro["nombre"]=this.buscadorUsuarios;
       console.log(this.buscadorUsuarios);
       this.usuariosService.getUsers(1,this.buscadorUsuarios,null).subscribe(
           res =>{
@@ -95,7 +103,7 @@ export class UsuariosComponent implements OnInit {
                 console.log(this.usuarios);
                 this.error=false; this.error2=false;
                 this.busquedaActiva=true;
-                this.tag= this.buscadorUsuarios;
+                this.tag.push("Nombre: "+this.buscadorUsuarios);
                 if(this.bigCurrentPage!=1)
                   this.bigCurrentPage=1;
               }
@@ -118,7 +126,7 @@ export class UsuariosComponent implements OnInit {
   }
   
   //Busqueda avanzada
-  public filtro: Object={ nombre:'', sexo:'', cp:'', edad_min:'', edad_max:''}
+  public filtro: Object={ nombre:'', sexo:'', cp:'', edad_min:'', edad_max:'',fecha_max:'',fecha_min:''}
   public edadminima:string=''; //guarda la edad minima del form
   public edadmaxima:string=''; //edad maxima del form
   public edad_min = []; //creamos un array de edades
@@ -128,8 +136,9 @@ export class UsuariosComponent implements OnInit {
     console.log("Entra a busquedaAvanzada");
     (this.edadminima!='') ? this.filtro["fecha_max"]=this.buildDates(this.edadminima) :this.filtro["fecha_max"]='' ;
     (this.edadmaxima!='') ? this.filtro["fecha_min"]=this.buildDates(this.edadmaxima) :this.filtro["fecha_min"]='' ;
-   // if(this.buscadorUsuarios!=''){
-      this.buscando=true;
+    if(this.filtro["nombre"]!="" || this.filtro["sexo"]!="" || this.filtro["cp"]!="" || this.filtro["fecha_max"]!="" || this.filtro["fecha_min"]!=""){
+      this.tag=[];
+      this.buscandoAvanzado=true;
       console.log(this.buscadorUsuarios);
       this.usuariosService.getUsers(1,this.buscadorUsuarios,this.filtro).subscribe(
           res =>{
@@ -140,29 +149,30 @@ export class UsuariosComponent implements OnInit {
                 console.log(this.usuarios);
                 this.error=false; this.error2=false;
                 this.busquedaActiva=true;
-                this.tag= this.buscadorUsuarios;
+                //this.tag.push(this.filtro);
+                this.construirEtiquetas();
                 if(this.bigCurrentPage!=1)
                   this.bigCurrentPage=1;
               }
               if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
                 this.error2=true;
-                this.mensajeError="No hay ningún usuario que coincida con el término: "+this.buscadorUsuarios;
+                this.mensajeError="No hay ningún usuario que coincida con los criterios de búsqueda";
               }
             }
-            this.buscando=false;        
+            this.buscandoAvanzado=false;        
           },
           err=>{ //Error de conexion con el servidor
               console.log(err);
                 this.error2=true;
                 this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
-                this.buscando=false;   
+                this.buscandoAvanzado=false;   
           },   
       );
-    //}
+    }
   }
 
-    public buildDates(edad){
+  public buildDates(edad){
     var today= moment().format('L');
     var res = today.split("/");
     var anyo= +res[2] -edad; //el + para pasar a number
@@ -171,13 +181,43 @@ export class UsuariosComponent implements OnInit {
     console.log(final);
     return final;
   }
-  
 
-  public eliminarBusqueda(){
-    this.error=this.error2=this.busquedaActiva=false;
+  
+  construirEtiquetas(){
+    this.tag=[];
+    console.log("ENTRA A CONSTRUIR ETIQUETAS");
+    if (this.filtro["nombre"]) this.tag.push("Nombre: " + this.filtro["nombre"]);
+    if (this.filtro["sexo"]!=''){
+       if (this.filtro["sexo"]=='h') this.tag.push("Sexo: Hombre");
+       if (this.filtro["sexo"]=='m') this.tag.push("Sexo: Mujer");
+    }
+    if (this.filtro["cp"]!='') this.tag.push("CP: " + this.filtro["cp"]);
+    if (this.edadminima!='') this.tag.push("Edad mínima: " + this.edadminima);
+    if (this.edadmaxima!='') this.tag.push("Edad máxima: " + this.edadmaxima);
+  }
+
+  public eliminarEtiqueta(index){
+    let i=0;
+    console.log(this.filtro);
+    for (var filtro in this.filtro){
+      if(this.filtro[filtro]){ 
+        if(i==index){
+          this.filtro[filtro]="";
+          if(filtro=="fecha_max") this.edadminima="";
+          if(filtro=="fecha_min") this.edadmaxima="";
+        }
+        i++;
+      }
+    }
+    this.construirEtiquetas();
+  }
+
+  public eliminarBusqueda(index){
+    this.eliminarEtiqueta(index);
+    this.error=this.error2=false;
 
      if(this.bigCurrentPage==1){ //solo se ejecuta cuando no cambia la pagina
-          this.usuariosService.getUsers(1,'',null).subscribe(
+          this.usuariosService.getUsers(1,"",this.filtro).subscribe(
             res =>{
               console.log(res);  
               if(res[0]){
@@ -197,7 +237,7 @@ export class UsuariosComponent implements OnInit {
 
      
      this.bigCurrentPage=1;
-     this.buscadorUsuarios="";
+    // this.buscadorUsuarios="";
   }
 
  
@@ -208,7 +248,7 @@ export class UsuariosComponent implements OnInit {
     console.log('Pagina cambiada a: ' + event.page);
     //console.log('Items por pagina: ' + event.itemsPerPage);
 
-    if(this.busquedaActiva==false && this.buscando==false){ //cuando tienes un filtro de busqueda
+    if(this.busquedaActiva==false && this.buscando==false && this.buscandoAvanzado==false){ //cuando tienes un filtro de busqueda
         this.usuariosService.getUsers(event.page,'',null).subscribe(
           res =>{
             console.log(res);  
@@ -244,7 +284,7 @@ export class UsuariosComponent implements OnInit {
               this.usuarios=res[0].data;
               console.log(this.usuarios);
               this.error=false;
-              this.tag= this.buscadorUsuarios;
+             // this.tag.push(this.buscadorUsuarios);
             }
             if (res[0].status==204){ //no encontrado
               console.log(res[0].status);
@@ -253,13 +293,13 @@ export class UsuariosComponent implements OnInit {
               //this.eliminarBusqueda();
             }
           }
-          this.buscando=false;       
+          this.buscando=this.buscandoAvanzado=false;       
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
               this.error2=true;
               this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
-              this.buscando=false;   
+              this.buscando=this.buscandoAvanzado=false;   
         },
         
       );
@@ -295,8 +335,5 @@ export class UsuariosComponent implements OnInit {
       },   
     );
   }
-  
-
-  
 }
   
