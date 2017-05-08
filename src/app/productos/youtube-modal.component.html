@@ -27,7 +27,7 @@
                         <div class="col-md-4 col-sm-6" style="float:left; margin-bottom:20px" *ngFor="let videoURL of videosURL">
                             <iframe [src]="'https://www.youtube.com/embed/' + videoURL.id.videoId | safe" style="width:100%"></iframe>
                             <p style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap; margin-bottom: 2px;">{{videoURL.snippet.title}}</p>
-                            <button style="width:100%"type="button" class="btn btn-danger">Seleccionar <i class="icon-social-youtube icons font-2xl"></i></button> 
+                            <button (click)="seleccionar('https://www.youtube.com/embed/'+videoURL.id.videoId);"style="width:100%"type="button" class="btn btn-danger">Seleccionar <i class="icon-social-youtube icons font-2xl"></i></button> 
                         </div>
                     </div>    
                    <!--<img *ngFor="let videoURL of videosURL"  [src]="videoURL.snippet.thumbnails.medium.url"> -->

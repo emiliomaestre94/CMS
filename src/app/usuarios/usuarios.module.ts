@@ -1,3 +1,7 @@
+import { OfertasModule } from './../ofertas/ofertas.module';
+import { FacturasModule } from './../facturas/facturas.module';
+import { ModalDetalleFacturasComponent } from './../facturas/modal-detalle-facturas.component';
+import { PopoverModule } from 'ng2-bootstrap';
 import { PipesModule } from './../pipes/pipes.module';
 import { UsuariosModalFacturaComponent } from './usuarios-modalfactura.component';
 import { UsuariosModalPerfilComponent } from './usuarios-modalperfil.component';
@@ -35,12 +39,16 @@ import { provideAuth } from 'angular2-jwt';
     DropdownModule,
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
-    TabsModule
+    PopoverModule.forRoot(),
+    TabsModule,
+    FacturasModule,
+    OfertasModule 
   ],
   declarations: [ 
     UsuariosComponent,
     UsuariosModalPerfilComponent,
     UsuariosModalFacturaComponent,
+
     //BuscadorUsuariosPipe
   ],
   providers:[

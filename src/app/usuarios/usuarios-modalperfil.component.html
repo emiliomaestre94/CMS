@@ -4,7 +4,7 @@
         <div class="modal-content" style="height: 95%;">
 
             <div class="modal-header-producto" id="producto" style=" height: 67px;">
-                <h4 class="modal-title">Perfil: {{usuario.Nombre_usuario}}</h4>
+                <h4 class="modal-title">{{usuario.Nombre_usuario}}</h4>
                 <button type="button" class="close" (click)="hideChildModal()" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-remove fa-lg m-t-2"></i></span>
                 </button>
@@ -53,8 +53,10 @@
                             <div class="col-md-7">
                             </div>
                             <div class="col-md-5">
-                                <button type="button" *ngIf="!loadingFacturas"  (click)="getFacturasUser();" class="btn btn-success">Actualizar</button>
-                                <button type="button" *ngIf="loadingFacturas" class="btn btn-success" ><i class="fa fa-spinner fa-spin"></i> Actualizando</button>
+                                <!--
+                                <button type="button" *ngIf="!loadingFacturas"  (click)="getFacturasUser();" style="margin-left:13px;" class="btn btn-success">Actualizar datos </button>
+                                <button type="button" *ngIf="loadingFacturas"  style="margin-left:13px;"  class="btn btn-success" ><i class="fa fa-spinner fa-spin"></i> Actualizando</button>-->
+                                <button type="button"   (click)="this.getOfertasUser(); getFacturasUser();" style="margin-left:13px;" class="btn btn-success">Actualizar datos </button>
                             </div>
                         </div>
                     </div>
@@ -68,38 +70,37 @@
                         
                         <!-- FACTURAS -->
                         <tab heading="Facturas">
-                            <table class="table table-hover table-outline mb-0 hidden-sm-down ">
+                            <div  *ngIf="msgFacturas && loadingFacturas==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgFacturas}} </div>
+                            <div *ngIf="loadingFacturas" class="loader"  style="margin-top:30px;"></div>    
+                            <table *ngIf="facturas" class="table table-hover table-outline mb-0 hidden-sm-down ">
                                 <thead class="thead-default">
                                     <tr>
                                         <th class="text-center" >Nº Fact</th>
                                         <th class="text-center" >Fecha</th>
+                                        <th class="text-center">Hora</th>
                                         <th class="text-center">Total</th>
-                                        <th class="text-center">Pagada</th>
                                         <th class="text-center"></th>
                                     </tr>
-                                </thead>
-                               
-                                <div *ngIf="loadingFacturas" class="loader"  style="margin-top:30px;"></div>
-                                <div  *ngIf="msgFacturas && loadingFacturas==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgFacturas}} </div>                      
+                                </thead>                   
 
                                 <tbody *ngIf="!loadingFacturas">
 
-                                    <tr  *ngFor="let factura of facturas" data-toggle="modal" (click)="showFacturaModal()">
+                                    <tr  *ngFor="let factura of facturas" data-toggle="modal" (click)="showFacturaModal(factura)">
 
-                                        <td class="text-center">
-                                            <strong>{{factura.Id_factura}}</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>{{factura.Fecha_factura}}</strong>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>{{factura.Total_factura}} </strong><i class="fa fa-eur"></i>
-                                        </td>
-                                        <td class="text-center">
-                                            <strong>{{factura.Pagada}}</strong>
-                                        </td> 
+                                <td class="text-center" data-toggle="modal">
+                                    <p>{{factura.Id_factura}}</p>
+                                </td>
+                                <td class="text-center" data-toggle="modal">
+                                    <p>{{factura.Fecha_factura | fecha}}</p>
+                                </td>
+                                <td class="text-center" data-toggle="modal">
+                                    <p>{{factura.Fecha_factura | hora}}</p>
+                                </td>
+                                <td class="text-center" data-toggle="modal">
+                                    <p class="totalT" style="font-size: 16px;">{{factura.Total_factura}} <i class="fa fa-eur"></i></p>
+                                </td>
                                         <td id="actualizar" class="text-center actualizar">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showFacturaModal()"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                            <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showFacturaModal(factura)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                         </td>
                                     </tr>                                           
                                 </tbody>
@@ -110,7 +111,9 @@
                         
                         <!-- OFERTAS-->
                         <tab heading="Ofertas">
-                            <table class="table table-hover table-outline mb-0 hidden-sm-down">
+                            <div  *ngIf="msgOfertas && loadingFacturas==false" style="text-align:center; margin-bottom:0px; width: 100%;" class="alert alert-danger">  {{msgOfertas}} </div>
+                            <div *ngIf="loadingFacturas" class="loader"  style="margin-top:30px;"></div>           
+                            <table *ngIf="ofertas" class="table table-hover table-outline mb-0 hidden-sm-down">
                                 <thead class="thead-default">
                                     <tr >
                                         <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
@@ -119,12 +122,11 @@
                                         <th class="text-center" style="width: 20%;">Nombre</th>
                                         <th class="text-center" style="width: 150px;">Precio</th>
                                         <th class="oferta" style = "text-align: center; width: 100px;">Oferta</th>
-                                        <th class="text-center" style="width: 100px;"></th>
+                                        <th class="text-center" style="width: 100px;"></th> 
                                     </tr>
                                 </thead>
-
-                                <tbody>
-                                    <tr *ngFor="let oferta of ofertas" >
+                                <tbody> 
+                                    <tr *ngFor="let oferta of ofertas" (click)="showOfertaModal(oferta)" >
                                         <td class="text-center">
                                             <input type="checkbox" name="" value="">
                                         </td>  
@@ -148,7 +150,7 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <button class="btn btn-primary" type="button" data-toggle="modal" ><i class="fa fa-info-circle"></i> Ver</button>
+                                            <button class="btn btn-primary" (click)="showOfertaModal(oferta)" type="button" data-toggle="modal" ><i class="fa fa-info-circle"></i> Ver</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -165,4 +167,7 @@
 </div>
 
 <!---MODAL FACTURAS  CLIENTE-->
-<modal-perfil-factura></modal-perfil-factura>
+<modal-detalle-facturas></modal-detalle-facturas>
+
+<!-- MODAL DETALLE OFERTA -->
+<modal-detalle-oferta></modal-detalle-oferta>  

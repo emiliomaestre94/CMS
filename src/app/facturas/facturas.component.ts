@@ -38,14 +38,14 @@ export class FacturasComponent implements OnInit {
             if (res[0].status==204){ //no encontrado
               console.log(res[0].status);
             }
-          }
+          } 
            //this.accesocorrecto=true;        
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
         },   
     );
-  }
+  } 
  
   public setPage(pageNo: number): void {
     this.bigCurrentPage = pageNo; 

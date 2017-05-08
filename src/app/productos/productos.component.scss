@@ -27,6 +27,8 @@ background-color: #f86c6b;
 
 /////////////////////////////////////////////////////////////////////
 
+
+
 input[type="file"] {
     opacity: 0;
     position: absolute;
@@ -102,4 +104,27 @@ p.descripcion {
  .tablaVideos {
     overflow: auto;
     height: 500px;
+}
+
+.popover {
+  background-color: #009688;
+  color: #fff;
+}
+
+popover-container.popover.in.popover-bottom.bottom.show {
+    width: 1px;
+}
+
+/////FILTRO/////////////////
+.fp {
+    font-size: 14px;
+}
+.bold {
+    font-weight: 700;
+}
+.col-sm-12.filtro {
+    padding-bottom: 15px;
+}
+a.btn.btn-sm.btn-instagram.text:hover {
+    cursor: pointer !important;
 }

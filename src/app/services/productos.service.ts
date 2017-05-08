@@ -36,30 +36,47 @@ export class ProductosService {
     headers = new Headers({ 'content-type': 'application/json' });
     options = new RequestOptions({ headers: this.headers, withCredentials: true });
 
-    constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
-        
-    }
+    constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {}
 
-    getProductos(tienda){
-        console.log("idtienda es " +tienda);
-        let consulta= environment.dominio + '/producto?idtienda=' + tienda;
+    getProductos(tienda,pag:number,producto:string,filtro){
+        pag +=-1; //restamos 1 siempre
+        pag.toString(); //pasamos a string el number
+        if(filtro)
+            var consulta=this.construirconsulta(filtro,pag,tienda);
+        else
+           //var consulta= environment.dominio + '/producto?idtienda=' + tienda + '&pagina=' + pag + '&nombre='+producto;
+           var consulta= environment.dominio + '/producto?pagina=' + pag + '&nombre='+producto; //SIN EL ID DE LA TIENDA PARA HACER PRUEBAS
+
+        console.log("LA CONSULTA ES "+ consulta);
         return this.authHttp.get(consulta)
         .delay(environment.timeout)
         .map((res: Response) => {
             if (res.status === 200) {;
                 console.log("status 200");
-                //return res.json().usuario
+                //return res.json().producto
                 return  [{ status: res.status, data: res.json() }]
             }
             else if (res.status === 204) {
                 console.log("status 204");
-                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
+                return  [{ status: res.status, json: "Producto no encontrado en la base de datos" }]
             }
         }).catch((error: any) => {
             console.log(error);
             //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
             return Observable.throw(new Error(error.status));
         });
+    }
+
+    construirconsulta(filtro,pag,tienda){
+        console.log(filtro,pag)
+        let consulta= environment.dominio + "/producto?pagina=" + pag;
+        //consulta += "&idtienda="+tienda;
+            if (filtro["nombre"]!='')  consulta+="&nombre="+filtro["nombre"];
+            if (filtro["codigo"]!='')  consulta+="&codigo="+filtro["codigo"];
+            if (filtro["precio_min"]!='')  consulta+="&preciomin="+filtro["precio_min"];
+            if (filtro["precio_max"]!='')  consulta+="&preciomacx="+filtro["precio_max"];
+        console.log(consulta);
+        return consulta;
     }
 
 //CONTROL DE NUMERO DE IMAGENES
@@ -80,7 +97,7 @@ export class ProductosService {
     }
 
     producto: Object={  //datos que recibimos del componente padre
-        Id_producto:'',
+      Id_producto:'',
       Codigo_producto:'',
       Nombre_producto:'',
       Precio_producto:'',

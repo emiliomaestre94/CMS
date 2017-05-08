@@ -1,5 +1,6 @@
+import { ModalDetalleOfertasComponent } from './../ofertas/modal-detalle-ofertas.component';
+import { ModalDetalleFacturasComponent } from './../facturas/modal-detalle-facturas.component';
 import { OfertasService } from './../services/ofertas.service';
-import { UsuariosModalFacturaComponent } from './usuarios-modalfactura.component';
 import { Factura, FacturasService } from './../services/facturas.service';
 import { Component, Input,ViewChild} from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
@@ -29,6 +30,7 @@ export class UsuariosModalPerfilComponent {
     loadingFacturas:boolean=false;
     errorFacturas:boolean=false;
     msgFacturas:string;
+    msgOfertas:string;
 
  public facturas: Factura[];
  public ofertas;
@@ -36,7 +38,6 @@ export class UsuariosModalPerfilComponent {
  constructor(public facturasService:FacturasService,public ofertasService:OfertasService) { }
 
  @ViewChild('perfilClienteModal') public childModal:ModalDirective; //directiva para que funcionen los metodos de show y hide
- @ViewChild(UsuariosModalFacturaComponent) public modalFactura:UsuariosModalFacturaComponent; //cogemos el componente para poder enviarle los datos
 
   public showChildModal(usuario,idTienda):void {
     this.childModal.show(); //mostrar modal
@@ -44,19 +45,18 @@ export class UsuariosModalPerfilComponent {
     this.idTienda=idTienda;
     this.facturas=null;
     this.ofertas=null;
-    this.getFacturasUser(); //obtener todas las facturas de ese usuario
     this.getOfertasUser();
+    this.getFacturasUser(); //obtener todas las facturas de ese usuario
   } 
 
   public hideChildModal():void {
     this.childModal.hide();
   }
 
-  showFacturaModal(){
-    this.modalFactura.showChildModal();
-  }
+
 
   public getFacturasUser(){
+    this.facturas=null;
     this.loadingFacturas=true;
     this.msgFacturas=null;
      this.facturasService.getFacturasUser(this.usuario['Id_usuario'],this.idTienda).subscribe(
@@ -80,7 +80,7 @@ export class UsuariosModalPerfilComponent {
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
-            this.errorFacturas=true;
+            this.errorFacturas=true; 
             this.loadingFacturas=false;
             this.msgFacturas="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
         },   
@@ -88,6 +88,8 @@ export class UsuariosModalPerfilComponent {
   }
 
   public getOfertasUser(){
+     this.ofertas=null;
+     this.msgOfertas=null;
      this.ofertasService.getOfertasUser(this.usuario['Id_usuario'],this.idTienda).subscribe(
         res =>{
 
@@ -99,22 +101,30 @@ export class UsuariosModalPerfilComponent {
               }
               if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
-          
+                this.msgOfertas=this.usuario['Nombre_usuario'] + " no ha recibido aún ninguna oferta";
               }
             }
     
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
-        
+             this.msgOfertas="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
         },   
     );
   }
 
 
+  @ViewChild(ModalDetalleFacturasComponent) public modalDetalle:ModalDetalleFacturasComponent;
+  showFacturaModal(factura){
+    this.modalDetalle.showChildModal(factura); //llamamos al metodo del componente hijo para que muestre la modal
+    //this.modalPerfil.usuario=usuario; //asignamos los datos del usuario a la variable input del componente hijo
+  }
+
+  @ViewChild(ModalDetalleOfertasComponent) public modalClientesOfertados:ModalDetalleOfertasComponent; //cogemos el componente para poder enviarle los datos
+  showOfertaModal(oferta){
+    this.modalClientesOfertados.showChildModal(oferta,this.idTienda,);
+  }
 
 
 
-
-
-}
+}  
