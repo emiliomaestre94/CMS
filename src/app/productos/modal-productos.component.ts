@@ -190,10 +190,6 @@ export class ProductosDetalleModalComponent {
   }
 
 
-
-
-
-  
   public removeBorder(){
     for(let imagesDOM of this.imagesDOM._results){
       //console.log(imagesDOM.nativeElement);

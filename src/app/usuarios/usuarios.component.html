@@ -2,70 +2,52 @@
 <div class="row" >
     <div class="col-md-12">
         <div class="card">
+            
             <div class="card-header" ><p>Clientes de {{datostokenservice.token['nombre_tienda']}}</p></div> 
- 
-          <div  *ngIf="!usuarios" class="loader"  style="margin-top:30px"></div>
+            <div  *ngIf="!usuarios" class="loader" style="margin-top:30px"></div>
             <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
               {{mensajeError}}
            </div> 
 
-            <div *ngIf="usuarios" class="card-block">
+            <div class="card-block">
+                <div *ngIf="usuarios">
 
-                <!--BUSCADOR-->    
+            <!--BUSCAR-->    
                 <div id="buscador" class="form-group row">
-                    <div class="col-md-6">
-                        <form #searchUserForm="ngForm" (ngSubmit)="buscar()">
-                            <div class="input-group">
+                    <div class="col-md-6" style="padding-right: 2px; height: 45px;">
+                        <form #searchProductoForm="ngForm" (ngSubmit)="buscar()">
+                            <div class="input-group">          
                                 <span class="input-group-btn">
                                     <button *ngIf="buscando==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                     <button *ngIf="buscando==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
                                 </span>
-                                <input type="text" iFid="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
+                                <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cliente" [(ngModel)]="buscadorUsuarios">
                             </div>
-                        </form> 
+                        </form>
                     </div> 
                     
-                    <!-- BUSQUEDA AVANZADA -->
-                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3"><button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
-                    <div   *ngIf="buscandoAvanzado==true" class="col-md-3"><button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i>Buscando</button></div>
-                    <template #popTemplate> 
+                     <!-- BUSQUEDA AVANZADA -->
+                    <div *ngIf="buscandoAvanzado==false" class="col-md-3" style = "padding-left: 0px;">
+                        <button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary" style="line-height: 1.0; padding: 0.5rem 0.5rem; font-size: 0.75rem; margin-top: 3px;">Búsqueda Avanzada</button>
+                    </div>
+                    <div *ngIf="buscandoAvanzado==true" class="col-md-3" style = "padding-left: 0px;">
+                        <button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary" style="line-height: 1.0; padding: 0.5rem 0.5rem; font-size: 0.75rem; margin-top: 3px;"><i class="fa fa-spinner fa-spin"></i>Buscando</button>
+                    </div>
+                    
+                        <template #popTemplate> 
                                 <div class="form-group row">
                                     <div class="col-md-12">     
-                                        <form #searchUsersForm="ngForm" (ngSubmit)="busquedaAvanzada()" style="padding-left: 5px; height: 180px;">
+                                        <form #searchUsersForm="ngForm" (ngSubmit)="busquedaAvanzada()" style="padding-left: 5px; height: 150px;">
+                                    
                                             <div class="form-group row">
 
-                                                <div class="col-md-7">
+                                                <div class="col-md-6" style="padding-right: 5px;padding-left: 5px;">
                                                     <div class="input-group">
-                                                        <span class="input-group-addon"><strong>Usuario</strong></span>
+                                                        <span class="input-group-addon"><strong>Cliente</strong></span>
                                                         <input [(ngModel)]="filtro.nombre" class="form-control" id="usuario" name="nombre" type="text">
                                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                                     </div>
 
-                                                    <div class="input-group">
-                                                    <span class="input-group-addon"><strong>Edad mínima</strong></span>
-                                                        <select [(ngModel)]="edadminima" class="form-control" id="edad" name="edadmin" type="number" size="1">
-                                                            <option default [ngValue]="''">Selecione una edad</option>
-                                                            <option *ngFor="let edad_minima of edad_min" [ngValue]=edad_minima.id>
-                                                                {{edad_minima.id}}
-                                                            </option>
-                                             
-                                                        </select>
-                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    </div>
-
-                                                    <div class="input-group">                                                
-                                                        <span class="input-group-addon"><strong>Edad máxima</strong></span>
-                                                        <select [(ngModel)]="edadmaxima" class="form-control" id="edad" name="edadmax" type="number" size="1">
-                                                            <option [ngValue]="''">Selecione una edad</option>
-                                                            <option *ngFor="let edad_maxima of edad_max" [ngValue]=edad_maxima.id>
-                                                                {{edad_maxima.id}}
-                                                            </option>
-                                                        </select>
-                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-5">
                                                     <div class="input-group">
                                                         <span class="input-group-addon"><strong>Sexo</strong></span>
                                                         <select [(ngModel)]="filtro.sexo" class="form-control" id="sexo" name="sexo">
@@ -81,18 +63,41 @@
                                                         <input [(ngModel)]="filtro.cp"class="form-control" id="codigoPostal" name="codigoPostal" type="text">
                                                         <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
                                                     </div>
+                                                </div>
 
-                                                    <div class="form-group form-actions">
-                                                        
-                                                        <button class="btn btn-primary" (click)="pop.hide(); busquedaAvanzada()" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                                <div class="col-md-6" style="padding-right: 5px;padding-left: 5px;"> 
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><strong>Edad mín</strong></span>
+                                                            <select [(ngModel)]="edadminima" class="form-control" id="edad" name="edadmin" type="number" size="1">
+                                                                <option default [ngValue]="''">Selecione una edad</option>
+                                                                <option *ngFor="let edad_minima of edad_min" [ngValue]=edad_minima.id>
+                                                                    {{edad_minima.id}}
+                                                                </option>
+                                                            </select>
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
 
+                                                    <div class="input-group">                                                
+                                                        <span class="input-group-addon"><strong>Edad máx</strong></span>
+                                                        <select [(ngModel)]="edadmaxima" class="form-control" id="edad" name="edadmax" type="number" size="1">
+                                                            <option [ngValue]="''">Selecione una edad</option>
+                                                            <option *ngFor="let edad_maxima of edad_max" [ngValue]=edad_maxima.id>
+                                                                {{edad_maxima.id}}
+                                                            </option>
+                                                        </select>
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+
+                                                    <div class="form-group form-actions"> 
+                                                        <button class="btn btn-primary" (click)="pop.hide(); busquedaAvanzada()" type="submit" style="width:110px; float: right; margin-right: 15px"><i class="fa fa-search"></i> Buscar</button>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-                    </template>
+                        </template>
                     
                     
                    <!-- PAGINACION -->
@@ -109,16 +114,15 @@
                         lastText="&raquo;" 
                         (pageChanged)="pageChanged($event)">
                         </pagination>
-                       <!--  <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>-->
                     </div>
 
                     <!--FILTROS-->                        
-                    <div class="col-sm-12 filtro">
+                    <div class="col-sm-12 filtro" style="padding-bottom: 10px;">
                         <span class="bold fp">Filtrado por:</span>
                         <span class="filtros">
                             <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
                                 <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
-                                <span data-value="busqueda" class="closex">x</span> 
+                                <span data-value="busqueda" class="closex"><i class="fa fa-close fa-lg m-t-2"></i></span> 
                                 <span class="item">{{etiqueta}}</span>
                                 </a>
                                 
@@ -182,7 +186,7 @@
                                 </td>
                                 <td class="text-center">
                                     <!--perfilClienteModal.show() -->
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(usuario)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(usuario)" style="font-size: 0.75rem;line-height: 1;"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                                     
                                 </td>  
                             </tr>
@@ -192,12 +196,14 @@
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
                 <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
             </div>
+            </div>
  
             <div>
                 <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
                 <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
+                <!--
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 70%" class="alert alert-danger">  {{msgActivo}} </div>
-                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 70%" class="alert alert-success">  {{msgActivo}} </div>
+                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 70%" class="alert alert-success">  {{msgActivo}} </div>-->
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 

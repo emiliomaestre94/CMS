@@ -86,6 +86,11 @@
                                                             <button type="button" (click)="showYoutubeModal();" class="btn btn-primary">Buscar <i class="fa fa-search"></i></button> 
                                                         </span>
                                                     </div>
+
+                                                    <div>
+                                                        <iframe [src]="producto.URL_video_producto  | safe" style="width:100%"></iframe>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                     </form>
