@@ -8,8 +8,13 @@
                     <span aria-hidden="true" style="color:white;"><i class="fa fa-remove fa-lg m-t-2"></i></span>
                 </button>
             </div>
+            <div  *ngIf="!facturaLineas" class="loader"  style="margin-top:30px"></div>
+            <!--
+            <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
+              {{mensajeError}}
+           </div> -->
 
-            <div style="background:#FFF" #factura class="modal-body">
+            <div *ngIf="facturaLineas" style="background:#FFF" #factura class="modal-body">
                 <div *ngIf="facturaDetalle"class="datosTienda">
                         <p><span>Tienda de Ropa</span> - CIF: {{facturaDetalle.CIF_tienda}}</p>
                         <p><strong>Id:</strong>{{facturaDetalle.Id_factura}}</p>

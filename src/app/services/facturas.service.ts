@@ -24,12 +24,34 @@ export class FacturasService {
     headers = new Headers({ 'content-type': 'application/json' });
     options = new RequestOptions({ headers: this.headers, withCredentials: true });
 
-    getFacturas(pag:number,usuario:string,idTienda:string){
-         console.log(pag); 
-         pag +=-1; //restamos 1 siempre
-         pag.toString(); //pasamos a string el number
-         console.log(pag);
-        return this.authHttp.get(environment.dominio + '/factura?id_tienda='+idTienda)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    getFacturas(idTienda:string,pag:number,numFactura:string,filtro){   
+        pag +=-1; //restamos 1 siempre
+        pag.toString(); //pasamos a string el number
+      
+
+        if(filtro){
+            var consulta=this.construirconsulta(filtro,pag,idTienda);
+        }
+        else{
+            var consulta=environment.dominio + '/factura?id_tienda='+idTienda + '&pagina=' + pag ;
+            if(numFactura!='') consulta+='&id='+numFactura;
+        }
+        console.log("LA CONSULTA ES "+ consulta);
+        return this.authHttp.get(consulta)
         .delay(environment.timeout)
         .map((res: Response) => {
             console.log(res);
@@ -48,6 +70,32 @@ export class FacturasService {
             return Observable.throw(new Error(error.status));
         });
     }
+
+    construirconsulta(filtro,pag,tienda){
+        console.log(filtro,pag)
+        let consulta= environment.dominio + '/factura?id_tienda='+tienda + '&pagina=' + pag ;
+        //consulta += "&idtienda="+tienda;
+            if (filtro["fecha_desde"]!='')  consulta+="&fechaini="+filtro["fecha_desde"];
+            if (filtro["fecha_hasta"]!='')  consulta+="&fechafin="+filtro["fecha_hasta"];
+            if (filtro["precio_min"]!='')  consulta+="&mintotal="+filtro["precio_min"];
+            if (filtro["precio_max"]!='')  consulta+="&maxtotal="+filtro["precio_max"];
+        console.log(consulta);
+        return consulta;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     getFactura(id){
         let consulta= environment.dominio + '/factura?id=' + id;

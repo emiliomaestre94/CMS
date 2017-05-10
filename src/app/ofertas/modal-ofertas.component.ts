@@ -70,7 +70,7 @@ export class ModalOfertasComponent {
     this.getProductos();
       this.staticTabs.tabs[1].disabled=true;
       this.staticTabs.tabs[2].disabled=true;
-  }
+  } 
 
   public addOferta(){
     console.log("ADD OFERTA");
@@ -92,7 +92,7 @@ export class ModalOfertasComponent {
   }
 
   public getProductos(){
-    this.productosService.getProductos(this.idTienda,null,null,null).subscribe(
+    this.productosService.getProductos(this.idTienda,1,'',null).subscribe(
       res =>{
         console.log(res);  
         if(res[0]){

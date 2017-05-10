@@ -89,7 +89,7 @@ img.imgBanner {
  p {
      font-weight: 500;
  }
-
+ 
  p.nombre {
     width: 120px;
     text-overflow: ellipsis;
@@ -100,4 +100,18 @@ img.imgBanner {
 img.img-avatar.oferta {
     width: auto;
     border-radius: 0em;
+}
+
+/////FILTRO/////////////////
+.fp {
+    font-size: 14px;
+}
+.bold {
+    font-weight: 700;
+}
+.col-sm-12.filtro {
+    padding-bottom: 15px;
+}
+a.btn.btn-sm.btn-instagram.text:hover {
+    cursor: pointer !important;
 }

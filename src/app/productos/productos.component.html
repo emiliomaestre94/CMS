@@ -22,22 +22,7 @@
                                 <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Nombre" [(ngModel)]="buscadorProductos">
                             </div>
                         </form>
-                        
-                        <!--FILTROS-->                        
-                        <div class="col-sm-12 filtro">
-                            <span class="bold fp">Filtrado por:</span>
-                            <span class="filtros">
-                                <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
-                                    <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
-                                    <span data-value="busqueda" class="closex">x</span> 
-                                    <span class="item">{{etiqueta}}</span>
-                                    </a>
-                                    
-                                </span>
-					        </span> 
-	                    </div>
-                    </div>
-
+                    </div> 
 
                      <!-- BUSQUEDA AVANZADA -->
                     <div   *ngIf="buscandoAvanzado==false" class="col-md-3"><button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
@@ -95,6 +80,20 @@
                         (pageChanged)="pageChanged($event)">
                         </pagination>
         
+                    </div>
+                                        
+                    <!--FILTROS-->                        
+                    <div class="col-sm-12 filtro">
+                        <span class="bold fp">Filtrado por:</span>
+                        <span class="filtros">
+                            <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
+                                <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
+                                <span data-value="busqueda" class="closex">x</span> 
+                                <span class="item">{{etiqueta}}</span>
+                                </a>
+                                
+                            </span>
+                        </span> 
                     </div> 
 
                     <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
@@ -113,7 +112,7 @@
                                 <th class="text-center" style="width: 180px;">Oferta</th>
                                 <th class="text-center" style="width: 90px;"></th>
                             </tr>
-                        </thead>
+                        </thead> 
                         
                         <tbody> 
 
