@@ -23,12 +23,26 @@ export class OfertasService {
         
     }
  
-    getOfertas(pag:number,oferta:string,idTienda:string){
-         console.log(pag); 
+
+
+
+
+
+
+
+    getOfertas(idTienda:string,pag:number,oferta:string,filtro){
          pag +=-1; //restamos 1 siempre
          pag.toString(); //pasamos a string el number
-         console.log(pag);
-        return this.authHttp.get(environment.dominio + '/oferta/ofertasUsuarioInfo?id_tienda='+idTienda)
+         
+        if(filtro){
+            //var consulta=this.construirconsulta(filtro,pag,idTienda);
+        }
+        else{
+            var consulta=environment.dominio + '/oferta/ofertasUsuarioInfo?id_tienda='+idTienda + '&pagina=' + pag ;
+            if(oferta!='') consulta+='&id_oferta_usuario='+oferta;
+        }
+        console.log("LA CONSULTA ES "+ consulta);
+        return this.authHttp.get(consulta)
         .delay(environment.timeout)
         .map((res: Response) => {
             console.log(res);
@@ -47,6 +61,52 @@ export class OfertasService {
             return Observable.throw(new Error(error.status));
         });
     }
+
+    getOfertasDebug(idTienda:string,pag:number,oferta:string,filtro){
+         pag +=-1; //restamos 1 siempre
+         pag.toString(); //pasamos a string el number
+         
+        if(filtro){
+            //var consulta=this.construirconsulta(filtro,pag,idTienda);
+        }
+        else{
+            var consulta=environment.dominio + '/oferta/ofertasUsuarioInfoDebug?id_tienda='+idTienda + '&pagina=' + pag ;
+            if(oferta!='') consulta+='&id_oferta_usuario='+oferta;
+        }
+        console.log("LA CONSULTA ES "+ consulta);
+        return this.authHttp.get(consulta)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+            console.log(res);
+            if (res.status === 200) {;
+                console.log("status 200");
+                //return res.json().usuario
+                return  [{ status: res.status, data: res.json().Ofertas }]
+            }
+            else if (res.status === 204) {
+                console.log("status 204");
+                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
+            }
+        }).catch((error: any) => {
+            console.log(error);
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     getOfertasUser(idUsuario:string, idTienda:string){
         let consulta=environment.dominio + '/oferta/ofertasUsuario?id_tienda='+idTienda+"&id_usuario="+idUsuario;
@@ -117,6 +177,35 @@ export class OfertasService {
         });
     }
 
+    public deteleOfertasUser(idTienda,idOfertas){ 
+        return this.authHttp.put(environment.dominio + '/oferta/deleteOfertasUsuario', 
+        JSON.stringify({
+           ofertas: idOfertas,
+        }), this.options)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+        return  [{ status: res.status}]
+        }).catch((error: any) => {
+            console.log(error)
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+    public recuperarOfertasUser(idTienda,idOfertas){ 
+        return this.authHttp.put(environment.dominio + '/oferta/recuperarOfertasUsuario', 
+        JSON.stringify({
+           ofertas: idOfertas,
+        }), this.options)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+        return  [{ status: res.status}]
+        }).catch((error: any) => {
+            console.log(error)
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
     public updateOferta(oferta,idTienda){ 
         return this.authHttp.put(environment.dominio + '/oferta/ofertaUsuario', 
         JSON.stringify({
@@ -163,7 +252,7 @@ export class OfertasService {
     public postOfertaProducto(oferta,idTienda,idProducto){ 
         return this.authHttp.post(environment.dominio + '/oferta/ofertaProducto', 
         JSON.stringify({
-           p_oferta: oferta.P_oferta_oferta_producto,
+           p_oferta: oferta.P_oferta_oferta_producto, 
            fechaini: oferta.Fecha_inicio_oferta_producto,
            fechafin: oferta.Fecha_fin_oferta_producto,
            id_tienda: idTienda,

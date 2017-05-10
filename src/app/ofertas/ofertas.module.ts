@@ -1,3 +1,5 @@
+import { PopoverModule } from 'ng2-bootstrap';
+import { PaginationModule } from 'ng2-bootstrap';
 import { PipesModule } from './../pipes/pipes.module';
 
 import { ProductosService } from './../services/productos.service';
@@ -10,7 +12,7 @@ import { OfertasComponent } from './ofertas.component';
 import { BuscadorOfertasPipe } from './buscadorofertas.pipe';
 import { OfertasService } from './../services/ofertas.service';
 
-
+ 
 //// Modal Component
 import { TabsModule } from 'ng2-bootstrap/tabs';
 import { ModalModule } from 'ng2-bootstrap/modal';
@@ -24,9 +26,9 @@ import { DatePickerModule } from 'ng2-datepicker';
 
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { provideAuth } from 'angular2-jwt';
+  
 
-
-BuscadorOfertasPipe
+BuscadorOfertasPipe 
 @NgModule({
     imports: [ 
       OfertasRoutingModule,
@@ -36,6 +38,8 @@ BuscadorOfertasPipe
       DropdownModule,
       DatePickerModule, 
       ModalModule.forRoot(),
+      PaginationModule.forRoot(),
+      PopoverModule.forRoot(),
       TabsModule,
       PipesModule
     ],

@@ -14,6 +14,7 @@
                 <div class="animated fadeIn">
                 <div class="row">
                 <div class="col-md-12">
+                    
                     <!-- Nav tabs -->
                     <tabset #staticTabs>
                         <tab (select)="selectTab(1);" >
@@ -47,6 +48,7 @@
                                         </div>
                                     </div>
                                     -->
+                                    
                                 </div>
 
                                 <div class="col-md-7">
@@ -151,11 +153,9 @@
                         <tab (select)="selectTab(3);">
                             <template tabHeading><i class="icon-present"></i> Registro ofertas </template>
                         </tab>
-                        <tab style="text-align:center" (select)="selectTab(4);" >
-                          <template tabHeading><i class="fa fa-cube fa-lg m-t-2"></i> 3D </template>
-                            <div class="sketchfab-embed-wrapper">
-                                <iframe width="640" height="480" src="https://sketchfab.com/models/5f5fe4d8b75f4f4e9fc9f13726b29adb/embed" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>
-                            </div>
+                        <tab style="text-align:center" (select)="selectTab(4);">
+                             <template tabHeading><i class="icon-present"></i> Motor WebGL </template>
+                             <iframe style="border: none;" src="https://drmultimedio.github.io/MOTOR/index.html" width="100%" height="800px"> </iframe>
                         </tab>
                     </tabset>
                 </div>
