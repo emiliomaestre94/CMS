@@ -89,6 +89,8 @@ import {ElementRef, ViewChild} from '@angular/core';
 
   @ViewChild('image') el:ElementRef; //cogemos el input del dom
    console.log(this.el.nativeElement); // contiene todas las propiedades de ese elemento del DOM
+  @ViewChild('ModalOfertas') public childModal:ModalDirective; //Tambien puede ser una directiva
+  @ViewChildren('checkboxUser') checkboxUsers; //te coge todos los elementos del DOM que tengan la etiqueta imageAPI
 
 
  //CAMBIAR ATRIBUTOS DINAMICAMENTE 
@@ -112,4 +114,4 @@ firebase deploy
 
 
 //BUGS
-CUANDO INTRODUCES UN ELEMENTO Y LUEGO  NO ENCUENTRA NADA SE VA A LA PUTA
+VER ERROR DE MODAL OFERTAS COMPONENT EN EL GET PRODUCTO

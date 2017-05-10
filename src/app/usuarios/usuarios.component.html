@@ -22,23 +22,9 @@
                                 </span>
                                 <input type="text" iFid="input1-group2" name="input1-group2" class="form-control" placeholder="Usuario" [(ngModel)]="buscadorUsuarios">
                             </div>
-                        </form>
-
-                        <!--FILTROS-->                        
-                        <div class="col-sm-12 filtro">
-                            <span class="bold fp">Filtrado por:</span>
-                            <span class="filtros">
-                                <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
-                                    <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
-                                    <span data-value="busqueda" class="closex">x</span> 
-                                    <span class="item">{{etiqueta}}</span>
-                                    </a>
-                                    
-                                </span>
-					        </span> 
-	                    </div>
- 
-                    </div>
+                        </form> 
+                    </div> 
+                    
                     <!-- BUSQUEDA AVANZADA -->
                     <div   *ngIf="buscandoAvanzado==false" class="col-md-3"><button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
                     <div   *ngIf="buscandoAvanzado==true" class="col-md-3"><button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i>Buscando</button></div>
@@ -126,6 +112,20 @@
                        <!--  <button style="float:right;" class="btn btn-success" type="button"><i class="fa fa-refresh"></i> Actualizar Lista</button>-->
                     </div>
 
+                    <!--FILTROS-->                        
+                    <div class="col-sm-12 filtro">
+                        <span class="bold fp">Filtrado por:</span>
+                        <span class="filtros">
+                            <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
+                                <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
+                                <span data-value="busqueda" class="closex">x</span> 
+                                <span class="item">{{etiqueta}}</span>
+                                </a>
+                                
+                            </span>
+                        </span> 
+                    </div>
+
                     <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
                         {{mensajeError}}
                     </div> 
@@ -196,6 +196,8 @@
             <div>
                 <button *ngIf="loadingActivo==false" (click)="updateUserActivo()" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
                 <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
+                <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 70%" class="alert alert-danger">  {{msgActivo}} </div>
+                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 70%" class="alert alert-success">  {{msgActivo}} </div>
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
                     [itemsPerPage]="itemsPorPagina" 

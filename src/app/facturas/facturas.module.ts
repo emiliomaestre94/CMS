@@ -1,3 +1,4 @@
+import { PopoverModule } from 'ng2-bootstrap';
 import { PipesModule } from './../pipes/pipes.module';
 import { HoraPipe } from './../pipes/hora.pipe';
 import { FechaPipe } from './../pipes/fecha.pipe';
@@ -6,7 +7,7 @@ import { ModalDetalleFacturasComponent } from './modal-detalle-facturas.componen
 import { ModalModule } from 'ng2-bootstrap/modal';
 
 import { FacturasComponent } from './facturas.component';
-import { FacturasService } from './../services/facturas.service';
+import { FacturasService } from './../services/facturas.service'; 
 import { FacturasRoutingModule } from './facturas-routing.module';
 import { BuscadorFacturasPipe } from './buscadorfacturas.pipe';
 
@@ -22,7 +23,7 @@ import { provideAuth } from 'angular2-jwt';
 //import { PaginationModule } from 'ng2-bootstrap/pagination';
 import { PaginationModule } from 'ng2-bootstrap';
 
-BuscadorFacturasPipe
+BuscadorFacturasPipe 
 @NgModule({
     imports: [ 
       FacturasRoutingModule,
@@ -32,7 +33,8 @@ BuscadorFacturasPipe
       ChartsModule,
       DropdownModule,
       ModalModule.forRoot(),
-      PaginationModule.forRoot()
+      PaginationModule.forRoot(),
+      PopoverModule.forRoot(),
     ], 
     declarations: [ 
       FacturasComponent, 

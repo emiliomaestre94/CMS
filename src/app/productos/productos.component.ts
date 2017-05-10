@@ -4,7 +4,7 @@ import { Producto, ProductosService } from './../services/productos.service';
 import * as moment from 'moment';
 import { Component, OnInit, ViewChild} from '@angular/core';
 
-
+ 
 
 
 @Component({

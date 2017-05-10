@@ -26,7 +26,7 @@ export class ModalDetalleFacturasComponent {
     s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js";
     this.elementRef.nativeElement.appendChild(s);
 
-
+ 
       var m = document.createElement("script");
     m.type = "text/javascript";
     m.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js";
