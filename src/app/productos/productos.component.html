@@ -93,8 +93,8 @@
                         <span class="bold fp">Filtrado por:</span>
                         <span class="filtros">
                             <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
-                                <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
-                                <span data-value="busqueda" class="closex"><i class="fa fa-close fa-lg m-t-2"></i></span> 
+                                <a class="btn btn-sm btn-instagram text">
+                                <span (click)="eliminarBusqueda(i);" data-value="busqueda" class="closex"><i class="fa fa-close fa-lg m-t-2"></i></span> 
                                 <span class="item">{{etiqueta}}</span>
                                 </a>
                                 
@@ -142,7 +142,6 @@
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                     <p class="nombre">{{producto.Nombre_producto}}</p>
-                                    
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                     <p class="descripcion">{{producto.Descripcion_producto}}</p>
