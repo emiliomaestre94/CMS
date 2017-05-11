@@ -47,6 +47,8 @@ export class ModalOfertasComponent {
   public edadmaxima:string=''; //edad maxima del form
   public imageSrc; //src de la imagen de la oferta
 
+  public loadingUsers=false;
+
   firebase:any;//variable global de firebase
   constructor(
     public usuariosService:UsuariosService,
@@ -72,7 +74,9 @@ export class ModalOfertasComponent {
       this.staticTabs.tabs[2].disabled=true;
   } 
 
+  loadingAddOferta=false;
   public addOferta(){
+    this.loadingAddOferta=true;
     console.log("ADD OFERTA");
     console.log(this.IdUsuarios);
     console.log(this.idProducto);
@@ -84,6 +88,8 @@ export class ModalOfertasComponent {
       this.ofertasService.uploadOferta(this.IdUsuarios,this.idProducto,this.oferta,this.idTienda).subscribe(
         res =>{
           console.log(res);
+          this.loadingAddOferta=false;
+          this.hideChildModal();
         },
         err=>{ //Error de conexion con el servidor
           console.log(err);
@@ -110,7 +116,7 @@ export class ModalOfertasComponent {
           console.log(err);
       },   
     );
-  }
+  } 
 
 
   selectProducto(event,idProducto){
@@ -123,7 +129,24 @@ export class ModalOfertasComponent {
        this.idProducto=null;
      }
      console.log(this.idProducto);
+     this.deseleccionarProductos(event,idProducto);
      this.checkValidTabs();
+   }
+
+
+   @ViewChildren('checkboxProducto') checkboxProductos;
+
+    deseleccionarProductos(event,idProducto){
+      console.log("Entra en deseleccionar productos");
+      console.log("Event es ");
+      console.log(event);
+      console.log("Idproducto es "+idProducto);
+      for(let checkboxproductos of this.checkboxProductos._results){
+        console.log("Valor es:" +checkboxproductos.nativeElement.value);
+          if(checkboxproductos.nativeElement.value!=this.idProducto){
+            checkboxproductos.nativeElement.checked=false;
+          }
+      }    
    }
 
 
@@ -194,6 +217,7 @@ export class ModalOfertasComponent {
   
   //Boton buscar del formulario
   public onLogin(){ 
+    this.loadingUsers=true;
     (this.edadminima!='') ? this.filtro["fecha_max"]=this.buildDates(this.edadminima) :this.filtro["fecha_max"]='' ;
     (this.edadmaxima!='') ? this.filtro["fecha_min"]=this.buildDates(this.edadmaxima) :this.filtro["fecha_min"]='' ;
 
@@ -212,13 +236,53 @@ export class ModalOfertasComponent {
                 console.log(res[0].status);
 
               }
-            }    
+            }
+            this.loadingUsers=false;    
           },
           err=>{ //Error de conexion con el servidor
-              console.log(err);   
+              console.log(err);
+              this.loadingUsers=false;     
           },   
     );
   }
+
+    buscandoProducto= false;
+    buscadorProductos:string='';
+    busquedaActiva=false;
+    public buscarProductos(){
+    if(this.buscadorProductos!=''){
+      this.buscandoProducto=true;
+      console.log(this.buscadorProductos);
+      this.productosService.getProductos(this.idTienda,1,this.buscadorProductos,null).subscribe(
+          res =>{
+            console.log(res);  
+            if(res[0]){
+              if (res[0].status==200){ //todo bien 
+                this.productos=res[0].data.Productos;
+                console.log(this.productos);
+                this.busquedaActiva=true;
+              }
+              if (res[0].status==204){ //no encontrado
+                console.log(res[0].status);
+      
+              }
+            }
+            this.buscandoProducto=false;        
+          },
+          err=>{ //Error de conexion con el servidor
+              console.log(err);
+              this.buscandoProducto=false;   
+          },   
+      );
+    }
+  }
+
+  eliminarBusqueda(){
+    this.busquedaActiva=false;
+    this.buscadorProductos="";
+    this.getProductos();
+  }
+
 
   public hideChildModal():void {
     this.childModal.hide();

@@ -33,7 +33,7 @@ export class OfertasComponent implements OnInit {
   public buscando: boolean=false; //está buscando (cambio de boton de buscar)
   public buscandoAvanzado: boolean=false; //está buscando (cambio de boton de busqueda avanzada)
   public tag = []; //tag de busqueda
-  public filtro: Object={ fecha_desde:'', fecha_hasta:'', precio_min:'', precio_max:''}  
+  public filtro: Object={ fecha_desde:'', fecha_hasta:''}  
 
   constructor(public ofertasService: OfertasService,public datostokenservice: DatosTokenService, ) { }
 
@@ -48,7 +48,7 @@ export class OfertasComponent implements OnInit {
             if (res[0].status==200){ //todo bien
               this.ofertas=res[0].data;
               this.error=false;
-            }
+            } 
             if (res[0].status==204){ //no encontrado
               console.log(res[0].status);
               this.error=true;
@@ -103,6 +103,91 @@ export class OfertasComponent implements OnInit {
       );
     }
   }
+
+  public busquedaAvanzada(){
+    if(this.filtro["fecha_desde"]!="" || this.filtro["fecha_hasta"]!=""){
+      this.buscandoAvanzado=true;
+      this.ofertasService.getOfertas(this.idTienda,1,'',this.filtro).subscribe(
+          res =>{
+            console.log(res);  
+            if(res[0]){
+              if (res[0].status==200){ //todo bien
+                this.tag=[];
+                this.ofertas=res[0].data;
+                //console.log(this.productos);
+                this.error=false; this.error2=false;
+                this.busquedaActiva=true;
+                //this.tag.push(this.filtro);
+                this.construirEtiquetas();
+                if(this.bigCurrentPage!=1)
+                  this.bigCurrentPage=1;
+              }
+              if (res[0].status==204){ //no encontrado
+                console.log(res[0].status);
+                this.error2=true;
+                this.mensajeError="No hay ninguna oferta que coincida con los criterios de búsqueda";
+              }
+            }
+            this.buscandoAvanzado=false;        
+          },
+          err=>{ //Error de conexion con el servidor
+              console.log(err);
+                this.error2=true;
+                this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
+                this.buscandoAvanzado=false;   
+          },   
+      );
+    }
+  }
+
+    public construirEtiquetas(){
+    this.tag=[];
+    console.log("ENTRA A CONSTRUIR ETIQUETAS");
+    if (this.filtro["fecha_desde"]!='') this.tag.push("Fecha desde: " + this.filtro["fecha_desde"]);
+    if (this.filtro["fecha_hasta"]!='') this.tag.push("Fecha hasta: " + this.filtro["fecha_hasta"]);
+  } 
+ 
+  public eliminarBusqueda(index){
+    this.eliminarEtiqueta(index);
+    this.error=this.error2=false;
+     if(this.bigCurrentPage==1){ //solo se ejecuta cuando no cambia la pagina
+          this.ofertasService.getOfertas(this.idTienda,1,"",this.filtro).subscribe(
+            res =>{
+              console.log(res);  
+              if(res[0]){
+                if (res[0].status==200){ //todo bien
+                  this.ofertas=res[0].data;
+                  console.log(this.ofertas);
+                }
+              }
+            },
+            err=>{ //Error de conexion con el servidor
+                console.log(err);
+                  this.error=true;
+                  this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
+            }, 
+        );
+     }
+     this.bigCurrentPage=1;
+     //this.buscadorProductos=""; //ATEEEEEENCION
+  }
+
+  public eliminarEtiqueta(index){
+    let i=0;
+    console.log(this.filtro);
+    for (var filtro in this.filtro){
+      if(this.filtro[filtro]){ 
+        if(i==index){
+          this.filtro[filtro]="";
+        }
+        i++;
+      }
+    }
+    this.construirEtiquetas(); 
+  }
+
+
+  
 
 
   public IdOfertas=[]; //array que contiene el id de los usuarios que checkeamos
