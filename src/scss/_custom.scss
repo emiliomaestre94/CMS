@@ -7,7 +7,10 @@ ol.breadcrumb {
    // margin-bottom: 0px;
 }
 
-
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
 
 
 /////////////////////////DASHBOARD//////////////////
@@ -139,7 +142,8 @@ small.text-muted.text-uppercase.font-weight-bold {
 
 .card-header {
     /*background-color: #b7d9f3;*/
-    background-color: #517fa4;
+    /*background-color: #517fa4;*/
+    background-color: #124570;
     padding-bottom: 35px;
 }
 #pagination {

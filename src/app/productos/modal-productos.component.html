@@ -38,35 +38,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!--
-                                    <div class="form-group row">
-                                        <div class="col-md-9">
-                                            <div class="imagenPerfil">
-                                                <img class="imgPerfil"/>
-                                            </div>
-                                            <input type="file" id="file-input" name="file-input">
-                                        </div>
-                                    </div>
-                                    -->
                                     
                                 </div>
 
                                 <div class="col-md-7">
                                     <form #productosComponentForm="ngForm">
                                             <div class="form-group row">
-                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Cod Producto</strong></label>
+                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Código</strong></label>
                                                 <div class="col-md-9">
                                                     <input type="text" id="disabled-input" name="codigo" [(ngModel)]="producto.Codigo_producto"  class="form-control"  disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Nombre Producto</strong></label>
+                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Nombre</strong></label>
                                                 <div class="col-md-9">
                                                     <input type="text" id="disabled-input" name="nombre" class="form-control" [(ngModel)]="producto.Nombre_producto"   disabled>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Precio Producto</strong></label>
+                                                <label class="col-md-3 form-control-label" for="disabled-input"><strong>Precio</strong></label>
                                                 <div class="col-md-9">
                                                     <input type="text" id="disabled-input" name="precio" class="form-control" [(ngModel)]="producto.Precio_producto" disabled>
                                                 </div>
@@ -97,15 +87,16 @@
                                 </div>
                             </div>
                         </tab>
+
                         <tab (select)="selectTab(2);">
                             <template tabHeading><i class="icon-present"></i> Oferta Producto</template>
                             <div class="form-group row">
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <form #productosComponentForm="ngForm"> 
 
                                         <div class="form-group row">
                                             <label class="col-md-3 form-control-label"   for="disabled-input"><strong>Orden de Visualización</strong></label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <select [(ngModel)]="oferta.Orden" class="form-control" name="orden" id="ccmonth">
                                                     <option [ngValue]=1>1</option>
                                                     <option [ngValue]=2>2</option>
@@ -116,33 +107,33 @@
                                             </div>
                                        
                                             <label class="col-md-2 form-control-label" for="disabled-input"><strong>Oferta</strong></label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                <input type="text" class="form-control" name="poferta" [(ngModel)]="oferta.P_oferta_oferta_producto"  style = "text-align: center" placeholder="%">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Inicio</strong></label>
+                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>F. Inicio</strong></label>
                                             <div class="col-md-6">
                                                  <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_inicio_oferta_producto" name="fechaini">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>Fecha Final</strong></label>
+                                            <label class="col-md-3 form-control-label" for="disabled-input"><strong>F. Final</strong></label>
                                             <div class="col-md-6">
                                                 <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_fin_oferta_producto" name="fechafin">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción Oferta</strong></label>
-                                            <div class="col-md-6">
+                                            <label class="col-md-3 form-control-label" for="textarea-input"><strong>Descripción</strong></label>
+                                            <div class="col-md-8">
                                                 <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control"  [(ngModel)]="oferta.Descripcion_oferta_producto" ></textarea>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
 
-                                <div class="col-md-5">
+                                <div class="col-md-6">
                                     <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta 210x350</strong></p>
                                     <div class="imagenBanner">
                                     <img class="imgBanner" id="imagenSrc"  src="{{imageSrc}}" />
@@ -155,13 +146,16 @@
 
                             </div>
                         </tab>
+
                         <tab (select)="selectTab(3);">
                             <template tabHeading><i class="icon-present"></i> Registro ofertas </template>
                         </tab>
+
                         <tab style="text-align:center" (select)="selectTab(4);">
-                             <template tabHeading><i class="icon-present"></i> Motor WebGL </template>
+                             <template tabHeading><i class="fa fa-cube fa-lg m-t-2"></i> Motor WebGL </template>
                              <iframe style="border: none;" src="https://drmultimedio.github.io/MOTOR/index.html" width="100%" height="800px"> </iframe>
                         </tab>
+
                     </tabset>
                 </div>
                 </div>
