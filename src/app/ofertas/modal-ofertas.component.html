@@ -77,7 +77,8 @@
                                                     </div>
 
                                                     <div class="form-group form-actions">
-                                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                                        <button *ngIf="loadingUsers==false" class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                                        <button *ngIf="loadingUsers==true" class="btn btn-primary" type="submit"><i class="fa fa-spinner fa-spin"></i>Buscando</button>
                                                     </div>
 
                                                 </div>
@@ -87,7 +88,7 @@
                                 </div> 
 
                                     <!--TABLA CLIENTES-->
-                                    <div class="tablascroll1">
+                                    <div *ngIf="usuarios" class="tablascroll1">
                                         <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaClientes1">
                                             <thead class="thead-default">
                                                 <tr>
@@ -102,7 +103,7 @@
                                             <tbody>
                                                 <tr *ngFor="let usuario of usuarios">
                                                                 
-                                                    <td>
+                                                    <td class="text-center">
                                                         <!-- (ngModelChange)="selectUser($event,usuario.Id_usuario_tienda);" -->
                                                         <div><input type="checkbox" #checkboxUser (change)="selectUser($event,usuario.Id_usuario_tienda);" name="" value={{usuario.Id_usuario_tienda}}></div>
                             
@@ -127,7 +128,7 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table> 
                                     </div>
                             </div>
                             <div class="modal-footer">
@@ -139,21 +140,26 @@
                         <tab id="busquedaProducto" style="padding-left: 5px;padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
                             <template tabHeading><i class="fa fa-search"></i> 2º Buscar Producto</template>
                             <div class="card-block" id="card-block-modal" style="padding-bottom: 0px; padding-right: 15px; padding-left: 15px;">
+
                                 <div id="buscador" class="form-group row">
                                     <div class="col-md-6" style="padding-top: 15px;">
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
-                                            </span>
-                                            <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Cod/Nombre" [(ngModel)]="buscadorProductos">
-                                        </div>
+                                        <form #searchProductoForm="ngForm" (ngSubmit)="buscarProductos()">
+                                            <div class="input-group">          
+                                                <span class="input-group-btn">
+                                                    <button *ngIf="buscandoProducto==false" type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                                    <button *ngIf="buscandoProducto==true" class="btn btn-info px-2" style="width:132px;"><i class="fa fa-spinner fa-spin"></i> Buscando</button>
+                                                </span>
+                                                <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Nombre" [(ngModel)]="buscadorProductos">
+                                            </div>
+                                        </form>
                                     </div>
+                                    <button *ngIf="busquedaActiva==true" type="button" (click)="eliminarBusqueda()" class="btn btn-danger">Eliminar búsqueda</button>
                                     <div class="tablascroll">
                                         <table class="table table-hover table-outline mb-0 hidden-sm-down" id="tablaProductos1">
                                             <thead class="thead-default">
                                                     <tr>
                                                         
-                                                        <th class="text-center" style="width: 40px;"><input type="checkbox" name="" value=""></th>
+                                                        <th class="text-center" style="width: 40px;"></th>
                                                         <th class="text-center" style="width: 65px;"><i class="icon-picture icons font-2xl d-block m-t-2"></i></th>
                                                         <th class="text-center" style="width: 60px;">Código</th>
                                                         <th class="text-center" style="width: 20%;">Nombre</th>
@@ -173,7 +179,7 @@
                                                     <tr *ngFor="let producto of productos">
                                                         <td>
                                                             <!-- (ngModelChange)="selectUser($event,usuario.Id_usuario_tienda);" -->
-                                                            <div><input type="checkbox" (change)="selectProducto($event,producto.Id_producto);" name="" value=""></div>
+                                                            <div><input #checkboxProducto type="checkbox" (change)="selectProducto($event,producto.Id_producto);" name="" value={{producto.Id_producto}}></div>
                                 
                                                         </td>
                                                         <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
@@ -187,7 +193,7 @@
                                                         </td>
                                                         <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                                             <strong>{{producto.Nombre_producto}}</strong>
-                                                        </td>
+                                                        </td> 
                                                         <td class="text-center" data-toggle="modal" (click)="showChildModal(producto)">
                                                             <strong>Pequeña Descripcion Producto....</strong>
                                                         </td>
@@ -272,7 +278,8 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" (click)="selectTab(1);" class="btn btn-secondary"><i class="fa fa-arrow-left fa-lg m-t-2"></i> Atras</button>
-                                <button type="button" (click)="addOferta();"class="btn btn-primary"><i class="fa fa-save"></i> Añadir</button>
+                                <button type="button"  *ngIf="loadingAddOferta==false" (click)="addOferta();"class="btn btn-primary"><i class="fa fa-save"></i> Añadir Oferta</button>
+                                <button type="button" *ngIf="loadingAddOferta==true" class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i> Añadiendo oferta</button>
                             </div>      
                         </tab>
 

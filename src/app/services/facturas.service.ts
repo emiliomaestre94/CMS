@@ -13,7 +13,7 @@ export class Factura{
  
 @Injectable()
 
-export class FacturasService {
+export class FacturasService { 
 
     constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
         
@@ -23,21 +23,7 @@ export class FacturasService {
 
     headers = new Headers({ 'content-type': 'application/json' });
     options = new RequestOptions({ headers: this.headers, withCredentials: true });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
     getFacturas(idTienda:string,pag:number,numFactura:string,filtro){   
         pag +=-1; //restamos 1 siempre
         pag.toString(); //pasamos a string el number
@@ -144,4 +130,22 @@ export class FacturasService {
             return Observable.throw(new Error(error.status));
         });
     }
+
+
+    public deteleFacturas(idTienda,idFacturas){ 
+        return this.authHttp.put(environment.dominio + '/factura/deleteFacturas', 
+        JSON.stringify({
+           facturas: idFacturas,
+        }), this.options)
+        .delay(environment.timeout)
+        .map((res: Response) => {
+        return  [{ status: res.status}]
+        }).catch((error: any) => {
+            console.log(error)
+            //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
+            return Observable.throw(new Error(error.status));
+        });
+    }
+
+
 }
