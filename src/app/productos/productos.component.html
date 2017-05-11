@@ -43,7 +43,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><strong>Código</strong></span>
                                                 <input [(ngModel)]="filtro.codigo" class="form-control" id="usuario" name="codigo" type="text">
-                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <span class="input-group-addon"><i class="fa fa-barcode fa-lg m-t-2"></i></span>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><strong>Nombre</strong></span>
@@ -55,12 +55,12 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><strong>Precio mín</strong></span>
                                                 <input [(ngModel)]="filtro.precio_min" class="form-control" id="usuario" name="preciomin" type="number">
-                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <span class="input-group-addon"><i class="fa fa-euro fa-lg m-t-2"></i></span>
                                             </div>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><strong>Precio máx</strong></span>
                                                 <input [(ngModel)]="filtro.precio_max" class="form-control" id="usuario" name="preciomax" type="number">
-                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <span class="input-group-addon"><i class="fa fa-euro fa-lg m-t-2"></i></span>
                                             </div>
                                             <div class="form-group form-actions">    
                                                 <button class="btn btn-primary" style="width:110px; float: right; margin-right: 15px" (click)="pop.hide(); busquedaAvanzada()" type="submit"><i class="fa fa-search"></i> Buscar</button>
@@ -159,13 +159,12 @@
                                 <td class="text-center">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(producto)" style="font-size: 0.75rem;line-height: 1;"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
+                            
                             </tr> 
-
                         </tbody>
-                    
                     </table>
-                
                 </div>
+
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
                 <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
             </div>

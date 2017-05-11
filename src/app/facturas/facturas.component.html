@@ -7,12 +7,12 @@
             <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
               {{mensajeError}}
            </div> 
-            <div  class="card-block">
+            <div class="card-block">
                 <div *ngIf="facturas">
                       
                  <!--BUSCAR-->    
                 <div id="buscador" class="form-group row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" style="padding-right: 2px; height: 45px;">
                         <form #searchProductoForm="ngForm" (ngSubmit)="buscar()">
                             <div class="input-group">          
                                 <span class="input-group-btn">
@@ -25,39 +25,54 @@
                     </div> 
 
                     <!-- BUSQUEDA AVANZADA -->
-                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3"><button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
-                    <div   *ngIf="buscandoAvanzado==true" class="col-md-3"><button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i>Buscando</button></div>
+                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3" style = "padding-left: 0px;">
+                        <button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary" style="line-height: 1.0; padding: 0.5rem 0.5rem; font-size: 0.75rem; margin-top: 3px;">Búsqueda Avanzada</button>
+                    </div>
+                    <div   *ngIf="buscandoAvanzado==true" class="col-md-3" style = "padding-left: 0px;">
+                        <button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary" style="line-height: 1.0; padding: 0.5rem 0.5rem; font-size: 0.75rem; margin-top: 3px;"><i class="fa fa-spinner fa-spin"></i>Buscando</button>
+                    </div>
+
                     <template #popTemplate> 
                         <div class="form-group row">
                             <div class="col-md-12">     
-                                <form #searchUsersForm="ngForm" (ngSubmit)="busquedaAvanzada()" style="padding-left: 5px; height: 180px;">
+                                <form #searchUsersForm="ngForm" (ngSubmit)="busquedaAvanzada()" style="padding-left: 5px; height: 140px;">
                                     <div class="form-group row">
 
                                         <div class="col-md-6"><!--Primera columna-->
 
-                                            <span class="input-group-addon"><strong>Fecha desde</strong></span>
-                                            <input [(ngModel)]="filtro.fecha_desde" style="margin-bottom:20px;" class="form-control" id="usuario" name="nombre" type="date">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><strong>Precio mín</strong></span>
+                                                <input [(ngModel)]="filtro.precio_min" class="form-control" id="usuario" name="preciomin" type="number">
+                                                <span class="input-group-addon"><i class="fa fa-euro fa-lg m-t-2"></i></span>
+                                            </div>
 
                                             <div class="input-group">
-                                                <span class="input-group-addon"><strong>Precio mínimo</strong></span>
-                                                <input [(ngModel)]="filtro.precio_min" class="form-control" id="usuario" name="preciomin" type="number">
-                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <span class="input-group-addon"><strong>Precio máx</strong></span>
+                                                <input [(ngModel)]="filtro.precio_max"  class="form-control" id="usuario" name="preciomax" type="number">
+                                                <span class="input-group-addon"><i class="fa fa-euro fa-lg m-t-2"></i></span>
                                             </div>
+
                                         </div>
+
                                         <div class="col-md-6"><!--Segunda columna-->
 
-                                            <span class="input-group-addon"><strong>Fecha hasta</strong></span>
-                                            <input [(ngModel)]="filtro.fecha_hasta"  style="margin-bottom:20px;" class="form-control" id="usuario" name="codigo" type="date">
-
                                             <div class="input-group">
-                                                <span class="input-group-addon"><strong>Precio máximo</strong></span>
-                                                <input [(ngModel)]="filtro.precio_max"  class="form-control" id="usuario" name="preciomax" type="number">
-                                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                <span class="input-group-addon"><strong>F. desde</strong></span>
+                                                <input [(ngModel)]="filtro.fecha_desde" class="form-control" id="usuario" name="nombre" type="date" style="flex-direction: inherit;">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             </div>
+
+                                            <div class="input-group" >
+                                                <span class="input-group-addon"><strong>F. hasta</strong></span>
+                                                <input [(ngModel)]="filtro.fecha_hasta" class="form-control" id="usuario" name="codigo" type="date" style="flex-direction: inherit;">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            </div>
+
                                             <div class="form-group form-actions">    
-                                                <button class="btn btn-primary" style="width:200px;" (click)="pop.hide(); busquedaAvanzada()" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                                <button class="btn btn-primary" (click)="pop.hide(); busquedaAvanzada()" type="submit" style="width:110px; float: right; margin-right: 15px"><i class="fa fa-search"></i> Buscar</button>
                                             </div>
                                         </div>
+
                                     </div>
                                 </form>
                             </div>
@@ -81,12 +96,12 @@
                     </div> 
                                             
                     <!--FILTROS-->                        
-                    <div class="col-sm-12 filtro">
+                    <div class="col-sm-12 filtro" style="padding-bottom: 10px;">
                         <span class="bold fp">Filtrado por:</span>
                         <span class="filtros">
                             <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
-                                <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
-                                <span data-value="busqueda" class="closex">x</span> 
+                                <a class="btn btn-sm btn-instagram text">
+                                <span (click)="eliminarBusqueda(i);" data-value="busqueda" class="closex"><i class="fa fa-close fa-lg m-t-2"></i></span> 
                                 <span class="item">{{etiqueta}}</span>
                                 </a>
                                     
@@ -104,9 +119,10 @@
                             <tr>
                                 <!--<th class="text-center"><i class="icon-people"></i></th>-->
                                 <th class="text-center" style="width: 45px;"><input type="checkbox" name="" value="" (change)="selectAllFacturas($event);"></th>
+                                <th class="text-center" style="width: 90px;">Nº Fact</th>
                                 <th class="text-center" style="width: 65px;"><i class="icon-people icons font-2xl d-block m-t-2"></i></th>
                                 <th class="text-center" style="width: 20%;">Cliente</th>
-                                <th class="text-center" style="width: 90px;">Nº Fact</th>
+                                
                                 <th class="text-center" style="width: 165px;">Fecha</th>
                                 <th class="text-center" style="width: 85px;">Hora</th>
                                 <th class="text-center" style="width: 15%;">Total</th>
@@ -120,6 +136,9 @@
                                     <input #checkboxUser (change)="selectUser($event,factura.Id_factura);"  type="checkbox" name=""  value={{factura.Id_factura}} value="">
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
+                                    <p>{{factura.Id_factura}}</p>
+                                </td>
+                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
                                     <div class="avatar">
                                         <img src="{{factura.Foto_usuario}}" class="img-avatar" alt="admin@bootstrapmaster.com">
                                         <span *ngIf="factura.Eliminado_usuario==0" class="avatar-status badge-success"></span>
@@ -128,9 +147,6 @@
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
                                     <p class="cliente">{{factura.Nombre_usuario}}</p>
-                                </td>
-                                <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
-                                    <p>{{factura.Id_factura}}</p>
                                 </td>
                                 <td class="text-center" data-toggle="modal" (click)="showChildModal(factura)">
                                     <p>{{factura.Fecha_factura | fecha}}</p>
@@ -143,16 +159,16 @@
                                 </td>
                                 
                                 <td class="text-center">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(factura)"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModal(factura)" style="font-size: 0.75rem;line-height: 1;"><i class="fa fa-info-circle"></i>&nbsp; Ver</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>                   
                 </div> 
-            </div>
-            </div>
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
                 <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
+            </div>
+            </div>
 
             <div>
 
