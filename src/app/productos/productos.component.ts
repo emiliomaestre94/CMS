@@ -234,7 +234,7 @@ export class ProductosComponent implements OnInit {
           console.log(res);  
           if(res[0]){
             if (res[0].status==200){ //todo bien
-               this.busquedaActiva=true; 
+              this.busquedaActiva=true; 
               this.productos=res[0].data.Productos;
               console.log(this.productos);
               this.error=false;

@@ -43,7 +43,7 @@ export class UsuariosComponent implements OnInit {
         this.edad_min.push(newName);
         this.edad_max.push(newName);
       }
-  }
+  } 
 
   ngOnInit() { 
     console.log("Entra en el ngOnInit");

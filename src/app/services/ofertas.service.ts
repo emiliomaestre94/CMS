@@ -22,20 +22,13 @@ export class OfertasService {
     constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
         
     }
- 
-
-
-
-
-
-
 
     getOfertas(idTienda:string,pag:number,oferta:string,filtro){
          pag +=-1; //restamos 1 siempre
          pag.toString(); //pasamos a string el number
          
         if(filtro){
-            //var consulta=this.construirconsulta(filtro,pag,idTienda);
+            var consulta=this.construirconsulta(filtro,pag,idTienda);
         }
         else{
             var consulta=environment.dominio + '/oferta/ofertasUsuarioInfo?id_tienda='+idTienda + '&pagina=' + pag ;
@@ -60,6 +53,16 @@ export class OfertasService {
             //return [{ status: error.status, json: "Error en la conexión con el servidor" }]
             return Observable.throw(new Error(error.status));
         });
+    }
+
+    construirconsulta(filtro,pag,tienda){
+        console.log(filtro,pag)
+        let consulta= environment.dominio + '/oferta/ofertasUsuarioInfo?id_tienda='+tienda + '&pagina=' + pag ;
+        //consulta += "&idtienda="+tienda;
+            if (filtro["fecha_desde"]!='')  consulta+="&fechaIni="+filtro["fecha_desde"];
+            if (filtro["fecha_hasta"]!='')  consulta+="&fechaFin="+filtro["fecha_hasta"];
+        console.log(consulta);
+        return consulta;
     }
 
     getOfertasDebug(idTienda:string,pag:number,oferta:string,filtro){
@@ -93,20 +96,6 @@ export class OfertasService {
             return Observable.throw(new Error(error.status));
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     getOfertasUser(idUsuario:string, idTienda:string){
         let consulta=environment.dominio + '/oferta/ofertasUsuario?id_tienda='+idTienda+"&id_usuario="+idUsuario;

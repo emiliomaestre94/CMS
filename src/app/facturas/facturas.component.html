@@ -62,8 +62,8 @@
                                 </form>
                             </div>
                         </div>
-                    </template>  
-
+                    </template> 
+ 
                    <!-- PAGINACION -->
                    <div class="col-md-3">
                         <pagination class="pagination" id="pagination"
@@ -151,11 +151,13 @@
                 </div> 
             </div>
             </div>
-
+                <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
+                <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
 
             <div>
 
-                <button type="button" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Eliminar</button>
+                <button  *ngIf="loadingActivo==false" type="button" (click)="deleteFacturas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Eliminar</button>
+                <button  *ngIf="loadingActivo==true" type="button" (click)="deleteFacturas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Eliminando</button>
 
                 <pagination class="pagination" id="pagination"
                     [totalItems]="bigTotalItems" 
