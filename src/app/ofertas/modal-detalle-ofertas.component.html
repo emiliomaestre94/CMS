@@ -11,15 +11,16 @@
                 </button>
             </div> 
  
-            <div class="modal-body" style="padding-bottom: 5px;">
-                <div class="card">
-                 <div class="card-block" style="padding-bottom: 5px; padding-left: 10px; padding-right: 10px;">
+            <div class="modal-body" style="padding-bottom: 0px;">
+                <div class="card" style="margin-bottom: 5px;">
+                 <div class="card-block" style="padding: 0.5rem;">
+
                     <div class="form-group row" style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px;">
-                        <div class="col-md-7">
-                            <form *ngIf="oferta" style="height: 365px;">
+                        <div class="col-md-6" style="padding-left: 5px; padding-right: 5px;">
+                            <form *ngIf="oferta" style="height: 330px; padding: 0px;">
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" ><strong>Orden de Visualización</strong></label>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <select name="orden" class="form-control" id="ccmonth" style="padding:0px;">
                                             <option [ngValue]=1>1</option>
                                             <option [ngValue]=2>2</option>
@@ -30,42 +31,42 @@
                                     </div>
                                 
                                     <label class="col-md-2 form-control-label" ><strong>Oferta</strong></label>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <input type="text"  [(ngModel)]="oferta.P_oferta_oferta_usuario" name="precio" class="form-control" style="text-align: center; padding-left: 5px; padding-right: 5px;" placeholder="%">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" ><strong>Fecha Inicio</strong></label>
+                                    <label class="col-md-3 form-control-label" ><strong>F. Inicio</strong></label>
                                     <div class="col-md-6">
                                         <!-- <ng2-datepicker class="form-control" [(ngModel)]="fechaini.formatted"  name="finicio" [options]="options" ></ng2-datepicker> -->
                                         <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_inicio_oferta_usuario" name="fechaini">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" ><strong>Fecha Final</strong></label>
+                                    <label class="col-md-3 form-control-label" ><strong>F. Final</strong></label>
                                     <div class="col-md-6">
                                         <!-- <ng2-datepicker class="form-control" name="ffinal" [options]="options" ></ng2-datepicker> -->
                                         <input type="date" class="form-control" [(ngModel)]="oferta.Fecha_fin_oferta_usuario" name="fechafin">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" ><strong>Descripción Oferta</strong></label>
-                                    <div class="col-md-6">
+                                    <label class="col-md-3 form-control-label" ><strong>Descripción</strong></label>
+                                    <div class="col-md-8">
                                         <textarea id="textarea-input"  [(ngModel)]="oferta.Descripcion_oferta_usuario" name="descripcion" rows="9" class="form-control" style="height: 70%;"></textarea>
                                     </div>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-6" style="padding-left: 5px; padding-right: 5px;">
                         <p style="text-align: center; font-size: 16px;"><strong>Banner Oferta 320x180</strong></p>
                         <div class="imagenBanner">
                         <img  *ngIf="oferta" class="imgBanner" id="imagenSrc" src="{{imageSrc}}"/>
                         <input #image type="file" id="filebutton" accept="image/*" value="upload" (change)="handleInputChange($event)" >
                         <button  *ngIf="imageloaded==true"  (click)="cancelImageLoad()"  type="button" class="btn btn-danger" style="margin-top: 10px;">Cancelar</button> 
                         </div>
-                            <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 50px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiarla.</p>
+                            <p style="color:#b0bec5;; font-size: 13px; text-align: center; padding-top: 10px;">*Arrastra sobre la imagen o pulsa sobre ella para cambiarla.</p>
                         </div>
                     </div>
 

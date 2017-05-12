@@ -3,16 +3,17 @@
         <div class="card">
 
         <div class="card-header"><p>Ofertas Personalizadas</p></div>
-            <div  *ngIf="!ofertas && error==false" class="loader"  style="margin-top:100px;margin-bottom:100px"></div>
+            <div  *ngIf="!ofertas && error==false" class="loader"  style="margin-top:100px; margin-bottom:100px"></div>
             <div  *ngIf="error==true" style="text-align:center;  margin:0 auto; margin-top:30px; margin-bottom:30px; width:90%" class="alert alert-danger">
               {{mensajeError}}
            </div> 
+
             <div class="card-block">
                 <div *ngIf="ofertas">
                 <!--BUSCADOR-->  
                 <div id="buscador" class="form-group row">
-                    <div class="col-md-4">
-                        <form #searchOfertaForm="ngForm" (ngSubmit)="buscar()">
+                    <div class="col-md-6" style="padding-right: 2px; height: 45px;">
+                        <form #searchOfertaForm="ngForm" (ngSubmit)="buscar()" style="padding: 0px;">
                             <div class="input-group">          
                                 <span class="input-group-btn">
                                     <button *ngIf="buscando==false"type="button" (click)="buscar()" style="width:132px;" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -22,39 +23,51 @@
                             </div>
                         </form> 
                     </div>
-                    <!-- AÑADIR OFERTA-->
-                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3"> <button id="anyadir" class="btn btn-success" type="button" data-toggle="modal" (click)="showChildModal()"><i class="fa fa-plus"></i> Añadir Oferta</button></div>
+                    <!-- AÑADIR OFERTA
+                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3" style = "padding-left: 0px;">
+                        <button id="anyadir" class="btn btn-success" type="button" data-toggle="modal" (click)="showChildModal()"><i class="fa fa-plus"></i> Añadir Oferta</button>
+                    </div>
+                    -->
                     <!-- BUSQUEDA AVANZADA -->
-                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3"><button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary">Búsqueda Avanzada</button></div>
-                    <div   *ngIf="buscandoAvanzado==true" class="col-md-3"><button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i>Buscando</button></div>
+                    <div   *ngIf="buscandoAvanzado==false" class="col-md-3" style = "padding-left: 0px;">
+                        <button triggers="" #pop="bs-popover" (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary" style="line-height: 1.0; padding: 0.5rem 0.5rem; font-size: 0.75rem; margin-top: 3px;">Búsqueda Avanzada</button>
+                    </div>
+                    <div   *ngIf="buscandoAvanzado==true" class="col-md-3" style = "padding-left: 0px;">
+                        <button triggers="" #pop="bs-popover"  (click)="pop.toggle()" placement="bottom" [popover]="popTemplate" popoverTitle="Búsqueda Avanzada"  class="btn btn-primary" style="line-height: 1.0; padding: 0.5rem 0.5rem; font-size: 0.75rem; margin-top: 3px;"><i class="fa fa-spinner fa-spin"></i>Buscando</button>
+                    </div>
+
                     <template #popTemplate> 
                         <div class="form-group row"> 
                             <div class="col-md-12">     
-                                <form #searchUsersForm="ngForm" (ngSubmit)="busquedaAvanzada()" style="padding-left: 5px; height: 180px;">
+                                <form #searchUsersForm="ngForm" (ngSubmit)="busquedaAvanzada()" style="padding-left: 5px; height: 90px; ">
                                     <div class="form-group row"> 
 
                                         <div class="col-md-6"><!--Primera columna-->
-
-                                            <span class="input-group-addon"><strong>Fecha desde</strong></span>
-                                            <input [(ngModel)]="filtro.fecha_desde" style="margin-bottom:20px;" class="form-control" id="usuario" name="nombre" type="date">
-
-                                        </div>
-                                        <div class="col-md-6"><!--Segunda columna-->
-
-                                            <span class="input-group-addon"><strong>Fecha hasta</strong></span>
-                                            <input [(ngModel)]="filtro.fecha_hasta"  style="margin-bottom:20px;" class="form-control" id="usuario" name="codigo" type="date">
-
-                                            <div class="form-group form-actions">    
-                                                <button class="btn btn-primary" style="width:200px;" (click)="pop.hide(); busquedaAvanzada()" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                         <div class="input-group">
+                                                <span class="input-group-addon"><strong>F. desde</strong></span>
+                                                <input [(ngModel)]="filtro.fecha_desde" class="form-control" id="usuario" name="nombre" type="date" style="flex-direction: inherit;font-size: 0.75rem;line-height: 1;">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6"><!--Segunda columna-->
+                                            <div class="input-group" >
+                                                <span class="input-group-addon"><strong>F. hasta</strong></span>
+                                                <input [(ngModel)]="filtro.fecha_hasta" class="form-control" id="usuario" name="codigo" type="date" style="flex-direction: inherit;font-size: 0.75rem;line-height: 1;">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                            <div class="form-group form-actions">    
+                                                <button class="btn btn-primary" style="width:110px; float: right; margin-right: 15px" (click)="pop.hide(); busquedaAvanzada()" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </template>   
                    <!-- PAGINACION -->
-                   <div class="col-md-2">
+                   <div class="col-md-3">
                         <pagination class="pagination" id="pagination"
                         [totalItems]="bigTotalItems" 
                         [itemsPerPage]="itemsPorPagina" 
@@ -70,17 +83,23 @@
                     </div> 
                      
                      <!--FILTRO-->
-                     <div class="col-sm-12 filtro">
+                     <div class="col-md-12 filtro" style="padding-bottom: 10px;">
+                        
                         <span class="bold fp">Filtrado por:</span>
                         <span class="filtros">
                             <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
-                                <a (click)="eliminarBusqueda(i);" class="btn btn-sm btn-instagram text">
-                                <span data-value="busqueda" class="closex">x</span> 
-                                <span class="item">{{etiqueta}}</span>
-                                </a>
-                                     
+                                <a class="btn btn-sm btn-instagram text">
+                                    <span (click)="eliminarBusqueda(i);" data-value="busqueda" class="closex"><i class="fa fa-close fa-lg m-t-2"></i></span> 
+                                    <span class="item">{{etiqueta}}</span>
+                                </a>   
                             </span>
-                        </span> 
+                        </span>
+                    
+
+                    <div *ngIf="buscandoAvanzado==false" class="col-md-3" style = "padding-left: 0px; padding-bottom: 0px; float: right;">
+                        <button id="anyadir" class="btn btn-success" type="button" data-toggle="modal" (click)="showChildModal()" style="margin-bottom: 0px; margin-left: 1px;"><i class="fa fa-plus"></i> Añadir Oferta</button>
+                    </div>
+
                     </div>                   
                     <div  *ngIf="error2==true" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">
                         {{mensajeError}}
@@ -131,40 +150,39 @@
                                     <p class="form-control-static">{{oferta.Fecha_fin_oferta_usuario | fecha }}</p>
                                 </td>
                                 <td class="text-center">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);"><i class="fa fa-info-circle"></i> Ver</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" (click)="showChildModalClientesOfertados(oferta);" style="font-size: 0.75rem;line-height: 1;"><i class="fa fa-info-circle"></i> Ver</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table> 
                 </div>
+
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
                 <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
-            
-            
+            </div>
+            </div>
+
             <div>
                 <button  *ngIf="loadingActivo==false" type="button" (click)="deleteOfertas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Eliminar</button>
                 <button  *ngIf="loadingActivo==true" type="button" (click)="deleteOfertas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Eliminando</button>
-                
-                
+                <!--<button  type="button" (click)="recuperarOfertas();" class="btn btn-warning" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Recuperar Ofertas(debug)</button>-->
 
                    <!-- PAGINACION -->
-                        <pagination class="pagination" id="pagination"
-                        [totalItems]="bigTotalItems" 
-                        [itemsPerPage]="itemsPorPagina" 
-                        [(ngModel)]="bigCurrentPage" 
-                        [maxSize]="5" class="pagination-sm"
-                        [boundaryLinks]="true"   
-                        previousText="&lsaquo;" 
-                        nextText="&rsaquo;" 
-                        firstText="&laquo;" 
-                        lastText="&raquo;" 
-                        (pageChanged)="pageChanged($event)">
-                        </pagination>
-                   
+                <pagination class="pagination" id="pagination"
+                [totalItems]="bigTotalItems" 
+                [itemsPerPage]="itemsPorPagina" 
+                [(ngModel)]="bigCurrentPage" 
+                [maxSize]="5" class="pagination-sm"
+                [boundaryLinks]="true"   
+                previousText="&lsaquo;" 
+                nextText="&rsaquo;" 
+                firstText="&laquo;" 
+                lastText="&raquo;" 
+                (pageChanged)="pageChanged($event)">
+                </pagination>
+            
             </div>
-            </div>
-             <!-- <button  type="button" (click)="recuperarOfertas();" class="btn btn-warning" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Recuperar Ofertas(debug)</button>-->
-        </div>
+
     </div>
 </div>
 
