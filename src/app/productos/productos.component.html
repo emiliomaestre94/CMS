@@ -94,10 +94,9 @@
                         <span class="filtros">
                             <span  *ngFor="let etiqueta of tag; let i = index;" class="tag bolds">
                                 <a class="btn btn-sm btn-instagram text">
-                                <span (click)="eliminarBusqueda(i);" data-value="busqueda" class="closex"><i class="fa fa-close fa-lg m-t-2"></i></span> 
-                                <span class="item">{{etiqueta}}</span>
+                                    <span (click)="eliminarBusqueda(i);" data-value="busqueda" class="closex"><i class="fa fa-close fa-lg m-t-2"></i></span> 
+                                    <span class="item">{{etiqueta}}</span>
                                 </a>
-                                
                             </span>
                         </span> 
                     </div> 
