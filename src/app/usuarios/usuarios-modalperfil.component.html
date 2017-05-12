@@ -100,30 +100,31 @@
                                     </tr>
                                 </thead>
                                 <tbody> 
-                                    <tr *ngFor="let oferta of ofertas" (click)="showOfertaModal(oferta)" >
+                                    <tr *ngFor="let oferta of ofertas">
                                         <td class="text-center">
                                             <input type="checkbox" name="" value="">
-                                        </td>  
-                                        <td class="text-center">
+                                        </td> 
+
+                                        <td class="text-center" (click)="showOfertaModal(oferta)" >
                                             <div class="avatar">
                                                 <img src="{{oferta.Foto_oferta_usuario}}" class="img-avatar">
                                                 <span *ngIf="" class="avatar-status badge-success"></span>
                                             </div>
                                         </td>
 
-                                        <td class="text-center">
+                                        <td class="text-center" (click)="showOfertaModal(oferta)" >
                                             <p>{{oferta.Id_oferta_usuario}}</p>
                                         </td>
 
-                                        <td class="text-center" >
+                                        <td class="text-center" (click)="showOfertaModal(oferta)" >
                                             <p class="nombre">{{oferta.Nombre_producto}}</p>
                                         </td>
 
-                                        <td class="text-center">
+                                        <td class="text-center" (click)="showOfertaModal(oferta)" >
                                             <p>{{oferta.Precio_producto}}<i class="fa fa-eur"></i></p>
                                         </td>
-                                        <td class="text-center">
-                                            <p class="form-control-static">{{oferta.P_oferta_oferta_usuario}}<i class="fa fa-percent"></i></p>
+                                        <td class="text-center"(click)="showOfertaModal(oferta)" >
+                                            <p>{{oferta.P_oferta_oferta_usuario}}<i class="fa fa-percent"></i></p>
                                         </td>
 
                                         <td class="text-center">
