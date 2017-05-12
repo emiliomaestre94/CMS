@@ -25,11 +25,11 @@
                             </div>
                             <div  *ngIf="accesocorrecto==false"  class="alert alert-danger"> {{alertenvio}}</div>
                             <div class="row">
-                                <div class="col-6">
-                                    <button *ngIf="enviando==false" style="width:204px;" type="submit"  class="btn btn-primary px-2">Acceder</button>
-                                    <button *ngIf="enviando==true" class="btn btn-info px-2" style="width:204px;"><i class="fa fa-spinner fa-spin"></i> Accediendo</button>
+                                <div class="col-md-12">
+                                    <button *ngIf="enviando==false" style="width:100%" type="submit"  class="btn btn-primary px-2">Acceder</button>
+                                    <button *ngIf="enviando==true" class="btn btn-info px-2" style="width:100%"><i class="fa fa-spinner fa-spin"></i> Accediendo</button>
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-md-12 text-center">
                                     <button  type="button" (click)="resetpassword();" class="btn btn-link px-0">¿Olvidaste tu contraseña?</button>
                                 </div>
                             </div>
