@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" ><p>Facturas</p></div> 
-            <div  *ngIf="!facturas" class="loader"  style="margin-top:30px"></div>
+            <div  *ngIf="!facturas" class="loader"  style="margin-top:100px;margin-bottom:100px"></div>
             <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
               {{mensajeError}}
            </div> 
@@ -170,7 +170,7 @@
             </div>
             </div>
 
-            <div>
+            <div *ngIf="facturas">
 
                 <button  *ngIf="loadingActivo==false" type="button" (click)="deleteFacturas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Eliminar</button>
                 <button  *ngIf="loadingActivo==true" type="button" (click)="deleteFacturas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Eliminando</button>

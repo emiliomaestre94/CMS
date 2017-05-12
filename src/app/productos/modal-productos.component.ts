@@ -1,3 +1,4 @@
+import { ImagenesAPIService } from './../services/imagenesapi.service';
 import { YoutubeModalComponent } from './youtube-modal.component';
 import { OfertasService } from './../services/ofertas.service';
 import { ProductosService, ImageProducto } from './../services/productos.service';
@@ -55,7 +56,7 @@ export class ProductosDetalleModalComponent {
 
   firebase:any;//variable global de firebase
 
-  constructor(public productosService: ProductosService, @Inject(FirebaseApp) firebase: any, public ofertasService: OfertasService, public datostokenservice: DatosTokenService){
+  constructor(public productosService: ProductosService, @Inject(FirebaseApp) firebase: any, public ofertasService: OfertasService, public datostokenservice: DatosTokenService,public imagenesApiService: ImagenesAPIService){
           this.idTienda=this.datostokenservice.token["id_tienda"];
           this.firebase = firebase;
   }
@@ -176,7 +177,7 @@ export class ProductosDetalleModalComponent {
       },    
     ); 
   }
- 
+ /*
   public getImagesAPI(){
     this.productosService.getImagesAPI(this.producto["Nombre_producto"]).subscribe(
       res =>{
@@ -188,6 +189,7 @@ export class ProductosDetalleModalComponent {
       },   
     );
   }
+  */
 
 
   public removeBorder(){
@@ -266,15 +268,15 @@ export class ProductosDetalleModalComponent {
      this.imageloaded=false;
     }
 
-  }
-
+  } 
+ 
   cancelImageLoad(){
     this.imageSrc=this.oferta["Foto_oferta_producto"];
     this.el.nativeElement.value=null;
     this.imageloaded=false;
   }
 
-  
+   
   selectTab(number){
    console.log("CLIIIICK");
    this.tabselected=number;
@@ -285,6 +287,25 @@ export class ProductosDetalleModalComponent {
  videoChange(event) {
     console.log("El evento es "+event);
     this.producto["URL_video_producto"]=event;
+  }
+
+  filtrarNombre(nombre){
+    var res = nombre.split(" ");
+    return res[0];
+  }
+  getImagesAPI(){
+      var filtroNombre=this.filtrarNombre(this.producto["Nombre_producto"]);
+      console.log("filtronombre es "+filtroNombre);
+      this.imagenesApiService.search(filtroNombre).subscribe(
+        res =>{
+          console.log("IMAGENES APIIIIIIIIII");
+          console.log(res);
+          this.imagesProducto=res[0].data.hits;     
+        },
+        err=>{ //Error de conexion con el servidor
+          console.log(err);
+        },
+    );
   }
 
 }

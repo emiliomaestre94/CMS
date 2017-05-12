@@ -135,7 +135,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> 
                 </div>
                 <div  *ngIf="msgActivo && errorActivo==true && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-danger">  {{msgActivo}} </div>
                 <div  *ngIf="msgActivo && errorActivo==false && loadingActivo==false" style="text-align:center; margin-bottom:0px; width: 100%" class="alert alert-success">  {{msgActivo}} </div>
@@ -163,14 +163,14 @@
                    
             </div>
             </div>
-             <button  type="button" (click)="recuperarOfertas();" class="btn btn-warning" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Recuperar Ofertas(debug)</button>
+             <!-- <button  type="button" (click)="recuperarOfertas();" class="btn btn-warning" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Recuperar Ofertas(debug)</button>-->
         </div>
     </div>
 </div>
 
 
 <!--MODAL AÑADIR OFERTA-->
-<modal-oferta ></modal-oferta>
+<modal-oferta (uploaded)="ActualizarLista()"></modal-oferta>
 
 <!-- MODAL DETALLE OFERTA -->
 <modal-detalle-oferta></modal-detalle-oferta>  
