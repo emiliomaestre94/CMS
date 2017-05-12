@@ -2,7 +2,7 @@ import { OfertasService } from './../services/ofertas.service';
 import {Producto, ProductosService } from './../services/productos.service';
 import { DatosTokenService } from './../services/datostoken.service';
 import { Usuario,UsuariosService } from './../services/usuarios.service';
-import { Component,ElementRef, ViewChild,ViewChildren, Inject} from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewChildren, Inject, EventEmitter, Output } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 import { AngularFire, FirebaseApp } from 'angularfire2';
 import * as moment from 'moment';
@@ -82,19 +82,27 @@ export class ModalOfertasComponent {
     console.log(this.idProducto);
     console.log(this.oferta);
     this.uploadImage();
-  } 
+  }
+
+  @Output() uploaded:EventEmitter<string> = new EventEmitter();
 
   public postOferta(){ //se llama desde uploadImage una vez se ha subido la foto correctamente
       this.ofertasService.uploadOferta(this.IdUsuarios,this.idProducto,this.oferta,this.idTienda).subscribe(
         res =>{
           console.log(res);
           this.loadingAddOferta=false;
+          this.uploaded.emit(); //llamamos a ofertas component para que actualice la lista
           this.hideChildModal();
         },
         err=>{ //Error de conexion con el servidor
           console.log(err);
         },
     );
+  }
+
+  public pruebaActualizar(){
+    console.log("Entra a prueba actualizar");
+    this.uploaded.emit();
   }
 
   public getProductos(){
@@ -213,7 +221,7 @@ export class ModalOfertasComponent {
     var final:string=anyo+"-"+res[0]+"-"+res[1];
     console.log(final);
     return final;
-  }
+  } 
   
   //Boton buscar del formulario
   public onLogin(){ 

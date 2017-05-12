@@ -248,7 +248,7 @@ export class OfertasComponent implements OnInit {
         this.ofertasService.deteleOfertasUser(this.idTienda,this.IdOfertas).subscribe(
           res =>{
             console.log(res); 
-            this.updateTable();
+            this.updateTable(null);
            
           },
           err=>{ //Error de conexion con el servidor
@@ -262,33 +262,40 @@ export class OfertasComponent implements OnInit {
       }
    }
 
-   public updateTable(){             
+   public updateTable(origen){
+              
         this.ofertasService.getOfertas(this.idTienda,this.bigCurrentPage,'',null).subscribe(
           res =>{
             console.log(res);   
             if(res[0]){
               if (res[0].status==200){ //todo bien
                 this.ofertas=res[0].data;
-                this.error=false;
-                this.loadingActivo=false;
-                this.errorActivo=false;
-                this.msgActivo="Las ofertas se han eliminado correctamente";   
+                if(!origen){
+                  this.error=false;
+                  this.loadingActivo=false;
+                  this.errorActivo=false;
+                  this.msgActivo="Las ofertas se han eliminado correctamente";
+                }  
               }
               if (res[0].status==204){ //no encontrado
                 console.log(res[0].status);
-                this.error=true;
-                this.ofertas=null;
-                this.loadingActivo=false;
-                this.errorActivo=false;
-                this.mensajeError="No tienes ninguna oferta registrada en tu tienda";
+                if(!origen){
+                  this.error=true;
+                  this.ofertas=null;
+                  this.loadingActivo=false;
+                  this.errorActivo=false;
+                  this.mensajeError="No tienes ninguna oferta registrada en tu tienda";
+                }  
               }
             }  
             //this.accesocorrecto=true;        
           },
           err=>{ //Error de conexion con el servidor
               console.log(err);
-              this.error=true;
-              this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
+              if(!origen){
+                this.error=true;
+                this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
+              }
           },   
       );
    }
@@ -328,7 +335,10 @@ export class OfertasComponent implements OnInit {
 
 
 
-
+   public ActualizarLista(){
+     console.log("Entra a actualizar Lista");
+     this.updateTable(1);
+   }
 
 
 

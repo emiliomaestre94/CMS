@@ -34,7 +34,7 @@
                                     <div class="galeriaImagenes">
                                         <div *ngFor="let image of imagesProducto" id="pene">
                                             <div class="col-xs-3" id="imglibreria" style="width: 75px; height:75px;">
-                                                <img #imageAPI src="{{image.imageurl}}" (click)="selectImageAPI($event);" style="width:100%;height:100%; object-fit: scale-down;" alt="admin@bootstrapmaster.com">
+                                                <img #imageAPI src="{{image.webformatURL}}" (click)="selectImageAPI($event);" style="width:100%;height:100%; object-fit: scale-down;" alt="admin@bootstrapmaster.com">
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@
 
                         <tab style="text-align:center" (select)="selectTab(4);">
                              <template tabHeading><i class="fa fa-cube fa-lg m-t-2"></i> Motor WebGL </template>
-                             <iframe style="border: none;" src="https://drmultimedio.github.io/MOTOR/index.html" width="100%" height="800px"> </iframe>
+                            <iframe style="border: none;" src="https://drmultimedio.github.io/MOTOR/index.html" width="100%" height="800px"> </iframe>
                         </tab>
 
                     </tabset>
@@ -177,7 +177,7 @@
                 <button type="button" *ngIf="tabselected==2 && ofertaActiva==true && !loadingUpdateOferta"(click)="updateOferta(0);" class="btn btn-success"><i class="fa fa-save"></i> Actualizar oferta</button>
                 <button type="button" *ngIf="tabselected==2 && loadingUpdateOferta==true"  class="btn btn-success"><i class="fa fa-spinner fa-spin"></i> Actualizando oferta</button>  
 
-                
+                 
                 <template #popTemplate>
                     <p style="text-align: center;">¿Estás seguro de que deseas eliminar la oferta actual? La oferta quedará almacenada en el registro de ofertas.</p> 
                     <div class="form-group row">

@@ -3,6 +3,7 @@ import { Component, ViewChild,Inject,ElementRef } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap/modal';
 import { Usuario } from './../services/usuarios.service';
 import { AngularFire, FirebaseApp } from 'angularfire2';
+import * as moment from 'moment';
 
 @Component({
   selector: 'modal-detalle-oferta',
@@ -11,7 +12,12 @@ import { AngularFire, FirebaseApp } from 'angularfire2';
 })
 export class ModalDetalleOfertasComponent  {
 
-  public usuarios:Usuario[]; 
+  public usuarios:Usuario[];
+
+  public error: boolean=false;
+  public msgAlert;
+  public loadingActualizando=false;
+
   public idTienda;
   public oferta;
   public imageSrc;
@@ -25,16 +31,25 @@ export class ModalDetalleOfertasComponent  {
 
   saveData(){
     console.log(this.oferta);
-    this.updateOferta();
+    this.uploadImage();
   }
   updateOferta(){
     this.ofertasService.updateOferta(this.oferta,this.idTienda).subscribe(
         res =>{
           console.log(res)
           console.log(res[0]);
+          //this.uploadImage();
+          this.error=false;
+          this.loadingActualizando=false;
+          this.msgAlert="Datos actualizados correctamente";
+          this.el.nativeElement.files[0]=null;
+          this.imageloaded=false;
         },
         err=>{ //Error de conexion con el servidor
           console.log(err);
+          this.error=true;
+          this.loadingActualizando=false;
+          this.msgAlert="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
         },
     );
   } 
@@ -45,6 +60,9 @@ export class ModalDetalleOfertasComponent  {
   }
    
   public showChildModal(oferta,idTienda):void {
+    this.msgAlert=null;
+    this.el.nativeElement.files[0]=null;
+    this.imageloaded=false;
     this.imageSrc=oferta.Foto_oferta_usuario;
     this.oferta=oferta; //le en
     this.formatDate(oferta);
@@ -83,20 +101,20 @@ export class ModalDetalleOfertasComponent  {
     console.log("hidechildmodal");
     this.childModal.hide();
   }
-    @ViewChild('image') el:ElementRef; //cogemos el input del dom
+
+  @ViewChild('image') el:ElementRef; //cogemos el input del dom
   storageref;
   storage;
   path;
-/*
+
   uploadImage(){
-    console.log(this.el);
-    console.log(this.el.nativeElement);
-    console.log(this.el.nativeElement.files[0]);
+    this.loadingActualizando=true;
     var files = this.el.nativeElement.files[0];
-   
-    if(files){
-      this.loading3=true;
-      this.path="images/Perfil/"+ "Perfil_"+this.idAdmin+"_"+files.name;
+    console.log("FIIIIIIIIIIIIIIIIIIIIIIILES");
+    console.log(files);;
+    if(files && this.imageloaded==true){
+      var date=moment().format();
+      this.path="images/Oferta/"+ "Oferta_"+this.idTienda+"_"+"_"+date+"_"+files.name;
       console.log(this.path);
       var storageref= this.firebase.storage().ref().child(this.path);
       //console.log(storageref);
@@ -104,29 +122,29 @@ export class ModalDetalleOfertasComponent  {
       //storageref.getDownloadURL().then(url => image = url);
     // console.log("La URL es "+image);
       let uploadTask=storageref.put(files);
-
-      let newthis=this;
+      var newthis=this;
       uploadTask.on('state_changed', function(snapshot){
       // Observe state change events such as progress, pause, and resume
       // See below for more detail
       }, function(error) {
-      console.log("Error subiendo la foto");
-      this.loading3=false;
-      this.error3=true;
-      this.msgImage="Error subiendo la foto al servidor (850386)";
-        // Handle unsuccessful uploads
+        console.log("Error subiendo la foto");
+          newthis.error=true;
+          newthis.loadingActualizando=false;
+          newthis.msgAlert="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
       }, function() {
-      // Handle successful uploads on complete
-      // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-      console.log("Foto subida correctamente");
-        var downloadURL = uploadTask.snapshot.downloadURL;
-        console.log(downloadURL);
-        newthis.updateUserImage(downloadURL);
+          console.log("Foto subida correctamente");
+          var downloadURL = uploadTask.snapshot.downloadURL;
+          newthis.oferta["Foto_oferta_usuario"]=downloadURL;
+          console.log(downloadURL);
+          newthis.updateOferta();
       });
+    }
+    else{
+       this.updateOferta();
     }
 
   }
-*/
+
  
 
 
