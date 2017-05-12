@@ -4,7 +4,7 @@
         <div class="card">
 
             <div class="card-header" ><p>Productos de {{datostokenservice.token['nombre_tienda']}}</p></div>
-            <div  *ngIf="!productos" class="loader"  style="margin-top:30px"></div>
+            <div  *ngIf="!productos" class="loader" style="margin-top:100px;margin-bottom:100px"></div>
             <div  *ngIf="error==true" style="text-align:center; margin-top:30px; margin:0 auto; margin-bottom:30px; width:90%" class="alert alert-danger">
               {{mensajeError}}
             </div> 
@@ -170,7 +170,7 @@
             </div>
             </div>
 
-            <diV>
+            <div *ngIf="productos">
                 <button *ngIf="loadingActivo==false" (click)="updateProductoActivo();" style="width:130px; margin-left: 15px;" type="submit"  class="btn btn-primary px-2"><i class="fa fa-save"></i> Guardar</button>
                 <button *ngIf="loadingActivo==true" class="btn btn-info px-2" style="width:130px; margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Guardando...</button>
 
@@ -187,7 +187,7 @@
                     lastText="&raquo;" 
                     (pageChanged)="pageChanged($event)">
                 </pagination>
-            </diV>
+            </div>
             
         </div>
     </div>

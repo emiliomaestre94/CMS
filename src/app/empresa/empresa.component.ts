@@ -13,6 +13,9 @@ import * as moment from 'moment';
 })
 export class EmpresaComponent implements OnInit {
   public tienda;//contiene los datos de la tienda que recibimos del servidor
+  public mensajeError: string=''; //indica el mensaje del error del backend
+  public error: boolean=false; //indica si hay un error de respuesta en el backend
+
   public idTienda; //id de la tienda del token
   public imageSrc; //logo
   public imageSrc2; //fotofondo
@@ -32,15 +35,20 @@ export class EmpresaComponent implements OnInit {
   ngOnInit() {
     this.idTienda=this.token.token['id_tienda'];
     this.getTienda();
-  }
+  } 
 
+  public loadingUpdateTienda=false;
+  public mensajeUpdateTienda=null;
   updateTienda(){
+    this.loadingUpdateTienda=true;
     console.log(this.tienda);
       this.empresaService.updateTienda(this.tienda,null).subscribe(
         res =>{
           console.log(res);
           this.token.updateTokenEmpresa(this.tienda);
           this.getUser();
+          this.loadingUpdateTienda=false;
+          this.mensajeUpdateTienda="Datos de la tienda actualizados correctamente";
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
@@ -55,10 +63,13 @@ export class EmpresaComponent implements OnInit {
           this.tienda=res[0].data.Tiendas[0];
           this.imageSrc=this.tienda["Logo_tienda"];
           this.imageSrc2=this.tienda["Foto_tienda"];  
-          console.log(this.tienda);   
+          console.log(this.tienda);
+          this.error=false;   
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
+            this.error=true;
+            this.mensajeError="Vaya, parece que hay un problema. Recargue la página y vuelva a intentarlo. Si el problema persiste contacte con nuestro servicio técnico.";
         },   
     ); 
   }
@@ -128,6 +139,7 @@ export class EmpresaComponent implements OnInit {
   storageref;
   storage;
   path;
+  public loadingImagenLogo=false; 
   uploadImageLogo(){
     console.log(this.el);
     console.log(this.el.nativeElement);
@@ -135,17 +147,19 @@ export class EmpresaComponent implements OnInit {
     var files = this.el.nativeElement.files[0];
 
     if(files){
+      this.loadingImagenLogo=true;
       this.path="images/Tienda/Logos/"+ "Logos_"+this.token.token['id_tienda']+"_"+this.token.token['id_usuario']+moment().format()+"_"+files.name;
       console.log(this.path);
       var storageref= this.firebase.storage().ref().child(this.path);
       var image;
       let uploadTask=storageref.put(files);
-
+      
       let newthis=this;
       uploadTask.on('state_changed', function(snapshot){
     
       }, function(error) {
       console.log("Error subiendo la foto de Logo");
+      this.loadingImagenLogo=false;
       }, function() {
         console.log("Foto subida correctamente");
         var downloadURL = uploadTask.snapshot.downloadURL;
@@ -155,6 +169,9 @@ export class EmpresaComponent implements OnInit {
       });
     }
   }
+
+  public loadingImagenFondo=false; 
+
   uploadImageFondo(){
     console.log(this.el2);
     console.log(this.el2.nativeElement);
@@ -162,6 +179,7 @@ export class EmpresaComponent implements OnInit {
     var files = this.el2.nativeElement.files[0];
 
     if(files){
+      this.loadingImagenFondo=true;
       this.path="images/Tienda/Fondos/"+ "Fondos_"+this.token.token['id_tienda']+"_"+this.token.token['id_usuario']+moment().format()+"_"+files.name;
       console.log(this.path);
       var storageref= this.firebase.storage().ref().child(this.path);
@@ -173,6 +191,7 @@ export class EmpresaComponent implements OnInit {
     
       }, function(error) {
       console.log("Error subiendo la foto de Logo");
+      this.loadingImagenFondo=false;
       }, function() {
         console.log("Foto subida correctamente");
         var downloadURL = uploadTask.snapshot.downloadURL;
@@ -196,11 +215,13 @@ export class EmpresaComponent implements OnInit {
               this.imageSrc=URL;
               this.token.updateTokenEmpresa(this.tienda);
               this.getUser();
+              this.loadingImagenLogo=false;
             }
 
         },
         err=>{ //Error de conexion con el servidor
             console.log(err);
+            this.loadingImagenLogo=false;
         },
     );
 
@@ -216,10 +237,12 @@ export class EmpresaComponent implements OnInit {
             console.log("actualizado correctamente");          
             this.imageSrc2=URL;
             this.imageloaded2=false;
+            this.loadingImagenFondo=false;
           }
       },
       err=>{ //Error de conexion con el servidor
           console.log(err);
+          this.loadingImagenFondo=false;
       },
   );
  }

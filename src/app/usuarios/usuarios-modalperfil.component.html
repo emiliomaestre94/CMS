@@ -89,8 +89,8 @@
                             <div *ngIf="loadingFacturas" class="loader"  style="margin-top:30px;"></div>           
                             <table *ngIf="ofertas" class="table table-hover table-outline mb-0 hidden-sm-down">
                                 <thead class="thead-default">
-                                    <tr >
-                                        <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th>
+                                    <tr > 
+                                        <!-- <th class="text-center" style="width: 75px;"><input type="checkbox" name="" value=""></th> -->
                                         <th class="text-center" style="width: 130px;">Imagen</th>
                                         <th class="text-center" style="width: 100px;">Cod</th>
                                         <th class="text-center" style="width: 20%;">Nombre</th>
@@ -101,9 +101,9 @@
                                 </thead>
                                 <tbody> 
                                     <tr *ngFor="let oferta of ofertas">
-                                        <td class="text-center">
+                                        <!--<td class="text-center">
                                             <input type="checkbox" name="" value="">
-                                        </td> 
+                                        </td>--> 
 
                                         <td class="text-center" (click)="showOfertaModal(oferta)" >
                                             <div class="avatar">
