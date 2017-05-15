@@ -153,7 +153,6 @@ export class PerfiladminComponent implements OnInit {
   
   validarDatos(){
     if(this.newPassword.length<8){
-      
         this.msgPassword="Contraseña inválida (mínimo 8 caracteres). ";
         this.validacioncorrecta=false;
     }

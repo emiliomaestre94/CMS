@@ -28,3 +28,15 @@ header.navbar .nav-item .nav-link > .img-avatar {
     cursor: pointer;
     transform: scale(1.01);
 }
+
+#pencil{
+    display:none;
+    right: 43px;
+    top: 10px;
+}
+
+#asd:hover {
+    #pencil {
+        display: inline-block;    
+    }
+} 

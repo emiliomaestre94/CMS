@@ -30,8 +30,8 @@
         </li>
         <li class="nav-item hidden-md-down">
             <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
-        </li>
-        -->
+        </li> 
+        --> 
         <li class="nav-item dropdown" dropdown (onToggle)="toggled($event)">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: rgb(255, 255, 255);" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle>
                 <img src="{{datostokenservice.token['foto_usuario']}}" class="img-avatar" alt="admin@bootstrapmaster.com">
@@ -77,8 +77,9 @@
             <ul class="nav">
                 <!--Aqui ponemos lo de la foto -->
                 <div class="usuario-navbar" routerLinkActive="active" [routerLink]="['/empresa']">
-                <div class="imgPerfil">
-                    <img class="img-avatar fotosidebar" src="{{datostokenservice.token['logo_tienda']}}" alt="admin@bootstrapmaster.com" style="width: 114px; height:114px;">
+                <div id="asd"  class="imgPerfil" style="position:relative;">
+                    <img id="pencil" style="position:absolute;" src="assets/img/pencil.png">
+                    <img id="imglogotienda" class="img-avatar fotosidebar" src="{{datostokenservice.token['logo_tienda']}}" alt="admin@bootstrapmaster.com" style="width: 114px; height:114px;">
                 </div>                    
                     <p class="text-center">{{datostokenservice.token['nombre_tienda']}}</p>
                     <li class="divider"></li>
@@ -100,7 +101,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/usuarios']"><i class="icon-people"></i> Clientes</a>
                 </li>
-                
+                 
                 <!--CAMBIADO-->
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" [routerLink]="['/facturas']"><i class="icon-docs"></i> Facturas </a>
