@@ -162,7 +162,7 @@
             </div>
             </div>
 
-            <div>
+            <div *ngIf="ofertas">
                 <button  *ngIf="loadingActivo==false" type="button" (click)="deleteOfertas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Eliminar</button>
                 <button  *ngIf="loadingActivo==true" type="button" (click)="deleteOfertas();" class="btn btn-danger" style=" margin-left: 15px;"><i class="fa fa-spinner fa-spin"></i> Eliminando</button>
                 <!--<button  type="button" (click)="recuperarOfertas();" class="btn btn-warning" style=" margin-left: 15px;"><i class="fa fa-trash-o"></i> Recuperar Ofertas(debug)</button>-->

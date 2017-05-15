@@ -15,7 +15,7 @@ export class EditPasswordComponent implements OnInit{
     mensajealerta:string; //mensaje de min 8 caracteres
     mensajealerta2:string; //mensaje de contras no coinciden
     validacioncorrecta:boolean=true; //pasa validacion de js
-
+    mensajeCorrecto;
     alertenvio:string; //mensaje de advertencia si falla el put
     enviando:boolean=false; //cuando se está realizando el proceso de enviar datos 
     accesocorrecto:boolean=true;
@@ -57,6 +57,7 @@ export class EditPasswordComponent implements OnInit{
         console.log(this.token);
         this.authService.tokenUrl(this.token); //guardamos el token en localstorage
             if(this.validacioncorrecta==true){
+                this.mensajeCorrecto=null;
                 this.enviando=true;    
                 this.authService.cambiarpassword(this.password["contra"],this.token).subscribe(
                     res =>{
@@ -66,7 +67,12 @@ export class EditPasswordComponent implements OnInit{
                             console.log("TODO GUAY");
                             this.accesocorrecto=true;
                             this.authService.mensajeEditPassword=true;
-                            this.router.navigate(['/login']);
+                            if(params['movil']){
+                                this.mensajeCorrecto="La contraseña se ha cambiado correctamente";
+                            }
+                            else{
+                                this.router.navigate(['/login']);
+                            }
                         }
                     }
                     else{
