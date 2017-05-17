@@ -86,7 +86,7 @@ export class ProductosComponent implements OnInit {
             if(res[0]){
               if (res[0].status==200){ //todo bien
                 this.tag=[]; 
-                this.productos=res[0].data.Productos;
+                this.productos=res[0].data.Productos; 
                 console.log(this.productos);
                 this.error=false; this.error2=false;
                 this.busquedaActiva=true;

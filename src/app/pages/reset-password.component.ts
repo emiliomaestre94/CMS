@@ -45,7 +45,7 @@ export class ResetPasswordComponent {
        this.router.navigate(['/login']);
        
   }
-
+ 
 
   
 }
