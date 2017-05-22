@@ -287,18 +287,10 @@ export class DashboardComponent implements OnInit {
   public mainChartData:Array<any> = [
     {
       data: this.mainChartData1,
-      label: 'Current'
-    },
-    {
-      data: this.mainChartData2,
-      label: 'Previous'
-    },
-    {
-      data: this.mainChartData3,
-      label: 'BEP'
+      label: 'Facturado'
     }
   ];
-  public mainChartLabels:Array<any> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Thursday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  public mainChartLabels:Array<any> = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo', 'Lunes', 'Jueves', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
   public mainChartOptions:any = {
     responsive: true,
     maintainAspectRatio: false,
@@ -507,8 +499,8 @@ export class DashboardComponent implements OnInit {
   public sparklineChartType:string = 'line';
 
     // Pie
-  public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData:number[] = [300, 500, 100];
+  public pieChartLabels:string[] = ['Android', 'iOS'];
+  public pieChartData:number[] = [61, 39];
   public pieChartType:string = 'pie';
 
   //barChart
@@ -516,21 +508,32 @@ export class DashboardComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+
+
+  public barChartLabels:string[] = ['Noviembre', 'Diciembre', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
 
   public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label:'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label:'Series B'}
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Ofertas utilizados' },
+    {data: [90, 104, 152, 156, 107, 100, 80], label: 'Ofertas vistas' },
   ];
 
+
+  public barChartLabels2:string[] = ['Noviembre', 'Diciembre', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
+  public barChartType2:string = 'bar';
+  public barChartLegend2:boolean = true;
+
+  public barChartData2:any[] = [
+    {data: [65, 90, 120, 130, 91, 100, 130], label: 'Productos vendidos' },
+    {data: [120, 133, 180, 190, 110, 130, 160], label: 'Productos escaneados' },
+  ];
+
+
+
     // Doughnut
-  public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData:number[] = [350, 450, 100];
+  public doughnutChartLabels:string[] = ['Hombre', 'Mujer'];
+  public doughnutChartData:number[] = [37,63];
   public doughnutChartType:string = 'doughnut';
   
-
-
-
 }
