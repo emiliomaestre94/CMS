@@ -87,9 +87,10 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <h4 class="card-title mb-0">Total Facturado</h4>
-                        <div class="small text-muted">Noviembre 2015</div>
+                        <div class="small text-muted"></div>Ültim</div>
                     </div>
                     <!--/.col-->
+                    <!--
                     <div class="col-sm-7 hidden-sm-down">
                         <button type="button" class="btn btn-primary float-right"><i class="icon-cloud-download"></i>
                         </button>
@@ -106,7 +107,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> --> 
                     <!--/.col-->
                 </div>
                 <!--/.row-->
@@ -124,7 +125,7 @@
         <div class="col-sm-6 col-md-6">
             <div class="card">
                 <div class="card-header" style="padding-bottom: 13px;">
-                    Ofertas más utilizadas
+                    Ofertas
                     <div class="card-actions">
                         <a href="http://www.chartjs.org">
                             <small class="text-muted">docs</small>
@@ -143,7 +144,7 @@
         <div class="col-sm-6 col-md-6">
             <div class="card">
                 <div class="card-header" style="padding-bottom: 13px;">
-                    Productos más vendidos
+                    Productos
                     <div class="card-actions">
                         <a href="http://www.chartjs.org">
                             <small class="text-muted">docs</small>
@@ -152,7 +153,7 @@
                 </div>
                 <div class="card-block">
                     <div class="chart-wrapper">
-                        <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                        <canvas baseChart class="chart" [datasets]="barChartData2" [labels]="barChartLabels2" [options]="barChartOptions" [legend]="barChartLegend2" [chartType]="barChartType2" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
                     </div>
                 </div>
             </div>
@@ -162,7 +163,7 @@
         <div class="col-sm-6 col-md-6">
             <div class="card">
                 <div class="card-header" style="padding-bottom: 13px;">
-                    Sistemas Operativos
+                    Uso de sistemas operativos
                     <div class="card-actions">
                         <a href="http://www.chartjs.org">
                             <small class="text-muted">docs</small>
@@ -181,7 +182,7 @@
         <div class="col-sm-6 col-md-6">
             <div class="card">
                 <div class="card-header" style="padding-bottom: 13px;">
-                    Doughnut Chart
+                    Género
                     <div class="card-actions">
                         <a href="http://www.chartjs.org">
                             <small class="text-muted">docs</small>
