@@ -45,6 +45,7 @@ export class ProductosDetalleModalComponent {
   public imageSrc;
   public ofertaActiva=false; // booleano que indica si tiene una oferta activa o no el producto
   public tabselected; //indica que tab es el seleccionado
+  public videobueno:boolean=false;
 
   public myCount="PRUEBITAAAAAAAAA";
 
@@ -104,6 +105,11 @@ export class ProductosDetalleModalComponent {
     console.log(producto);
     this.imagesProducto=null;
     this.producto=producto;
+    console.log("resultado de busq:" + producto.URL_video_producto.search("http"));
+    if(producto.URL_video_producto.search("http")!=-1){
+      //this.producto["URL_video_producto"]="https://www.youtube.com/embed/7Xdl-LOgbG0";
+      this.videobueno=true;
+    }
     if(producto.Id_oferta_producto!=null){
       this.ofertaActiva=true;
       this.imageSrc=producto.Foto_oferta_producto;
@@ -287,6 +293,10 @@ export class ProductosDetalleModalComponent {
  videoChange(event) {
     console.log("El evento es "+event);
     this.producto["URL_video_producto"]=event;
+     if(this.producto["URL_video_producto"].search("http")!=-1){
+      //this.producto["URL_video_producto"]="https://www.youtube.com/embed/7Xdl-LOgbG0";
+      this.videobueno=true;
+    }
   }
 
   filtrarNombre(nombre){
