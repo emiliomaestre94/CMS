@@ -7,37 +7,38 @@ import 'rxjs/Rx'; //para el map, catch, thow...etc
 import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
 
 export class Sincronizar{
-    Constructor( Id_factura: string, Id_tienda_factura: string, Fecha_factura: string, 	Total_factura: string, Pagada:string){ }
+    //Constructor(id: number, name: string){ }
+    Constructor(
+        fecha: string, 
+        /*hora:string, 
+        productos:string, 
+        clientes: string, 
+        nuevos: string, 
+        modificados: string,
+        eliminados: string,*/
+    ){ }
+} 
 
+export interface sinc {
+  fecha: string;
+    hora:string, 
+productos:string, 
+clientes: string, 
+nuevos: string, 
+modificados: string,
+eliminados: string,
 }
- 
 @Injectable()
 
 export class SincronizarService {
+public sincronizaciones: sinc[] = [];
 
-    constructor(private http: Http, private router: Router,public authHttp: AuthHttp) {
-        
-    }
-    getFacturasUser(idUsuario,idTienda){
-        console.log(idUsuario);
-        console.log(idTienda);
-        let url=environment.dominio + '/factura';
-        return this.authHttp.get(url)
-        .delay(environment.timeout)
-        .map((res: Response) => {
-            if (res.status === 200) {;
-                console.log("status 200");
-                //return res.json().usuario
-                return  [{ status: res.status, data: res.json() }]
-            }
-            else if (res.status === 204) {
-                console.log("status 204");
-                return  [{ status: res.status, json: "Usuario no encontrado en la base de datos" }]
-            }
-        }).catch((error: any) => {
-            console.log(error);
+    constructor(
+        private http: Http, 
+        private router: Router,
+        public authHttp: AuthHttp)
+    { }
 
-            return Observable.throw(new Error(error.status));
-        });
-    }
+
+
 }

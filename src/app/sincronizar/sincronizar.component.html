@@ -5,10 +5,10 @@
             <div class="card-block">
                 <div class="form-group row">
                     <div class="col-md-12">
-                        <div class=col-md-8 style="margin-left: 19%;">                  
-                            <p style="text-align: center;">
-                            Las sincronizaciones se realizan automaticamente todos los dias a las 0:00, si pasada esa hora se introduce un nuevo Producto en el sistema, no aparecera reflejado hasta las 0:00 del día siguiente. Si usted necesita ese Producto en el mismo día que se dio de alta, por favor pulse sobre el boton Sincronizar.
-                            </p>
+                        <div class="alert alert-warning" >                  
+                           
+                            Las sincronizaciones se realizan automaticamente todos los dias a las <strong>02:00</strong>, si pasada esa hora se introduce un nuevo Producto en el sistema, no aparecera reflejado hasta las 02:00 del día siguiente. Si usted necesita ese Producto en el mismo día que se dio de alta, por favor pulse sobre el boton <strong>Sincronizar</strong>.
+                            
                         </div>
                     </div>  
                 </div>
@@ -29,263 +29,203 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr class="" >  
-                                        <td class="text-center">
-                                            <p>06/04/2017</p>
+                                    <tr *ngFor="let sincronizacion of sincronizaciones">
+                                     <td class="text-center">
+                                            <p>{{sincronizacion.fecha}}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>00:00</p>
+                                            <p>{{sincronizacion.hora}}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>1.099.000</p>
+                                            <p>{{sincronizacion.productos}}</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>25.000.000</p>
+                                            <p>{{sincronizacion.clientes}}</p>
                                         </td>
                                         <td class="text-center" style="color: blue;">
-                                            <p>35.000.000 </p>
+                                            <p>{{sincronizacion.nuevos}}</p>
                                         </td>
                                         <td class="text-center" style="color: rgba(30, 170, 30, 1);">
-                                            <p> - </p>
+                                            <p>{{sincronizacion.modificados}}</p>
                                         </td>
                                         <td class="text-center" style="color: red;">
-                                            <p> - </p>
+                                            <p>{{sincronizacion.eliminados}}</p>
+                                        </td>
+                                    </tr>
+                                    <tr class="" >  
+                                        <td class="text-center">
+                                            <p>24/05/2017</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>02:00</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>117</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p>100</p>
+                                        </td>
+                                        <td class="text-center" style="color: blue;">
+                                            <p>2</p>
+                                        </td>
+                                        <td class="text-center" style="color: rgba(30, 170, 30, 1);">
+                                            <p>0</p>
+                                        </td>
+                                        <td class="text-center" style="color: red;">
+                                            <p>0</p>
                                         </td>
                                     </tr>
 
                                     <tr class="" >  
                                         <td class="text-center">
-                                            <p>06/04/2017</p>
+                                            <p>23/05/2017</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>0:00</p>
+                                            <p>02:00</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>1.099.000</p>
+                                            <p>116</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>25.000.000</p>
+                                            <p>99</p>
                                         </td>
                                         <td class="text-center" style="color: blue;">
-                                            <p>500</p>
+                                            <p>0</p>
                                         </td>
                                         <td class="text-center" style="color: rgba(30, 170, 30, 1);">
-                                            <p>25</p>
+                                            <p>0</p>
                                         </td>
                                         <td class="text-center" style="color: red;">
-                                            <p>12</p>
+                                            <p>0</p>
                                         </td>                                      
                                     </tr>
 
                                     <tr class="" >  
                                         <td class="text-center">
-                                            <p>06/04/2017</p>
+                                            <p>22/05/2017</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>0:00</p>
+                                            <p>02:00</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>1.099.000</p>
+                                            <p>116</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>25.000.000</p>
+                                            <p>99</p>
                                         </td>
                                         <td class="text-center" style="color: blue;">
-                                            <p>500</p>
+                                            <p>5</p>
                                         </td>
                                         <td class="text-center" style="color: rgba(30, 170, 30, 1);">
-                                            <p>25</p>
+                                            <p>0</p>
                                         </td>
                                         <td class="text-center" style="color: red;">
-                                            <p>12</p>
+                                            <p>0</p>
                                         </td>                                     
                                     </tr>
 
                                     <tr class="" >  
                                         <td class="text-center">
-                                            <p>06/04/2017</p>
+                                            <p>21/05/2017</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>0:00</p>
+                                            <p>02:00</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>1.099.000</p>
+                                            <p>115</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>25.000.000</p>
+                                            <p>95</p>
                                         </td>
                                         <td class="text-center" style="color: blue;">
-                                            <p>500</p>
+                                            <p>3</p>
                                         </td>
                                         <td class="text-center" style="color: rgba(30, 170, 30, 1);">
-                                            <p>25</p>
+                                            <p>0</p>
                                         </td>
                                         <td class="text-center" style="color: red;">
-                                            <p>12</p>
+                                            <p>0</p>
                                         </td>
                                     </tr>
 
                                     <tr class="" >  
                                         <td class="text-center">
-                                            <p>06/04/2017</p>
+                                            <p>20/05/2017</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>0:00</p>
+                                            <p>02:00</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>1.099.000</p>
+                                            <p>112</p>
                                         </td>
                                         <td class="text-center">
-                                           <p>25.000.000 </p>
+                                           <p>95</p>
                                         </td>
                                          <td class="text-center" style="color: blue;">
-                                            <p>500</p>
+                                            <p>1</p>
                                         </td>
                                         <td class="text-center" style="color: rgba(30, 170, 30, 1);">
-                                            <p>25</p>
+                                            <p>0</p>
                                         </td>
                                         <td class="text-center" style="color: red;">
-                                            <p>12</p>
+                                            <p>0</p>
                                         </td>                                       
                                     </tr>
 
                                     <tr class="" >  
                                         <td class="text-center">
-                                            <p>06/04/2017</p>
+                                            <p>19/05/2017</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>0:00</p>
+                                            <p>02:00</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>1.099.000</p>
+                                            <p>112</p>
                                         </td>
                                         <td class="text-center">
-                                          <p>25.000.000 </p>
+                                          <p>94 </p>
                                         </td>
                                          <td class="text-center">
-                                            <p>500</p>
+                                            <p>2</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>25</p>
+                                            <p>0</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>12</p>
+                                            <p>0</p>
                                         </td>                                       
                                     </tr>
 
                                     <tr class="" >  
                                         <td class="text-center">
-                                            <p>06/04/2017</p>
+                                            <p>18/05/2017</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>0:00</p>
+                                            <p>02:00</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>1.099.000</p>
+                                            <p>110</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>25.000.000 </p>
+                                            <p>94</p>
                                         </td>
                                           <td class="text-center">
-                                            <p>500</p>
+                                            <p>110</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>25</p>
+                                            <p>0</p>
                                         </td>
                                         <td class="text-center">
-                                            <p>12</p>
+                                            <p>0</p>
                                         </td>                                        
                                     </tr>
-
-                                    <tr class="" >  
-                                        <td class="text-center">
-                                            <p>06/04/2017</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>0:00</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>1.099.000</p>
-                                        </td>
-                                        <td class="text-center">
-                                          <p>25.000.000 </p>
-                                        </td>
-                                         <td class="text-center">
-                                            <p>500</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>25</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>12</p>
-                                        </td>                                       
-                                    </tr>
-
-                                    <tr class="" >  
-                                        <td class="text-center">
-                                            <p>06/04/2017</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>0:00</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>1.099.000</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>25.000.000 </p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>500</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>25</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>12</p>
-                                        </td>                                        
-                                    </tr>
-
-                                    <tr class="" >  
-                                        <td class="text-center">
-                                            <p>06/04/2017</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>0:00</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>1.099.000</p>
-                                        </td>
-                                        <td class="text-center">
-                                           <p>25.000.000 </p>
-                                        </td>
-                                         <td class="text-center">
-                                            <p>500</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>25</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p>12</p>
-                                        </td>                                       
-                                    </tr>
-                                </tbody>
+                                </tbody> 
 
                             </table>
                         </div>
-                        
-                        <template #popTemplate>
-                            <p style="text-align: center;">Esta operación puede tardar unos minutos, durante ese tiempo el sistema no podra ser utilizado.</p> 
-                            <div class="form-group row">
-                                <div style="margin-left: 25px; margin-top: 10px;">
-                                    <span class="btn btn-success">Confirmar</span>
-                                </div>
-                                <div style="margin-left: 25px; margin-top: 10px;">
-                                    <span class="btn btn-danger">Cancelar</span>
-                                </div>
-                            </div>
-                        </template>
-                        <button type="button" class="btn btn-primary"[popover]="popTemplate" popoverTitle="!!Ojo!!"><i class="fa fa-refresh fa-lg m-t-2"></i> Sincronizar</button>
-                    
+
+                        <button *ngIf="loadingButton==false" (click)="importar();" type="button" class="btn btn-primary"> <i class="fa fa-refresh fa-lg m-t-2"></i> Sincronizar</button>
+                         <button *ngIf="loadingButton==true" type="button" class="btn btn-primary"><i class="fa fa-spinner fa-spin"></i> Sincronizando</button>
                     </div>
 
                 </div>

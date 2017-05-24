@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     //generamos valores random para el chart (mas adelante los quitaremos)
     for (var i = 0; i <= this.mainChartElements; i++) {
-      this.mainChartData1.push(this.random(50,200));
+      this.mainChartData1.push(3000,2300,4600,5365,1284,8593,7836,6735,3654,8365,1087,6835,6327,7453,4087,7361,6398,4873,7463,2847,4000,6934,3456,7485,9345,7354,8453,5736);
       this.mainChartData2.push(this.random(80,100));
       this.mainChartData3.push(65);
     }
@@ -309,8 +309,8 @@ export class DashboardComponent implements OnInit {
         ticks: {
           beginAtZero: true,
           maxTicksLimit: 5,
-          stepSize: Math.ceil(250 / 5),
-          max: 250
+          stepSize: Math.ceil(10000 / 5),
+          max:  10000
         }
       }]
     },
