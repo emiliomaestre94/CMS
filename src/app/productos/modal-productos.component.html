@@ -154,6 +154,11 @@
                         <tab style="text-align:center" (select)="selectTab(4);">
                              <template tabHeading><i class="fa fa-cube fa-lg m-t-2"></i> Motor WebGL </template>
                            <!-- <iframe style="border: none;" src="https://drmultimedio.github.io/MOTOR/index.html" width="100%" height="800px"> </iframe>-->
+                           <iframe *ngIf="producto.Nombre_producto=='Alcatel Idol 4'" style="border: none;" src="https://drmultimedio.github.io/MOTOR/visualizadorGET.html?model=ifon&format=obj" width="100%" height="800px"> </iframe>
+                           <iframe *ngIf="producto.Nombre_producto=='Televisor Samsung 32K5570 Full HD'" style="border: none;" src="https://drmultimedio.github.io/MOTOR/visualizadorGET.html?model=Monitor&format=obj" width="100%" height="800px"> </iframe>
+                           <iframe *ngIf="producto.Nombre_producto=='Xiaomi mi5s'" style="border: none;" src="https://drmultimedio.github.io/MOTOR/visualizadorGET.html?model=microwave_BI&format=obj" width="100%" height="800px"> </iframe>
+                           <iframe *ngIf="producto.Nombre_producto.search('Macbook pro 15')!=-1" style="border: none;" src="https://drmultimedio.github.io/MOTOR/visualizadorGET.html?model=notebook&format=obj" width="100%" height="800px"> </iframe>
+                           <iframe *ngIf="producto.Nombre_producto=='Xiaomi Redmi 3S'" style="border: none;" src="https://drmultimedio.github.io/MOTOR/visualizadorGET.html?model=usb&format=obj" width="100%" height="800px"> </iframe>
                         </tab>
 
                     </tabset>
